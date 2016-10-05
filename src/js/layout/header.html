@@ -1,0 +1,27 @@
+<md-toolbar layout="row" layout-align="space-between center" class="md-toolbar-tools">
+
+	<div layout="row" layout-align="space-between center" flex class="limite">
+		<div>
+			<a 
+				ui-sref="app.home"
+				ng-bind="::$ctrl.appName | lowercase">
+			</a>
+		</div>
+		<!-- Exibe o Login para usário não loggados -->
+		<div show-authed="false">
+			<md-button oauth-login-button class="md-fab" aria-label="Login no idCultura">
+				<md-icon> android </md-icon>
+				<a ui-sref="app.login"></a>
+			</md-button>
+			<span hide-xs>Login com idCultura</span>
+		</div>
+
+		<!-- Exibe as opções para usuários logados -->
+		<div show-authed="true" style="display: none;">
+			<md-button class="md-fab" aria-label="Minha Praça">
+				<a ui-sref="app.minhaPraca"></a>
+			</md-button>
+		</div>
+	</div>
+
+</md-toolbar>

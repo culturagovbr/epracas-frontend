@@ -1,0 +1,75 @@
+<div layout="column" layout-align="space-between stretch" layout-fill id="praca">
+
+	<div flex class="praca">
+		<img src="header2.jpg" style="width: 100%"/>
+	</div>
+
+	<!-- Info&Bio -->
+	<div layout="row" layout-fill>
+		<div flex="35" layout-padding md-whiteframe="3" class="nome">
+			<h2>CEU- Centro de Artes e Esportes Unificados de Valparaíso de Goiás - GO</h2>
+			<p>3.000 m²</p>
+		</div>
+
+		<div flex="65" layout-padding md-whiteframe="3" class="bio">
+			<p>{{ $ctrl.praca.bio }}Inaugurada em 7 de abril de 2016, a estrutura possui dois edificios multiuso, dispostos em uma praça de esporte e lazer, com sala multimidia, salas para realização de oficinas e workshops, cineteatro/auditório, quadra poliesportiva coberta, pista de skate, parquinho para crianças, biblioteca e um Centro de Referência de Assistencia Social(Cras).</p>
+		</div>
+	</div>
+
+	<!-- Agenda -->
+	<div layout="column" layout-padding class="agenda">
+		<h2>Agenda cultural</h2>
+		<div layout="row">
+			<div layout="row" flex layout-wrap layout-margin layout-padding class="items">
+				<div flex="35" class="item">
+					<p>DE 10.09.2016 A 13.09.2016</p>
+					<div style="background-color: gray">Quadra Desportiva</div>
+					<h3>Aulas de tai-chi-chuan</h3>
+					<p> No final de semana, as aulas começarão às 6h e você não...</p>
+				</div>
+				<div flex="35" class="item">
+					<p>DE 10.09.2016 A 13.09.2016</p>
+					<div style="background-color: grey">Quadra Desportiva</div>
+					<h3>Aulas de tai-chi-chuan</h3>
+					<p> No final de semana, as aulas começarão às 6h e você não...</p>
+				</div>
+				<div flex="35" class="item">
+					<p>DE 10.09.2016 A 13.09.2016</p>
+					<div style="background-color: grey">Quadra Desportiva</div>
+					<h3>Aulas de tai-chi-chuan</h3>
+					<p> No final de semana, as aulas começarão às 6h e você não...</p>
+				</div>
+				<div flex="35" class="item">
+					<p>DE 10.09.2016 A 13.09.2016</p>
+					<div style="background-color: grey">Quadra Desportiva</div>
+					<h3>Aulas de tai-chi-chuan</h3>
+					<p> No final de semana, as aulas começarão às 6h e você não...</p>
+				</div>
+			</div>
+
+			<div flex="30" class="calendar">
+				<md-calendar ng-model=$ctrl.myDate></md-calendar>
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!-- Localização -->
+	<div flex "column" layout-fill class="localizacao">
+		<div flex="30" layout-padding class="info" md-whiteframe="3">
+			<h2>Localização</h2>
+			<p>Rua 28, próximo ao Fórum de Valparaíso(TJGO).</p>
+			<p>Aberto todos os dias de 8h às 22h.</p>
+			<p>Mais informações</p>
+		</div>
+
+		<div flex="70" md-whiteframe="3" class="mapa">
+		<p>[mapa]</p>	
+		</div>
+	</div>
+
+
+	
+</div>
