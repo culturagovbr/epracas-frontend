@@ -20,6 +20,7 @@ import './home';
 import './services';
 import './auth';
 import './praca';
+import './agenda';
 
 
 // Create and bootstrap application
@@ -38,6 +39,7 @@ const requires = [
   'app.services',
 	'app.auth',
 	'app.praca',
+	'app.agenda',
 ];
 
 // Mount on window for testing

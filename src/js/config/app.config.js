@@ -4,8 +4,8 @@ function AppConfig($httpProvider, $stateProvider, $locationProvider, $urlRouterP
   'ngInject';
 
 
-		$httpProvider.interceptors.push(authInterceptor);
-		$httpProvider.defaults.headers.common = { 'Content-Type': 'application/json' };
+	$httpProvider.interceptors.push(authInterceptor);
+	$httpProvider.defaults.headers.common = { 'Content-Type': 'application/json' };
 
   $stateProvider
   .state('app', {
