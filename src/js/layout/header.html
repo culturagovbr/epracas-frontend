@@ -11,16 +11,16 @@
 		<div show-authed="false">
 			<md-button oauth-login-button class="md-fab" aria-label="Login no idCultura">
 				<md-icon> android </md-icon>
-				<a ui-sref="app.login"></a>
 			</md-button>
 			<span hide-xs>Login com idCultura</span>
 		</div>
 
 		<!-- Exibe as opções para usuários logados -->
-		<div show-authed="true" style="display: none;">
+		<div show-authed="true">
 			<md-button class="md-fab" aria-label="Minha Praça">
-				<a ui-sref="app.minhaPraca"></a>
+				<img ng-src={{$ctrl.currentUser.profile_picture_url}}>
 			</md-button>
+				<span hide-xs>Olá {{$ctrl.currentUser.first_name}}</span>
 		</div>
 	</div>
 
