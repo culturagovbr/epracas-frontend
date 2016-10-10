@@ -3,29 +3,29 @@ function ShowAuthed(User) {
 
   return {
     restrict: 'A',
-    link: function($scope, element, attrs) {
+    link: function(scope, element, attrs) {
       scope.User = User;
 
-      scope.watch('User.current', function(val) {
+      scope.$watch('User.current', (val) => {
           // If user detected
           if (val) {
-            if (attrs.showAuthed == 'true') {
-              element.css({ display: inherit});
+            if (attrs.showAuthed === 'true') {
+              element.css({ display: 'inherit'})
             } else {
-              element.css({ display: none});
+              element.css({ display: 'none'})
             }
 
           // no user detected
           } else {
-            if (attrs.showAuthed == 'true') {
-              element.css({ display: none});
+            if (attrs.showAuthed === 'true') {
+              element.css({ display: 'none'})
             } else {
-              element.css({ display: inherit});
+              element.css({ display: 'inherit'})
             }
           }
       });
 
-    }
+    },
   };
 }
 
