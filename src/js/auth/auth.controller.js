@@ -11,7 +11,7 @@ class AuthCtrl {
 		this._$scope = $scope;
 		this._$stateParams = $stateParams;
 
-		$scope.model = {
+		this._$scope.model = {
 			requestedUrl: $stateParams.requestedUrl,
 			callback: function(requestedUrl) {
 				oauthService.initImplicitFlow(app.home);
