@@ -1,13 +1,13 @@
 <div layout="column" class="limite" id="praca">
 
-	<div flex class="praca">
+	<div flex id="praca_header">
 		<img ng-src="{{ praca.header_url }}" style="width: 100%"/>
 		<md-fab-speed-dial 
+			show-authed="true"
 			md-direction="down"
 			id="praca-speed-dial"
-			class="md-scale"
-			ng-mouseenter="$ctrl.menu.isOpen=true"
-			ng-mouseleave="$ctrl.menu.isOpen=false">
+			class="md-scale md-fab-top-right"
+			>
 
 			<md-fab-trigger>
 				<md-button 
