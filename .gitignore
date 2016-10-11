@@ -1,4 +1,4 @@
 node_modules/*
 build/*
 
-src/js/config/app.templates.js
+**/app.templates.js
