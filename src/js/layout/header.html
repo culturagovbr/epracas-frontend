@@ -17,9 +17,7 @@
 
 		<!-- Exibe as opções para usuários logados -->
 		<div show-authed="true">
-			<md-button class="md-fab" aria-label="Minha Praça">
-				<img ng-src={{$ctrl.currentUser.profile_picture_url}}>
-			</md-button>
+				<img ng-src={{$ctrl.currentUser.profile_picture_url}} class="md-avatar">
 				<span hide-xs>Olá {{$ctrl.currentUser.first_name}}</span>
 		</div>
 	</div>

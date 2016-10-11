@@ -13,6 +13,36 @@ export default class User {
 	}
 
 
+	attemptAuth(type, credentials) {
+		let route = (type === 'login') ? '/login' : '';
+		return this._$http({
+			url: this._AppConstants.api + '/users' + route,
+			method: 'POST',
+			data: {
+				user: credentials
+			}
+		}).then(
+			(res) => {
+				this._JWT.save(res.data.user.token);
+				this.current = res.data.user;
+
+				return res;
+			});
+	}
+
+	update(fields) {
+		return this._$http({
+			url: this._AppConstants.api + '/user',
+			method: 'PUT',
+			data: { user: fields }
+		}).then(
+			(res) => {
+				this.current = res.data.user;
+				return res.data.user;
+			}
+		);
+	}
+
 	logout() {
 		this.current = null;
 		this._JWT.destroy();
@@ -23,33 +53,18 @@ export default class User {
 		let deferred = this._$q.defer();
 
 		if(!this._JWT.get()) {
-			console.log('JWT Failed!');
 			deferred.resolve(false);
 			return deferred.promise;
 		}
 
 		if (this.current) {
 			deferred.resolve(true);
-
 		} else {
 			let accessToken = localStorage['access_token'];
-			this._$http({
-				url: this._AppConstants.userinfoUrl,
-				method: 'GET',
-				headers: {
-					'Authorization': 'Bearer ' + accessToken
-				},
-			}).then(
-				(res) => {
-					this.current = res.data;
-					deferred.resolve(true);
-				},
-
-				(err) => {
-					this._JWT.destroy();
-					deferred.resolve(false);
-				}
-			);
+			this.setUserInfo(accessToken).then(
+				(res) => deferred.resolve(true),
+				(err) => deferred.resolve(false)
+			)
 		}
 
 		return deferred.promise;
@@ -67,8 +82,33 @@ export default class User {
 					deferred.resolve(true);
 				}
 			}
-		);
+		)
 
+		return deferred.promise;
+	}
+
+	setUserInfo(accessToken) {
+		let deferred = this._$q.defer();
+
+		if(accessToken && !this.current){
+			return this._$http({
+				url: this._AppConstants.userinfoUrl,
+				method: 'GET',
+				headers: {
+					'Authorization': 'Bearer ' + accessToken
+				},
+			}).then(
+				(res) => {
+					this.current = res.data;
+					deferred.resolve(true);
+				},
+
+				(err) => {
+					this.current = null;
+					deferred.resolve(false);
+				}
+			);
+		}
 		return deferred.promise;
 	}
 
