@@ -112,4 +112,28 @@ export default class User {
 		return deferred.promise;
 	}
 
+	setUserInfo(accessToken) {
+		let deferred = this._$q.defer();
+
+		if(accessToken && !this.current){
+			return this._$http({
+				url: this._AppConstants.userinfoUrl,
+				method: 'GET',
+				headers: {
+					'Authorization': 'Bearer ' + accessToken
+				},
+			}).then(
+				(res) => {
+					this.current = res.data;
+					deferred.resolve(true);
+				},
+
+				(err) => {
+					this.current = null;
+					deferred.resolve(false);
+				}
+			);
+		}
+	}
+
 } 
