@@ -12,4 +12,7 @@ homeModule.config(HomeConfig);
 import HomeCtrl from './home.controller';
 homeModule.controller('HomeCtrl', HomeCtrl);
 
+import GeolocCtrl from './geoloc.controller';
+homeModule.controller('GeolocCtrl', GeolocCtrl);
+
 export default homeModule;
