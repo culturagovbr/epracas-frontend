@@ -1,3 +1,22 @@
-<div ng-repeat="praca in $ctrl.pracas_proximas">
-	<p>{{praca}}</p>
+<div class="limite" layout="column">
+
+	<md-content>
+		<md-list flex>
+			<md-list-item 
+				class="md-3-line"
+				layout-padding
+				ng-repeat="praca in $ctrl.pracas_proximas"
+				ng-click="$state.go('app.praca', {pk: praca.id_pub})">
+				<md-icon class="md-avatar">explorer</md-icon>
+				<div class="md-list-item-text" layout="column">
+					<h3>{{praca.nome}}</h3>
+					<h4>{{praca.municipio}} - {{praca.uf | uppercase}}</h4>
+					<p>Modelo: {{praca.modelo_descricao}}</p>
+					<p>Situação: {{praca.situacao_descricao}}</p>
+					<p>Distancia: {{praca.distancia / 1000}} Kms</p>
+				</div>
+			</md-list-item>
+		</md-list>
+	</md-content>
+
 </div>
