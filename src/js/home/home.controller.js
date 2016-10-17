@@ -12,8 +12,6 @@ class HomeCtrl {
 	getMatches(query){
 		let deferred = this._$q.defer();
 
-		console.log(query);
-
 		this._Praca.search(query).then(
 			(res) => deferred.resolve(res),
 			(err) => deferred.reject(err)

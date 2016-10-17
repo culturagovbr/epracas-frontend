@@ -36,6 +36,11 @@ md-toolbar h1 {
    max-width: 100%;
 }
 
+#home a{
+	text-decoration: none;
+	color: black;
+}
+
 #home-search {
 	margin: 13% 0;
 }
