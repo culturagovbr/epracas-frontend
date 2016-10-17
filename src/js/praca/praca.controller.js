@@ -14,6 +14,14 @@ class PracaCtrl {
 			$scope.praca.header_url = "/header2.jpg";
 		}
 
+		if (!$scope.praca.nome){
+			$scope.praca.nome = "Praça CEU de " + $scope.praca.municipio + ' - ' + $scope.praca.uf.toUpperCase()
+		}
+
+		if (!$scope.praca.bio){
+			$scope.praca.bio = "Texto de apresentação da Praça(a ser preenchido pelo Gestor)"
+		}
+
 		$scope.menu = [
 			{ id: 'vinculo', name: 'Requisitar vinculo com esta Praça', icon: 'assignment_ind', direction: 'left'},
 			{ id: 'evento', name: 'Adicionar Evento', icon: 'insert_invitation', direction: 'left'},
