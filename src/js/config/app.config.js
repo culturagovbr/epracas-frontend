@@ -1,6 +1,6 @@
 import authInterceptor from './auth.interceptor';
 
-function AppConfig($httpProvider, $stateProvider, $locationProvider, $urlRouterProvider) {
+function AppConfig($httpProvider, $stateProvider, $locationProvider, $urlRouterProvider, $mdThemingProvider) {
   'ngInject';
 
 
@@ -20,6 +20,10 @@ function AppConfig($httpProvider, $stateProvider, $locationProvider, $urlRouterP
 
   $urlRouterProvider.otherwise('/');
 	$locationProvider.html5Mode(true);
+
+	$mdThemingProvider.theme('docs-dark', 'default')
+		.primaryPalette('yellow')
+		.dark();
 
 }
 
