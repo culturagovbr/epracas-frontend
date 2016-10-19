@@ -2,6 +2,7 @@ class PracaCtrl {
 	constructor(
 		$scope,
 	 	$mdDialog,
+		User,
 	 	praca,
 	 	leafletData) {
 		'ngInject';
@@ -22,12 +23,29 @@ class PracaCtrl {
 			$scope.praca.bio = "Texto de apresentação da Praça(a ser preenchido pelo Gestor)"
 		}
 
-		$scope.menu = [
-			{ id: 'vinculo', name: 'Requisitar vinculo com esta Praça', icon: 'assignment_ind', direction: 'left'},
-			{ id: 'evento', name: 'Adicionar Evento', icon: 'insert_invitation', direction: 'left'},
-			{ id: 'rh', name: 'Adicionar RH', icon: 'people', direction: 'left'},
-			{ id: 'profile', name: 'Alterar informações sobre a Praça', icon: 'android', direction: 'left'},
-		];
+		// $scope.menu = [
+		// 	{ id: 'vinculo', name: 'Requisitar vinculo com esta Praça', icon: 'assignment_ind', direction: 'left'},
+		// 	{ id: 'evento', name: 'Adicionar Evento', icon: 'insert_invitation', direction: 'left'},
+		// 	{ id: 'rh', name: 'Adicionar RH', icon: 'people', direction: 'left'},
+		// 	{ id: 'profile', name: 'Alterar informações sobre a Praça', icon: 'android', direction: 'left'},
+		// ];
+		if (!User.current.gestor){
+			$scope.menu = [
+				{ 
+					id: 'vinculo', 
+					name: 'Requisitar vinculo com esta Praça', 
+					icon: 'assignment_ind',
+					direction: 'left',
+					func: 'showVinculacao($event)' 
+				},
+			];
+		} else {
+			$scope.menu = [
+				{ id: 'evento', name: 'Adicionar Evento', icon: 'insert_invitation', direction: 'left'},
+				{ id: 'rh', name: 'Adicionar RH', icon: 'people', direction: 'left'},
+				{ id: 'profile', name: 'Alterar informações sobre a Praça', icon: 'android', direction: 'left'},
+			];
+		}
 
 
 		$scope.defaults = {
@@ -66,6 +84,12 @@ class PracaCtrl {
 			fullscreen: $scope.customFullscreen,
 		});
 	}
+
+	// showAgenda($scope, ev) {
+	// 	this._$mdDialog.show({
+	// 		controller: 'AgendaCtrl'
+	// 	})
+	// }
 
 }
 
