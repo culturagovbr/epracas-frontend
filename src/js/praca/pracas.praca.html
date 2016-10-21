@@ -2,6 +2,27 @@
 
 	<div flex id="praca_header">
 		<img ng-src="{{ praca.header_url }}" style="width: 100%"/>
+		<md-fab-speed-dial
+			show-authed="true"
+			id="header-speed-dial"
+			class="md-scale md-fab-top-left">
+			<md-fab-trigger>
+				<md-button
+					aria-label="change header"
+					class="md-fab"
+					ng-click="$ctrl.showChangeHeaderImg($event, praca.id_pub)">
+					<md-tooltip
+						md-direction="right"
+						md-visible="tooltipVisible">
+						Alterar imagem de cabeçalho
+					</md-tooltip>
+
+					<md-icon>android</md-icon>
+				</md-button>
+				</md-fab-trigger>
+		</md-fab-speed-dial>
+
+
 		<md-fab-speed-dial 
 			show-authed="true"
 			md-direction="down"
@@ -13,7 +34,6 @@
 				<md-button 
 					aria-label="menu" 
 					class="md-fab md-warn">
-					
 
 					<md-tooltip 
 						md-direction="top" 

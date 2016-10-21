@@ -11,6 +11,9 @@ pracaModule.controller('PracasCtrl', PracasCtrl);
 import PracaCtrl from './praca.controller';
 pracaModule.controller('PracaCtrl', PracaCtrl);
 
+import ChangeHeaderImgCtrl from './header.controller';
+pracaModule.controller('ChangeHeaderImgCtrl', ChangeHeaderImgCtrl);
+
 import VinculacaoCtrl from './vinculacao.controller';
 pracaModule.controller('VinculacaoCtrl', VinculacaoCtrl);
 

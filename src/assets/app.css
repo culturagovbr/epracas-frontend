@@ -94,3 +94,10 @@ video#bgvid {
 	bottom: 20px;
 	right: 20px;
 }
+
+.cropArea {
+	background: #E4E4E4;
+	overflow: hidden;
+	height: 370px;
+}
+

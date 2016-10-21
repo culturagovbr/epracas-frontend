@@ -1,0 +1,54 @@
+<md-dialog aria-label="Alterar imagem de cabeçalho da Praça">
+	<md-dialog-content>
+		<md-content md-theme="docs-dark" layout-padding>
+			<h2>Atualize a imagem de cabeçalho da Praça</h2>
+			<p>Você pode recortar uma imagem e pré-visualizar o resultado antes de alterar.</p>
+			</md-content>
+			<md-progress-linear
+				ng-show="progress >= 0"
+				md-mode="determinate"
+				value={{progress}}>
+			</md-progress-linear>
+		<md-input-container class="md-block" flex-gt-sm layout-padding>
+			<md-button
+				class="md-raised"
+				ngf-select
+				ng-model="headerImage"
+				accept="image/*"
+				>
+				Selecione a imagem
+			</md-button>
+			
+			<div 
+				ngf-drop 
+				ng-model="headerImage" 
+				ngf-pattern="image/*" 
+				class="cropArea"
+				flex>
+				<img-crop 
+					image="headerImage | ngfDataUrl"
+					area-type="rectangle"
+					ng-init="croppedDataUrl=''"
+					aspect-ratio="2.6"
+					result-image="croppedDataUrl"
+					result-image-size="{w:960,h:370}"
+					init-max-area="true">
+				</img-crop>
+			</div>
+
+			<div>
+				<img ng-src="{{croppedDataUrl}}" alt=""/>
+			</div>
+
+			<md-dialog-actions layout="row">
+				<md-button ng-click="$ctrl.cancel()">
+					Cancelar
+				</md-button>
+				<md-button class="md-primary md-raised" ng-click="$ctrl.upload(croppedDataUrl, headerImage.name)">
+					Enviar
+				</md-button>
+
+		</md-input-container>
+	</md-dialog-content>
+</md-dialog>
+

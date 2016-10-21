@@ -9,6 +9,8 @@ class PracaCtrl {
 
 		this._$mdDialog = $mdDialog;
 
+		this._$scope = $scope;
+
 		$scope.praca = praca;
 
 		if (!$scope.praca.header_url){ 
@@ -81,10 +83,22 @@ class PracaCtrl {
 			parent: angular.element(document.body),
 			targetEvent: ev,
 			clickOutsiteToClose: false,
-			fullscreen: $scope.customFullscreen,
-		});
+			fullscreen: true,
+		})
 	}
 
+	showChangeHeaderImg($scope, ev) {
+		this._$mdDialog.show({
+			controller: 'ChangeHeaderImgCtrl',
+			controllerAs: '$ctrl',
+			templateUrl: 'praca/header-dialog.tmpl.html',
+			parent: angular.element(document.body),
+			// locals: { praca: $scope.praca },
+			scope: this._$scope,
+			preserveScope: true,
+			targetEvent: ev,
+		})	
+	}
 	// showAgenda($scope, ev) {
 	// 	this._$mdDialog.show({
 	// 		controller: 'AgendaCtrl'
