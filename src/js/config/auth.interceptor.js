@@ -1,29 +1,24 @@
 function authInterceptor(JWT, AppConstants, $window, $q) {
-	'ngInject';
+  "ngInject";
 
-	return {
-		request: function(config) {
-			if(config.url.indexOf(AppConstants.api) === 0 && JWT.get()) {
-				config.headers.Authorization = 'Token ' + JWT.get();
-			}
-			
-			return config;
+  return {
+    request(config) {
+      if (config.url.indexOf(AppConstants.api) === 0 && JWT.get()) {
+        config.headers.Authorization = `JWT ${JWT.get()}`;
+      }
 
-		},
+      return config;
+    },
 
-		responseError: function(rejection) {
-			if (rejection.status === 401) {
+    responseError(rejection) {
+      if (rejection.status === 401) {
+        JWT.destroy();
+        $window.location.reload();
+      }
 
-				JWT.destroy();
-
-				$window.location.reload();
-				
-			}
-			return $q.reject(rejection);
-			
-		}
-	}
-	
+      return $q.reject(rejection);
+    },
+  };
 }
 
 export default authInterceptor;
