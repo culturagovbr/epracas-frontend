@@ -1,17 +1,15 @@
 class GeolocCtrl {
   constructor($scope, $state, GeoLocation) {
-    'ngInject';
+    "ngInject";
 
-		$scope.$state = $state;
+    $scope.$state = $state;
 
-		this.pracas_proximas = GeoLocation.getCurrentPosition().then(
-			(position) => GeoLocation.getDistanceList(position).then(
-				(distances) => this.pracas_proximas = distances
-			)
-		);
+    this.pracas_proximas = GeoLocation.getCurrentPosition().then(
+      position => GeoLocation.getDistanceList(position).then(
+        distances => this.pracas_proximas = distances
+      )
+    );
   }
-
-
 }
 
 export default GeolocCtrl;

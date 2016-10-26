@@ -38,7 +38,7 @@ class PracaCtrl {
 					name: 'Requisitar vinculo com esta Praça', 
 					icon: 'assignment_ind',
 					direction: 'left',
-					func: 'showVinculacao($event)' 
+					func: 'showVinculacao($event)'
 				},
 			];
 		} else {
@@ -106,5 +106,6 @@ class PracaCtrl {
 	// }
 
 }
+
 
 export default PracaCtrl;
