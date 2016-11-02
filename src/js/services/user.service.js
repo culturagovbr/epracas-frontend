@@ -106,18 +106,19 @@ export default class User {
         }
       )
       .then(
-        (res) => {
+        res => {
           this._$http({
             url: this._AppConstants.apiUserInfo,
             method: "POST",
             data: this.current,
-          }).catch(
-            err => this.$log.log(err)
-          );
+          }).then(
+              res => this.current = res.data
+            )
+            .catch(
+              err => this.$log.log(`setUserInfo() Error: ${err}`)
+            );
         },
-
-
-      );
+      )
     }
     return deferred.promise;
   }

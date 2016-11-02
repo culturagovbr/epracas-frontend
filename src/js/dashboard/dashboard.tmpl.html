@@ -1,0 +1,44 @@
+<div class="limite" layout="row">
+	<div layout-align="center center">
+		<md-sidenav
+			class="md-sidenav-left"
+			md-is-locked-open="$mdMedia('gt-md')"
+			md-whiteframe="4">
+			<md-toolbar
+				class="md-theme-indigo" layout-padding>
+				<md-list>
+					<md-list-item>
+						<md-icon>dashboard</md-icon>
+						<p>Área do Gestor MinC</p>
+					</md-list-item>
+				</md-list>
+			</md-toolbar>
+			<md-content>
+				<md-list flex>
+					<md-list-item ng-click="null">
+						<md-icon class="md-primary md-avatar">account_balance</md-icon>
+						<p>Praças</p>
+					</md-list-item>
+					<md-list-item ng-click="null">
+						<md-icon class="md-primary"></md-icon>
+						<p>Gestores</p>
+					</md-list-item>
+					<md-list-item ng-click="null">
+						<md-icon class="md-primary">date_range</md-icon>
+						<p>Agenda e Eventos</p>
+					</md-list-item>
+					<md-list-item ng-click="null">
+						<md-icon class="md-primary">assignment_ind</md-icon>
+						<p>Pedidos de Vinculação</p>
+					</md-list-item>
+					<md-list-item ng-click="$state.go('app.dashboard.usuarios')">
+						<md-icon class="md-primary">face</md-icon>
+						<p>Usuários</p>
+					</md-list-item>
+					</md-list>
+		</md-sidenav>
+	</div>
+
+  <div ui-view></div>
+
+</div>
