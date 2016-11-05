@@ -1,30 +1,29 @@
 function ShowAuthed(User) {
-  'ngInject';
+  "ngInject";
 
   return {
-    restrict: 'A',
-    link: function(scope, element, attrs) {
+    restrict: "A",
+    link(scope, element, attrs) {
       scope.User = User;
 
-      scope.$watch('User.current', (val) => {
-          // If user detected
-          if (val) {
-            if (attrs.showAuthed === 'true') {
-              element.css({ display: 'inherit'})
-            } else {
-              element.css({ display: 'none'})
-            }
+      scope.$watch("User.current", (val) => {
+        // If user detected
+        if (val) {
+          if (attrs.showAuthed === "true") {
+            element.css({ display: "inherit" });
+          } else {
+            element.css({ display: "none" });
+          }
 
           // no user detected
+        } else {
+          if (attrs.showAuthed === "true") {
+            element.css({ display: "none" });
           } else {
-            if (attrs.showAuthed === 'true') {
-              element.css({ display: 'none'})
-            } else {
-              element.css({ display: 'inherit'})
-            }
+            element.css({ display: "inherit" });
           }
+        }
       });
-
     },
   };
 }
