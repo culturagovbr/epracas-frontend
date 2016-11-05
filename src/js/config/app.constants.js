@@ -1,4 +1,4 @@
-const AppConstants = {
+let AppConstants = {
   api: "http://localhost:8000/api/v1",
   jwtKey: "id_token",
   appName: "e-Praças",
@@ -8,6 +8,7 @@ const AppConstants = {
   userinfoUrl: "https://alpha.id.cultura.gov.br/api/v1/person",
   clientId: "12_5d1bf045zqo8o408g8cs8ogwco0kko4wwwk08sk8gwkosk08o0",
   apiUserInfo: "http://localhost:8000/api/v1/user/",
+  agendaApi: "http://localhost:8000/api/v1/agenda/",
 };
 
 export default AppConstants;

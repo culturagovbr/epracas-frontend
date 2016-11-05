@@ -1,0 +1,58 @@
+<div class="md-inline-form">
+  <form name="EventForm" ng-disabled="$ctrl.isSaving" ng-submit="$ctrl.save()">
+    <md-dialog layout="column" aria-label="Eventos da Praça" >
+      <md-dialog-content>
+        <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+          <div>
+            <h2>Cadastro de Evento</h2>
+            <md-input-container flex flex-gt-xs="80">
+              <label>Titulo do Evento</label>
+              <input name="eventName" ng-required="true" ng-model="$ctrl.eventData.titulo" md-autofocus>
+              </md-input-container>
+
+              <md-input-container>
+                <label>Data do Evento</label>
+                <md-datepicker ng-required="true" ng-model="$ctrl.eventData.data_inicio"></md-datepicker>
+                </md-input-container>
+          </div>
+          </md-content>
+
+          <md-content layout-padding>
+            <div>
+              <md-input-container>
+                <md-icon>schedule</md-icon>
+                <label>Horário de Inicio</label>
+                <input name="horaInicio" ng-model="$ctrl.eventData.hora_inicio" />
+                </md-input-container>
+
+                <md-input-container>
+                  <md-icon>schedule</md-icon>
+                  <label>Horário de Encerramento</label>
+                  <input name="horaEncerramento" ng-model="$ctrl.eventData.hora_encerramento">
+                  </md-input-container>
+
+                  <md-input-container>
+                    <md-icon>edit_location</md-icon>
+                    <label>Local da Atividade</label>
+                    <input name="localAtividade" ng-model="$ctrl.eventData.local">
+                    </md-input-container>
+
+                    <md-input-container class="md-block" >
+                      <md-icon>subject</md-icon>
+                      <label>Descrição do Evento</label>
+                      <textarea name="descricaoAtividade" rows="5" ng-select-on-focus ng-model="$ctrl.eventData.descricao"></textarea>
+                      </md-input-container>
+            </div>
+            </md-content>
+            </md-dialog-content>
+            <md-dialog-actions layout="row">
+              <md-button ng-click="$ctrl.cancel()">
+                Cancelar
+                </md-button>
+                <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="!($ctrl.eventData.titulo && $ctrl.eventData.data_inicio)">
+                  Enviar
+                  </md-button>
+                  </md-dialog-actions>
+  </form> 
+  </md-dialog>
+</div>
