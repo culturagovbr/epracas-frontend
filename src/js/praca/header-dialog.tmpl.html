@@ -44,9 +44,10 @@
 				<md-button ng-click="$ctrl.cancel()">
 					Cancelar
 				</md-button>
-				<md-button class="md-primary md-raised" ng-click="$ctrl.upload(croppedDataUrl, headerImage.name)">
+				<md-button class="md-no-focus md-raised md-primary" ng-disabled="!headerImage" ng-click="$ctrl.upload(croppedDataUrl, headerImage.name)">
 					Enviar
 				</md-button>
+        </md-dialog-actions>
 
 		</md-input-container>
 	</md-dialog-content>
