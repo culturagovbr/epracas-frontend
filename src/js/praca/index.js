@@ -17,5 +17,11 @@ pracaModule.controller('ChangeHeaderImgCtrl', ChangeHeaderImgCtrl);
 import VinculacaoCtrl from './vinculacao.controller';
 pracaModule.controller('VinculacaoCtrl', VinculacaoCtrl);
 
+import EventCtrl from "./event.controller";
+pracaModule.controller('EventCtrl', EventCtrl);
+
+import PracaInfoCtrl from "./pracainfo.controller";
+pracaModule.controller("PracaInfoCtrl", PracaInfoCtrl);
+
 
 export default pracaModule;

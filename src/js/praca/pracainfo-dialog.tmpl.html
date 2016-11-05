@@ -1,0 +1,73 @@
+<md-dialog layout="column" aria-label="Editar Informações sobre a Praça">
+  <form name="PracaForm" ng-submit="$ctrl.save()">
+      <md-dialog-content>
+        
+        <md-content md-theme="docs-dark" layout-padding>
+            <h2>Informações sobre a Praça</h2>
+            <md-input-container class="md-block" flex>
+              <label>Nome da Praça</label>
+              <input name="pracaNome" ng-required="true" ng-model="$ctrl._praca.nome">
+            </md-input-container>
+        </md-content>
+
+        <md-content layout-padding>
+
+          <div layout-gt-xs="row" layout-padding>
+
+            <md-input-container class="md-block" flex>
+              <label>Logradouro</label>
+              <textarea rows="5" name="pracaLogradouro", ng-model="$ctrl._praca.logradouro"></textarea>
+            </md-input-container>
+
+            <div layout-gt-xs="column">
+
+          <md-input-container flex-gt-xs="30">
+            <label>CEP</label>
+            <input name="pracaCep" ng-model="$ctrl._praca.cep">
+          </md-input-container>
+
+          <md-input-container flex-gt-xs="30">
+            <label>Bairro</label>
+            <input name="pracaBairro" ng-model="$ctrl._praca.bairro">
+          </md-input-container>
+          </div>
+
+          </div>
+          
+          <md-input-container>
+            <label>Região</label>
+            <input name="pracaRegiao" ng-model="$ctrl._praca.regiao">
+          </md-input-container>
+
+          <md-input-container>
+            <label>UF</label>
+            <input name="pracaUf" ng-model="$ctrl._praca.uf">
+          </md-input-container>
+
+          <md-input-container>
+            <label>Municipio</label>
+            <input name="pracaMunicipio" ng-model="$ctrl._praca.municipio">
+          </md-input-container>
+
+          <div>
+          <md-input-container class="md-block" flex>
+            <label>Texto de Apresentação da Praça</label>
+            <textarea rows="5" name="pracaBio" ng-model="$ctrl._praca.bio"></textarea>
+          </md-input-container>
+          </div>
+        </md-content>
+        <md-dialog-actions layout="row">
+          <md-button ng-click="$ctrl.cancel()">
+            Cancelar
+          </md-button>
+          <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="!$ctrl._praca.nome">
+              Enviar
+          </md-button>
+        </md-dialog-actions>
+
+
+
+          </div>
+    
+  </form>
+</md-dialog>

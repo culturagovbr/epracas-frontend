@@ -2,33 +2,12 @@
 
 	<div flex id="praca_header">
 		<img ng-src="{{ praca.header_url }}" style="width: 100%"/>
-		<md-fab-speed-dial
-			show-authed="true"
-			id="header-speed-dial"
-			class="md-scale md-fab-top-left">
-			<md-fab-trigger>
-				<md-button
-					aria-label="change header"
-					class="md-fab"
-					ng-click="$ctrl.showChangeHeaderImg($event, praca.id_pub)">
-					<md-tooltip
-						md-direction="right"
-						md-visible="tooltipVisible">
-						Alterar imagem de cabeçalho
-					</md-tooltip>
-
-					<md-icon>android</md-icon>
-				</md-button>
-				</md-fab-trigger>
-		</md-fab-speed-dial>
-
 
 		<md-fab-speed-dial 
 			show-authed="true"
 			md-direction="down"
 			id="praca-speed-dial"
-			class="md-scale md-fab-top-right"
-			>
+			class="md-scale md-fab-top-right">
 
 			<md-fab-trigger>
 				<md-button 
@@ -46,14 +25,14 @@
 				</md-button>
 			</md-fab-trigger>
 			<md-fab-actions>
-				<div ng-repeat="item in menu">
+				<div ng-repeat="item in userMenu">
 					
 					<md-button 
 						aria-label="{{ item.name }}"
 						class="md-fab md-raised md-mini"
-						ng-click="$ctrl.showVinculacao($event)">
+						ng-click="$mdDialog.show(item.dialog)">
 						
-						<md-tooltip md-direction="{{ item.direction }}"
+						<md-tooltip md-direction="left"
 							md-visible="tooltipVisible"
 							md-autohide="false">
 							{{ item.name }}
@@ -82,20 +61,25 @@
 	</div>
 
 	<!-- Agenda -->
-	<div layout-padding class="agenda">
-		<h2>Agenda</h2>
+	<div layout-padding class="agenda" layout-align="start center" >
+    
+    <div layout="row">
+      <md-icon>insert_invitation</md-icon>
+      <h2>Agenda</h2>
+    </div>
+
 		<div layout-gt-xs="row">
 			<div layout="row" flex-gt-xs="60" layout-wrap layout-margin layout-padding>
-				<div flex-gt-xs="40" ng-repeat="atividade in praca.agenda">
-					<p>DE {{ atividade.data_inicio }} A {{ atividade.data_encerramento }}</p>
+				<div flex-gt-xs="40" ng-repeat="atividade in praca.agenda | orderBy: 'atividade.data_inicio' | limitTo:4">
+					<p>DE {{ atividade.data_inicio | date: 'dd-MM-yyyy' }} A {{ atividade.data_encerramento | date: 'dd-MM-yyyy' }}</p>
 					<div style="background-color: gray">{{ atividade.local }}</div>
 					<h3>{{ atividade.titulo }}</h3>
 					<p>{{ atividade.descricao | limitTo:140 }}</p>
 				</div>
 			</div>
 
-			<div flex class="calendar">
-				<md-calendar ng-model=$ctrl.myDate></md-calendar>
+			<div flex>
+				<!-- <md-calendar class="md-no-focus" ng-model=$ctrl.myDate></md-calendar> -->
 			</div>
 
 		</div>
@@ -107,14 +91,14 @@
 	<div layout-gt-xs="row" class="localizacao">
 		<div flex-gt-xs="30" layout-padding class="info" md-whiteframe="3">
 			<h2>Localização</h2>
-			<p>Rua 28, próximo ao Fórum de Valparaíso(TJGO).</p>
+      <p>{{praca.logradouro}}</p>
 			<p>Aberto todos os dias de 8h às 22h.</p>
 			<p>Mais informações</p>
 		</div>
 
-		<div flex md-whiteframe="3">
-			<leaflet width="100%" height="300px" lf-center="center" defaults="defaults" markers="markers" ></leaflet>
-		</div>
+    <div id="map" flex md-whiteframe="3">
+        <leaflet id="mapPane" width="100%" height="300px" lf-center="geoLoc.center" defaults="geoLoc.defaults" markers="geoLoc.markers" ></leaflet>
+    </div>
 	</div>
 
 
