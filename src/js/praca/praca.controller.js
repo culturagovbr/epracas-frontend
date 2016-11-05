@@ -1,110 +1,149 @@
 class PracaCtrl {
-	constructor(
-		$scope,
-	 	$mdDialog,
-		User,
-	 	praca,
-	 	leafletData) {
-		'ngInject';
+  constructor($scope, $mdDialog, User, praca, $log) {
+    "ngInject";
 
-		this._$mdDialog = $mdDialog;
+    this._$mdDialog = $mdDialog;
+    this._$scope = $scope;
+    this.currentUser = User.current;
 
-		this._$scope = $scope;
+    $scope.praca = praca;
+    $scope.$mdDialog = $mdDialog;
 
-		$scope.praca = praca;
+    if (!$scope.praca.header_url) {
+      $scope.praca.header_url = "/header2.jpg";
+    }
 
-		if (!$scope.praca.header_url){ 
-			$scope.praca.header_url = "/header2.jpg";
-		}
+    if (!$scope.praca.bio) {
+      $scope.praca.bio = "Texto de apresentação da Praça(a ser preenchido pelo Gestor)";
+    }
 
-		if (!$scope.praca.nome){
-			$scope.praca.nome = "Praça CEU de " + $scope.praca.municipio + ' - ' + $scope.praca.uf.toUpperCase()
-		}
+    const geoLoc = {
+      defaults: {
+        tileLayerOptions: {
+          detectRetina: true,
+          reuseTiles: true,
+        },
+        scrollWheelMouse: false,
+        doubleClickZoom: false,
+        zoomControl: false,
+        dragging: false,
+        icon: {
+          iconUrl: "https://unpkg.com/leaflet@1.0.1/dist/images/marker-icon.png",
+          shadowUrl: "https://unpkg.com/leaflet@1.0.1/dist/images/marker-shadow.png",
+          iconSize: [80, 80],
+          iconAnchor: [40, 80],
+          popupAnchor: [0, 0],
+          shadowSize: [0, 0],
+          shadowAnchor: [0, 0],
+        },
+      },
 
-		if (!$scope.praca.bio){
-			$scope.praca.bio = "Texto de apresentação da Praça(a ser preenchido pelo Gestor)"
-		}
+      center: {
+        lat: Number(praca.lat),
+        lng: Number(praca.long),
+        zoom: 13,
+      },
 
-		// $scope.menu = [
-		// 	{ id: 'vinculo', name: 'Requisitar vinculo com esta Praça', icon: 'assignment_ind', direction: 'left'},
-		// 	{ id: 'evento', name: 'Adicionar Evento', icon: 'insert_invitation', direction: 'left'},
-		// 	{ id: 'rh', name: 'Adicionar RH', icon: 'people', direction: 'left'},
-		// 	{ id: 'profile', name: 'Alterar informações sobre a Praça', icon: 'android', direction: 'left'},
-		// ];
-		if (!User.current.gestor){
-			$scope.menu = [
-				{ 
-					id: 'vinculo', 
-					name: 'Requisitar vinculo com esta Praça', 
-					icon: 'assignment_ind',
-					direction: 'left',
-					func: 'showVinculacao($event)'
-				},
-			];
-		} else {
-			$scope.menu = [
-				{ id: 'evento', name: 'Adicionar Evento', icon: 'insert_invitation', direction: 'left'},
-				{ id: 'rh', name: 'Adicionar RH', icon: 'people', direction: 'left'},
-				{ id: 'profile', name: 'Alterar informações sobre a Praça', icon: 'android', direction: 'left'},
-			];
-		}
+      markers: {
+        marker: {
+          lat: Number(praca.lat),
+          lng: Number(praca.long),
+          message: praca.localizacao,
+          focus: true,
+          draggable: false,
+        },
+      },
+    };
+    $scope.geoLoc = geoLoc;
 
+    $scope.$watch(
+      () => User.current,
+      (newUser) => {
+        this.currentUser = newUser;
+        $scope.userMenu = this.buildMenu(this.currentUser);
+        $log.log($scope.userMenu);
+      });
+  }
 
-		$scope.defaults = {
-			scrollWheelMouse: false,
-			zoomControl: false,
-			dragging: false,
-		};
+  buildMenu(currentUser) {
+    const userMenu = {};
 
-		$scope.center = {
-			lat: $scope.praca.lat,
-			lng: $scope.praca.long,
-			zoom: 14,
-		};
+    if (angular.isDefined(currentUser.is_staff) || currentUser.praca_manager === this.praca.id_pub) {
+      userMenu.event = {
+        id: "evento",
+        name: "Adicionar Evento",
+        icon: "insert_invitation",
+        dialog: {
+          controller: "EventCtrl",
+          controllerAs: "$ctrl",
+          templateUrl: "praca/event-dialog.tmpl.html",
+          parent: angular.element(document.body),
+          scope: this._$scope,
+          preserveScope: true,
+        },
+      };
 
-		$scope.markers = {
-			marker: {
-				lat: $scope.praca.lat,
-				lng: $scope.praca.long,
-				message: $scope.praca.localizacao,
-			}
-		};
+      userMenu.partner = {
+        id: "parceiro",
+        name: "Adicionar Parceiro",
+        icon: "people",
+        action: "showPartnerDialog",
+      };
 
-		$scope.customFullscreen = true;
+      userMenu.profile = {
+        id: "perfil",
+        name: "Editar informações sobre a Praça",
+        icon: "android",
+        dialog: {
+          controller: "PracaInfoCtrl",
+          controllerAs: "$ctrl",
+          templateUrl: "praca/pracainfo-dialog.tmpl.html",
+          parent: angular.element(document.body),
+          scope: this._$scope,
+          preserveScope: true,
+          fullscreen: true,
+        },
+      };
 
-	}
+      userMenu.headerImg = {
+        id: "headerImg",
+        name: "Editar o cabeçalho da pagina da Praça",
+        icon: "aspect_ratio",
+        dialog: {
+          controller: "ChangeHeaderImgCtrl",
+          controllerAs: "$ctrl",
+          templateUrl: "praca/header-dialog.tmpl.html",
+          parent: angular.element(document.body),
+          locals: { praca: this._praca },
+          scope: this._$scope,
+          preserveScope: true,
+          // targetEvent: $event,
+        },
+      };
+    }
 
+    if (angular.isUndefined(currentUser.praca_manager)) {
+      userMenu.vinculo = {
+        id: "evento",
+        name: "Solicitar vinculo para gestão da Praça",
+        icon: "assignment_ind",
+        action: this.showVinculacao,
+        dialog: {
+          controller: "VinculacaoCtrl",
+          controllerAs: "$ctrl",
+          templateUrl: "praca/vinculacao.tmpl.html",
+          parent: angular.element(document.body),
+          // targetEvent: ev,
+          clickOutsiteToClose: false,
+          fullscreen: true,
+          scope: this._$scope,
+          preserveScope: true,
+        },
+      };
+    }
 
-	showVinculacao($scope, ev) {
-		this._$mdDialog.show({
-			controller: 'VinculacaoCtrl',
-			controllerAs: '$ctrl',
-			templateUrl: 'praca/vinculacao.tmpl.html',
-			parent: angular.element(document.body),
-			targetEvent: ev,
-			clickOutsiteToClose: false,
-			fullscreen: true,
-		})
-	}
-
-	showChangeHeaderImg($scope, ev) {
-		this._$mdDialog.show({
-			controller: 'ChangeHeaderImgCtrl',
-			controllerAs: '$ctrl',
-			templateUrl: 'praca/header-dialog.tmpl.html',
-			parent: angular.element(document.body),
-			// locals: { praca: $scope.praca },
-			scope: this._$scope,
-			preserveScope: true,
-			targetEvent: ev,
-		})	
-	}
-	// showAgenda($scope, ev) {
-	// 	this._$mdDialog.show({
-	// 		controller: 'AgendaCtrl'
-	// 	})
-	// }
-
+    return userMenu;
+  };
 }
 
 
