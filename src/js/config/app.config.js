@@ -8,6 +8,7 @@ function AppConfig(
   $locationProvider,
   $urlRouterProvider,
   $mdThemingProvider,
+  $mdDateLocaleProvider,
   $mdIconProvider) {
   "ngInject";
 
@@ -41,6 +42,62 @@ function AppConfig(
     .warnPalette("red")
     .backgroundPalette("grey");
 
+  $mdDateLocaleProvider.months = [
+    "janeiro",
+    "fevereiro",
+    "março",
+    "abril",
+    "maio",
+    "junho",
+    "julho",
+    "agosto",
+    "setembro",
+    "outubro",
+    "novembro",
+    "dezembro"];
+
+  $mdDateLocaleProvider.shortMonths = [
+    "jan",
+    "fev",
+    "mar",
+    "abr",
+    "mai",
+    "jun",
+    "jul",
+    "ago",
+    "set",
+    "out",
+    "nov",
+    "dez"];
+
+  $mdDateLocaleProvider.days = [
+    "domingo",
+    "segunda",
+    "terça",
+    "quarta",
+    "quinta",
+    "sexta",
+    "sabado"];
+
+  $mdDateLocaleProvider.shortDays = [
+    "D",
+    "S",
+    "T",
+    "Q",
+    "Q",
+    "S",
+    "S"];
+
+
+  $mdDateLocaleProvider.formatDate = function(date) {
+    const m = moment(date);
+    return m.isValid() ? m.format("L") : "";
+  };
+
+  $mdDateLocaleProvider.parseDate = function(dateString) {
+    const m = moment(dateString, "L", true);
+    return m.isValid() ? m.toDate() : new Date(NaN);
+  };
 
   $mdIconProvider
     .icon("idcultura", "images/idcultura.svg", 120);

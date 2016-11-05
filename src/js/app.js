@@ -5,6 +5,8 @@ import "angular-material";
 import "angular-animate";
 import "angular-aria";
 import "angular-oidc";
+import moment from "moment";
+import "moment/locale/pt-br";
 import "angular-simple-logger";
 import "ui-leaflet";
 import "ng-file-upload";
@@ -34,6 +36,7 @@ const requires = [
   "ngAnimate",
   "ngAria",
   "oauth2",
+  // "moment",
   "nemLogging",
   "ui-leaflet",
   "ngFileUpload",
@@ -52,6 +55,8 @@ const requires = [
 
 // Mount on window for testing
 window.app = angular.module("app", requires);
+
+moment.locale('pt-br');
 
 angular.module("app").constant("AppConstants", constants);
 
