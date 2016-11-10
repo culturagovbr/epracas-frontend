@@ -1,0 +1,23 @@
+/* Utilize este arquivo para facilitar o deploy. Altere as informações conforme */ 
+/* necessário. Você vai precisar basicamente de 3 informações: */
+
+/* 	- URL para o provedor de identidade com suporte a OpenIDConnect */
+/* 	- ClientID da sua aplicação nesse provedor */
+/* 	- URL para a API do EPraças */
+
+/* As secções como 'default' e 'production' são atividas setando a variavel */
+/* NODE_ENV com esse valor(com exceção da opção defaul) e rodando 'gulp build' */ 
+/* para construir a aplicação para consumo. */ 
+
+/* 	ex: '$ NODE_ENV=production gulp build' */
+
+
+default:
+        idcultura_url: "https://id.cultura.gov.br"
+        idcultura_clientId: "OClientIDdaAplicação"
+        epracas_api_url: "http://localhost:8000/api/v1"
+
+production:
+        idcultura_url: "https://id.cultura.gov.br"
+        epracas_api_url: "https://url.desenvolvimento.app"
+        prod: true

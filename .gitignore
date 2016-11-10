@@ -5,3 +5,6 @@ build/*
 dist/*
 
 .tern-port
+
+yarn.lock
+app.yml
