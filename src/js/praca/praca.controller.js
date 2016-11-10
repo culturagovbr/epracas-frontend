@@ -10,7 +10,7 @@ class PracaCtrl {
     $scope.$mdDialog = $mdDialog;
 
     if (!$scope.praca.header_url) {
-      $scope.praca.header_url = "/header2.jpg";
+      $scope.praca.header_url = "/assets/header.jpg";
     }
 
     if (!$scope.praca.bio) {

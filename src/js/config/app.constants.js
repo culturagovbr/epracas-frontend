@@ -1,14 +1,16 @@
-let AppConstants = {
-  api: "http://localhost:8000/api/v1",
-  jwtKey: "id_token",
-  appName: "e-Praças",
-  apiUrl: "http://localhost:8000/api/v1",
-  loginUrl: "https://alpha.id.cultura.gov.br/openid/connect/authorization",
-  issuerUri: "https://alpha.id.cultura.gov.br",
-  userinfoUrl: "https://alpha.id.cultura.gov.br/api/v1/person",
-  clientId: "12_5d1bf045zqo8o408g8cs8ogwco0kko4wwwk08sk8gwkosk08o0",
-  apiUserInfo: "http://localhost:8000/api/v1/user/",
-  agendaApi: "http://localhost:8000/api/v1/agenda/",
-};
+const AppConstants = {};
+
+AppConstants.appName = "e-Praças";
+
+AppConstants.jwtKey = "id_token";
+AppConstants.idcultura_url = "/* @echo IDCULTURA_URL */";
+AppConstants.issuerUri = AppConstants.idcultura_url;
+AppConstants.loginUrl = `${AppConstants.idcultura_url}/openid/connect/authorization`;
+AppConstants.userinfoUrl = `${AppConstants.idcultura_url}/api/v1/person`;
+AppConstants.clientId = "/* @echo IDCULTURA_CLIENTID */";
+
+AppConstants.api = "/* @echo EPRACAS_API_URL */";
+AppConstants.apiUserInfo = `${AppConstants.api}/user/`;
+AppConstants.agendaApi = `${AppConstants.api}/agenda/`;
 
 export default AppConstants;
