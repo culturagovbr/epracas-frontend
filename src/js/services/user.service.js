@@ -99,7 +99,6 @@ export default class User {
           this.current = res.data;
           deferred.resolve(true);
         },
-
         (err) => {
           this.current = null;
           deferred.resolve(false);
@@ -111,7 +110,8 @@ export default class User {
             url: this._AppConstants.apiUserInfo,
             method: "POST",
             data: this.current,
-          }).then(
+          })
+            .then(
               res => this.current = res.data
             )
             .catch(

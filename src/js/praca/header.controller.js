@@ -35,15 +35,12 @@ class ChangeHeaderImgCtrl {
           this._$mdToast.show(
             this._$mdToast.simple()
               .textContent("Cabeçalho foi alterado. Recarregue a página para ver as mudanças.")
-              .position('right', 'top')
+              .position("right", "top")
               .hideDelay(5000)
           );
         }
       );
   }
-
-
-
 }
 
 export default ChangeHeaderImgCtrl;

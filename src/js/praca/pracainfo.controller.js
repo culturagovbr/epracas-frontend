@@ -1,14 +1,15 @@
 class PracaInfoCtrl {
-  constructor($scope, $http, $mdDialog, $log, AppConstants){
+  constructor($scope, $http, $mdDialog, $mdToast, $log, AppConstants) {
     "ngInject";
 
-    this._$mdDialog = $mdDialog;
     this._$scope = $scope;
     this._$http = $http;
+    this._$mdDialog = $mdDialog;
+    this._$mdToast = $mdToast;
+    this._$log = $log;
+    this._AppConstants = AppConstants;
 
     this._praca = $scope.praca;
-
-    this._AppConstants = AppConstants;
   }
 
   cancel() {
@@ -22,20 +23,17 @@ class PracaInfoCtrl {
       data: this._praca,
     })
       .then(
-        response => { 
-          this._mdDialog.show(
-            this._$mdDialog.alert({
-              title: "Informações alteradas.",
-              textContent: "As informações sobre a praça foram salvas.",
-              ok: "Ok, entendi.",
-            })
-          );
-          this._$scope.praca = this._praca;
+        (response) => {
           this._log.log(`Success!!! ${angular.toJson(response.data)}`);
+          this._$mdDialog.hide();
+          this._$mdToast.show(
+            this._$mdToast.simples()
+              .textContent("Informações alteradas com sucesso")
+              .position("right", "top")
+              .hideDelay(3500)
+          );
         }
       );
   }
-
 }
-
 export default PracaInfoCtrl;
