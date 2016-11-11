@@ -1,0 +1,41 @@
+<md-dialog aria-label="Processo de Vinculação">
+  <md-dialog-content>
+    <md-content md-theme="docs-dark" layout-padding>
+      <h2>Processo de Vinculação</h2>
+      <p>Verifique os documentos enviados pelo proponente para efetivar seu vinculo como gestor da praça.</p>
+    </md-content>
+    <md-stepper id="vinculoStepper" md-linear="true">
+      <md-step md-label="Verifique o documento de identidade">
+        <md-step-body>
+          <img ngf-resize="{width:200, height:200}" ngf-src="vincFiles.comp" ng-show="vincFiles.comp">
+        </md-step-body>
+        <md-step-actions>
+          <md-button class="md-primary md-raised">Continue</md-button>
+          <md-button class="md-primary">Cancel</md-button>
+        </md-step-actions>
+      </md-step>
+      <md-step md-label="Verifique o documento de adesão">
+        <md-step-body>
+          <p>Rhá2</p>
+        </md-step-body>
+        <md-step-actions>
+          <md-button class="md-primary md-raised">Continue</md-button>
+          <md-button class="md-primary">Cancel</md-button>
+        </md-step-actions>
+      </md-step>
+      <md-step md-label="Escreva o despacho do processo">
+        <md-step-body>
+          <md-input-container class="md-block" >
+            <md-icon>subject</md-icon>
+            <label>Descrição do Evento</label>
+            <textarea name="descricaoAtividade" rows="5" ng-select-on-focus ng-model="$ctrl.eventData.descricao"></textarea>
+          </md-input-container>
+        </md-step-body>
+        <md-step-actions layout-align="end center">
+          <md-button class="md-primary md-raised">Continue</md-button>
+          <md-button class="md-primary">Cancel</md-button>
+        </md-step-actions>
+      </md-step>
+    </md-stepper>
+  </md-dialog-content>
+</md-dialog>

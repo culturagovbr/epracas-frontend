@@ -23,8 +23,12 @@ function DashBoardConfig($stateProvider) {
     // .state("app.dashboard.agenda", {
     //   url: "/agenda",
     // })
-    // .state("app.dashboard.vinculacao", {
-    // })
+    .state("app.dashboard.vinculacao", {
+      url: "/vinculacao",
+      controller: "DashboardVinculoCtrl",
+      controllerAs: "$ctrl",
+      templateUrl: "dashboard/vinculo.tmpl.html",
+    })
     .state("app.dashboard.usuarios", {
       url: "/usuarios",
       controller: "DashboardUsersCtrl",

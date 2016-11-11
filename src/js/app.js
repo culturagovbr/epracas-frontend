@@ -12,6 +12,7 @@ import "angular-simple-logger";
 import "ui-leaflet";
 import "ng-file-upload";
 import "ng-img-crop-full-extended";
+import "material-steppers";
 // Import our app config files
 import constants from "./config/app.constants";
 import appConfig from "./config/app.config";
@@ -42,6 +43,7 @@ const requires = [
   "ui-leaflet",
   "ngFileUpload",
   "ngImgCrop",
+  "mdSteppers",
   "templates",
   "app.layout",
   "app.components",

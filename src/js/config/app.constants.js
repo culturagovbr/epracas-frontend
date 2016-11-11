@@ -12,5 +12,6 @@ AppConstants.clientId = "/* @echo IDCULTURA_CLIENTID */";
 AppConstants.api = "/* @echo EPRACAS_API_URL */";
 AppConstants.apiUserInfo = `${AppConstants.api}/user/`;
 AppConstants.agendaApi = `${AppConstants.api}/agenda/`;
+AppConstants.vinculoEndPoint = `${AppConstants.api}/processo/`;
 
 export default AppConstants;
