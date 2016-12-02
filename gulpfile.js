@@ -19,6 +19,7 @@ const config = require("konfig")({ path: "." });
 const cssnano = require("gulp-cssnano");
 const htmlmin = require("gulp-htmlmin");
 const bro = require("gulp-bro");
+const gzip = require("gulp-gzip");
 
 // Where our files are located
 const paths = {
@@ -146,6 +147,7 @@ gulp.task("build", ["html", "browserify", "materialCss", "appCss", "steppersCss"
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(uglify())
     .pipe(sourcemaps.write("./"))
+    .pipe(gzip())
     .pipe(gulp.dest(paths.distDest));
 
   const css = gulp.src(`${paths.buildDest}css/**`)
