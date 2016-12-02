@@ -1,66 +1,97 @@
 export default class Praca {
-	constructor(AppConstants, $http, $q) {
-		'ngInject';
+  constructor(AppConstants, $http, $q) {
+    "ngInject";
 
+    this._AppConstants = AppConstants;
+    this._PracaEndPoint = `${AppConstants.api}/pracas/`;
 
-		this._AppConstants = AppConstants;
-		this._$http = $http;
-		this._$q = $q;
+    this._$http = $http;
+    this._$q = $q;
+  }
 
-	}
+  // Cria uma nova Praça e retorna a um JSON com os dados
+  new(data) {
+    const deferred = this._$q.defer();
 
+    this._$http({
+      url: this._PracaEndPoint,
+      method: "POST",
+      data: data,
+    })
+      .then(
+        res => deferred.resolve(res.data),
+        err => deferred.reject(err)
+      );
+    return deferred.promise;
+  }
 
+  // Exclui uma Praça
+  delete(pk) {
+    const deferred = this._$q.defer();
 
-// Recupera o registro de uma Praça
-		get(pk){
-			let deferred = this._$q.defer();
+    this._$http({
+      url: `${this._PracaEndPoint}/${pk}/`,
+      method: "DELETE",
+    })
+      .then(
+        res => deferred.resolve(res.data),
+        err => deferred.reject(err)
+      );
+    return deferred.promise;
+  }
 
-			// Verifica a existencia do id_pub
-			if (!pk.replace(" ", "")) {
-				deferred.reject("O id_pub está vazio!");
-				return deferred.promise;
-			}
+  // Recupera o registro de uma Praça
+  get(pk) {
+    const deferred = this._$q.defer();
 
-			this._$http({
-				url: this._AppConstants.api + '/pracas/' + pk + '/',
-				method: 'GET',
-			}).then(
-				(res) => {
-					deferred.resolve(res.data);
-				},
-				(err) => deferred.reject(err)
-			);
+    // Verifica a existencia do id_pub
+    if (!pk.replace(" ", "")) {
+      deferred.reject("O id_pub está vazio!");
+      return deferred.promise;
+    }
 
-			return deferred.promise;
-	}
+    this._$http({
+      url: `${this._AppConstants.api}/pracas/${pk}/`,
+      method: "GET",
+    })
+      .then(
+        res => deferred.resolve(res.data),
+        err => deferred.reject(err)
+      );
+    return deferred.promise;
+  }
 
-	list(){
-		let deferred = this._$q.defer();
+  // Lista todas as Praças
+  list() {
+    const deferred = this._$q.defer();
 
-		this._$http({
-			url: this._AppConstants.api + '/pracas/',
-			method: 'GET'
-		}).then(
-			(res) => deferred.resolve(res.data),
-			(err) => deferred.reject(err)
-		);
-		return deferred.promise;
-	}
+    this._$http({
+      url: `${this._AppConstants.api}/pracas/`,
+      method: "GET",
+    })
+      .then(
+      res => deferred.resolve(res.data),
+      err => deferred.reject(err)
+    );
+    return deferred.promise;
+  }
 
-	search(query){
-	 	let deferred = this._$q.defer();
+  // Procura por uma Praça utilizando o parametro query
+  search(query) {
+    const deferred = this._$q.defer();
 
-	 	this._$http({
-	 		url: this._AppConstants.api + '/pracas/',
-	 		method: 'GET',
-	 		params: {search: query}
-	 	}).then(
-	// 		(res) => res.data,
-	// 		(err) => err
-	 		(res) => deferred.resolve(res.data),
-	 		(err) => deferred.reject(err)
-	 	);
-	 	return deferred.promise;
-	//	return res.data;
-	}
-};
+    this._$http({
+      url: `${this._AppConstants.api}/pracas/`,
+      method: "GET",
+      params: { search: query },
+    })
+      .then(
+      //    (res) => res.data,
+      //    (err) => err
+      res => deferred.resolve(res.data),
+      err => deferred.reject(err)
+    );
+    return deferred.promise;
+    //  return res.data;
+  }
+}

@@ -7,7 +7,7 @@ export default class User {
     this._$http = $http;
     this._$state = $state;
     this._$q = $q;
-    this.$log = $log;
+    this._$log = $log;
 
     this.current = null;
   }
@@ -115,7 +115,7 @@ export default class User {
               res => this.current = res.data
             )
             .catch(
-              err => this.$log.log(`setUserInfo() Error: ${err}`)
+              err => this._$log.log(`setUserInfo() Error: ${err}`)
             );
         },
       )
