@@ -100,7 +100,7 @@ function AppConfig(
   };
 
   $mdIconProvider
-    .icon("idcultura", "images/idcultura.svg", 120);
+    .icon("idcultura", "/assets/idcultura.svg", 120);
 }
 
 export default AppConfig;

@@ -1,8 +1,8 @@
-function AppRun(AppConstants, $rootScope, oauthService, $http, User, $log) {
+function AppRun(AppConstants, $rootScope, oauthService, $http, User) {
   "ngInject";
 
   // change page title based on state
-  $rootScope.$on("$stateChangeSuccess", (event, toState) => {
+  const PageTitle = $rootScope.$on("$stateChangeSuccess", (event, toState) => {
     $rootScope.setPageTitle(toState.title);
   });
 
@@ -18,17 +18,16 @@ function AppRun(AppConstants, $rootScope, oauthService, $http, User, $log) {
 
 
   // oauthService.loginUrl = AppConstants.loginUrl;
-  oauthService.loginUrl = "https://alpha.id.cultura.gov.br/openid/connect/authorize";
+  oauthService.loginUrl = AppConstants.loginUrl;
   oauthService.redirectUri = `${location.origin}/index.html`;
   oauthService.clientId = AppConstants.clientId;
   oauthService.scope = "openid sub email picture";
-  oauthService.issuer = "http://alpha.id.cultura.gov.br";
+  oauthService.issuer = AppConstants.issuerUri;
   oauthService.oidc = true;
 
   oauthService.setup({
     loginState: "app.login",
     onTokenReceived(context) {
-      $log.log(context.accessToken);
       User.setUserInfo(context.accessToken);
     },
   });
