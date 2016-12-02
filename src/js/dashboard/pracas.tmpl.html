@@ -1,0 +1,56 @@
+<md-content>
+    <md-list flex>
+      <md-subheader>Lista de Praças</md-subheader>
+
+      <div layout-gt-xs="row" layout-padding>
+
+        <md-input-container>
+          <input ng-model="filtro.municipio" placeholder="Filtre pelo municipio" autofocus>
+        </md-input-container>
+
+        <md-input-container>
+          <input ng-model="filtro.uf" placeholder="Filtre pelo estado(UF)">
+        </md-input-container>
+
+        <md-input-container>
+          <md-select ng-model="filtro.modelo" placeholder="Filtre pelo modelo">
+            <md-option ng-repeat="modelo in modelos"
+              value="{{ modelo.value }}">
+              {{ modelo.descricao }}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container>
+          <md-select ng-model="filtro.situacao" placeholder="Filtre pela situação">
+            <md-option ng-repeat="situacao in situacoes"
+              value="{{ situacao.value }}">
+              {{ situacao.descricao }}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+      </div>
+
+      <md-list-item
+        class="md-3-line"
+        layout-padding
+        ng-repeat="praca in $ctrl.pracas |
+          filter: {
+            municipio: filtro.municipio,
+            uf: filtro.uf,
+            modelo: filtro.modelo,
+            situacao: filtro.situacao
+            }"
+            ng-click="$state.go('app.praca', {pk: praca.id_pub})">
+        <md-icon class="md-avatar">explorer</md-icon>
+        <div class="md-list-item-text" layout="column">
+          <h3>Nome da Praça</h3>
+          <h4>{{ praca.municipio}} - {{ praca.uf | uppercase }}</h4>
+          <p>Modelo: {{ praca.modelo_descricao }}</p>
+          <p>Situação: {{ praca.situacao_descricao }}</p>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-content>
+</div>
