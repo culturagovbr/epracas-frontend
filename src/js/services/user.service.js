@@ -43,7 +43,8 @@ export default class User {
   logout() {
     this.current = null;
     this._JWT.destroy();
-    this._$state.go(this._$state.$current, null, { reload: true });
+    // this._$state.go(this._$state.$current, null, { reload: true });
+    this._$state.go('app.home');
   }
 
   verifyAuth() {

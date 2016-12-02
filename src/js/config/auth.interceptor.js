@@ -13,7 +13,8 @@ function authInterceptor(JWT, AppConstants, $window, $q) {
     responseError(rejection) {
       if (rejection.status === 401) {
         JWT.destroy();
-        $window.location.reload();
+        $state.go('app.home');
+        // $window.location.reload();
       }
 
       return $q.reject(rejection);
