@@ -4,9 +4,9 @@ function PracaConfig($stateProvider) {
   $stateProvider
     .state("app.pracas", {
       url: "/pracas",
-      controller: "PracasCtrl",
+      controller: "PracaListCtrl",
       controllerAs: "$ctrl",
-      templateUrl: "praca/pracas.html",
+      templateUrl: "praca/praca-list.html",
       title: "Listagem de Praças dos CEUs",
       resolve: {
         pracas(Praca, $state) {
@@ -14,7 +14,6 @@ function PracaConfig($stateProvider) {
             pracas => pracas,
             (err) => {
               $state.go("app.home");
-              // $log.log(`app.pracas Error: ${err}`);
             }
           );
         },
@@ -23,16 +22,15 @@ function PracaConfig($stateProvider) {
     )
     .state("app.praca", {
       url: "/pracas/{pk}",
-      controller: "PracaCtrl",
+      controller: "PracaDetailCtrl",
       controllerAs: "$ctrl",
-      templateUrl: "praca/pracas.praca.html",
+      templateUrl: "praca/praca-detail.html",
       title: "Praça",
       resolve: {
         praca(Praca, $state, $stateParams) {
           return Praca.get($stateParams.pk).then(
             praca => praca,
             (err) => {
-              // $log.log(`app.praca Error: ${err}`);
               $state.go("app.pracas");
             }
           );

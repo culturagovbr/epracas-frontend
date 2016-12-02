@@ -1,27 +1,30 @@
-import angular from 'angular';
+import angular from "angular";
 
-let pracaModule = angular.module('app.praca', []);
+const pracaModule = angular.module("app.praca", []);
 
-import PracaConfig from './praca.config';
+import PracaConfig from "./praca.config";
 pracaModule.config(PracaConfig);
 
-import PracasCtrl from './pracas.controller';
-pracaModule.controller('PracasCtrl', PracasCtrl);
+import PracaListCtrl from "./praca-list.controller";
+pracaModule.controller("PracaListCtrl", PracaListCtrl);
 
-import PracaCtrl from './praca.controller';
-pracaModule.controller('PracaCtrl', PracaCtrl);
+import PracaDetailCtrl from "./praca-detail.controller";
+pracaModule.controller("PracaDetailCtrl", PracaDetailCtrl);
 
-import ChangeHeaderImgCtrl from './header.controller';
-pracaModule.controller('ChangeHeaderImgCtrl', ChangeHeaderImgCtrl);
+import ChangeHeaderImgCtrl from "./header.controller";
+pracaModule.controller("ChangeHeaderImgCtrl", ChangeHeaderImgCtrl);
 
-import VinculacaoCtrl from './vinculacao.controller';
-pracaModule.controller('VinculacaoCtrl', VinculacaoCtrl);
+import VinculacaoCtrl from "./vinculacao.controller";
+pracaModule.controller("VinculacaoCtrl", VinculacaoCtrl);
 
 import EventCtrl from "./event.controller";
-pracaModule.controller('EventCtrl', EventCtrl);
+pracaModule.controller("EventCtrl", EventCtrl);
 
 import PracaInfoCtrl from "./pracainfo.controller";
 pracaModule.controller("PracaInfoCtrl", PracaInfoCtrl);
+
+import ParceirosCtrl from "./parceiros.controller";
+pracaModule.controller("ParceirosCtrl", ParceirosCtrl);
 
 
 export default pracaModule;

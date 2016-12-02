@@ -1,9 +1,12 @@
-class PracaCtrl {
-  constructor($scope, $mdDialog, User, praca, $log) {
+class PracaDetailCtrl {
+  constructor($scope, $document, $mdDialog, $log, User, praca) {
     "ngInject";
 
-    this._$mdDialog = $mdDialog;
     this._$scope = $scope;
+    this._$document = $document;
+    this._$mdDialog = $mdDialog;
+    this._$log = $log;
+
     this.currentUser = User.current;
 
     $scope.praca = praca;
@@ -77,7 +80,7 @@ class PracaCtrl {
           controller: "EventCtrl",
           controllerAs: "$ctrl",
           templateUrl: "praca/event-dialog.tmpl.html",
-          parent: angular.element(document.body),
+          parent: angular.element(this._$document.body),
           scope: this._$scope,
           preserveScope: true,
         },
@@ -87,7 +90,15 @@ class PracaCtrl {
         id: "parceiro",
         name: "Adicionar Parceiro",
         icon: "people",
-        action: "showPartnerDialog",
+        dialog: {
+          controller: "ParceirosCtrl",
+          controllerAs: "$ctrl",
+          templateUrl: "praca/parceiros-dialog.tmpl.html",
+          parent: angular.element(this._$document.body),
+          scope: this._$scope,
+          preserveScope: true,
+          fullscreen: true,
+        },
       };
 
       userMenu.profile = {
@@ -98,7 +109,7 @@ class PracaCtrl {
           controller: "PracaInfoCtrl",
           controllerAs: "$ctrl",
           templateUrl: "praca/pracainfo-dialog.tmpl.html",
-          parent: angular.element(document.body),
+          parent: angular.element(this._$document.body),
           scope: this._$scope,
           preserveScope: true,
           fullscreen: true,
@@ -113,7 +124,7 @@ class PracaCtrl {
           controller: "ChangeHeaderImgCtrl",
           controllerAs: "$ctrl",
           templateUrl: "praca/header-dialog.tmpl.html",
-          parent: angular.element(document.body),
+          parent: angular.element(this._$document.body),
           locals: { praca: this._praca },
           scope: this._$scope,
           preserveScope: true,
@@ -132,7 +143,7 @@ class PracaCtrl {
           controller: "VinculacaoCtrl",
           controllerAs: "$ctrl",
           templateUrl: "praca/vinculacao.tmpl.html",
-          parent: angular.element(document.body),
+          parent: angular.element(this._$document.body),
           // targetEvent: ev,
           clickOutsiteToClose: false,
           fullscreen: true,
@@ -141,10 +152,9 @@ class PracaCtrl {
         },
       };
     }
-
     return userMenu;
-  };
+  }
 }
 
 
-export default PracaCtrl;
+export default PracaDetailCtrl;

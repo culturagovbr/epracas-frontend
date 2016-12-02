@@ -70,7 +70,7 @@
 
 		<div layout-gt-xs="row">
 			<div layout="row" flex-gt-xs="60" layout-wrap layout-margin layout-padding>
-				<div flex-gt-xs="40" ng-repeat="atividade in praca.agenda | orderBy: 'atividade.data_inicio' | limitTo:4">
+        <div flex-gt-xs="40" ng-repeat="atividade in praca.agenda | filter: { data_inicio: $ctrl.myDate } | orderBy: 'atividade.data_inicio' | limitTo:4 ">
 					<p>DE {{ atividade.data_inicio | date: 'dd-MM-yyyy' }} A {{ atividade.data_encerramento | date: 'dd-MM-yyyy' }}</p>
 					<div style="background-color: gray">{{ atividade.local }}</div>
 					<h3>{{ atividade.titulo }}</h3>
@@ -79,7 +79,7 @@
 			</div>
 
 			<div flex>
-				<!-- <md-calendar class="md-no-focus" ng-model=$ctrl.myDate></md-calendar> -->
+				<md-calendar class="md-no-focus" ng-model=$ctrl.myDate></md-calendar>
 			</div>
 
 		</div>
