@@ -1,5 +1,5 @@
 export default class User {
-  constructor(JWT, AppConstants, $http, $state, $q, $log) {
+  constructor(JWT, AppConstants, $http, $state, $q, $log, $window) {
     "ngInject";
 
     this._JWT = JWT;
@@ -8,6 +8,7 @@ export default class User {
     this._$state = $state;
     this._$q = $q;
     this._$log = $log;
+    this._$window = $window;
 
     this.current = null;
   }
@@ -41,10 +42,15 @@ export default class User {
   }
 
   logout() {
+    debugger;
+    // homeUrl = this._$state.href('app.home', {}, {absolute: true});
+    // logoutUrl = `${this._AppConstants.logoutUrl}${this._$state.href('app.home', {}, {absolute: true})}`;
     this.current = null;
     this._JWT.destroy();
     // this._$state.go(this._$state.$current, null, { reload: true });
-    this._$state.go('app.home');
+    // this._$state.go('app.home');
+    this._$window.location.href = `${this._AppConstants.logoutUrl}${this._$state.href('app.home', {}, {absolute: true})}`;
+    // this._$window.location.href = logoutUrl;
   }
 
   verifyAuth() {
