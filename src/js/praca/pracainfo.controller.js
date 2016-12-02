@@ -1,5 +1,5 @@
 class PracaInfoCtrl {
-  constructor($scope, $http, $mdDialog, $mdToast, $log, AppConstants) {
+  constructor($scope, $http, $mdDialog, $mdToast, $log, AppConstants, pracaData) {
     "ngInject";
 
     this._$scope = $scope;
@@ -9,7 +9,7 @@ class PracaInfoCtrl {
     this._$log = $log;
     this._AppConstants = AppConstants;
 
-    this._praca = $scope.praca;
+    this._praca = pracaData;
   }
 
   cancel() {

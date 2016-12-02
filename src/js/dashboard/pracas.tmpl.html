@@ -1,7 +1,5 @@
-<md-content>
-    <md-list flex>
-      <md-subheader>Lista de Praças</md-subheader>
-
+<md-content flex>
+    <md-list>
       <div layout-gt-xs="row" layout-padding>
 
         <md-input-container>
@@ -50,7 +48,45 @@
           <p>Modelo: {{ praca.modelo_descricao }}</p>
           <p>Situação: {{ praca.situacao_descricao }}</p>
         </div>
+        <md-menu>
+
+        <md-button class="md-icon-button" aria-label="Menu" ng-click="$mdOpenMenu($event)">
+          <md-icon>menu</md-icon>
+        </md-button>
+        
+        <md-menu-content width="4">
+          
+          <md-menu-item>
+            <md-button ng-click="$ctrl.infoPraca(praca)">
+              <md-icon>info</md-icon>
+              Visualizar Informações sobre a Praça
+            </md-button>
+          </md-menu-item>
+
+          <md-menu-item>
+            <md-button ng-click="$ctrl.infoGestor(praca)">
+              <md-icon>face</md-icon>
+              Visualizar Informações sobre o Gestor da Praça
+            </md-button>
+          </md-menu-item>
+
+          <md-menu-item>
+            <md-button ng-click="$ctrl.excluirPraca(praca)">
+              <md-icon>clear</md-icon>
+              Excluir Praça
+            </md-button>
+          </md-menu-item>
+
+        </md-menu-content>
+
+      </md-menu>
       </md-list-item>
     </md-list>
   </md-content>
+</md-content>
+<div layout="row">
+  <md-button aria-label="Adicionar Praça" md-class="md-primary md-fab md-fab-bottom-right">
+    <md-tooltip md-direction="top">Adicionar Praça</md-tooltip>
+    <md-icon>add</md-icon>
+  </md-button>
 </div>

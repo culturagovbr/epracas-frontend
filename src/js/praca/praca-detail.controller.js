@@ -9,6 +9,7 @@ class PracaDetailCtrl {
 
     this.currentUser = User.current;
 
+    this._praca = praca;
     $scope.praca = praca;
     $scope.$mdDialog = $mdDialog;
 
@@ -110,6 +111,7 @@ class PracaDetailCtrl {
           controllerAs: "$ctrl",
           templateUrl: "praca/pracainfo-dialog.tmpl.html",
           parent: angular.element(this._$document.body),
+          locals: { pracaData: this._praca },
           scope: this._$scope,
           preserveScope: true,
           fullscreen: true,

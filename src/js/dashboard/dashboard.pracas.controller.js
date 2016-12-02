@@ -1,6 +1,11 @@
 class DashboardPracasCtrl {
-  constructor($state, $scope, $log, Praca) {
+  constructor($scope, $log, $mdDialog, $document, Praca) {
     "ngInject";
+
+    this._$log = $log;
+    this._$mdDialog = $mdDialog;
+    this._$document = $document;
+    this._Praca = Praca;
 
     $scope.situacoes = [
       {
@@ -48,6 +53,30 @@ class DashboardPracasCtrl {
       err => $log.log("Erro ao recuperar a lista de Praças")
     );
   }
+
+  infoPraca(praca) {
+    this._Praca.get(praca.id_pub)
+      .then(
+        (result) => {
+          this._$mdDialog.show({
+            controller: "PracaInfoCtrl",
+            controllerAs: "$ctrl",
+            templateUrl: "praca/pracainfo-dialog.tmpl.html",
+            parent: angular.element(this._$document.body),
+            locals: { pracaData: result },
+          });
+        }
+      );
+  }
+
+  infoGestor(praca) {
+
+  }
+
+  excluirPraca(praca) {
+
+  }
+
 }
 
 export default DashboardPracasCtrl;
