@@ -14,14 +14,14 @@ function DashBoardConfig($stateProvider) {
     // .state("app.dashboard.indicadores", {
     //   url: "/indicadores",
     // })
-    // .state("app.dashboard.pracas", {
-    //   url: "/pracas",
-    // })
+    .state("app.dashboard.pracas", {
+      url: "/pracas",
+      controller: "DashboardPracasCtrl",
+      controllerAs: "$ctrl",
+      templateUrl: "dashboard/pracas.tmpl.html",
+    })
     // .state("app.dashboard.gestores", {
     //   url: "/gestores",
-    // })
-    // .state("app.dashboard.agenda", {
-    //   url: "/agenda",
     // })
     .state("app.dashboard.vinculacao", {
       url: "/vinculacao",
