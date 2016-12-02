@@ -1,0 +1,31 @@
+<md-dialog layout="column" aria-label="Adicionar um parceiro da Praça">
+  <form name="ParceiroForm", ng-submit-"$ctrl.save()">
+    <md-dialog-content>
+      
+      <md-content md-theme="docs-dark" layout-padding>
+
+        <h2>Adicione um parceiro da Praça</h2>
+        <p>Parceiro é um agente da sociedade civil que possui uma ligação muito forte com a Praça e sua comunidade ao entorno. Eles podem disponibilizar seu trabalho em cursos e oficinas...</p>
+      </md-content>
+      <md-content layout-padding>
+        <md-input-container class="md-block" flex>
+          <label>Nome do(a) Parceiro</label>
+          <input name="nomeParceiro" ng-model="$ctrl.parceiro.nome">
+        </md-input-container>
+        <md-input-container>
+          <label>Tratamento informal</label>
+          <input name="apelidoParceiro" ng-model="$ctrl.parceiro.apelido">
+        </md-input-container>
+        <md-input-container>
+          <label>E-Mail</label>
+          <input type="email" name="emailParceiro" ng-model="$ctrl.parceiro.email">
+        </md-input-container>
+        <md-input-container>
+          <md-checkbox ng-model="$ctrl.parceiro.notificar" aria-label="Convidar o parceiro para se cadastrar e conhecer a pagina da Praça?">
+            Convidar o parceiro para se cadastrar e conhecer a pagina da Praça?
+          </md-checkbox>
+        </md-input-container>
+      </md-content>
+    </md-dialog-content>
+  </form>
+</md-dialog>
