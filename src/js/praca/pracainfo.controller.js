@@ -1,13 +1,10 @@
 class PracaInfoCtrl {
-  constructor($scope, $http, $mdDialog, $mdToast, $log, AppConstants, pracaData) {
+  constructor($mdDialog, $mdToast, Praca, pracaData) {
     "ngInject";
 
-    this._$scope = $scope;
-    this._$http = $http;
     this._$mdDialog = $mdDialog;
     this._$mdToast = $mdToast;
-    this._$log = $log;
-    this._AppConstants = AppConstants;
+    this._Praca = Praca;
 
     this._praca = pracaData;
   }
@@ -16,24 +13,34 @@ class PracaInfoCtrl {
     this._$mdDialog.cancel();
   }
 
-  save() {
-    this._$http({
-      url: `${this._AppConstants.api}/pracas/${this._praca.id_pub}/`,
-      method: "POST",
-      data: this._praca,
-    })
-      .then(
-        (response) => {
-          this._log.log(`Success!!! ${angular.toJson(response.data)}`);
-          this._$mdDialog.hide();
-          this._$mdToast.show(
-            this._$mdToast.simples()
+  save(praca, data) {
+    if (angular.isUndefined(this._praca.id_pub)) {
+      this._Praca.new(data)
+        .then(
+          () => {
+            this._$mdDialog.hide();
+            this._$mdToast.show(
+              this._$mdToast.simple()
+              .textContent("Praça cadastrada com Sucesso!")
+              .position("right", "top")
+              .hideDelay(3500)
+            );
+          }
+        );
+    } else {
+      this._Praca.save(praca, data)
+        .then(
+          () => {
+            this._$mdDialog.hide();
+            this._$mdToast.show(
+              this._$mdToast.simple()
               .textContent("Informações alteradas com sucesso")
               .position("right", "top")
               .hideDelay(3500)
-          );
-        }
-      );
+            );
+          }
+        );
+    }
   }
 }
 export default PracaInfoCtrl;
