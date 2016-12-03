@@ -30,7 +30,7 @@ export default class Praca {
     const deferred = this._$q.defer();
 
     this._$http({
-      url: `${this._PracaEndPoint}/${pk}/`,
+      url: `${this._PracaEndPoint}${pk}/`,
       method: "DELETE",
     })
       .then(
@@ -51,7 +51,7 @@ export default class Praca {
     }
 
     this._$http({
-      url: `${this._AppConstants.api}/pracas/${pk}/`,
+      url: `${this._PracaEndPoint}${pk}/`,
       method: "GET",
     })
       .then(
@@ -66,7 +66,7 @@ export default class Praca {
     const deferred = this._$q.defer();
 
     this._$http({
-      url: `${this._AppConstants.api}/pracas/`,
+      url: this._PracaEndPoint,
       method: "GET",
     })
       .then(
@@ -81,7 +81,7 @@ export default class Praca {
     const deferred = this._$q.defer();
 
     this._$http({
-      url: `${this._AppConstants.api}/pracas/`,
+      url: this._PracaEndPoint,
       method: "GET",
       params: { search: query },
     })
@@ -93,5 +93,21 @@ export default class Praca {
     );
     return deferred.promise;
     //  return res.data;
+  }
+
+  // Salva os dados de uma Praça
+  save(praca, data) {
+    const deferred = this._$q.defer();
+
+    this._$http({
+      url: `${this._PracaEndPoint}${praca}/`,
+      method: "PATCH",
+      data: data,
+    })
+      .then(
+        res => deferred.resolve(res.data),
+        err => deferred.reject(err)
+      );
+    return deferred.promise;
   }
 }
