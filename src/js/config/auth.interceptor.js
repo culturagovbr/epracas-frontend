@@ -1,4 +1,4 @@
-function authInterceptor(JWT, AppConstants, $window, $q) {
+function authInterceptor(JWT, AppConstants, $injector, $q) {
   "ngInject";
 
   return {
@@ -13,8 +13,8 @@ function authInterceptor(JWT, AppConstants, $window, $q) {
     responseError(rejection) {
       if (rejection.status === 401) {
         JWT.destroy();
-        $state.go('app.home');
-        // $window.location.reload();
+        const stateService = $injector.get("$state");
+        stateService.go("app.home");
       }
 
       return $q.reject(rejection);
