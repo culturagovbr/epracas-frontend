@@ -13,44 +13,11 @@ export default class User {
     this.current = null;
   }
 
-  attemptAuth(type, credentials) {
-    const route = (type === "login") ? "/login" : "";
-    return this._$http({
-      url: `${this._AppConstants.api}/users${route}`,
-      method: "POST",
-      data: { user: credentials },
-    }).then(
-      (res) => {
-        this._JWT.save(res.data.user.token);
-        this.current = res.data.user;
-
-        return res;
-      });
-  }
-
-  update(fields) {
-    return this._$http({
-      url: `${this._AppConstants.api}/user`,
-      method: "PUT",
-      data: { user: fields },
-    }).then(
-      (res) => {
-        this.current = res.data.user;
-        return res.data.user;
-      }
-    );
-  }
 
   logout() {
-    debugger;
-    // homeUrl = this._$state.href('app.home', {}, {absolute: true});
-    // logoutUrl = `${this._AppConstants.logoutUrl}${this._$state.href('app.home', {}, {absolute: true})}`;
     this.current = null;
     this._JWT.destroy();
-    // this._$state.go(this._$state.$current, null, { reload: true });
-    // this._$state.go('app.home');
     this._$window.location.href = `${this._AppConstants.logoutUrl}${this._$state.href('app.home', {}, {absolute: true})}`;
-    // this._$window.location.href = logoutUrl;
   }
 
   verifyAuth() {
@@ -127,6 +94,35 @@ export default class User {
         },
       )
     }
+    return deferred.promise;
+  }
+
+  list() {
+    const deferred = this._$q.defer();
+
+    this._$http({
+      url: `${this._AppConstants.apiUserInfo}`,
+      method: "GET",
+    })
+      .then(
+        res => deferred.resolve(res.data),
+        err => deferred.reject(err),
+      );
+    return deferred.promise;
+  }
+
+  changeStaffPowers(id_pub, status) {
+    const deferred = this._$q.defer();
+
+    this._$http({
+      url: `${this._AppConstants.apiUserInfo}${id_pub}/`,
+      method: "PATCH",
+      data: { is_staff: status },
+    })
+      .then(
+        res => deferred.resolve(res.data),
+        err => deferred.reject(err)
+      )
     return deferred.promise;
   }
 }

@@ -10,35 +10,18 @@
     <md-card-actions layout="column">
       
       <md-menu>
-
         <md-button class="md-icon-button" aria-label="Menu" ng-click="$mdOpenMenu($event)">
           <md-icon>menu</md-icon>
         </md-button>
         
         <md-menu-content width="4">
-          
-          <md-menu-item>
-            <md-button>
-              <md-icon>android</md-icon>
-              Visualizar informações do usuário
+          <md-menu-item ng-repeat="item in $ctrl.pracaMenu">
+            <md-button ng-click="item.action">
+              <md-icon>{{item.icon}}</md-icon>
+              {{item.name}}
             </md-button>
           </md-menu-item>
-
-          <md-menu-item>
-            <md-button ng-click="$ctrl.giveStaffPowers(user.id_pub)">
-              <md-icon>android</md-icon>
-              Permitir acesso como gestor do Ministério.
-            </md-button>
-          </md-menu-item>
-
-          <md-menu-item>
-            <md-button>
-              <md-icon>android</md-icon>
-            </md-button>
-          </md-menu-item>
-
         </md-menu-content>
-
       </md-menu>
       
     </md-card-actions>
