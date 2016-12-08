@@ -25,15 +25,16 @@
 				ngf-pattern="image/*" 
 				class="cropArea"
 				flex>
-				<img-crop 
+				<ui-cropper
 					image="headerImage | ngfDataUrl"
 					area-type="rectangle"
 					ng-init="croppedDataUrl=''"
 					aspect-ratio="2.6"
 					result-image="croppedDataUrl"
 					result-image-size="{w:960,h:370}"
-					init-max-area="true">
-				</img-crop>
+					init-max-area="true"
+        >
+				</ui-cropper>
 			</div>
 
 			<div>

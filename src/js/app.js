@@ -11,7 +11,8 @@ import "moment/locale/pt-br";
 import "angular-simple-logger";
 import "ui-leaflet";
 import "ng-file-upload";
-import "ng-img-crop-full-extended";
+// import "ng-img-crop-full-extended";
+import "ui-cropper";
 import "material-steppers";
 // Import our app config files
 import constants from "./config/app.constants";
@@ -42,7 +43,8 @@ const requires = [
   "nemLogging",
   "ui-leaflet",
   "ngFileUpload",
-  "ngImgCrop",
+  "uiCropper",
+  // "ngImgCrop",
   "mdSteppers",
   "templates",
   "app.layout",
@@ -59,7 +61,7 @@ const requires = [
 // Mount on window for testing
 window.app = angular.module("app", requires);
 
-moment.locale('pt-br');
+moment.locale("pt-br");
 
 angular.module("app").constant("AppConstants", constants);
 
