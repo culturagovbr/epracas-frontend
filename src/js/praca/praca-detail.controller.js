@@ -13,7 +13,7 @@ class PracaDetailCtrl {
     $scope.praca = praca;
     $scope.$mdDialog = $mdDialog;
 
-    if (!$scope.praca.header_url) {
+    if ($scope.praca.header_url.lastIndexOf(".jpg") == -1) {
       $scope.praca.header_url = "/assets/header.jpg";
     }
 
@@ -105,7 +105,7 @@ class PracaDetailCtrl {
       userMenu.profile = {
         id: "perfil",
         name: "Editar informações sobre a Praça",
-        icon: "android",
+        icon: "info",
         dialog: {
           controller: "PracaInfoCtrl",
           controllerAs: "$ctrl",
