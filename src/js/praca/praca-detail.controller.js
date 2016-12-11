@@ -84,6 +84,7 @@ class PracaDetailCtrl {
           parent: angular.element(this._$document.body),
           scope: this._$scope,
           preserveScope: true,
+          fullscreen: true,
         },
       };
 
