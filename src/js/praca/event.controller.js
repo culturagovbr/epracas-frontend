@@ -1,14 +1,15 @@
 class EventCtrl {
-  constructor($scope, $http, $log, $mdDialog, $mdToast, AppConstants) {
+  constructor($scope, $http, $log, $mdDialog, $mdToast, Atividade, AppConstants) {
     "ngInject";
 
-    this._agendaApiUrl = AppConstants.agendaApi;
+    this._$scope = $scope;
+    this._$http = $http;
+    this._$log = $log;
     this._$mdDialog = $mdDialog;
     this._$mdToast = $mdToast;
-    this._$http = $http;
+    this._agendaApiUrl = AppConstants.agendaApi;
+    this._Atividade = Atividade;
     this._praca = $scope.praca;
-    this._$scope = $scope;
-    this._$log = $log;
 
     self = this;
   }
@@ -20,11 +21,12 @@ class EventCtrl {
   save() {
     this.isSaving = true;
     this.eventData.praca = this._praca.id_pub;
-    this._$http({
-      url: this._agendaApiUrl,
-      method: "POST",
-      data: this.eventData,
-    })
+    this._Atividade.new(this.eventData)
+    // this._$http({
+    //   url: this._agendaApiUrl,
+    //   method: "POST",
+    //   data: this.eventData,
+    // })
       .then(
         (response) => {
           this._$log.log(`Success!!! ${response.status} -  ${response.data}`);
@@ -32,24 +34,15 @@ class EventCtrl {
           this._$mdToast.show(
             this._$mdToast.simple()
               .textContent("Evento adicionado.")
-              .position('right', 'top')
+              .position("right", "top")
               .hideDelay(3500)
-          )
+          );
         }
       )
       .catch(
         err => this._$log.log(`Error!!! ${err.status} -  ${err.data}`)
       );
-
   }
-
-  // addEvent() {
-  //   this._$http({
-  //     url: this._agendaApiUrl,
-  //     method: "POST",
-  //     data: this.eventData,
-  //   });
-  // }
 }
 
 export default EventCtrl;
