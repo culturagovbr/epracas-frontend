@@ -13,4 +13,7 @@ servicesModule.service('JWT', JwtService);
 import PracaService from './praca.service';
 servicesModule.service('Praca', PracaService);
 
+import AtividadeService from "./atividade.service";
+servicesModule.service("Atividade", AtividadeService);
+
 export default servicesModule;
