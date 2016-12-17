@@ -17,7 +17,6 @@ function AppRun(AppConstants, $rootScope, oauthService, $http, User) {
   };
 
 
-  // oauthService.loginUrl = AppConstants.loginUrl;
   oauthService.loginUrl = AppConstants.loginUrl;
   oauthService.redirectUri = `${location.origin}/index.html`;
   oauthService.clientId = AppConstants.clientId;
