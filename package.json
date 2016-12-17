@@ -14,7 +14,7 @@
     "angular-oidc-2": "^1.0.4",
     "angular-ui-router": "^0.3.1",
     "gulp-bro": "^0.3.1",
-    "leaflet": "^0.7.7",
+    "leaflet": "^1.0.2",
     "marked": "^0.3.5",
     "material-steppers": "^1.0.3",
     "moment": "^2.15.2",
