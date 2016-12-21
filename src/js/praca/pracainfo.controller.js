@@ -1,10 +1,11 @@
 class PracaInfoCtrl {
-  constructor($mdDialog, $mdToast, Praca, pracaData) {
+  constructor($mdDialog, $mdToast, Praca, pracaData, Toast) {
     "ngInject";
 
     this._$mdDialog = $mdDialog;
     this._$mdToast = $mdToast;
     this._Praca = Praca;
+    this._Toast = Toast;
 
     this._praca = pracaData;
   }
@@ -13,31 +14,27 @@ class PracaInfoCtrl {
     this._$mdDialog.cancel();
   }
 
-  save(praca, data) {
-    if (angular.isUndefined(this._praca.id_pub)) {
+  save(data) {
+    if (angular.isUndefined(data.id_pub)) {
       this._Praca.new(data)
         .then(
           () => {
             this._$mdDialog.hide();
-            this._$mdToast.show(
-              this._$mdToast.simple()
-              .textContent("Praça cadastrada com Sucesso!")
-              .position("right", "top")
-              .hideDelay(3500)
-            );
+            this._Toast.showSuccessToast("Praca cadastrada com Sucesso!");
+          }
+        )
+        .catch(
+          (err) => {
+            this._Toast.showRejectedToast(`Problemas ao alterar a Praça. ${err.data}`);
           }
         );
     } else {
+      const praca = this._praca.id_pub;
       this._Praca.save(praca, data)
         .then(
           () => {
             this._$mdDialog.hide();
-            this._$mdToast.show(
-              this._$mdToast.simple()
-              .textContent("Informações alteradas com sucesso")
-              .position("right", "top")
-              .hideDelay(3500)
-            );
+            this._Toast.showSuccessToast("Informações alteradas com sucesso!");
           }
         );
     }
