@@ -13,6 +13,7 @@ import "ui-leaflet";
 import "ng-file-upload";
 // import "ng-img-crop-full-extended";
 import "ui-cropper";
+import "ng-mask";
 import "material-steppers";
 // Import our app config files
 import constants from "./config/app.constants";
@@ -44,6 +45,7 @@ const requires = [
   "ui-leaflet",
   "ngFileUpload",
   "uiCropper",
+  "ngMask",
   // "ngImgCrop",
   "mdSteppers",
   "templates",
