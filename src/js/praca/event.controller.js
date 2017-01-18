@@ -11,6 +11,8 @@ class EventCtrl {
     this._Atividade = Atividade;
     this._praca = $scope.praca;
 
+    this.eventData = {};
+
     this._listaAtividades = [
       {
         value: 1,
@@ -532,6 +534,12 @@ class EventCtrl {
       .catch(
         err => this._$log.log(`Error!!! ${err.status} -  ${err.data}`)
       );
+  }
+
+  parseArea() {
+      console.log(this.eventData)
+      // debugger;
+      this.eventData.subareas = angular.fromJson(this.eventData.area).subarea
   }
 }
 

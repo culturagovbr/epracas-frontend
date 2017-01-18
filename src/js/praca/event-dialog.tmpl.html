@@ -26,19 +26,19 @@
           <md-input-container flex>
               <md-icon>work</md-icon>
               <label>Área da Atividade</label>
-              <md-select ng-model="$ctrl.eventData.area">
+              <md-select ng-model="$ctrl.eventData.area" ng-change="$ctrl.parseArea()">
                 <md-option ng-repeat="area in $ctrl._areaAtividade" value="{{area}}">
                   {{area.display_name}}
                 </md-option>
               </md-select>
           </md-input-container>
 
-          <md-input-container flex>
+          <md-input-container flex ng-mouseenter="$ctrl.debug()">
               <md-icon>work</md-icon>
               <label>Subarea da Atividade</label>
               <md-select ng-model="$ctrl.eventData.subarea">
-                <md-option ng-repeat="subarea in $ctrl.eventData.area track by $id" value="{{subarea}}">
-                  {{subarea.display_name}}
+                <!-- <md-option ng-repeat="subarea in angular.toJson($ctrl.eventData.area).subarea" value="{{subarea.value}}" {{subarea.display_name}} -->
+                <md-option ng-repeat="subarea in $ctrl.eventData.subareas" value="{{subarea.value}}"> {{subarea.display_name}}
                 </md-option>
               </md-select>
           </md-input-container>
@@ -55,21 +55,21 @@
         </md-input-container>
 
         <md-input-container>
-            <md-icon>people_outline</md-icon>
-            <label>Publico Participante</label>
-            <md-select ng-model="$ctrl.eventData.publico">
-              <md-option ng-repeat="publico in $ctrl._publicoAtividade" value="{{publico.value}}">
-                {{publico.display_name}}
-              </md-option>
-            </md-select>
-        </md-input-container>
-
-        <md-input-container>
             <md-icon>edit_location</md-icon>
             <label>Abrangência Territorial</label>
             <md-select ng-model="$ctrl.eventData.territorio">
               <md-option ng-repeat="territorio in $ctrl._territorioAtividade" value="{{territorio.value}}">
                 {{territorio.display_name}}
+              </md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-input-container>
+            <md-icon>people_outline</md-icon>
+            <label>Atividade Destinada à Publico ou Grupo Especifico</label>
+            <md-select ng-model="$ctrl.eventData.publico">
+              <md-option ng-repeat="publico in $ctrl._publicoAtividade" value="{{publico.value}}">
+                {{publico.display_name}}
               </md-option>
             </md-select>
         </md-input-container>
@@ -83,7 +83,7 @@
             <md-input-container flex>
               <md-icon>schedule</md-icon>
               <label>Horário de Inicio</label>
-              <input name="horaInicio" ng-model="$ctrl.eventData.hora_inicio" />
+              <input type="number" name="horaInicio" mask="29:60" ng-model="$ctrl.eventData.hora_inicio" />
             </md-input-container>
           </div>
 
@@ -96,7 +96,7 @@
             <md-input-container>
               <md-icon>schedule</md-icon>
               <label>Horário de Encerramento</label>
-              <input name="horaEncerramento" ng-model="$ctrl.eventData.hora_encerramento">
+              <input type="number" name="horaEncerramento" mask="29:60" ng-model="$ctrl.eventData.hora_encerramento">
             </md-input-container>
           </div>
 
