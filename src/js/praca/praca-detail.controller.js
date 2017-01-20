@@ -97,8 +97,7 @@ class PracaDetailCtrl {
           controllerAs: "$ctrl",
           templateUrl: "praca/parceiros-dialog.tmpl.html",
           parent: angular.element(this._$document.body),
-          scope: this._$scope,
-          preserveScope: true,
+          locals: { pracaData: this._praca },
           fullscreen: true,
         },
       };

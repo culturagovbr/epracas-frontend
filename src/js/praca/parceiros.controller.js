@@ -1,7 +1,8 @@
 class ParceirosCtrl {
-  constructor($mdDialog, $http, AppConstants, $mdToast, praca, $log) {
+  constructor($scope, $mdDialog, $http, AppConstants, $mdToast, pracaData, $log) {
     "ngInject";
 
+    this._$scope = $scope;
     this._$mdDialog = $mdDialog;
     this._$http = $http;
     this._AppConstants = AppConstants;
@@ -96,7 +97,7 @@ class ParceirosCtrl {
     ];
 
     this.parceiro = {};
-    this.parceiro.praca = praca.id_pub;
+    this.parceiro.praca = pracaData.id_pub;
   }
 
   cancel() {
