@@ -14,6 +14,8 @@ import "ng-file-upload";
 // import "ng-img-crop-full-extended";
 import "ui-cropper";
 import "ng-mask";
+import "angular-sanitize";
+import "angular-material-calendar";
 import "material-steppers";
 // Import our app config files
 import constants from "./config/app.constants";
@@ -48,6 +50,8 @@ const requires = [
   "ngMask",
   // "ngImgCrop",
   "mdSteppers",
+  "ngSanitize",
+  "materialCalendar",
   "templates",
   "app.layout",
   "app.components",
