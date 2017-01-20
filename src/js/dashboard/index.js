@@ -20,4 +20,7 @@ dashboardModule.controller("DashboardVinculoDialogCtrl", DashboardVinculoDialogC
 import DashboardPracasCtrl from "./dashboard.pracas.controller";
 dashboardModule.controller("DashboardPracasCtrl", DashboardPracasCtrl);
 
+import DashboardEventsCtrl from "./dashboard.events.controller";
+dashboardModule.controller("DashboardEventsCtrl", DashboardEventsCtrl);
+
 export default dashboardModule;

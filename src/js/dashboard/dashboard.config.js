@@ -23,11 +23,11 @@ function DashBoardConfig($stateProvider) {
     // .state("app.dashboard.gestores", {
     //   url: "/gestores",
     // })
-    .state("app.dashboard.agenda", {
+    .state("app.dashboard.events", {
       url: "/agenda",
-      controller: "DashboardAgendaCtrl",
+      controller: "DashboardEventsCtrl",
       controllerAs: "$ctrl",
-      templateUrl: "dashboard/agenda.tmpl.html",
+      templateUrl: "dashboard/events.tmpl.html",
     })
     .state("app.dashboard.vinculacao", {
       url: "/vinculacao",
