@@ -15,8 +15,8 @@
         </md-button>
         
         <md-menu-content width="4">
-          <md-menu-item ng-repeat="item in $ctrl.pracaMenu">
-            <md-button ng-click="item.action">
+          <md-menu-item ng-repeat="item in user.menu">
+            <md-button ng-click="item.action(user.id_pub)">
               <md-icon>{{item.icon}}</md-icon>
               {{item.name}}
             </md-button>
