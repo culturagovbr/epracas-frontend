@@ -71,8 +71,10 @@ class DashboardUsersCtrl {
       )
       .then(
         () => this._User.changeStaffPowers(id_pub, true)
+        .then(this._Toast.showSuccessToast("Permissão concedida com sucesso"))
+        .catch((err) => this._Toast.showRejectedToast(`Problemas ao conceder permissão. ${err.data}`))
       );
-    }
+    };
   }
 
   revokeStaffPowersFactory(id_pub)
@@ -89,14 +91,8 @@ class DashboardUsersCtrl {
       )
       .then(
         () => this._User.changeStaffPowers(id_pub, false)
-          .then(
-            this._Toast.showSuccessToast("Permissões revogadas com sucesso")
-          )
-          .catch(
-            (err) => {
-              this._Toast.showRejectedToast(`Problema ao revogar permissões. ${err.data}`);
-            }
-          )
+          .then(this._Toast.showSuccessToast("Permissões revogadas com sucesso"))
+          .catch((err) => this._Toast.showRejectedToast(`Problema ao revogar permissões. ${err.data}`))
       );
     }
   }
@@ -114,6 +110,8 @@ class DashboardUsersCtrl {
       )
       .then(
         () => this._User.delete(id_pub)
+          .then(this._Toast.showSuccessToast("Usuário excluido com sucesso"))
+          .catch((err) => this._Toast.showRejectedToast(`Problema ao excluir usuário. ${err.data}`))
       );
     }
   }
