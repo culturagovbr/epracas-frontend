@@ -1,4 +1,8 @@
-<md-content flex>
+<md-button aria-label="Adicionar Praça" class="md-primary md-fab md-fab-bottom-right">
+  <md-tooltip md-direction="top">Adicionar Praça</md-tooltip>
+  <md-icon>add</md-icon>
+</md-button>
+<md-content flex id="pracas">
     <md-list>
       <div layout-gt-xs="row" layout-padding>
 
@@ -29,7 +33,6 @@
         </md-input-container>
 
       </div>
-
       <md-list-item
         class="md-3-line"
         layout-padding
@@ -53,9 +56,9 @@
         <md-button class="md-icon-button" aria-label="Menu" ng-click="$mdOpenMenu($event)">
           <md-icon>menu</md-icon>
         </md-button>
-        
+
         <md-menu-content width="4">
-          
+
           <md-menu-item>
             <md-button ng-click="$ctrl.infoPraca(praca)">
               <md-icon>info</md-icon>
@@ -84,9 +87,6 @@
     </md-list>
   </md-content>
 </md-content>
-<div layout="row">
-  <md-button aria-label="Adicionar Praça" md-class="md-primary md-fab md-fab-bottom-right">
-    <md-tooltip md-direction="top">Adicionar Praça</md-tooltip>
-    <md-icon>add</md-icon>
-  </md-button>
-</div>
+<md-progress-circular ng-if="$ctrl.loadingPracas"
+  md-mode="indeterminate">
+</md-progress-circular>

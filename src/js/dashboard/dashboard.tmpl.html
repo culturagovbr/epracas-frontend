@@ -3,24 +3,27 @@
 		<md-sidenav
 			class="md-sidenav-left"
 			md-is-locked-open="$mdMedia('gt-md')"
-			md-whiteframe="4">
+			md-whiteframe="4"
+			layout="column">
 			<md-toolbar
-				class="md-theme-indigo" layout-padding>
-				<md-list>
-					<md-list-item>
-						<md-icon>dashboard</md-icon>
-						<p>Área do Gestor MinC</p>
-					</md-list-item>
-				</md-list>
+				class="md-theme-indigo md-toolbar-tools minc-icon"
+				layout-padding
+				layout="space-between center">
+				<md-button class="md-icon-button">
+					<md-icon>dashboard</md-icon>
+				</md-button>
+				<h2>
+					<span>Área do Gestor MinC</span>
+				</h2>
 			</md-toolbar>
 			<md-content>
 				<md-list flex>
 					<md-list-item ng-click="$state.go('app.dashboard.pracas')">
-						<md-icon class="md-primary md-avatar">account_balance</md-icon>
+						<md-icon class="md-primary">account_balance</md-icon>
 						<p>Praças</p>
 					</md-list-item>
 					<md-list-item ng-click="null">
-						<md-icon class="md-primary"></md-icon>
+						<md-icon class="md-primary">group_work</md-icon>
 						<p>Gestores</p>
 					</md-list-item>
 					<md-list-item ng-click="$state.go('app.dashboard.events')">
