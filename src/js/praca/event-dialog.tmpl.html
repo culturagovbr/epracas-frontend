@@ -100,6 +100,31 @@
             </md-input-container>
           </div>
 
+          <div>
+            <md-input-container flex="50">
+              <label>Periodicidade</label>
+              <md-select name="type" ng-model="$ctrl.eventData.periodicidade" required>
+                <md-option ng-repeat="item in $ctrl._Periodicidade" value={{item.value}}>{{item.display_name}}</md-option>
+              </md-select>
+            </md-input-container>
+            <div layout="row" ng-show="$ctrl.eventData.periodicidade == 'DAILY'" layout-wrap flex>
+              <div flex-xs flex="50">
+                <md-checkbox aria-label="Select All"
+                  ng-checked="isChecked()"
+                  md-indeterminate="isIndeterminate()"
+                  ng-click="toggleAll()">
+                  <span ng-if="isChecked()">Un-</span>Select All
+                </md-checkbox>
+              </div>
+              <div class="demo-select-all-checkboxes" flex="100" ng-repeat="dia in $ctrl._DiasSemana">
+                <md-checkbox ng-checked="exists(dia, selected)" ng-click="toggle(dia, selected)">
+                  {{ dia.display_name }}
+                </md-checkbox>
+              </div>
+            </div>
+
+          </div>
+
         <md-input-container>
           <md-icon>my_location</md-icon>
           <label>Local da Atividade</label>
