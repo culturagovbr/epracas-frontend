@@ -11,4 +11,7 @@ componentsModule.directive("showAuthed", ShowAuthed);
 import resizable from "./resizable.directive";
 componentsModule.directive("resizable", resizable);
 
+import ListElement from "./praca-list.component";
+componentsModule.component("listElement", ListElement);
+
 export default componentsModule;

@@ -1,18 +1,28 @@
-<div class="md-card-wrapper">
-  <md-card ng-repeat="pedido in $ctrl.pedidos" >
-    <img ng-src={{pedido.praca.header_url}} class="md-card-image">
-    <div layout="row" flex="100">
-      <span>{{pedido.praca.nome}}</span>
-    </div>
-    <div>
-    <md-card-content>
-      <h2>Card headline</h2>
-      <p>Card content</p>
-      </md-card-content>
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button>Action 1</md-button>
-        <md-button>Action 2</md-button>
-        </md-card-actions>
-  </md-card>
-</div>
+class ListElementCtrl {
+  constructor() {
+  }
+}
 
+const ListElement = {
+  controller: ListElementCtrl,
+  template: `
+      <md-list-item
+        class="md-3-line"
+        layout-padding
+        ng-click="$state.go('app.praca', {pk: praca.id_pub})">
+        <md-icon class="md-avatar">explorer</md-icon>
+        <div class="md-list-item-text" layout="column">
+          <h3>{{$ctrl.praca.nome}}</h3>
+          <h4>{{$ctrl.praca.municipio}} - {{$ctrl.praca.uf | uppercase}}</h4>
+          <p>Modelo: {{$ctrl.praca.modelo_descricao}}</p>
+          <p>Situação: {{$ctrl.praca.situacao_descricao}}</p>
+          <p>Distancia: {{$ctrl.praca.distancia / 1000}} Kms</p>
+        </div>
+      </md-list-item>
+    `,
+  bindings: {
+    praca: "=",
+  },
+};
+
+export default ListElement;
