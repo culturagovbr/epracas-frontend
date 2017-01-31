@@ -8,8 +8,11 @@ dashboardModule.config(DashBoardConfig);
 import DashBoardCtrl from './dashboard.controller';
 dashboardModule.controller('DashBoardCtrl', DashBoardCtrl);
 
-import DashboardUsersCtrl from "./dashboard.users.controller";
+import DashboardUsersCtrl from "./users/dashboard.users.controller";
 dashboardModule.controller("DashboardUsersCtrl", DashboardUsersCtrl);
+
+import UserCardControllerElement from "./users/user-card.component";
+dashboardModule.component("userCard", UserCardControllerElement);
 
 import DashboardVinculoCtrl from "./dashboard.vinculo.controller";
 dashboardModule.controller("DashboardVinculoCtrl", DashboardVinculoCtrl);
