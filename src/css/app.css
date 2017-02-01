@@ -45,7 +45,7 @@ md-toolbar h1 {
 	margin: 13% 0;
 }
 
- 
+
 #quadro-container {
 	background: rgba(0, 0, 0, 0.5);
 }
@@ -137,4 +137,44 @@ video#bgvid {
 	color: white;
 	font-size: 24px;
 	letter-spacing: -1px;
+}
+
+.epr-content {
+	width: 50vw;
+}
+
+@-webkit-keyframes slideFromLeft{
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes slideFromLeft{
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+@-webkit-keyframes slideToLeft{
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
+
+@keyframes slideToLeft{
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
+
+.epr-animate.ng-enter {
+	animation: 0.5s slideFromLeft;
+}
+
+.epr-animate.ng-leave {
+	animation: 0.5s slideToLeft;
+}
+
+.epr-small {
+	width: 10vw;
+}
+
+.big-btn {
+	height: 100%;
 }

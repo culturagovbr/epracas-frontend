@@ -6,6 +6,7 @@ class DashboardPracasCtrl {
     this._$mdDialog = $mdDialog;
     this._$document = $document;
     this._Praca = Praca;
+    this.isFilterOpen = false;
 
     $scope.situacoes = [
       {
@@ -52,6 +53,10 @@ class DashboardPracasCtrl {
       },
       err => $log.log("Erro ao recuperar a lista de Praças")
     );
+  }
+
+  toggleFilter() {
+    this.isFilterOpen = !this.isFilterOpen
   }
 
   infoPraca(praca) {
