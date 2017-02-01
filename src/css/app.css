@@ -138,50 +138,43 @@ video#bgvid {
 	font-size: 24px;
 	letter-spacing: -1px;
 }
-.minc-icon {
-	padding-left: 2em;
-}
-md-content#pracas {
-	height: calc(100vh - 64px);
+
+.epr-content {
+	width: 50vw;
 }
 
-.epr-avatar {
-	top: 0;
-  bottom: 0;
-  margin: auto;
-  margin-top: 1vh;
-	overflow: hidden;
-  width: 6em;
-  height: 6em;
-  border-radius: 50%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12);
+@-webkit-keyframes slideFromLeft{
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
 }
 
-.epr-avatar.left {
-	margin-left: 1vh;
+@keyframes slideFromLeft{
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
 }
 
-.epr-avatar.right {
-	margin-right: 1vh;
+@-webkit-keyframes slideToLeft{
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
 }
 
-.epr-name {
-	font-size: 2.5em;
-	font-weight: bold;
-	text-align: center;
-	width:100%;
+@keyframes slideToLeft{
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
 }
 
-.epr-subname {
-	font-size: 0.9em;
-	color: gray;
-	text-align:center;
-	width:100%;
+.epr-animate.ng-enter {
+	animation: 0.5s slideFromLeft;
 }
 
-.no-action-btn {
-	cursor: auto;	
+.epr-animate.ng-leave {
+	animation: 0.5s slideToLeft;
+}
+
+.epr-small {
+	width: 10vw;
+}
+
+.big-btn {
+	height: 100%;
 }
