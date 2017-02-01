@@ -46,7 +46,7 @@
             ng-click="$state.go('app.praca', {pk: praca.id_pub})">
         <md-icon class="md-avatar">explorer</md-icon>
         <div class="md-list-item-text" layout="column">
-          <h3>Nome da Praça</h3>
+          <h3>{{ praca.nome }}</h3>
           <h4>{{ praca.municipio}} - {{ praca.uf | uppercase }}</h4>
           <p>Modelo: {{ praca.modelo_descricao }}</p>
           <p>Situação: {{ praca.situacao_descricao }}</p>

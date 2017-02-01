@@ -111,35 +111,49 @@ class UserCardController {
 const UserCardElement = {
   controller: UserCardController,
   template: `
-      <md-card>
-      <md-card-header>
-        <md-card-avatar>
-          <img class="md-user-avatar" ng-src="{{$ctrl.user.profile_picture_url}}"/>
-        </md-card-avatar>
-        <md-card-header-text>
-          <h1>{{$ctrl.user.full_name}}</h1>
-          <span class="md-title">{{$ctrl.user.full_name}}</span>
-          <span class="md-subhead">{{$ctrl.user.description}}</span>
-        </md-card-header-text>
-        <md-card-actions layout="column">
+      <md-card style="width: 25vw;">
+      <div class="epr-avatar" style="background-image: url('{{$ctrl.user.profile_picture_url}}')">
+      </div>
+      <span class="epr-name">{{$ctrl.user.full_name}}</span>
+      <span class="epr-subname">@João Pessoa - PB</span>
+      <md-card-actions layout="column">
+
+        <div layout="row" layout-align="space-between">
+          <md-button class="md-icon-button no-action-btn"
+            aria-label="is_staff">
+            <md-tooltip>Este usuário<span ng-if="!$ctrl.user.is_staff"> não</span> é um administrador</md-tooltip>
+            <md-icon ng-style="{
+              color: $ctrl.user.is_staff? 'green' : 'red'
+            }">supervisor_account</md-icon>
+          </md-button>
+
+          <md-button class="md-icon-button no-action-btn"
+            aria-label="is_">
+            <md-tooltip>Este usuário<span ng-if="!$ctrl.user.is_staff"> não</span> é um gestor de praças.</md-tooltip>
+            <md-icon ng-style="{
+              color: $ctrl.user.is_staff? 'green':'red'
+            }">store</md-icon>
+          </md-button>
+
+          <div flex></div>
 
           <md-menu>
             <md-button class="md-icon-button" aria-label="Menu" ng-click="$mdOpenMenu($event)">
               <md-icon>menu</md-icon>
             </md-button>
-
             <md-menu-content width="4">
               <md-menu-item ng-repeat="item in $ctrl.user.menu">
                 <md-button ng-click="item.action($ctrl.user.id_pub)">
-                  <md-icon>{{$ctrl.item.icon}}</md-icon>
-                  {{$ctrl.item.name}}
+                  <md-icon>{{item.icon}}</md-icon>
+                  {{item.name}}
                 </md-button>
               </md-menu-item>
             </md-menu-content>
           </md-menu>
+        </div>
 
-        </md-card-actions>
-        </md-card>
+      </md-card-actions>
+      </md-card>
   `,
   bindings: {
     user: "=",
