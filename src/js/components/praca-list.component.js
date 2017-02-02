@@ -1,5 +1,8 @@
 class ListElementCtrl {
-  constructor() {
+  constructor($scope, $state) {
+    "ngInject";
+
+    $scope.$state = $state;
   }
 }
 
@@ -9,7 +12,7 @@ const ListElement = {
       <md-list-item
         class="md-3-line"
         layout-padding
-        ng-click="$state.go('app.praca', {pk: praca.id_pub})">
+        ng-click="$state.go('app.praca', {pk: $ctrl.praca.id_pub})">
         <md-icon class="md-avatar">explorer</md-icon>
         <div class="md-list-item-text" layout="column">
           <h3>{{$ctrl.praca.nome}}</h3>
