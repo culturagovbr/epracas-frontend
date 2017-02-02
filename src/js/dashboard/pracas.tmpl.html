@@ -39,8 +39,9 @@
   </div>
       <md-list>
       <md-list-item
-        class="md-3-line"
+        class="praca-container"
         layout-padding
+        layout-align="space-between"
         ng-repeat="praca in $ctrl.pracas |
           filter: {
             municipio: filtro.municipio,
@@ -48,8 +49,21 @@
             modelo: filtro.modelo,
             situacao: filtro.situacao
             }"
-            ng-click="$state.go('app.praca', {pk: praca.id_pub})">
-        <md-icon class="md-avatar">explorer</md-icon>
+
+        style="background-image: url('/assets/header.jpg')">
+        <!-- style="background-image: url({{ praca.header_url }})"> -->
+
+        <div class="md-list-item-text praca-text"
+          ng-click="$state.go('app.praca', {pk: praca.id_pub})"
+        >{{ praca.nome }}
+          {{ praca.municipio}} - {{ praca.uf | uppercase }}</div>
+        <div class="md-secondary epr-fill" layout-align="end start">
+          <md-button layout-align="end start" class="md-icon-button">
+            <md-icon>menu</md-icon>
+          </md-button>
+        </div>
+
+        <!-- <md-icon class="md-avatar">explorer</md-icon>
         <div class="md-list-item-text" layout="column">
           <h3>{{ praca.nome }}</h3>
           <h4>{{ praca.municipio}} - {{ praca.uf | uppercase }}</h4>
@@ -87,7 +101,7 @@
 
         </md-menu-content>
 
-      </md-menu>
+      </md-menu> -->
       </md-list-item>
     </md-list>
 </md-content>

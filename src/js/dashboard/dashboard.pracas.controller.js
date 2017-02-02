@@ -48,14 +48,9 @@ class DashboardPracasCtrl {
 
     this.loadingPracas = true;
 
-    Praca.list().then(
-      (result) => {
-        this.loadingPracas = false;
-        this.pracas = result;
-        $log.log("Recuperando Praças");
-      },
-      err => $log.log("Erro ao recuperar a lista de Praças")
-    );
+    Praca.list()
+      .then(values => this.pracas = values)
+      .then(x => this.loadingPracas = false)
   }
 
   toggleFilter() {
