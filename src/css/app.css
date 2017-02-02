@@ -8,7 +8,7 @@ html, body {
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
-	background-color: transparent;
+	background-color: rgb(242,242,242);
 }
 
 .menu {
@@ -177,4 +177,53 @@ video#bgvid {
 
 .big-btn {
 	height: 100%;
+}
+
+.minc-icon {
+	padding-left: 2em;
+}
+
+md-content#pracas {
+	height: calc(100vh - 64px);
+}
+
+.epr-avatar {
+	top: 0;
+  bottom: 0;
+  margin: auto;
+  margin-top: 1vh;
+	overflow: hidden;
+  width: 6em;
+  height: 6em;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12);
+}
+
+.epr-avatar.left {
+	margin-left: 1vh;
+}
+
+.epr-avatar.right {
+	margin-right: 1vh;
+}
+
+.epr-name {
+	font-size: 2.5em;
+	font-weight: bold;
+	text-align: center;
+	width:100%;
+}
+
+.epr-subname {
+	font-size: 0.9em;
+	color: gray;
+	text-align:center;
+	width:100%;
+}
+
+.no-action-btn {
+	cursor: auto;
 }

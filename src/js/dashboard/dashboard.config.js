@@ -39,7 +39,7 @@ function DashBoardConfig($stateProvider) {
       url: "/usuarios",
       controller: "DashboardUsersCtrl",
       controllerAs: "$ctrl",
-      templateUrl: "dashboard/users.tmpl.html",
+      templateUrl: "dashboard/users/users.tmpl.html",
     });
 }
 

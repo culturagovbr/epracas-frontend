@@ -1,4 +1,8 @@
-<md-content flex class="epr-content">
+<md-button aria-label="Adicionar Praça" class="md-primary md-fab md-fab-bottom-right">
+  <md-tooltip md-direction="top">Adicionar Praça</md-tooltip>
+  <md-icon>add</md-icon>
+</md-button>
+<md-content flex class="epr-content" id="pracas">
   <div layout="row" style="height:5em">
     <md-button class="big-btn md-primary" ng-click="$ctrl.toggleFilter()">
       <md-icon>search</md-icon>
@@ -47,7 +51,7 @@
             ng-click="$state.go('app.praca', {pk: praca.id_pub})">
         <md-icon class="md-avatar">explorer</md-icon>
         <div class="md-list-item-text" layout="column">
-          <h3>Nome da Praça</h3>
+          <h3>{{ praca.nome }}</h3>
           <h4>{{ praca.municipio}} - {{ praca.uf | uppercase }}</h4>
           <p>Modelo: {{ praca.modelo_descricao }}</p>
           <p>Situação: {{ praca.situacao_descricao }}</p>
@@ -87,9 +91,6 @@
       </md-list-item>
     </md-list>
 </md-content>
-<div layout="row">
-  <md-button aria-label="Adicionar Praça" md-class="md-primary md-fab md-fab-bottom-right">
-    <md-tooltip md-direction="top">Adicionar Praça</md-tooltip>
-    <md-icon>add</md-icon>
-  </md-button>
-</div>
+<md-progress-circular ng-if="$ctrl.loadingPracas"
+  md-mode="indeterminate">
+</md-progress-circular>

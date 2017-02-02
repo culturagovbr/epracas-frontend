@@ -304,6 +304,56 @@ class EventCtrl {
       },
     ];
 
+    this._Periodicidade = [
+      {
+        value: "DAILY",
+        display_name: "Diariamente",
+      },
+      {
+        value: "WEEKLY",
+        display_name: "Semanalmente",
+      },
+      {
+        value: "asdas",
+        display_name: "Quinzenalmente",
+      },
+      {
+        value: "MONTHLY",
+        display_name: "Mensalmente",
+      },
+    ];
+
+    this._DiasSemana = [
+      {
+        value: "MO",
+        display_name: "Segunda",
+      },
+      {
+        value: "TU",
+        display_name: "Terça",
+      },
+      {
+        value: "WE",
+        display_name: "Quarta",
+      },
+      {
+        value: "TH",
+        display_name: "Quinta",
+      },
+      {
+        value: "FR",
+        display_name: "Sexta",
+      },
+      {
+        value: "SA",
+        display_name: "Sabado",
+      },
+      {
+        value: "SU",
+        display_name: "Domingo",
+      },
+    ];
+
     this._localAtividade = [
       {
         value: 1,

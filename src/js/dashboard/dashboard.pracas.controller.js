@@ -46,8 +46,11 @@ class DashboardPracasCtrl {
       },
     ];
 
+    this.loadingPracas = true;
+
     Praca.list().then(
       (result) => {
+        this.loadingPracas = false;
         this.pracas = result;
         $log.log("Recuperando Praças");
       },
