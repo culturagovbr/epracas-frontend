@@ -18,7 +18,7 @@ function DashBoardConfig($stateProvider) {
       url: "/pracas",
       controller: "DashboardPracasCtrl",
       controllerAs: "$ctrl",
-      templateUrl: "dashboard/pracas.tmpl.html",
+      templateUrl: "dashboard/pracas/pracas.tmpl.html",
     })
     // .state("app.dashboard.gestores", {
     //   url: "/gestores",

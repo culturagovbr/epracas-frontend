@@ -20,7 +20,7 @@ dashboardModule.controller("DashboardVinculoCtrl", DashboardVinculoCtrl);
 import DashboardVinculoDialogCtrl from "./dashboard.vinculo-dialog.controller";
 dashboardModule.controller("DashboardVinculoDialogCtrl", DashboardVinculoDialogCtrl);
 
-import DashboardPracasCtrl from "./dashboard.pracas.controller";
+import DashboardPracasCtrl from "./pracas/dashboard.pracas.controller";
 dashboardModule.controller("DashboardPracasCtrl", DashboardPracasCtrl);
 
 import DashboardEventsCtrl from "./dashboard.events.controller";
