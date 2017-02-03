@@ -8,7 +8,8 @@ html, body {
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
-	background-color: rgb(242,242,242);
+	/* background-color: rgb(242,242,242); */
+	background-color: transparent;
 }
 
 .menu {
