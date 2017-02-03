@@ -245,8 +245,8 @@ md-content#pracas {
 
 .praca-text {
 	background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.8));
-	padding-top: 10rem;
-	position:absolute;
+	padding-top: 2rem;
+	position: absolute;
 	bottom: 0; left: 0;
 	width: 100%;
 	white-space: pre-line;

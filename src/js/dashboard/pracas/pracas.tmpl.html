@@ -38,71 +38,14 @@
     </div>
   </div>
       <md-list>
-      <md-list-item
-        class="praca-container"
-        layout-padding
-        layout-align="space-between"
-        ng-repeat="praca in $ctrl.pracas |
+        <praca-card praca="praca" ng-repeat="praca in $ctrl.pracas |
           filter: {
             municipio: filtro.municipio,
             uf: filtro.uf,
             modelo: filtro.modelo,
             situacao: filtro.situacao
-            }"
-
-        style="background-image: url('/assets/header.jpg')">
-        <!-- style="background-image: url({{ praca.header_url }})"> -->
-
-        <div class="md-list-item-text praca-text"
-          ng-click="$state.go('app.praca', {pk: praca.id_pub})"
-        >{{ praca.nome }}
-          {{ praca.municipio}} - {{ praca.uf | uppercase }}</div>
-        <div class="md-secondary epr-fill" layout-align="end start">
-          <md-button layout-align="end start" class="md-icon-button">
-            <md-icon>menu</md-icon>
-          </md-button>
-        </div>
-
-        <!-- <md-icon class="md-avatar">explorer</md-icon>
-        <div class="md-list-item-text" layout="column">
-          <h3>{{ praca.nome }}</h3>
-          <h4>{{ praca.municipio}} - {{ praca.uf | uppercase }}</h4>
-          <p>Modelo: {{ praca.modelo_descricao }}</p>
-          <p>Situação: {{ praca.situacao_descricao }}</p>
-        </div>
-        <md-menu>
-
-        <md-button class="md-icon-button" aria-label="Menu" ng-click="$mdOpenMenu($event)">
-          <md-icon>menu</md-icon>
-        </md-button>
-
-        <md-menu-content width="4">
-
-          <md-menu-item>
-            <md-button ng-click="$ctrl.infoPraca(praca)">
-              <md-icon>info</md-icon>
-              Visualizar Informações sobre a Praça
-            </md-button>
-          </md-menu-item>
-
-          <md-menu-item>
-            <md-button ng-click="$ctrl.infoGestor(praca)">
-              <md-icon>face</md-icon>
-              Visualizar Informações sobre o Gestor da Praça
-            </md-button>
-          </md-menu-item>
-
-          <md-menu-item>
-            <md-button ng-click="$ctrl.excluirPraca(praca)">
-              <md-icon>clear</md-icon>
-              Excluir Praça
-            </md-button>
-          </md-menu-item>
-
-        </md-menu-content>
-
-      </md-menu> -->
-      </md-list-item>
+            }">
+        </praca-card>
     </md-list>
 </md-content>
 <md-progress-circular ng-if="$ctrl.loadingPracas"
