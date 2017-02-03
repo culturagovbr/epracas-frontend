@@ -36,6 +36,9 @@ class PracaInfoCtrl {
             this._$mdDialog.hide();
             this._Toast.showSuccessToast("Informações alteradas com sucesso!");
           }
+        )
+        .catch(
+          (err) => console.log(`saveParceiros: ${err.status} - ${JSON.stringify(err)}`)
         );
     }
   }
