@@ -76,14 +76,14 @@
 
           <div>
             <md-input-container flex>
-              <!-- <label>Data de inicio da atividade</label> -->
+              <label>Data de inicio da atividade</label>
               <md-datepicker flex ng-required="true" ng-model="$ctrl.eventData.data_inicio" md-placeholder="Data de inicio da atividade"></md-datepicker>
             </md-input-container>
 
             <md-input-container flex>
               <md-icon>schedule</md-icon>
               <label>Horário de Inicio</label>
-              <input type="number" name="horaInicio" mask="29:60" ng-model="$ctrl.eventData.hora_inicio" />
+              <input name="horaInicio" mask="29:69" ng-model="$ctrl.eventData.hora_inicio" />
             </md-input-container>
           </div>
 
@@ -96,7 +96,7 @@
             <md-input-container>
               <md-icon>schedule</md-icon>
               <label>Horário de Encerramento</label>
-              <input type="number" name="horaEncerramento" mask="29:60" ng-model="$ctrl.eventData.hora_encerramento">
+              <input name="horaEncerramento" mask="29:69" ng-model="$ctrl.eventData.hora_encerramento">
             </md-input-container>
           </div>
 

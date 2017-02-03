@@ -306,6 +306,10 @@ class EventCtrl {
 
     this._Periodicidade = [
       {
+        value: "ONCE",
+        display_name: "Apenas uma vez",
+      },
+      {
         value: "DAILY",
         display_name: "Diariamente",
       },
