@@ -1,17 +1,17 @@
 <md-dialog layout="column" aria-label="Adicionar um parceiro da Praça">
   <form name="ParceiroForm", ng-submit="$ctrl.save()">
     <md-dialog-content>
-      
+
       <md-content md-theme="docs-dark" layout-padding>
 
         <h2>Adicione um parceiro da Praça</h2>
         <p>Parceiro é um agente da sociedade civil que possui uma ligação muito forte com a Praça e sua comunidade ao entorno. Eles podem disponibilizar seu trabalho em cursos e oficinas...</p>
       </md-content>
-      <md-content layout-padding>
+      <md-content layout="column" layout-padding>
 
-        <md-input-container class="md-block" flex>
-          <label>Nome do(a) Parceiro</label>
+        <md-input-container class="md-icon-float md-block">
           <md-icon>business</md-icon>
+          <label>Nome do(a) Parceiro</label>
           <input name="nomeParceiro" required ng-model="$ctrl.parceiro.nome">
         </md-input-container>
 
@@ -21,27 +21,29 @@
           <textarea rows="5" name="parceiroLogradouro" required ng-model="$ctrl.parceiro.endereco"></textarea>
         </md-input-container>
 
-        <md-input-container class="md-block" flex>
-          <label>Nome do Contato</label>
+        <md-input-container class="md-icon-float md-block">
           <md-icon>person</md-icon>
+          <label>Nome do Contato</label>
           <input name="contatoParceiro" ng-model="$ctrl.parceiro.contato">
         </md-input-container>
-        
-        <md-input-container class="md-inline" flex>
-          <label>Telefone</label>
-          <md-icon>phone</md-icon>
-          <input type="number" name="telefoneParceiro" ng-model="$ctrl.parceiro.telefone">
-        </md-input-container>
-        
-        <md-input-container class="md-inline" flex>
-          <label>Email</label>
-          <md-icon>email</md-icon>
-          <input type="email" name="emailParceiro" ng-model="$ctrl.parceiro.email">
-        </md-input-container>
 
-        <md-input-container class="md-block" flex>
-            <label>Ramo de Atividade do Parceiro</label>
+        <div layout="row">
+          <md-input-container class="md-inline" flex>
+            <md-icon>phone</md-icon>
+            <label>Telefone</label>
+            <input mask="(99)99999-9999" clean="true" name="telefoneParceiro" ng-model="$ctrl.parceiro.telefone">
+          </md-input-container>
+
+          <md-input-container class="md-inline" flex>
+            <md-icon>email</md-icon>
+            <label>Email</label>
+            <input type="email" name="emailParceiro" ng-model="$ctrl.parceiro.email">
+          </md-input-container>
+        </div>
+
+        <md-input-container class="md-block">
             <md-icon>work</md-icon>
+            <label>Ramo de Atividade do Parceiro</label>
             <md-select ng-model="$ctrl.parceiro.ramo_atividade">
               <md-option ng-repeat="atividade in $ctrl._listaAtividades" value="{{atividade.value}}">
                 {{atividade.display_name}}
@@ -55,12 +57,12 @@
           <textarea rows="5" name="parceiroAcoes" ng-model="$ctrl.parceiro.acoes"></textarea>
         </md-input-container>
 
-        <md-input-container>
+        <md-input-container flex="50">
+          <md-icon>history</md-icon>
           <label>Tempo previsto para a parceria (em dias)</label>
           <input type="number" name="tempoParceiro" ng-model="$ctrl.parceiro.tempo_parceria">
-          dias
         </md-input-container>
-        
+
         <!-- <md-input-container> -->
         <!--   <md-checkbox ng-model="$ctrl.parceiro.notificar" aria-label="Convidar o parceiro para se cadastrar e conhecer a pagina da Praça?"> -->
         <!--     Convidar o parceiro para se cadastrar e conhecer a pagina da Praça? -->
