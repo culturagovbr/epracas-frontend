@@ -23,9 +23,6 @@ dashboardModule.controller("DashboardVinculoDialogCtrl", DashboardVinculoDialogC
 import DashboardPracasCtrl from "./pracas/dashboard.pracas.controller";
 dashboardModule.controller("DashboardPracasCtrl", DashboardPracasCtrl);
 
-import PracaCardElement from "./pracas/praca-card.component";
-dashboardModule.component("pracaCard", PracaCardElement);
-
 import DashboardEventsCtrl from "./dashboard.events.controller";
 dashboardModule.controller("DashboardEventsCtrl", DashboardEventsCtrl);
 

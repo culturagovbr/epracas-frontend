@@ -1,0 +1,51 @@
+<md-list-item id="praca-card"
+  class="praca-container"
+  layout-align="space-between"
+  style="background-image: url({{ praca.header_url }})"
+  ng-click="navigateTo('app.praca', {pk: praca.id_pub})">
+
+  <div class="md-list-item-text praca-text"
+  >{{ praca.municipio }} - {{ praca.uf | uppercase }}
+  <span class="big">{{ praca.nome }}</span>
+  </div>
+  <div class="md-secondary epr-fill" layout-align="end start">
+    <md-menu>
+      <md-button layout-align="end start" class="md-icon-button" ng-click="$mdMenu.open($event)">
+        <md-icon>menu</md-icon>
+      </md-button>
+
+      <md-menu-content width="4">
+
+        <md-menu-item>
+          <md-button ng-click="infoPraca(praca)">
+            <md-icon>info</md-icon>
+            Visualizar Informações sobre a Praça
+          </md-button>
+        </md-menu-item>
+
+        <md-menu-item>
+          <md-button ng-click="infoGestor(praca)">
+            <md-icon>face</md-icon>
+            Visualizar Informações sobre o Gestor da Praça
+          </md-button>
+        </md-menu-item>
+
+        <md-menu-item>
+          <md-button ng-click="excluirPraca(praca)">
+            <md-icon>clear</md-icon>
+            Excluir Praça
+          </md-button>
+        </md-menu-item>
+
+      </md-menu-content>
+
+    </md-menu>
+  </div>
+
+  <!-- <div class="md-list-item-text" layout="column">
+    <h3>{{ praca.nome }}</h3>
+    <h4>{{ praca.municipio}} - {{ praca.uf | uppercase }}</h4>
+    <p>Modelo: {{ praca.modelo_descricao }}</p>
+    <p>Situação: {{ praca.situacao_descricao }}</p>
+  </div> -->
+</md-list-item>

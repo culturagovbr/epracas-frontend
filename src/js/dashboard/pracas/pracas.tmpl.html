@@ -37,16 +37,8 @@
       </md-input-container>
     </div>
   </div>
-      <md-list>
-        <praca-card praca="praca" ng-repeat="praca in $ctrl.pracas |
-          filter: {
-            municipio: filtro.municipio,
-            uf: filtro.uf,
-            modelo: filtro.modelo,
-            situacao: filtro.situacao
-            }">
-        </praca-card>
-    </md-list>
+  <praca-list pracas="$ctrl.pracas" filter="$ctrl.filtro">
+  </praca-list>
 </md-content>
 <md-progress-circular ng-if="$ctrl.loadingPracas"
   md-mode="indeterminate">

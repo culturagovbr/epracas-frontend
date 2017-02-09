@@ -1,0 +1,11 @@
+<md-list>
+  <praca-card ng-repeat="praca in pracas |
+    filter: {
+      municipio: filter.municipio,
+      uf: filter.uf,
+      modelo: filter.modelo,
+      situacao: filter.situacao
+      }"
+      praca="praca">
+  </praca-card>
+</md-list>

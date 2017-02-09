@@ -15,7 +15,6 @@ class DashboardPracasCtrl {
     this.isFilterOpen = !this.isFilterOpen
   }
 
-
 }
 
 export default DashboardPracasCtrl;
