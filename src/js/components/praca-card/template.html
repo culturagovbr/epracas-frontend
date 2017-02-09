@@ -5,8 +5,9 @@
   ng-click="navigateTo('app.praca', {pk: praca.id_pub})">
 
   <div class="md-list-item-text praca-text"
-  >{{ praca.municipio }} - {{ praca.uf | uppercase }}
-  <span class="big">{{ praca.nome }}</span>
+    >
+    {{ praca.municipio }} - {{ praca.uf | uppercase }}
+    <span class="big">{{ praca.nome }}</span>
   </div>
   <div class="md-secondary epr-fill" layout-align="end start">
     <md-menu>
