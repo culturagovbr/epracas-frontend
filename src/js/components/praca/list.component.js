@@ -1,44 +1,6 @@
 class ListElementController {
   constructor($scope, $state) {
     "ngInject";
-
-    this.situations = [
-      {
-        value: "",
-        descricao: "",
-      },
-      {
-        value: "i",
-        descricao: "Inaugurada",
-      },
-      {
-        value: "a",
-        descricao: "Obras em Andamento",
-      },
-      {
-        value: "c",
-        descricao: "Obras Concluidas",
-      },
-    ];
-
-    this.models = [
-      {
-        value: "",
-        descricao: "",
-      },
-      {
-        value: "p",
-        descricao: "700m²",
-      },
-      {
-        value: "m",
-        descricao: "3000m²",
-      },
-      {
-        value: "g",
-        descricao: "7000m²",
-      },
-    ];
   }
 }
 

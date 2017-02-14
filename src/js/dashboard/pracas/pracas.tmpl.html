@@ -18,9 +18,9 @@
 
       <md-input-container class="epr-small">
         <md-select ng-model="$ctrl.filtro.modelo" placeholder="Filtre pelo modelo">
-          <md-option ng-repeat="modelo in $ctrl.modelos"
-            value="{{ $ctrl.modelo.value }}">
-            {{ $ctrl.modelo.descricao }}
+          <md-option ng-repeat="modelo in $ctrl.models"
+            value="{{ modelo.value }}">
+            {{ modelo.descricao }}
           </md-option>
         </md-select>
         <div class="md-errors-spacer"></div>
@@ -28,7 +28,7 @@
 
       <md-input-container class="epr-small">
         <md-select ng-model="$ctrl.filtro.situacao" placeholder="Filtre pela situação">
-          <md-option ng-repeat="situacao in $ctrl.situacoes"
+          <md-option ng-repeat="situacao in $ctrl.situations"
             value="{{ situacao.value }}">
             {{ situacao.descricao }}
           </md-option>
