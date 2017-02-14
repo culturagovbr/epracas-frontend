@@ -68,11 +68,11 @@ class PracaDetailCtrl {
         $log.log($scope.userMenu);
       });
   }
-
+  
   buildMenu(currentUser) {
     const userMenu = {};
 
-    if (angular.isDefined(currentUser.is_staff) || currentUser.praca_manager === this.praca.id_pub) {
+    if (angular.isDefined(currentUser.is_staff) || currentUser.praca_manager === this._praca.id_pub) {
       userMenu.event = {
         id: "evento",
         name: "Adicionar Evento",

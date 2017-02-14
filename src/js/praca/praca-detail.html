@@ -3,19 +3,19 @@
 	<div flex id="praca_header">
 		<img ng-src="{{ praca.header_url }}" style="width: 100%"/>
 
-		<md-fab-speed-dial 
+		<md-fab-speed-dial
 			show-authed="true"
 			md-direction="down"
 			id="praca-speed-dial"
 			class="md-scale md-fab-top-right">
 
 			<md-fab-trigger>
-				<md-button 
-					aria-label="menu" 
+				<md-button
+					aria-label="menu"
 					class="md-fab md-warn">
 
-					<md-tooltip 
-						md-direction="top" 
+					<md-tooltip
+						md-direction="top"
 						md-visible="tooltipVisible">
 						Menu
 					</md-tooltip>
@@ -26,12 +26,12 @@
 			</md-fab-trigger>
 			<md-fab-actions>
 				<div ng-repeat="item in userMenu">
-					
-					<md-button 
+
+					<md-button
 						aria-label="{{ item.name }}"
 						class="md-fab md-raised md-mini"
 						ng-click="$mdDialog.show(item.dialog)">
-						
+
 						<md-tooltip md-direction="left"
 							md-visible="tooltipVisible"
 							md-autohide="false">
@@ -62,7 +62,7 @@
 
 	<!-- Agenda -->
 	<div layout-padding class="agenda" layout-align="start center" >
-    
+
     <div layout="row">
       <md-icon>insert_invitation</md-icon>
       <h2>Agenda</h2>
@@ -103,5 +103,5 @@
 	</div>
 
 
-	
+
 </div>

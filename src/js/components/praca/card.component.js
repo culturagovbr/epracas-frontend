@@ -6,11 +6,6 @@ class PracaCardController {
     this._$document = $document;
     this._$mdDialog = $mdDialog;
     this._Praca = Praca;
-
-    // if (this.praca.header_url.lastIndexOf(".jpg") == -1) {
-    //   this.praca.header_url = "/assets/header.jpg";
-    // }
-
   }
 
   header_url(praca)
@@ -56,7 +51,7 @@ const PracaCard = {
       class="praca-container"
       layout-align="space-between"
       style="background-image: url({{ $ctrl.header_url($ctrl.praca) }})"
-      ng-click="navigateTo('app.praca', {pk: $ctrl.praca.id_pub})">
+      ng-click="$ctrl.navigateTo('app.praca', {pk: $ctrl.praca.id_pub})">
 
       <div class="md-list-item-text praca-text"
         >
