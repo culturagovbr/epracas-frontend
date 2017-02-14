@@ -11,13 +11,13 @@ componentsModule.directive("showAuthed", ShowAuthed);
 import resizable from "./resizable.directive";
 componentsModule.directive("resizable", resizable);
 
-import ListElement from "./praca-list.component";
-componentsModule.directive("listElement", ListElement);
+// import ListElement from "./praca/list.component";
+// componentsModule.directive("listElement", ListElement);
 
-import pracaCard from "./praca-card";
-componentsModule.directive("pracaCard", pracaCard)
+import PracaCard from "./praca/card.component";
+componentsModule.component("pracaCard", PracaCard)
 
-import pracaList from "./praca-list";
-componentsModule.directive("pracaList", pracaList)
+import PracaList from "./praca/list.component";
+componentsModule.component("pracaList", PracaList)
 
 export default componentsModule;
