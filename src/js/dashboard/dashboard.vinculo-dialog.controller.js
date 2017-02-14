@@ -6,7 +6,10 @@ class DashboardVinculoDialogCtrl {
     this._$mdDialog = $mdDialog;
 
     $scope.pedido = pedido;
-
+    $scope.vincFiles = {
+      comp: pedido.files.filter(file => file.tipo == 'compFile')[0],
+      cpf: pedido.files.filter(file => file.tipo == 'cpfFile')[0]
+    }
   }
 }
 
