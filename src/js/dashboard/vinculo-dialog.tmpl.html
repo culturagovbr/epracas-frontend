@@ -7,7 +7,7 @@
     <md-stepper id="vinculoStepper" md-linear="true">
       <md-step md-label="Verifique o documento de identidade">
         <md-step-body>
-          <img ngf-resize="{width:200, height:200}" ngf-src="vincFiles.comp" ng-show="vincFiles.comp">
+          <zoomable-image src="{{ vincFiles.comp.url }}" ng-show="vincFiles.comp">
         </md-step-body>
         <md-step-actions>
           <md-button class="md-primary md-raised">Continue</md-button>
