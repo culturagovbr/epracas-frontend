@@ -11,7 +11,6 @@ import "moment/locale/pt-br";
 import "angular-simple-logger";
 import "ui-leaflet";
 import "ng-file-upload";
-import "angular-image-zoom";
 // import "ng-img-crop-full-extended";
 import "ui-cropper";
 import "ng-mask";
@@ -49,7 +48,6 @@ const requires = [
   "ngFileUpload",
   "uiCropper",
   "ngMask",
-  "ImageZoom",
   // "ngImgCrop",
   "mdSteppers",
   "ngSanitize",
