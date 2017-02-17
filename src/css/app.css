@@ -34,9 +34,9 @@ md-toolbar h1 {
 #footer-brasil {
    background: none repeat scroll 0% 0% #0042b1;
    padding: 1em 0px;
-   width: 100vw;
-	 bottom: 0;
-	 position: absolute;
+   width: 100%;
+   bottom: 0;
+   position: fixed;
 }
 
 #home a{
