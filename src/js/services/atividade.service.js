@@ -23,6 +23,15 @@ class Atividade {
     return deferred.promise;
   }
 
+  options(data) {
+    return this._$http({
+      url: this._AtividadeEndPoint,
+      method: "OPTIONS"
+    })
+    .then(response => response.data)
+    .then(data => data.actions.POST)
+  }
+
   // Recupera o registro de um evento
   get(id_pub) {
     const deferred = this._$q.defer();

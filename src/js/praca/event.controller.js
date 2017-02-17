@@ -11,66 +11,19 @@ class EventCtrl {
     this._Atividade = Atividade;
     this._praca = $scope.praca;
 
-    this.eventData = {};
+    this._Atividade.options()
+      .then(data => {
+        console.log(data)
+        return data
+      })
+      .then(data => {
+        this._localAtividade = data.espaco.choices
+        this._listaAtividades = data.tipo.choices
+        this._Periodicidade = data.ocorrencia.children.frequency_type.choices
+      })
 
-    this._listaAtividades = [
-      {
-        value: 1,
-        display_name: "Apresentação",
-      },
-      {
-        value: 2,
-        display_name: "Atendimento",
-      },
-      {
-        value: 3,
-        display_name: "Cormercialização de produtos",
-      },
-      {
-        value: 4,
-        display_name: "Curso",
-      },
-      {
-        value: 5,
-        display_name: "Espetátulo",
-      },
-      {
-        value: 6,
-        display_name: "Exposição",
-      },
-      {
-        value: 7,
-        display_name: "Feira de trocas",
-      },
-      {
-        value: 8,
-        display_name: "Oficina",
-      },
-      {
-        value: 9,
-        display_name: "Palestra",
-      },
-      {
-        value: 10,
-        display_name: "Reunião",
-      },
-      {
-        value: 11,
-        display_name: "Seminário",
-      },
-      {
-        value: 12,
-        display_name: "Show",
-      },
-      {
-        value: 13,
-        display_name: "Festas",
-      },
-      {
-        value: 14,
-        display_name: "Outros",
-      },
-    ];
+    this.eventData = {};
+    this.selectedDays = {};
 
     this._areaAtividade = [
       {
@@ -358,40 +311,7 @@ class EventCtrl {
       },
     ];
 
-    this._localAtividade = [
-      {
-        value: 1,
-        display_name: "Cineteatro",
-      },
-      {
-        value: 2,
-        display_name: "Biblioteca",
-      },
-      {
-        value: 3,
-        display_name: "Laboratório multimídia",
-      },
-      {
-        value: 4,
-        display_name: "Quadra",
-      },
-      {
-        value: 5,
-        display_name: "Sala multiuso",
-      },
-      {
-        value: 6,
-        display_name: "CRAS",
-      },
-      {
-        value: 7,
-        display_name: "Pista de skate",
-      },
-      {
-        value: 8,
-        display_name: "Áreas externas",
-      },
-    ];
+    this._DiasSemana.forEach(dia => this.selectedDays[dia.value] = false)
 
     this._publicoAtividade = [
       {

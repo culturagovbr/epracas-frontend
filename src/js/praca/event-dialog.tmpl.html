@@ -107,7 +107,7 @@
                 <md-option ng-repeat="item in $ctrl._Periodicidade" value={{item.value}}>{{item.display_name}}</md-option>
               </md-select>
             </md-input-container>
-            <div layout="row" ng-show="$ctrl.eventData.periodicidade == 'DAILY'" layout-wrap flex>
+            <div layout="row" ng-show="$ctrl.eventData.periodicidade == 'daily'" layout-wrap flex>
               <div flex-xs flex="50">
                 <md-checkbox aria-label="Select All"
                   ng-checked="isChecked()"
@@ -117,7 +117,7 @@
                 </md-checkbox>
               </div>
               <div class="demo-select-all-checkboxes" flex="100" ng-repeat="dia in $ctrl._DiasSemana">
-                <md-checkbox ng-checked="exists(dia, selected)" ng-click="toggle(dia, selected)">
+                <md-checkbox ng-model="selectedDays[dia.value]">
                   {{ dia.display_name }}
                 </md-checkbox>
               </div>
@@ -142,7 +142,7 @@
         </md-input-container>
 
       </md-content>
-    </form> 
+    </form>
   </md-dialog-content>
 
   <md-dialog-actions layout="row">
