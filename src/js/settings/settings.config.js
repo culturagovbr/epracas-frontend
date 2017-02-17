@@ -14,7 +14,7 @@ function SettingsConfig($stateProvider) {
 			}
 		}
 	});
-	
+
 };
 
 export default SettingsConfig;

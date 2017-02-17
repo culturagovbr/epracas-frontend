@@ -1,6 +1,6 @@
 import angular from "angular";
 
-const dashboardModule = angular.module('app.dashboard', []);
+const dashboardModule = angular.module('app.dashboard', ['app.services']);
 
 import DashBoardConfig from './dashboard.config';
 dashboardModule.config(DashBoardConfig);
