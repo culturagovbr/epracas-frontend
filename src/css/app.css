@@ -339,3 +339,9 @@ md-content#pracas {
 .hidden {
     display: none
 }
+
+.high-ground
+{
+	position: relative;
+	z-index: 100;
+}

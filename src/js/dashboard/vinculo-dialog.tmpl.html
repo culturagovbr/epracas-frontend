@@ -4,10 +4,14 @@
       <h2>Processo de Vinculação</h2>
       <p>Verifique os documentos enviados pelo proponente para efetivar seu vinculo como gestor da praça.</p>
     </md-content>
-    <md-stepper id="vinculoStepper" md-linear="true">
-      <md-step md-label="Verifique o documento de identidade">
+    <md-stepper id="vinculoStepper" md-linear="true" >
+      <md-step md-label="Verifique o documento de identidade"
+      ng-mouseenter="showToast($event)">
         <md-step-body>
-          <zoomable-image src="{{ vincFiles.comp.url }}" ng-show="vincFiles.comp">
+          <zoomable-image class="high-ground"
+            src="{{ vincFiles.comp.url }}"
+            ng-show="vincFiles.comp"
+          ></zoomable-image>
         </md-step-body>
         <md-step-actions>
           <md-button class="md-primary md-raised">Continue</md-button>
