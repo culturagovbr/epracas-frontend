@@ -77,6 +77,55 @@ class Atividade {
       );
     return deferred.promise;
   }
+
+  // Lista todos os eventos
+  list(praca, month) {
+    const deferred = this._$q.defer();
+
+    if (praca && month){
+      this._$http({
+        url: this._AtividadeEndPoint,
+        method: "GET",
+        params: {praca: praca, mes: month}
+      })
+        .then(
+            res => deferred.resolve(res.data),
+            err => deferred.reject(err)
+        );
+    } else if (praca){
+      this._$http({
+        url: this._AtividadeEndPoint,
+        method: "GET",
+        params: {praca: praca}
+      })
+        .then(
+            res => deferred.resolve(res.data),
+            err => deferred.reject(err)
+        );
+    } else if (month){
+      this._$http({
+        url: this._AtividadeEndPoint,
+        method: "GET",
+        params: {mes: month}
+      })
+        .then(
+            res => deferred.resolve(res.data),
+            err => deferred.reject(err)
+        );
+    } else {
+      this._$http({
+        url: this._AtividadeEndPoint,
+        method: "GET",
+      })
+        .then(
+            res => deferred.resolve(res.data),
+            err => deferred.reject(err)
+        );
+    }
+
+    return deferred.promise;
+  }
+
 }
 
 export default Atividade;

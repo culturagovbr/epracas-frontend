@@ -1,12 +1,13 @@
+import moment from "moment";
 class EventCtrl {
-  constructor($scope, $http, $log, $mdDialog, $mdToast, Atividade, AppConstants) {
+  constructor($scope, $http, $log, $mdDialog, Toast, Atividade, AppConstants) {
     "ngInject";
 
     this._$scope = $scope;
     this._$http = $http;
     this._$log = $log;
     this._$mdDialog = $mdDialog;
-    this._$mdToast = $mdToast;
+    this._Toast = Toast;
     this._agendaApiUrl = AppConstants.agendaApi;
     this._Atividade = Atividade;
     this._praca = $scope.praca;
@@ -20,6 +21,8 @@ class EventCtrl {
         this._localAtividade = data.espaco.choices
         this._listaAtividades = data.tipo.choices
         this._Periodicidade = data.ocorrencia.children.frequency_type.choices
+        this._territorioAtividade = data.territorio.choices
+        this._publicoAtividade = data.publico.choices
       })
 
     this.eventData = {};
@@ -257,29 +260,6 @@ class EventCtrl {
       },
     ];
 
-    this._Periodicidade = [
-      {
-        value: "ONCE",
-        display_name: "Apenas uma vez",
-      },
-      {
-        value: "DAILY",
-        display_name: "Diariamente",
-      },
-      {
-        value: "WEEKLY",
-        display_name: "Semanalmente",
-      },
-      {
-        value: "asdas",
-        display_name: "Quinzenalmente",
-      },
-      {
-        value: "MONTHLY",
-        display_name: "Mensalmente",
-      },
-    ];
-
     this._DiasSemana = [
       {
         value: "MO",
@@ -313,121 +293,6 @@ class EventCtrl {
 
     this._DiasSemana.forEach(dia => this.selectedDays[dia.value] = false)
 
-    this._publicoAtividade = [
-      {
-        value: 1,
-        display_name: "Egressos do sistema prisional",
-      },
-      {
-        value: 2,
-        display_name: "Famílias de presos do sistema carcerário",
-      },
-      {
-        value: 3,
-        display_name: "jovens em medidas socioeducativas",
-      },
-      {
-        value: 4,
-        display_name: "Pessoas ou grupos vítimas de violência",
-      },
-      {
-        value: 5,
-        display_name: "Pessoas em sofrimento psíquico",
-      },
-      {
-        value: 6,
-        display_name: "População em situação de rua",
-      },
-      {
-        value: 7,
-        display_name: "Catadores de material reciclável",
-      },
-      {
-        value: 8,
-        display_name: "Atingidos por empreendimento de Infraestrutura",
-      },
-      {
-        value: 9,
-        display_name: "Imigrantes",
-      },
-      {
-        value: 10,
-        display_name: "Familias acampadas",
-      },
-      {
-        value: 11,
-        display_name: "Agricultores familiares",
-      },
-      {
-        value: 12,
-        display_name: "Assentados da Reforma Agrária",
-      },
-      {
-        value: 13,
-        display_name: "Povos e Comunidades Tradicionais de Matriz Africana",
-      },
-      {
-        value: 14,
-        display_name: "Quilombolas",
-      },
-      {
-        value: 15,
-        display_name: "Indígenas",
-      },
-      {
-        value: 16,
-        display_name: "Extrativistas",
-      },
-      {
-        value: 17,
-        display_name: "Pescadores artesanais",
-      },
-      {
-        value: 18,
-        display_name: "Ribeirinhos",
-      },
-      {
-        value: 19,
-        display_name: "Sertanejos",
-      },
-      {
-        value: 20,
-        display_name: "Ciganos",
-      },
-      {
-        value: 21,
-        display_name: "População de Lésbicas, Gays, Bissexuais, Travestis, Transexuais e Transgêneros -LGBT",
-      },
-      {
-        value: 22,
-        display_name: "Mulheres",
-      },
-      {
-        value: 23,
-        display_name: "Pessoas com deficiência",
-      },
-      {
-        value: 24,
-        display_name: "População negra",
-      },
-      {
-        value: 25,
-        display_name: "Estudantes",
-      },
-      {
-        value: 26,
-        display_name: "Grupos Artísticos e Culturais Independentes",
-      },
-      {
-        value: 27,
-        display_name: "Mestres, praticantes, brincantes e grupos das culturas populares, urbanas e rurais",
-      },
-      {
-        value: 28,
-        display_name: "Não específico",
-      },
-    ];
-
     this._faixaEtariaAtividade = [
       {
         value: 1,
@@ -455,59 +320,50 @@ class EventCtrl {
       },
     ];
 
-    this._territorioAtividade = [
-      {
-        value: 1,
-        display_name: "Bairro da Praça CEU",
-      },
-      {
-        value: 2,
-        display_name: "Bairros do entorno",
-      },
-      {
-        value: 3,
-        display_name: "Município",
-      },
-      {
-        value: 4,
-        display_name: "Municípios do entorno",
-      },
-      {
-        value: 5,
-        display_name: "Estado",
-      },
-    ];
-    // self = this;
   }
 
   cancel() {
     this._$mdDialog.cancel();
   }
 
-  save() {
+  save(data) {
+    this._$log.log("Salvando");
     this.isSaving = true;
-    this.eventData.praca = this._praca.id_pub;
-    this._Atividade.new(this.eventData)
-    // this._$http({
-    //   url: this._agendaApiUrl,
-    //   method: "POST",
-    //   data: this.eventData,
-    // })
-      .then(
-        (response) => {
-          this._$log.log(`Success!!! ${response.status} -  ${response.data}`);
-          this._$mdDialog.hide();
-          this._$mdToast.show(
-            this._$mdToast.simple()
-              .textContent("Evento adicionado.")
-              .position("right", "top")
-              .hideDelay(3500)
-          );
-        }
-      )
-      .catch(
-        err => this._$log.log(`Error!!! ${err.status} -  ${err.data}`)
-      );
+    if (this.eventData.id_pub) {
+      this.eventData.praca = this._praca.id_pub;
+      let date = moment(this.eventData.ocorrencia.repeat_until).format("YYYY-MM-DD");
+      this.eventData.ocorrencia.repeat_until = date;
+      this._Atividade.update(this.eventData.id_pub, this.eventData)
+        .then(
+          (response) => {
+            this._$mdDialog.hide(),
+            this._Toast.showSuccessToast("Alterações gravadas.")
+          }
+        )
+        .catch(
+          (err) => {
+            this._$log.log(`Error!!! ${err.status} -  ${err.data}`),
+            this._Toast.showRejectedToast(`Erro ao adicionar evento. ${err.data} `)
+          }
+        );
+    } else {
+      this.eventData.praca = this._praca.id_pub;
+      let date = moment(this.eventData.ocorrencia.repeat_until).format("YYYY-MM-DD");
+      this.eventData.ocorrencia.repeat_until = date;
+      this._Atividade.new(this.eventData)
+        .then(
+            (response) => {
+              this._$mdDialog.hide(),
+              this._Toast.showSuccessToast("Evento adicionado.")
+            }
+        )
+        .catch(
+            (err) => {
+              this._$log.log(`Error!!! ${err.status} - ${err.data}`),
+              this._Toast.showRejectedToast(`Erro ao adicionar evento. ${err.data}`)
+            }
+        )
+    };
   }
 
   parseArea() {
