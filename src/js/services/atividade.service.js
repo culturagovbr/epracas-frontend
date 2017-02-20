@@ -9,18 +9,12 @@ class Atividade {
 
   // Cria um novo evento.
   new(data) {
-    const deferred = this._$q.defer();
-
-    this._$http({
+    return this._$http({
       url: this._AtividadeEndPoint,
       method: "POST",
-      data: data,
+      data: data
     })
-      .then(
-        res => deferred.resolve(res.data),
-        err => deferred.reject(err)
-      );
-    return deferred.promise;
+    .then(res => res.data)
   }
 
   options(data) {
@@ -34,98 +28,44 @@ class Atividade {
 
   // Recupera o registro de um evento
   get(id_pub) {
-    const deferred = this._$q.defer();
-
-    this._$http({
+    return this._$http({
       url: `${this._AtividadeEndPoint}${id_pub}`,
-      method: "GET",
+      method: 'GET'
     })
-      .then(
-        res => deferred.resolve(res.data),
-        err => deferred.reject(err)
-      );
-    return deferred.promise;
+    .then(res => res.data)
   }
 
   // Atualiza um evento
   update(id_pub, data) {
-    const deferred = this._$q.defer();
-
-    this._$http({
+    return this._$http({
       url: `${this._AtividadeEndPoint}${id_pub}`,
-      method: "PATCH",
-      data: data,
+      method: 'PATCH',
+      data: data
     })
-      .then(
-        res => deferred.resolve(res.data),
-        err => deferred.reject(err)
-      );
-    return deferred.promise;
+    .then(res => res.data)
   }
 
   // Exclui um evento
   delete(id_pub) {
-    const deferred = this._$q.defer();
-
-    this._$http({
+    return this._$http({
       url: `${this._AtividadeEndPoint}${id_pub}`,
-      method: "DELETE",
+      method: 'DELETE'
     })
-      .then(
-        res => deferred.resolve(res.data),
-        err => deferred.reject(err)
-      );
-    return deferred.promise;
+    .then(res => res.data)
   }
 
   // Lista todos os eventos
   list(praca, month) {
-    const deferred = this._$q.defer();
-
-    if (praca && month){
-      this._$http({
-        url: this._AtividadeEndPoint,
-        method: "GET",
-        params: {praca: praca, mes: month}
-      })
-        .then(
-            res => deferred.resolve(res.data),
-            err => deferred.reject(err)
-        );
-    } else if (praca){
-      this._$http({
-        url: this._AtividadeEndPoint,
-        method: "GET",
-        params: {praca: praca}
-      })
-        .then(
-            res => deferred.resolve(res.data),
-            err => deferred.reject(err)
-        );
-    } else if (month){
-      this._$http({
-        url: this._AtividadeEndPoint,
-        method: "GET",
-        params: {mes: month}
-      })
-        .then(
-            res => deferred.resolve(res.data),
-            err => deferred.reject(err)
-        );
-    } else {
-      this._$http({
-        url: this._AtividadeEndPoint,
-        method: "GET",
-      })
-        .then(
-            res => deferred.resolve(res.data),
-            err => deferred.reject(err)
-        );
-    }
-
-    return deferred.promise;
+    return this._$http({
+      url: this._AtividadeEndPoint,
+      method: 'GET',
+      params: {
+        praca: praca ? praca : undefined,
+        mes: month ? month : undefined
+      }
+    })
+    .then(res => res.data)
   }
-
 }
 
 export default Atividade;
