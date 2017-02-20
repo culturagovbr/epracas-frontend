@@ -343,3 +343,7 @@ md-content#pracas {
 	position: relative;
 	z-index: 100;
 }
+
+.activities-log {
+	height: 350px;
+}

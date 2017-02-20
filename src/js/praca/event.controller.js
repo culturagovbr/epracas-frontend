@@ -344,7 +344,7 @@ class EventCtrl {
         )
         .catch(
           (err) => {
-            this._$log.log(`Error!!! ${err.status} -  ${err.data}`),
+            this._$log.log(`Error!!! ${err.status}`, err.data),
             this._Toast.showRejectedToast(`Erro ao adicionar evento. ${err.data} `)
           }
         );
@@ -361,7 +361,7 @@ class EventCtrl {
         )
         .catch(
             (err) => {
-              this._$log.log(`Error!!! ${err.status} - ${err.data}`),
+              this._$log.log(`Error!!! ${err.status}`, err.data),
               this._Toast.showRejectedToast(`Erro ao adicionar evento. ${err.data}`)
             }
         )

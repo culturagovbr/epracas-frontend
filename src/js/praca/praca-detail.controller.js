@@ -1,5 +1,7 @@
+import moment from 'moment'
+
 class PracaDetailCtrl {
-  constructor($scope, $document, $mdDialog, $log, User, praca) {
+  constructor($scope, $document, $mdDialog, $log, User, Atividade, praca) {
     "ngInject";
 
     this._$scope = $scope;
@@ -12,6 +14,36 @@ class PracaDetailCtrl {
     this._praca = praca;
     $scope.praca = praca;
     $scope.$mdDialog = $mdDialog;
+
+    // ocorrencia: Object
+    // calendar: null
+    // end: null
+    // event: "d9b0be02-3f8e-41c7-a880-eb64d0ca5105"
+    // frequency_type: "once"
+    // id: 1
+    // repeat: ""
+    // repeat_until: "2017-02-21"
+    // start: "2017-02-20T03:00:00Z"
+    // weekday: null
+
+    Atividade.list(praca)
+    .then(atividades => {
+      console.log('ATV',atividades)
+      return atividades
+    })
+    .then(atividades => atividades.map(atividade => {
+      if(!atividade.ocorrencia) return atividade
+
+      const formatString = "DD/MM/YYYY"
+      atividade.data_inicio = moment(atividade.ocorrencia.start.slice(0, 10))
+        .format(formatString)
+      atividade.data_encerramento = moment(atividade.ocorrencia.repeat_until)
+        .format(formatString)
+      return atividade
+    }))
+    .then(atividades => {
+      $scope.praca.agenda = atividades
+    })
 
     if ($scope.praca.header_url.lastIndexOf(".jpg") == -1) {
       $scope.praca.header_url = "/assets/header.jpg";
