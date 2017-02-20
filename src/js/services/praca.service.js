@@ -11,103 +11,65 @@ export default class Praca {
 
   // Cria uma nova Praça e retorna a um JSON com os dados
   new(data) {
-    const deferred = this._$q.defer();
-
-    this._$http({
+    return this._$http({
       url: this._PracaEndPoint,
-      method: "POST",
-      data: data,
+      method: 'POST',
+      data: data
     })
-      .then(
-        res => deferred.resolve(res.data),
-        err => deferred.reject(err)
-      );
-    return deferred.promise;
+    .then(res => res.data)
   }
 
   // Exclui uma Praça
   delete(pk) {
-    const deferred = this._$q.defer();
-
-    this._$http({
+    return this._$http({
       url: `${this._PracaEndPoint}${pk}/`,
-      method: "DELETE",
+      method: 'DELETE'
     })
-      .then(
-        res => deferred.resolve(res.data),
-        err => deferred.reject(err)
-      );
-    return deferred.promise;
+    .then(res => res.data)
   }
 
   // Recupera o registro de uma Praça
   get(pk) {
-    const deferred = this._$q.defer();
-
-    // Verifica a existencia do id_pub
-    if (!pk.replace(" ", "")) {
-      deferred.reject("O id_pub está vazio!");
-      return deferred.promise;
-    }
-
-    this._$http({
-      url: `${this._PracaEndPoint}${pk}/`,
-      method: "GET",
+    return this._$q((resolve, reject) => {
+      if(!pk.replace(" ", "")) {
+        reject("O id_pub está vazio!")
+      } else {
+        resolve()
+      }
     })
-      .then(
-        res => deferred.resolve(res.data),
-        err => deferred.reject(err)
-      );
-    return deferred.promise;
+    .then(() => this._$http({
+      url: `${this._PracaEndPoint}${pk}/`,
+      method: 'GET'
+    }))
+    .then(res => res.data)
   }
 
   // Lista todas as Praças
   list() {
-    const deferred = this._$q.defer();
-
-    this._$http({
+    return this._$http({
       url: this._PracaEndPoint,
-      method: "GET",
+      method: "GET"
     })
-      .then(
-      res => deferred.resolve(res.data),
-      err => deferred.reject(err)
-    );
-    return deferred.promise;
+    .then(res => res.data)
   }
 
   // Procura por uma Praça utilizando o parametro query
   search(query) {
-    const deferred = this._$q.defer();
-
-    this._$http({
+    return this._$http({
       url: this._PracaEndPoint,
       method: "GET",
-      params: { search: query },
+      params: { search: query }
     })
-      .then(
-      //    (res) => res.data,
-      //    (err) => err
-      res => deferred.resolve(res.data),
-      err => deferred.reject(err)
-    );
-    return deferred.promise;
-    //  return res.data;
+    .then(res => res.data)
   }
 
   // Salva os dados de uma Praça
   save(praca, data) {
-    const deferred = this._$q.defer();
-
-    this._$http({
+    return this._$http({
       url: `${this._PracaEndPoint}${praca}/`,
-      method: "PATCH",
-      data: data,
+      method: 'PATCH',
+      data: data
     })
-      .then(
-        res => deferred.resolve(res.data),
-        err => deferred.reject(err)
-      );
-    return deferred.promise;
+    .then(res => res.data)
   }
 }

@@ -22,6 +22,8 @@ class EventCtrl {
         this._listaAtividades = data.tipo.choices
         this._Periodicidade = data.ocorrencia.children.frequency_type.choices
         this._territorioAtividade = data.territorio.choices
+
+        // aqui estamos recebendo uma string, mas esperando choices?
         this._publicoAtividade = data.publico.choices
       })
 
