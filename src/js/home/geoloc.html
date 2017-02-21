@@ -1,9 +1,14 @@
-<div class="limite" layout="column">
+<div flex-gt-md="70" flex layout="row" layout-align="center center">
 
-	<md-content>
-		<md-list flex>
-      <list-element praca="praca" ng-repeat="praca in $ctrl.pracas_proximas"></list-element>
-		</md-list>
-	</md-content>
+  <div flex="65">
+    <md-content style="height: calc(100vh - 64px)">
+      <praca-list pracas="$ctrl.pracas_proximas" filter="$ctrl.filtro">
+      </praca-list>
+    </md-content>
+  </div>
+  <div flex>
+    <leaflet style="height: calc(100vh - 64px)" markers="$ctrl.geoLoc.markers"> 
+    </leaflet>
+  </div>
 
 </div>

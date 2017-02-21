@@ -25,20 +25,16 @@ export default class GeoLocation {
 
 
   getDistanceList(latlong) {
-    const deferred = this._$q.defer();
-
-    this._$http({
+    return this._$http({
       url: `${this._AppConstants.api}/distancia/`,
       method: "POST",
       data: { lat: latlong.coords.latitude,
               long: latlong.coords.longitude,
       },
     }).then(
-      res => deferred.resolve(res.data),
-      err => deferred.reject(err)
+      response => response.data,
+      err => err.data
     );
-
-    return deferred.promise;
   }
 
 }
