@@ -15,28 +15,26 @@ class GeolocCtrl {
         zoomControl: false,
         dragging: false,
       },
-      markers: [],
+      markers: {},
     }
 
     this.pracas_proximas = [];
 
-    GeoLocation.getCurrentPosition().then(
-        position => GeoLocation.getDistanceList(position).then(
-          distances => distances.forEach(praca => {
-            this.pracas_proximas.push(praca);
-            debugger;
-            this.geoLoc.markers.push(
-                {
-                  lat: praca.latlong.split(',')[0],
-                  lng: praca.latlong.split(',')[1],
-                  message: praca.titulo,
-                  draggable: false,
-                }
-              )
-            }
-          )
-        )
-    );
+    GeoLocation.getCurrentPosition()
+    .then(position => GeoLocation.getDistanceList(position))
+    .then(distances => distances.forEach((praca, index) => {
+      this.pracas_proximas.push(praca)
+
+      let pracaName = praca.nome.split("-")[0]
+      this.geoLoc.markers[pracaName] = {
+        lat: parseFloat(praca.latlong.split(', ')[0]),
+        lng: parseFloat(praca.latlong.split(', ')[1]),
+        message: praca.nome,
+        draggable: false,
+        focus: false
+      }
+    }))
+    .catch(error => console.warn(error))
 
   }
 }
