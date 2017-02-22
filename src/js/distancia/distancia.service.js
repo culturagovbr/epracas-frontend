@@ -10,19 +10,18 @@ export default class GeoLocation {
   }
 
   getCurrentPosition() {
-    const deferred = this._$q.defer();
+    return this._$q((resolve, reject) => {
+      if(!this._$window.navigator.geolocation) {
+        reject("Geolocation not supported");
+        return
+      }
 
-    if (!this._$window.navigator.geolocation) {
-      deferred.reject("Geolocation not supported.");
-    } else {
       this._$window.navigator.geolocation.getCurrentPosition(
-        position => deferred.resolve(position),
-        err => deferred.reject(err)
-      );
-    }
-    return deferred.promise;
+        position => resolve(position),
+        error => reject(error)
+      )
+    })
   }
-
 
   getDistanceList(latlong) {
     return this._$http({
