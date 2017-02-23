@@ -23,4 +23,7 @@ componentsModule.component("zoomableImage", ZoomableImage)
 import EventPreviewer from "./event-previewer"
 componentsModule.component("eventPreviewer", EventPreviewer)
 
+import leafletFlexFit from "./leaflet-fix.directive"
+componentsModule.directive("ttLeafletFlexFit", leafletFlexFit)
+
 export default componentsModule;
