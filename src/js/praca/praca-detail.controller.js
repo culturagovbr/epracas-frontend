@@ -31,15 +31,6 @@ class PracaDetailCtrl {
         doubleClickZoom: false,
         zoomControl: false,
         dragging: false,
-        icon: {
-          iconUrl: "https://unpkg.com/leaflet@1.0.1/dist/images/marker-icon.png",
-          shadowUrl: "https://unpkg.com/leaflet@1.0.1/dist/images/marker-shadow.png",
-          iconSize: [80, 80],
-          iconAnchor: [40, 80],
-          popupAnchor: [0, 0],
-          shadowSize: [0, 0],
-          shadowAnchor: [0, 0],
-        },
       },
 
       center: {
