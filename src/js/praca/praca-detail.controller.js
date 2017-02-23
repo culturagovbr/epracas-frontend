@@ -98,6 +98,15 @@ class PracaDetailCtrl {
       });
   }
 
+  parseDate(dataObj) {
+    if(!this.dateSet)
+    {
+      return undefined
+    }
+
+    return moment(dataObj).format("DD.MM.YYYY")
+  }
+
   buildMenu(currentUser) {
     const userMenu = {};
 

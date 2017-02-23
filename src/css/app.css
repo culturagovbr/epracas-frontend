@@ -345,15 +345,19 @@ md-content#pracas {
 	z-index: 100;
 }
 
+.activities-log {
+	width: 100%;
+}
+
 .event-list {
-	width: 75%;
+	width: 70%;
 }
 
 .event-list .event-previewer {
 	width: 45%;
 	position: relative;
 	float: left;
-	padding: 2em;
+	margin: 1em;
 }
 
 .event-list .event-previewer > .period {

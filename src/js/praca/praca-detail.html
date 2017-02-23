@@ -72,7 +72,7 @@
 		<div class="activities-log" layout-gt-xs="row">
 			<div class="event-list">
 				<event-previewer ng-repeat="event in praca.agenda
-					| filter: { data_inicio: $ctrl.myDate }
+					| filter: { data_inicio: $ctrl.parseDate($ctrl.myDate) }
 					| orderBy: 'event.data_inicio'
 					| limitTo: 4"
 					event="event">
@@ -80,7 +80,7 @@
 			</div>
 
 			<div flex>
-				<md-calendar ng-model="$ctrl.myDate"></md-calendar>
+				<md-calendar ng-click="$ctrl.dateSet = true" ng-model="$ctrl.myDate"></md-calendar>
 			</div>
 
 		</div>
