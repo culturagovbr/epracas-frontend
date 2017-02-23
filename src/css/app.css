@@ -350,7 +350,7 @@ md-content#pracas {
 }
 
 .event-list {
-	width: 70%;
+	width: 65%;
 }
 
 .event-list .event-previewer {
@@ -358,6 +358,7 @@ md-content#pracas {
 	position: relative;
 	float: left;
 	margin: 1em;
+	cursor: pointer;
 }
 
 .event-list .event-previewer > .period {

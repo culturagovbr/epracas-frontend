@@ -1,8 +1,10 @@
 import moment from 'moment'
 
 class EventPreviewerCtrl {
-  constructor() {
+  constructor($location) {
     "ngInject";
+
+    this.navigateTo = url => $location.url(url)
   }
 
   limitString(inStr) {
@@ -19,7 +21,7 @@ class EventPreviewerCtrl {
 const EventPreviewer = {
   controller: EventPreviewerCtrl,
   template: `
-    <div class="event-previewer" layout="column">
+    <div class="event-previewer" layout="column" ng-click="$ctrl.navigateTo($ctrl.event.url)">
       <span class="period">de {{ $ctrl.event.data_inicio }} a {{ $ctrl.event.data_encerramento }}</span>
       <div class="local">{{ $ctrl.event.espaco }} </div>
       <h1 class="title">{{ $ctrl.event.titulo }}</h1>
