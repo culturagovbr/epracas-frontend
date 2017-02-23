@@ -345,6 +345,29 @@ md-content#pracas {
 	z-index: 100;
 }
 
-.activities-log {
-	height: 350px;
+.event-list {
+	width: 75%;
+}
+
+.event-list .event-previewer {
+	width: 45%;
+	height: 45%;
+	position: relative;
+	float: left;
+	padding: 2em;
+}
+
+.event-list .event-previewer > .period {
+	text-transform: uppercase;
+}
+
+.event-list .event-previewer > .local {
+	background-color: rgb(242, 242, 242);
+	height: 1.6em;
+	padding: 0.3em;
+	padding-left: 1em;
+	line-height: 1.6em;
+	border-radius: 5px;
+	overflow: hidden;
+	text-transform: uppercase;
 }

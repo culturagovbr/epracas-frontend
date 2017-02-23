@@ -38,7 +38,7 @@ class PracaInfoCtrl {
           }
         )
         .catch(
-          (err) => console.log(`saveParceiros: ${err.status} - ${JSON.stringify(err)}`)
+          (err) => console.error(`saveParceiros: ${err.status} - ${JSON.stringify(err)}`)
         );
     }
   }

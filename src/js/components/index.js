@@ -20,4 +20,7 @@ componentsModule.component("pracaList", PracaList)
 import ZoomableImage from "./zoomable-image"
 componentsModule.component("zoomableImage", ZoomableImage)
 
+import EventPreviewer from "./event-previewer"
+componentsModule.component("eventPreviewer", EventPreviewer)
+
 export default componentsModule;

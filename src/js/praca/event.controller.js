@@ -14,16 +14,10 @@ class EventCtrl {
 
     this._Atividade.options()
       .then(data => {
-        console.log(data)
-        return data
-      })
-      .then(data => {
         this._localAtividade = data.espaco.choices
         this._listaAtividades = data.tipo.choices
         this._Periodicidade = data.ocorrencia.children.frequency_type.choices
         this._territorioAtividade = data.territorio.choices
-
-        // aqui estamos recebendo uma string, mas esperando choices?
         this._publicoAtividade = data.publico.choices
       })
 
@@ -335,15 +329,18 @@ class EventCtrl {
       this.eventData.praca = this._praca.id_pub;
       let date = moment(this.eventData.ocorrencia.repeat_until).format("YYYY-MM-DD");
       this.eventData.ocorrencia.repeat_until = date;
+
+      this.eventData.evento = this.eventData.evento.display_name
+      
       this._Atividade.update(this.eventData.id_pub, this.eventData)
         .then(
-          (response) => {
+          response => {
             this._$mdDialog.hide(),
             this._Toast.showSuccessToast("Alterações gravadas.")
           }
         )
         .catch(
-          (err) => {
+          err => {
             this._$log.log(`Error!!! ${err.status}`, err.data),
             this._Toast.showRejectedToast(`Erro ao adicionar evento. ${err.data} `)
           }
@@ -369,8 +366,6 @@ class EventCtrl {
   }
 
   parseArea() {
-      console.log(this.eventData)
-      // debugger;
       this.eventData.subareas = angular.fromJson(this.eventData.area).subarea
   }
 }

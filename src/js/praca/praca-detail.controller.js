@@ -27,14 +27,10 @@ class PracaDetailCtrl {
     // weekday: null
 
     Atividade.list(praca)
-    .then(atividades => {
-      console.log('ATV',atividades)
-      return atividades
-    })
     .then(atividades => atividades.map(atividade => {
       if(!atividade.ocorrencia) return atividade
 
-      const formatString = "DD/MM/YYYY"
+      const formatString = "DD.MM.YYYY"
       atividade.data_inicio = moment(atividade.ocorrencia.start.slice(0, 10))
         .format(formatString)
       atividade.data_encerramento = moment(atividade.ocorrencia.repeat_until)
@@ -42,6 +38,7 @@ class PracaDetailCtrl {
       return atividade
     }))
     .then(atividades => {
+      console.log(atividades)
       $scope.praca.agenda = atividades
     })
 
