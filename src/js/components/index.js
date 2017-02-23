@@ -20,4 +20,7 @@ componentsModule.component("pracaList", PracaList)
 import ZoomableImage from "./zoomable-image"
 componentsModule.component("zoomableImage", ZoomableImage)
 
+import leafletFlexFit from "./leaflet-fix.directive"
+componentsModule.directive("ttLeafletFlexFit", leafletFlexFit)
+
 export default componentsModule;
