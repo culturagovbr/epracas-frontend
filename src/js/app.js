@@ -11,12 +11,11 @@ import "moment/locale/pt-br";
 import "angular-simple-logger";
 import "ui-leaflet";
 import "ng-file-upload";
-// import "ng-img-crop-full-extended";
 import "ui-cropper";
 import "ng-mask";
 import "angular-sanitize";
-import "angular-material-calendar";
 import "material-steppers";
+import "angular-bootstrap-calendar";
 // Import our app config files
 import constants from "./config/app.constants";
 import appConfig from "./config/app.config";
@@ -51,7 +50,7 @@ const requires = [
   // "ngImgCrop",
   "mdSteppers",
   "ngSanitize",
-  "materialCalendar",
+  "mwl.calendar",
   "templates",
   "app.layout",
   "app.components",
