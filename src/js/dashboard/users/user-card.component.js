@@ -17,6 +17,8 @@ class UserCardController {
         userInfo: {
           name: "Visualizar informações do usuário",
           icon: "info",
+          action: this.showUserDetailDialog(user),
+          dialog: this._$mdDialog,
         },
         changeStaffPowers: {
           dialog: this._$mdDialog,
@@ -107,6 +109,20 @@ class UserCardController {
             .then(this._Toast.showSuccessToast("Usuário excluido com sucesso"))
             .catch((err) => this._Toast.showRejectedToast(`Problema ao excluir usuário. ${err.data}`))
             );
+    }
+  }
+
+  showUserDetailDialog(user, ev)
+  {
+    return function() {
+      this.dialog.show({
+        controller: "UserDetailController",
+        controllerAs: "$ctrl",
+        templateUrl: "dashboard/users/user-detail-dialog.html",
+        targetEvent: ev,
+        locals: { user: user },
+        fullscreen: true,
+      })
     }
   }
 }

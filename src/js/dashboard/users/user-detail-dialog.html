@@ -1,0 +1,31 @@
+<md-dialog flex layout-gt-xs="column" layout="row" aria-label="Informações sobre Usuário">
+  <form name="UserDetailForm">
+
+    <md-dialog-content>
+      <md-content md-theme="docs-dark" layout-padding>
+        <div layout="row" layout-align="left center">
+          <div class="epr-avatar" style="background-image: url('{{$ctrl.user.profile_picture_url}}'); margin: 1vh">
+          </div>
+          <div>
+            <h2>{{$ctrl.user.full_name}}</h2>
+            <h3>CPF: {{$ctrl.user.cpf}}</h3>
+          </div>
+        </div>
+      </md-content>
+      <md-content layout-padding>
+        <md-input-container>
+          <md-icon>email</md-icon>
+          <label>E-Mail</label>
+          <input name="emailField" type="email" ng-model="$ctrl.user.email">
+        </md-input-container>
+      </md-content>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button class="md-raised md-primary" ng-click="$ctrl.cancel()">
+        Fechar
+      </md-button>
+    </md-dialog-actions>
+
+  </form>
+</md-dialog>
+

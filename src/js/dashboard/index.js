@@ -14,6 +14,9 @@ dashboardModule.controller("DashboardUsersCtrl", DashboardUsersCtrl);
 import UserCardControllerElement from "./users/user-card.component";
 dashboardModule.component("userCard", UserCardControllerElement);
 
+import UserDetailController from "./users/user-detail.controller.js";
+dashboardModule.controller("UserDetailController", UserDetailController);
+
 import DashboardVinculoCtrl from "./dashboard.vinculo.controller";
 dashboardModule.controller("DashboardVinculoCtrl", DashboardVinculoCtrl);
 
