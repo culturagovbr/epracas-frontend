@@ -15,6 +15,7 @@
     "angular-oidc-2": "^1.0.4",
     "angular-sanitize": "^1.6.1",
     "angular-ui-router": "^0.3.1",
+    "date-fns": "^1.27.2",
     "gulp-bro": "^0.3.1",
     "leaflet": "^1.0.2",
     "magnifier": "git+https://github.com/Yurickh/Magnifier.js.git",
