@@ -79,19 +79,44 @@ export default class User {
         }
       )
       .then(
-        res => {
+        (res) => {
           this._$http({
-            url: this._AppConstants.apiUserInfo,
-            method: "POST",
-            data: this.current,
+            url: `${this._AppConstants.apiUserInfo}${this.current.sub}/`,
+            method: "GET",
           })
-            .then(
-              res => this.current = res.data
-            )
-            .catch(
-              err => this._$log.log(`setUserInfo() Error: ${err}`)
-            );
-        },
+          .then(
+            (res) => {
+              if ((this.current.profile_picture_url_picture_url == res.data[0].profile_picture_url) && (this.current.name == res.data[0].name) && (this.current.email == res.data[0].email)) {
+                this.current = res.data[0];
+                deferred.resolve(res.data[0]);
+              } else {
+                this._$http({
+                  url: `${this._AppConstants.apiUserInfo}${this.current.sub}/`,
+                  method: "PATCH",
+                  data: this.current,
+                })
+                .then(res =>  {
+                  this.current = res.data;
+                  deferred.resolve(res.data);
+                })
+                .catch(err => this._$log.log(`setUserInfo() Error on PATCH: ${err.data}`))
+              }
+            },
+            (err) => {
+              this._$http({
+                url: `${this._AppConstants.apiUserInfo}${this.current.sub}/`,
+                method: "POST",
+                data: this.current,
+              })
+              .then(
+                res => this.current = res.data
+              )
+              .catch(
+                err => this._$log.log(`setUserInfo() Error on POST: ${err}`)
+              );
+            }
+          )
+        }
       )
     }
     return deferred.promise;
@@ -111,11 +136,22 @@ export default class User {
     return deferred.promise;
   }
 
-  changeStaffPowers(id_pub, status) {
+  delete(id_pub) {
+    return this._$http({
+      url: `${this._AppConstants.apiUserInfo}${id_pub}/`,
+      method: "DELETE",
+    })
+      .then(
+          res => res.data,
+          err => err
+      )
+  }
+
+  changeStaffPowers(sub, status) {
     const deferred = this._$q.defer();
 
     this._$http({
-      url: `${this._AppConstants.apiUserInfo}${id_pub}/`,
+      url: `${this._AppConstants.apiUserInfo}${sub}/`,
       method: "PATCH",
       data: { is_staff: status },
     })
