@@ -1,14 +1,12 @@
-<calendar-md flex layout layout-fill
-  calendar-direction="'direction'"
-  on-prev-month="prevMonth"
-  on-next-month="nextMonth"
-  on-day-click="dayClick"
-  title-format="'MMMM y'"
-  ng-model='selectedDate'
-  day-format="'d'"
-  day-label-format="'EEE'"
-  day-label-tooltip-format="'EEEE'"
-  day-tooltip-format="'fullDate'"
-  week-starts-on="firstDayOfWeek"
-  day-content="setDayContent">
-</calendar-md>
+<div style="width: 50vw">
+  <mwl-calendar
+    style="width: 100%"
+    view="$ctrl.config.calendarView"
+    view-date="$ctrl.config.viewDate"
+    events="$ctrl.events"
+    view-title="$ctrl.config.calendarTitle"
+    on-event-click="eventClicked(calendarEvent)"
+    on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+    cell-is-open="true">
+  </mwl-calendar>
+</div>
