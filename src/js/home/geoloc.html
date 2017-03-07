@@ -1,14 +1,15 @@
-<div flex-gt-md="85" flex layout="row" layout-align="center center">
+<div flex-gt-md="100" flex layout="row" layout-align="center center">
+  <div flex-gt-md="85" flex layout="row" layout-align="center center">
+    <div flex="70">
+      <md-content style="height: calc(100vh - 64px)">
+        <praca-list pracas="$ctrl.pracas_proximas" filter="$ctrl.filtro">
+        </praca-list>
+      </md-content>
+    </div>
+    <div flex>
+      <leaflet tt-leaflet-flex-fit style="height: calc(100vh - 64px)" id="geoLocationMap" defaults="$ctrl.geoLoc.defaults" lf-center="$ctrl.geoLoc.center" markers="$ctrl.geoLoc.markers">
+      </leaflet>
+    </div>
 
-  <div flex="70">
-    <md-content style="height: calc(100vh - 64px)">
-      <praca-list pracas="$ctrl.pracas_proximas" filter="$ctrl.filtro">
-      </praca-list>
-    </md-content>
   </div>
-  <div flex>
-    <leaflet tt-leaflet-flex-fit style="height: calc(100vh - 64px)" id="geoLocationMap" defaults="$ctrl.geoLoc.defaults" lf-center="$ctrl.geoLoc.center" markers="$ctrl.geoLoc.markers">
-    </leaflet>
-  </div>
-
 </div>
