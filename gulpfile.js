@@ -30,6 +30,7 @@ const paths = {
     app: "src/css/*.css",
     material: "./node_modules/angular-material/angular-material.css",
     steppers: "./node_modules/material-steppers/dist/material-steppers.css",
+    bootstrapCalendar: "./node_modules/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.css",
   },
   buildDest: "./build/",
   distDest: "./dist/",
@@ -112,6 +113,11 @@ gulp.task("views", () => {
     .pipe(gulp.dest("./src/js/config/"));
 });
 
+gulp.task("angular-bootstrap-calendarCss", () => {
+  gulp.src(paths.cssFiles.bootstrapCalendar)
+    .pipe(cssnano())
+    .pipe(gulp.dest(`${paths.buildDest}css`))
+})
 gulp.task("materialCss", () => {
   gulp.src(paths.cssFiles.material)
     .pipe(cssnano())
@@ -137,7 +143,7 @@ gulp.task("assets", () => {
 
 // This task is used for building production ready
 // minified JS/CSS files into the dist/ folder
-gulp.task("build", ["html", "browserify", "materialCss", "appCss", "steppersCss", "assets"], () => {
+gulp.task("build", ["html", "browserify", "angular-bootstrap-calendarCss", "materialCss", "appCss", "steppersCss", "assets"], () => {
   const html = gulp.src("build/index.html")
     .pipe(htmlmin())
     .pipe(gulp.dest(paths.distDest));
@@ -160,7 +166,7 @@ gulp.task("build", ["html", "browserify", "materialCss", "appCss", "steppersCss"
   return merge(html, js, css, assets);
 });
 
-gulp.task("default", ["html", "browserify", "materialCss", "appCss", "steppersCss"], () => {
+gulp.task("default", ["html", "browserify", "angular-bootstrap-calendarCss", "materialCss", "appCss", "steppersCss", "assets"], () => {
   browserSync.init([`${paths.buildDest}/**/**.**`], {
     server: paths.buildDest,
     port: 4000,
