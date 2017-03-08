@@ -1,59 +1,50 @@
 <div id="home" class="limite" layout="column">
+    <video id="bgvid" playsinline autoplay muted loop>
+        <source src="/assets/CEUS.mp4" type="video/mp4">
+    </video>
+    <div id="home-search" layout-align="center center" layout-margin layout-gt-xs="row" flex>
+        <md-autocomplete
+                placeholder="Procure por uma cidade ou Estado(UF)"a
+                md-selected-item="$ctrl.selectedItem"
+                md-selected-item-change="$ctrl.selectedItemChange(item)"
+                md-search-text="$ctrl.searchText"
+                md-items="item in $ctrl.getMatches($ctrl.searchText)"
+                md-item-text="item.municipio"
+                flex
+                flex-gt-xs="60"
+        >
+            <md-icon> search</md-icon>
+            <md-item-template>
+                <span md-highlight-text="$ctrl.searchText" md-highlight-flags="^i">{{item.municipio}} - {{item.uf | uppercase}}</span>
+            </md-item-template>
+            <md-not-found>
+                Nenhuma praça encontrada
+            </md-not-found>
+        </md-autocomplete>
+    </div>
+    <div id="quadro-container" layout="column" layout-gt-xs="row" layout-margin layout-padding
+         layout-align="space-between"
+         class="hoverable">
+        <div id="quadro" layout="column" md-whiteframe="3" flex-gt-xs="30" class="hoverable">
+            <h2>Conheça os CEUs</h2>
+            <md-icon layout-align="center center"> explore</md-icon>
+            <p>Entenda o que são e como funcionam os Centros de Artes e Esportes Unificados</p>
+        </div>
 
-		<video id="bgvid" playsinline autoplay muted loop>
-			<source src="/assets/CEUS.mp4" type="video/mp4">
-		</video>
-
-	<div id="home-search" layout-align="center center" layout-margin layout-gt-xs="row">
-
-		<md-autocomplete 
-			placeholder="Procure por uma cidade ou Estado(UF)" 
-			md-selected-item="$ctrl.selectedItem" 
-			md-selected-item-change="$ctrl.selectedItemChange(item)"
-			md-search-text="$ctrl.searchText" 
-			md-items="item in $ctrl.getMatches($ctrl.searchText)" 
-			md-item-text="item.municipio"
-			flex
-			flex-gt-xs="60"
-			>
-
-			<md-icon> search </md-icon>
-
-			<md-item-template>
-				<span md-highlight-text="$ctrl.searchText" md-highlight-flags="^i">{{item.municipio}} - {{item.uf | uppercase}}</span>
-			</md-item-template>
-
-			<md-not-found>
-				Nenhuma praça encontrada
-			</md-not-found>
-		</md-autocomplete>
-
-	</div>
-
-	<div id="quadro-container" layout="column" layout-gt-xs="row" layout-margin layout-padding flex layout-align="space-between" >
-
-		<div id="quadro" layout="column" md-whiteframe="3" flex-gt-xs="30">
-			<h2>Conheça os CEUs</h2>
-			<md-icon layout-align="center center"> explore </md-icon>
-			<p>Entenda o que são e como funcionam os Centros de Artes e Esportes Unificados</p>
-		</div>
-
-		<div id="quadro" layout="column" md-whiteframe="3" flex-gt-xs="30">
-			<a ui-sref="app.geoloc">
-				<h2>Praças próximas a mim</h2>
-				<md-icon> near_me </md-icon>
-				<p>Podemos localizar as praças que estão mais próximas a você agora</p>
-			</a>
-		</div>
-
-		<div id="quadro" layout="column" md-whiteframe="3" flex-gt-xs="30">
-			<a target="_blank" href="http://mapas.cultura.gov.br/busca/##(global:(enabled:(space:!t),filterEntity:space),space:(filters:(type:!('132'))))">
-				<h2>Todas as praças no Mapa</h2>
-				<md-icon> map </md-icon>
-				<p>Visualize todas as praças do Brasil de uma só vez no mapa</p>
-			</a>
-		</div>
-
-	</div>
-
+        <div id="quadro" layout="column" md-whiteframe="3" flex-gt-xs="30" class="hoverable">
+            <a ui-sref="app.geoloc">
+                <h2>Praças próximas a mim</h2>
+                <md-icon> near_me</md-icon>
+                <p>Podemos localizar as praças que estão mais próximas a você agora</p>
+            </a>
+        </div>
+        <div id="quadro" layout="column" md-whiteframe="3" flex-gt-xs="30" class="hoverable">
+            <a target="_blank"
+               href="http://mapas.cultura.gov.br/busca/##(global:(enabled:(space:!t),filterEntity:space),space:(filters:(type:!('132'))))">
+                <h2>Todas as praças no Mapa</h2>
+                <md-icon> map</md-icon>
+                <p>Visualize todas as praças do Brasil de uma só vez no mapa</p>
+            </a>
+        </div>
+    </div>
 </div>
