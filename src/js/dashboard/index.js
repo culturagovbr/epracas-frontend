@@ -17,10 +17,10 @@ dashboardModule.component("userCard", UserCardControllerElement);
 import UserDetailController from "./users/user-detail.controller.js";
 dashboardModule.controller("UserDetailController", UserDetailController);
 
-import DashboardVinculoCtrl from "./dashboard.vinculo.controller";
+import DashboardVinculoCtrl from "./vinculacao/dashboard.vinculo.controller";
 dashboardModule.controller("DashboardVinculoCtrl", DashboardVinculoCtrl);
 
-import DashboardVinculoDialogCtrl from "./dashboard.vinculo-dialog.controller";
+import DashboardVinculoDialogCtrl from "./vinculacao/dashboard.vinculo-dialog.controller";
 dashboardModule.controller("DashboardVinculoDialogCtrl", DashboardVinculoDialogCtrl);
 
 import DashboardPracasCtrl from "./pracas/dashboard.pracas.controller";

@@ -33,7 +33,7 @@ function DashBoardConfig($stateProvider) {
       url: "/vinculacao",
       controller: "DashboardVinculoCtrl",
       controllerAs: "$ctrl",
-      templateUrl: "dashboard/vinculo.tmpl.html",
+      templateUrl: "dashboard/vinculacao/vinculo.tmpl.html",
     })
     .state("app.dashboard.usuarios", {
       url: "/usuarios",

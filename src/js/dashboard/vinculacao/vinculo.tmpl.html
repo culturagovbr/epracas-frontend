@@ -8,15 +8,14 @@
       <span class="md-subhead">Brasília - DF</span>
     </md-card-header-text>
   </md-card-header>
-  <img ng-src={{pedido.praca.header_url}} class="md-card-image">
   <md-card-title>
     <md-card-title-text>
-      <span class="md-headline">{{pedido.praca.nome}}</span>
-      <span class="md-subhead">{{pedido.praca.municipio}} - {{pedido.praca.uf | uppercase}}</span>
+      <span class="md-headline">{{pedido.praca_info.nome}}</span>
+      <span class="md-subhead">{{pedido.praca_info.municipio}} - {{pedido.praca_info.uf | uppercase}}</span>
     </md-card-title-text>
   </md-card-title>
   <md-card-content layout="row" layout-align="space-between">
-    <md-card-actions layout="column">
+    <md-card-actions layout-align="space-between">
       <md-button class="md-icon-button" ng-click="$ctrl.processoVinculacao(pedido)" aria-label="Processo de Vinculação">
         <md-icon>assignment</md-icon>
       </md-button>
