@@ -22,9 +22,9 @@ class VinculacaoCtrl {
     this._$mdDialog.show({
       clickOutsideToClose: false,
       template: `
-        <div layout="column" layout-align="space-around">
+        <div layout="row" layout-align="center center">
           <div flex=30>
-            <md-progress-circular></md-progress-circular>
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
           </div>
           <div flex=70>
             <p>Salvando informações sobre Pedido de Vinculação.
