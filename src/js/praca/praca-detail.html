@@ -16,7 +16,7 @@
 </style>
 <div layout="column" class="limite" id="praca">
     <div flex id="praca_header">
-        <img ng-src="{{ praca.header_url }}" style="width: 100%"/>
+        <img ng-src="{{ $ctrl.praca.header_url }}" style="width: 100%"/>
         <md-fab-speed-dial
                 show-authed="true"
                 md-direction="down"
@@ -35,7 +35,7 @@
                 </md-button>
             </md-fab-trigger>
             <md-fab-actions>
-                <div ng-repeat="item in userMenu">
+                <div ng-repeat="item in $ctrl.userMenu">
                     <md-button
                             aria-label="{{ item.name }}"
                             class="md-fab md-raised md-mini"
@@ -51,31 +51,32 @@
             </md-fab-actions>
         </md-fab-speed-dial>
     </div>
+    <!-- Info&Bio -->
+    <div id="container-info" layout-gt-xs="row">
+        <div flex-gt-xs="35" layout-padding md-whiteframe="3" class="nome">
+            <h2>{{ $ctrl.praca.nome }}</h2>
+            <p>{{ $ctrl.praca.situacao_descricao }}</p>
+            <p>Área Total da Praça: {{ $ctrl.praca.modelo_descricao }}</p>
+        </div>
+
+        <div flex-gt-xs="65" layout-padding md-whiteframe="3" class="bio">
+            <p>{{ $ctrl.praca.bio }}</p>
+        </div>
+    </div>
     <div style="height: 48px">
         <div class="tab-pracas">
             <md-content class="limite layout-column">
-                <div class="">{{ tabIntSelected }}
+                <div class="">
                     <md-tabs md-selected="tabIntSelected" md-dynamic-height md-border-bottom class="">
-                        <md-tab label="TOPO" scroll="header"></md-tab>
+                        <md-tab label="Inicio" scroll="header"></md-tab>
                         <md-tab label="Agenda" scroll="#container-agenda" offset="48"></md-tab>
                         <md-tab label="Imagens" scroll="#container-imagens" offset="48"></md-tab>
                         <md-tab label="Grupo Gestor" scroll="#container-grupo" offset="48"></md-tab>
-                        <md-tab label="Unidade Gestora Locxkal" scroll="#container-unidade" offset="48"></md-tab>
+                        <md-tab label="Unidade Gestora Local" scroll="#container-unidade" offset="48"></md-tab>
                         <md-tab label="Localização" scroll="#container-localizacao" offset="48"></md-tab>
                     </md-tabs>
                 </div>
             </md-content>
-        </div>
-    </div>
-    <!-- Info&Bio -->
-    <div id="container-info" layout-gt-xs="row">
-        <div flex-gt-xs="35" layout-padding md-whiteframe="3" class="nome">
-            <h2>{{ praca.nome }}</h2>
-            <p>{{ praca.modelo_descricao }}</p>
-        </div>
-
-        <div flex-gt-xs="65" layout-padding md-whiteframe="3" class="bio">
-            <p>{{ praca.bio }}</p>
         </div>
     </div>
     <!-- Agenda -->
@@ -87,7 +88,7 @@
         </div>
         <div class="activities-log" layout-gt-xs="row">
             <div class="event-list">
-                <event-previewer ng-repeat="event in praca.agenda
+                <event-previewer ng-repeat="event in $ctrl.praca.agenda
 					| filter: { data_inicio: $ctrl.parseDate($ctrl.myDate) }
 					| orderBy: 'event.data_inicio'
 					| limitTo: 4"

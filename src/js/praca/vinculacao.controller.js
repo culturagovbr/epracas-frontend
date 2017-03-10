@@ -1,5 +1,5 @@
 class VinculacaoCtrl {
-  constructor($http, $scope, $timeout, $log, $mdDialog, Upload, AppConstants) {
+  constructor($http, $scope, $timeout, $log, $mdDialog, Upload, AppConstants, praca) {
     "ngInject";
 
     angular.extend(this, {
@@ -10,24 +10,15 @@ class VinculacaoCtrl {
       _$mdDialog: $mdDialog,
       _Upload: Upload,
       _AppConstants: AppConstants,
-      _praca: $scope.praca,
+      _praca: praca,
     })
-
-    // this._AppConstants = AppConstants;
-    // this._Upload = Upload;
-    // this._$mdDialog = $mdDialog;
-    // this._$timeout = $timeout;
-    // this._$scope = $scope;
-    // this._praca = $scope.praca;
-
-    // self = this;
   }
 
   cancel() {
     this._$mdDialog.cancel();
   }
 
-  upload(vincFiles) {
+  upload(id_pub, vincFiles) {
     this._$mdDialog.show({
       clickOutsideToClose: false,
       template: `
@@ -36,8 +27,8 @@ class VinculacaoCtrl {
             <md-progress-circular></md-progress-circular>
           </div>
           <div flex=70>
-            <span>Salvando informações sobre Pedido de Vinculação.
-            Por favor, aguarde.</span>
+            <p>Salvando informações sobre Pedido de Vinculação.
+            Por favor, aguarde.</p>
           </div>
         </div>
         `
@@ -46,13 +37,13 @@ class VinculacaoCtrl {
       url: `${this._AppConstants.api}/processo/`,
       method: "POST",
       data: {
-        praca: this._praca.id_pub,
+        praca: id_pub,
       },
     })
     .then(
-        response => {
+        processo => {
           this._Upload.upload({
-            url: `${this._AppConstants.api}/processo/${response.id_pub}/documento/`,
+            url: `${this._AppConstants.api}/processo/${processo.data.id_pub}/documento/`,
             method: "POST",
             data: {
               cpfFile: vincFiles.CPF,
