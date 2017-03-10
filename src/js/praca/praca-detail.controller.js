@@ -1,7 +1,7 @@
 import moment from 'moment'
 
 class PracaDetailCtrl {
-  constructor($scope, $document, $mdDialog, $log, User, Atividade, praca) {
+  constructor($scope, $document, $window, $anchorScroll, $location, $mdDialog, $log, User, Atividade, praca) {
     "ngInject";
 
     this._$scope = $scope;
@@ -14,6 +14,32 @@ class PracaDetailCtrl {
     this._praca = praca;
     $scope.praca = praca;
     $scope.$mdDialog = $mdDialog;
+
+    $scope.gotoAnchor = function(strContainerName) {
+        var strNewHash = 'container-' + strContainerName;
+        console.info(strNewHash);
+        console.info($location.hash());
+        if ($location.hash() !== strNewHash) {
+            // set the $location.hash to `newHash` and
+            // $anchorScroll will automatically scroll to it
+            $location.hash(strNewHash);
+        } else {
+            // call $anchorScroll() explicitly,
+            // since $location.hash hasn't changed
+            $anchorScroll();
+        }
+    };
+
+      // $document.on('scroll', function() {
+          // do your things like logging the Y-axis
+          // console.log($window.scrollY);
+          // console.info($anchorScroll);
+
+          // or pass this to the scope
+          // $scope.$apply(function() {
+          //     $scope.pixelsScrolled = $window.scrollY;
+          // })
+      // });
 
     // ocorrencia: Object
     // calendar: null
