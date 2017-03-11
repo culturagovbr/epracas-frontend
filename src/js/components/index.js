@@ -12,18 +12,21 @@ import resizable from "./resizable.directive";
 componentsModule.directive("resizable", resizable);
 
 import PracaCard from "./praca/card.component";
-componentsModule.component("pracaCard", PracaCard)
+componentsModule.component("pracaCard", PracaCard);
 
 import PracaList from "./praca/list.component";
-componentsModule.component("pracaList", PracaList)
+componentsModule.component("pracaList", PracaList);
 
 import ZoomableImage from "./zoomable-image"
-componentsModule.component("zoomableImage", ZoomableImage)
+componentsModule.component("zoomableImage", ZoomableImage);
 
 import EventPreviewer from "./event-previewer"
-componentsModule.component("eventPreviewer", EventPreviewer)
+componentsModule.component("eventPreviewer", EventPreviewer);
 
-import leafletFlexFit from "./leaflet-fix.directive"
-componentsModule.directive("ttLeafletFlexFit", leafletFlexFit)
+import leafletFlexFit from "./leaflet-fix.directive";
+componentsModule.directive("ttLeafletFlexFit", leafletFlexFit);
+
+import scroll from "./scroll.directive";
+componentsModule.directive("scroll", scroll);
 
 export default componentsModule;

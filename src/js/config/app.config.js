@@ -107,7 +107,7 @@ function AppConfig(
 
 
   // View all available config
-  console.log(calendarConfig);
+  // console.log(calendarConfig);
 
   // Change the month view template globally to a custom template
   // calendarConfig.templates.calendarMonthView = 'path/to/custom/template.html';
