@@ -1,13 +1,13 @@
 class PracaInfoCtrl {
-  constructor($mdDialog, $mdToast, Praca, pracaData, Toast) {
+  constructor($mdDialog, Praca, praca, Toast) {
     "ngInject";
 
-    this._$mdDialog = $mdDialog;
-    this._$mdToast = $mdToast;
-    this._Praca = Praca;
-    this._Toast = Toast;
-
-    this._praca = pracaData;
+    angular.extend(this, {
+      _$mdDialog: $mdDialog,
+      _Praca: Praca,
+      praca: praca,
+      _Toast: Toast,
+    })
   }
 
   cancel() {
@@ -29,7 +29,7 @@ class PracaInfoCtrl {
           }
         );
     } else {
-      const praca = this._praca.id_pub;
+      const praca = data.id_pub;
       this._Praca.save(praca, data)
         .then(
           () => {

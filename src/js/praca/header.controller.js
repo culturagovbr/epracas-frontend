@@ -1,15 +1,17 @@
 class ChangeHeaderImgCtrl {
-  constructor($scope, $timeout, $mdDialog, $mdToast, $log, Upload, AppConstants) {
+  constructor($scope, $timeout, $mdDialog, $log, Toast, Upload, AppConstants, praca) {
     "ngInject";
 
-    this._$mdDialog = $mdDialog;
-    this._$scope = $scope;
-    this._AppConstants = AppConstants;
-    this._Upload = Upload;
-    this._praca = $scope.praca;
-    this._$timeout = $timeout;
-    this._$log = $log;
-    this._$mdToast = $mdToast;
+    angular.extend(this, {
+      _$scope: $scope,
+      _$timeout: $timeout,
+      _$mdDialog: $mdDialog,
+      _Toast: Toast,
+      _$log: $log,
+      _Upload: Upload,
+      _AppConstants: AppConstants,
+      praca: praca,
+    })
   }
 
   cancel() {
@@ -18,7 +20,7 @@ class ChangeHeaderImgCtrl {
 
   upload(dataUrl, name) {
     this._Upload.upload({
-      url: `${this._AppConstants.api}/pracas/${this._praca.id_pub}/header_upload/`,
+      url: `${this._AppConstants.api}/pracas/${this.praca.id_pub}/header_upload/`,
       method: "POST",
       data: { header_img: this._Upload.dataUrltoBlob(dataUrl, name) },
     })
@@ -30,16 +32,16 @@ class ChangeHeaderImgCtrl {
       .then(
         response => {
           this._$log.log(`uploadHeaderImg: Success! ${response}`);
-          this._praca.header_url = response.header_url;
+          this.praca.header_url = response.header_url;
           this._$mdDialog.hide();
-          this._$mdToast.show(
-            this._$mdToast.simple()
-              .textContent("Cabeçalho foi alterado. Recarregue a página para ver as mudanças.")
-              .position("right", "top")
-              .hideDelay(5000)
-          );
+          this._Toast.showSuccessToast("Cabeçalho foi alterado com sucesso!")
         }
-      );
+      )
+      .catch(
+          err => {
+            this._$log.error(`uploadHeaderImg: Failed! ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`);
+            this._Toast.showRejectedToast("Desculpe, houve algum erro ao atualizar o cabeçalho. :(")
+          })
   }
 }
 

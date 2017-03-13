@@ -10,7 +10,7 @@ class PracaCardController {
 
   header_url(praca)
   {
-    return ~praca.header_url.lastIndexOf(".jpg")?
+    return ~(praca.header_url.lastIndexOf(".jpg") && praca.header_url.lastIndexOf(".png"))?
       praca.header_url: "assets/header.jpg"
   }
 

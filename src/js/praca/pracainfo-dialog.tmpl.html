@@ -1,12 +1,12 @@
 <md-dialog layout="column" aria-label="Editar Informações sobre a Praça">
-  <form name="PracaForm" ng-submit="$ctrl.save($ctrl._praca)">
+  <form name="PracaForm" ng-submit="$ctrl.save($ctrl.praca)">
     <md-dialog-content>
 
       <md-content md-theme="docs-dark" layout-padding>
         <h2>Informações sobre a Praça</h2>
         <md-input-container class="md-block" flex>
           <label>Nome da Praça</label>
-          <input name="pracaNome" ng-required="true" ng-model="$ctrl._praca.nome">
+          <input name="pracaNome" ng-required="true" ng-model="$ctrl.praca.nome">
         </md-input-container>
       </md-content>
 
@@ -16,19 +16,19 @@
 
           <md-input-container class="md-block" flex>
             <label>Logradouro</label>
-            <textarea rows="5" name="pracaLogradouro" ng-model="$ctrl._praca.logradouro"></textarea>
+            <textarea rows="5" name="pracaLogradouro" ng-model="$ctrl.praca.logradouro"></textarea>
           </md-input-container>
 
           <div layout-gt-xs="column">
 
             <md-input-container flex-gt-xs="30">
               <label>CEP</label>
-              <input name="pracaCep" ng-model="$ctrl._praca.cep">
+              <input name="pracaCep" ng-model="$ctrl.praca.cep">
             </md-input-container>
 
             <md-input-container flex-gt-xs="30">
               <label>Bairro</label>
-              <input name="pracaBairro" ng-model="$ctrl._praca.bairro">
+              <input name="pracaBairro" ng-model="$ctrl.praca.bairro">
             </md-input-container>
           </div>
 
@@ -36,23 +36,23 @@
 
         <md-input-container>
           <label>Região</label>
-          <input name="pracaRegiao" ng-model="$ctrl._praca.regiao">
+          <input name="pracaRegiao" ng-model="$ctrl.praca.regiao">
         </md-input-container>
 
         <md-input-container>
           <label>UF</label>
-          <input name="pracaUf" ng-model="$ctrl._praca.uf">
+          <input name="pracaUf" ng-model="$ctrl.praca.uf">
         </md-input-container>
 
         <md-input-container>
           <label>Municipio</label>
-          <input name="pracaMunicipio" ng-model="$ctrl._praca.municipio">
+          <input name="pracaMunicipio" ng-model="$ctrl.praca.municipio">
         </md-input-container>
 
         <div>
           <md-input-container class="md-block" flex>
             <label>Texto de Apresentação da Praça</label>
-            <textarea rows="5" name="pracaBio" ng-model="$ctrl._praca.bio"></textarea>
+            <textarea rows="5" name="pracaBio" ng-model="$ctrl.praca.bio"></textarea>
           </md-input-container>
         </div>
       </md-content>
@@ -63,7 +63,7 @@
       <md-button ng-click="$ctrl.cancel()">
         Cancelar
       </md-button>
-      <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="!$ctrl._praca.nome">
+      <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="!$ctrl.praca.nome">
         Enviar
       </md-button>
     </md-dialog-actions>

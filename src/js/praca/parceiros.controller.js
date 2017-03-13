@@ -1,13 +1,16 @@
 class ParceirosCtrl {
-  constructor($scope, $mdDialog, $http, AppConstants, $mdToast, pracaData, $log) {
+  constructor($scope, $mdDialog, $http, AppConstants, $mdToast, praca, $log) {
     "ngInject";
 
-    this._$scope = $scope;
-    this._$mdDialog = $mdDialog;
-    this._$http = $http;
-    this._AppConstants = AppConstants;
-    this._$mdToast = $mdToast;
-    this._$log = $log;
+    angular.extend(this, {
+      _$scope: $scope,
+      _$mdDialog: $mdDialog,
+      _$http: $http,
+      _AppConstants: AppConstants,
+      _$mdToast: $mdToast,
+      praca: praca,
+      _$log: $log,
+    })
 
     this._listaAtividades = [
       {
@@ -31,37 +34,37 @@ class ParceirosCtrl {
         display_name: "cultura",
       },
       {
-        value: 5,
+        value: 6,
         display_name: "educação",
       },
       {
-        value: 5,
+        value: 7,
         display_name: "esporte",
       },
       {
-        value: 6,
+        value: 8,
         display_name: "indústria",
       },
       {
-        value: 7,
+        value: 9,
         display_name: "organização comunitária",
       },
       {
-        value: 8,
+        value: 10,
         display_name: "organização social",
       },
       {
-        value: 9,
+        value: 11,
         display_name: "saúde",
       },
       {
-        value: 10,
+        value: 12,
         display_name: "serviços",
       },
     ];
 
     this.parceiro = {};
-    this.parceiro.praca = pracaData.id_pub;
+    this.parceiro.praca = praca.id_pub;
   }
 
   cancel() {

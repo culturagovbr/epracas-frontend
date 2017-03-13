@@ -39,7 +39,7 @@
                     <md-button
                             aria-label="{{ item.name }}"
                             class="md-fab md-raised md-mini"
-                            ng-click="$mdDialog.show(item.dialog)">
+                            ng-click="$ctrl.showDialog(item.dialog, $event)">
                         <md-tooltip md-direction="left"
                                     md-visible="tooltipVisible"
                                     md-autohide="false">

@@ -31,7 +31,7 @@ class PracaDetailCtrl {
               this.praca.agenda = atividades
           })
 
-        if (praca.header_url.lastIndexOf(".jpg") == -1) {
+        if ((praca.header_url.lastIndexOf(".jpg") == -1) && (praca.header_url.lastIndexOf(".png") == -1)) {
           praca.header_url = "/assets/header.jpg";
         }
 
@@ -121,7 +121,7 @@ class PracaDetailCtrl {
       const userMenu = {};
 
       if (angular.isDefined(currentUser) &&
-          (currentUser.is_staff || currentUser.praca_manager === this.praca.id_pub)) {
+          (this.currentUser.is_staff || this.currentUser.praca_manager === this.praca.id_pub)) {
         userMenu.event = {
           id: "evento",
           name: "Adicionar Evento",
@@ -131,8 +131,7 @@ class PracaDetailCtrl {
             controllerAs: "$ctrl",
             templateUrl: "praca/event-dialog.tmpl.html",
             parent: angular.element(this._$document.body),
-            scope: this._$scope,
-            preserveScope: true,
+            locals: { praca: this.praca },
             fullscreen: true,
           },
         };
@@ -146,7 +145,7 @@ class PracaDetailCtrl {
             controllerAs: "$ctrl",
             templateUrl: "praca/parceiros-dialog.tmpl.html",
             parent: angular.element(this._$document.body),
-            locals: {pracaData: this._praca},
+            locals: { praca: this.praca },
             fullscreen: true,
           },
         };
@@ -160,9 +159,7 @@ class PracaDetailCtrl {
             controllerAs: "$ctrl",
             templateUrl: "praca/pracainfo-dialog.tmpl.html",
             parent: angular.element(this._$document.body),
-            locals: {pracaData: this._praca},
-            scope: this._$scope,
-            preserveScope: true,
+            locals: { praca: this.praca },
             fullscreen: true,
           },
         };
@@ -176,15 +173,12 @@ class PracaDetailCtrl {
             controllerAs: "$ctrl",
             templateUrl: "praca/header-dialog.tmpl.html",
             parent: angular.element(this._$document.body),
-            locals: {praca: this._praca},
-            scope: this._$scope,
-            preserveScope: true,
-            // targetEvent: $event,
+            locals: { praca: this.praca },
           },
         };
       }
 
-      if (angular.isUndefined(currentUser.praca_manager)) {
+      if ((!currentUser.is_staff) && angular.isUndefined(currentUser.praca_manager)) {
         userMenu.vinculo = {
           id: "evento",
           name: "Solicitar vinculo para gestão da Praça",
@@ -195,35 +189,18 @@ class PracaDetailCtrl {
             controllerAs: "$ctrl",
             templateUrl: "praca/vinculacao.tmpl.html",
             parent: angular.element(this._$document.body),
-            // targetEvent: ev,
+            locals: { praca: this.praca },
             clickOutsiteToClose: false,
             fullscreen: true,
-            scope: this._$scope,
-            preserveScope: true,
           },
         };
       }
       return userMenu;
 
-      if ((currentUser.is_staff == true) || (angular.isUndefined(currentUser.praca_manager))) {
-        userMenu.vinculo = {
-          id: "evento",
-          name: "Solicitar vinculo para gestão da Praça",
-          icon: "assignment_ind",
-          action: this.showVinculacao,
-          dialog: {
-            controller: "VinculacaoCtrl",
-            controllerAs: "$ctrl",
-            templateUrl: "praca/vinculacao.tmpl.html",
-            parent: angular.element(this._$document.body),
-            // targetEvent: ev,
-            clickOutsiteToClose: false,
-            fullscreen: true,
-            locals: { praca: this._praca },
-          },
-        };
-      }
     }
-};
+    showDialog(dialog, $event) {
+      this._$mdDialog.show(dialog, $event);
+    }
+}
 
 export default PracaDetailCtrl;
