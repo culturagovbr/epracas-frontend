@@ -16,6 +16,7 @@ import "ng-mask";
 import "angular-sanitize";
 import "material-steppers";
 import "angular-bootstrap-calendar";
+// import "materialize-css";
 // Import our app config files
 import constants from "./config/app.constants";
 import appConfig from "./config/app.config";

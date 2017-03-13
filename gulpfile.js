@@ -31,9 +31,11 @@ const paths = {
     material: "./node_modules/angular-material/angular-material.css",
     steppers: "./node_modules/material-steppers/dist/material-steppers.css",
     bootstrapCalendar: "./node_modules/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.css",
+    // materialize: "./node_modules/materialize-css/dist/css/materialize.min.css",
   },
   buildDest: "./build/",
   distDest: "./dist/",
+  // fonts: "./fonts/",
 };
 
 
@@ -117,7 +119,17 @@ gulp.task("angular-bootstrap-calendarCss", () => {
   gulp.src(paths.cssFiles.bootstrapCalendar)
     .pipe(cssnano())
     .pipe(gulp.dest(`${paths.buildDest}css`))
-})
+});
+// gulp.task("materialize-css", () => {
+//   gulp.src(paths.cssFiles.materialize)
+//     .pipe(cssnano())
+//     .pipe(gulp.dest(`${paths.buildDest}css`))
+// });
+// gulp.task("fonts", () => {
+//   gulp.src(paths.fonts)
+//     .pipe(cssnano())
+//     .pipe(gulp.dest(`${paths.buildDest}fonts`))
+// });
 gulp.task("materialCss", () => {
   gulp.src(paths.cssFiles.material)
     .pipe(cssnano())

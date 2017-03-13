@@ -13,6 +13,117 @@
     md-tabs {
         height: 48px;
     }
+
+    #praca .title .material-icons {
+        font-size: 35px;
+        width: 35px;
+        height: 35px;
+    }
+
+    #praca .title h1 {
+        margin-left: 15px;
+    }
+
+    figure {
+        overflow: hidden;
+    }
+
+    /*TEMPORARIO*/
+    .gridListdemoDynamicTiles md-icon {
+        width: 50%;
+        height: 30%;
+    }
+
+    .gridListdemoDynamicTiles md-icon svg {
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+    }
+
+    .gridListdemoDynamicTiles .s64 {
+        font-size: 64px;
+    }
+
+    .gridListdemoDynamicTiles .s32 {
+        font-size: 48px;
+    }
+
+    .gridListdemoDynamicTiles md-icon.fa {
+        display: block;
+        padding-left: 0;
+    }
+
+    .gridListdemoDynamicTiles md-icon.s32 span {
+        padding-left: 8px;
+    }
+
+    .gridListdemoDynamicTiles md-grid-list {
+        margin: 8px;
+    }
+
+    .gridListdemoDynamicTiles .gray {
+        background: #f5f5f5;
+    }
+
+    .gridListdemoDynamicTiles .green {
+        background: #b9f6ca;
+    }
+
+    .gridListdemoDynamicTiles .yellow {
+        background: #ffff8d;
+    }
+
+    .gridListdemoDynamicTiles .blue {
+        background: #84ffff;
+    }
+
+    .gridListdemoDynamicTiles .darkBlue {
+        background: #80d8ff;
+    }
+
+    .gridListdemoDynamicTiles .deepBlue {
+        background: #448aff;
+    }
+
+    .gridListdemoDynamicTiles .purple {
+        background: #b388ff;
+    }
+
+    .gridListdemoDynamicTiles .lightPurple {
+        background: #8c9eff;
+    }
+
+    .gridListdemoDynamicTiles .red {
+        background: #ff8a80;
+    }
+
+    .gridListdemoDynamicTiles .pink {
+        background: #ff80ab;
+    }
+
+    .gridListdemoDynamicTiles md-grid-tile {
+        transition: all 300ms ease-out 50ms;
+    }
+
+    .gridListdemoDynamicTiles md-grid-tile md-icon {
+        padding-bottom: 32px;
+    }
+
+    .gridListdemoDynamicTiles md-grid-tile md-grid-tile-footer {
+        background: rgba(0, 0, 0, 0.68);
+        height: 36px;
+    }
+
+    .gridListdemoDynamicTiles md-grid-tile-footer figcaption {
+        width: 100%;
+    }
+
+    .gridListdemoDynamicTiles md-grid-tile-footer figcaption h3 {
+        margin: 0;
+        font-weight: 700;
+        width: 100%;
+        text-align: center;
+    }
 </style>
 <div layout="column" class="limite" id="praca">
     <div flex id="praca_header">
@@ -70,7 +181,7 @@
                     <md-tabs md-selected="tabIntSelected" md-dynamic-height md-border-bottom class="">
                         <md-tab label="Inicio" scroll="header"></md-tab>
                         <md-tab label="Agenda" scroll="#container-agenda" offset="48"></md-tab>
-                        <md-tab label="Imagens" scroll="#container-imagens" offset="48"></md-tab>
+                        <md-tab label="Fotos" scroll="#container-imagens" offset="48"></md-tab>
                         <md-tab label="Grupo Gestor" scroll="#container-grupo" offset="48"></md-tab>
                         <md-tab label="Unidade Gestora Local" scroll="#container-unidade" offset="48"></md-tab>
                         <md-tab label="Localização" scroll="#container-localizacao" offset="48"></md-tab>
@@ -81,15 +192,14 @@
     </div>
     <!-- Agenda -->
     <div id="container-agenda" layout-padding class="agenda" layout-align="start center">
-        <div layout="row">
+        <div class="layout-row title">
             <md-icon>insert_invitation</md-icon>
-            <h2>Agenda</h2>
-            <!-- <p>Clique aqui para acessar o calendário completo desta Praça</p> -->
+            <h1 flex>Agenda</h1>
         </div>
         <div class="activities-log" layout-gt-xs="row">
             <div class="event-list">
                 <event-previewer ng-repeat="event in $ctrl.praca.agenda
-					| filter: { data_inicio: $ctrl.parseDate($ctrl.myDate) }
+					| filter: { data_inicio: $ctrl.parseDate($ctrl.myDate) }app
 					| orderBy: 'event.data_inicio'
 					| limitTo: 4"
                                  event="event">
@@ -103,19 +213,41 @@
         </div>
     </div>
     <!-- Imagens -->
-    <div id="container-imagens" layout-gt-xs="row">
-        <div flex-gt-xs="30" layout-padding class="info" md-whiteframe="3">
-            <h2>Imagens</h2>
-            <p>{{praca.logradouro}}</p>
-            <p>Aberto todos os dias de 8h às 22h.</p>
-            <p>Mais informações</p>
+    <div id="container-imagens" layout-gt-xs="row" flex>
+        <div flex layout-padding class="info gridListdemoDynamicTiles" md-whiteframe="3">
+            <div class="layout-row title">
+                <md-icon>photo_camera</md-icon>
+                <h1 flex>Fotos</h1>
+            </div>
+            <md-grid-list
+                    md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6"
+                    md-row-height-gt-md="1:1" md-row-height="4:3"
+                    md-gutter="8px" md-gutter-gt-sm="4px">
+                <!--<md-grid-list-->
+                <!--md-cols-gt-md="12" md-cols="3" md-cols-md="8"-->
+                <!--md-row-height-gt-md="1:1" md-row-height="4:3"-->
+                <!--md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">-->
+                <md-grid-tile ng-repeat="objPhoto in arrPhotos"
+                              md-rowspan="{{objPhoto.span.row}}"
+                              md-colspan="{{objPhoto.span.col}}"
+                              md-colspan-sm="1"
+                              md-colspan-xs="1"
+                              ng-class="objPhoto.background">
+                    <img width="135%" class="materialboxed" data-caption="{{objPhoto.title}}"
+                         src="{{objPhoto.url}}">
+                    <!--<md-icon md-svg-icon="{{objPhoto.icon}}"></md-icon>-->
+                    <md-grid-tile-footer><h3>{{objPhoto.title}}</h3></md-grid-tile-footer>
+                </md-grid-tile>
+            </md-grid-list>
         </div>
     </div>
     <!-- GrupoGestor -->
     <div id="container-grupo" layout-gt-xs="row">
         <div flex-gt-xs="30" layout-padding class="info" md-whiteframe="3">
-            <h2>Grupo Gestor</h2>
-            <p>{{praca.logradouro}}</p>
+            <div class="layout-row title">
+                <md-icon>group</md-icon>
+                <h1 flex>Grupo Gestor</h1>
+            </div>
             <p>Aberto todos os dias de 8h às 22h.</p>
             <p>Mais informações</p>
         </div>
@@ -123,8 +255,10 @@
     <!-- UnidadeGestoraLocal -->
     <div id="container-unidade" layout-gt-xs="row">
         <div flex-gt-xs="30" layout-padding class="info" md-whiteframe="3">
-            <h2>Unidade Gestora Local</h2>
-            <p>{{praca.logradouro}}</p>
+            <div class="layout-row title">
+                <md-icon>location_city</md-icon>
+                <h1 flex>Unidade Gestora Local</h1>
+            </div>
             <p>Aberto todos os dias de 8h às 22h.</p>
             <p>Mais informações</p>
         </div>
@@ -132,7 +266,10 @@
     <!-- Localização -->
     <div id="container-localizacao" layout-gt-xs="row" class="localizacao">
         <div flex-gt-xs="30" layout-padding class="info" md-whiteframe="3">
-            <h2>Localização</h2>
+            <div class="layout-row title">
+                <md-icon>place</md-icon>
+                <h1 flex>Localização</h1>
+            </div>
             <p>{{praca.logradouro}}</p>
             <p>Aberto todos os dias de 8h às 22h.</p>
             <p>Mais informações</p>

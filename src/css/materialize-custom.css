@@ -1,0 +1,6 @@
+nav {
+    background-color: inherit;
+}
+#barra-brasil .list-item a {
+    padding: 0 15px 8px 13px !important;
+}
