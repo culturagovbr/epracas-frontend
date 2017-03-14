@@ -12,6 +12,7 @@ function AppConfig(
   $mdThemingProvider,
   $mdDateLocaleProvider,
   $mdIconProvider,
+  $sceDelegateProvider,
   calendarConfig) {
   "ngInject";
 
@@ -104,6 +105,11 @@ function AppConfig(
 
   $mdIconProvider
     .icon("idcultura", "/assets/idcultura.svg", 120);
+
+  $sceDelegateProvider.resourceUrlWhitelist([
+      'self',
+      'http://localhost:8000/**',
+  ]);
 
 
   // View all available config
