@@ -1,32 +1,48 @@
-<md-card ng-repeat="pedido in $ctrl.pedidos">
-  <md-card-header>
-    <md-card-avatar> 
-      <img class="md-user-avatar" ng-src={{pedido.user.profile_picture_url}} />
-    </md-card-avatar>
-    <md-card-header-text>
-      <span class="md-title">{{pedido.user.full_name}}</span>
-      <span class="md-subhead">Brasília - DF</span>
-    </md-card-header-text>
-  </md-card-header>
-  <md-card-title>
-    <md-card-title-text>
-      <span class="md-headline">{{pedido.praca_info.nome}}</span>
-      <span class="md-subhead">{{pedido.praca_info.municipio}} - {{pedido.praca_info.uf | uppercase}}</span>
-    </md-card-title-text>
-  </md-card-title>
-  <md-card-content layout="row" layout-align="space-between">
-    <md-card-actions layout-align="space-between">
-      <md-button class="md-icon-button" ng-click="$ctrl.processoVinculacao(pedido)" aria-label="Processo de Vinculação">
-        <md-icon>assignment</md-icon>
-      </md-button>
-      <md-button class="md-icon-button" aria-label="Informações sobre o Gestor">
-        <md-icon>person</md-icon>
-      </md-button>
-      <md-button class="md-icon-button" aria-label="Informações sobre o Gestor">
-        <md-icon>account_balance</md-icon>
-      </md-button>
-    </md-card-actions>
-  </md-card-content>
-</md-card>
+<div layout="column">
+  <md-list>
 
+    <md-list-item ng-repeat="pedido in $ctrl.pedidos" layout-fill layout-align="space-between center">
+      <div layout="row" layout-fill layout-align="space-between center">
+        <div layout="row">
+          <img class="md-avatar" ng-src={{pedido.user.profile_picture_url}}>
+          <div class="md-list-item-text" layout="column">
+            <h3 ng-click="$ctrl.showUserInfo(pedido.user)">{{pedido.user.full_name}}</h3>
+          </div>
+        </div>
+        <div>
+          <span> solicita vinculo com </span>
+        </div>
+        <div layout="row">
+          <img class="md-avatar" ng-src={{pedido.praca.header_url}}>
+          <div class="md-list-item-text" layout="column">
+            <h3 ng-click="$ctrl.showPracaInfo(pedido.praca)">{{pedido.praca.nome}}</h3>
+            <p>{{pedido.praca.municipio}} - {{pedido.praca.uf | uppercase}}</p>
+          </div>
+        </div>
+        <div>
+          <md-menu>
+            <md-button class="md-icon-button">
+              <md-icon>menu</md-icon>
+            </md-button>
+            <md-menu-content width="4">
+              <md-menu-item>
+                <md-button ng-click="$ctrl.startProcessoVinculacao(pedido)" aria-label="Processo de Vinculação">
+                  <md-icon>assignment</md-icon>
+                  Iniciar Processo de Vinculação
+                </md-button>
+              </md-menu-item>
+              <md-divider></md-divider>
+              <md-menu-item>
+                <md-button ng-click="$ctrl.deleteProcessoVinculacao(pedido)">
+                  <md-icon>delete</md-icon>
+                  Excluir Pedido de Vinculação
+                </md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </div>
+      </div>
+    </md-list-item>
 
+  </md-list>
+</div>

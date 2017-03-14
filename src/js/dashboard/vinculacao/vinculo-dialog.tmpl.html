@@ -8,36 +8,70 @@
       <md-step md-label="Verifique o documento de identidade"
       ng-mouseenter="showToast($event)">
         <md-step-body>
-          <zoomable-image class="high-ground"
-            src="{{ vincFiles.comp.url }}"
-            ng-show="vincFiles.comp"
-          ></zoomable-image>
+          <div layout="row" layout-align="center center">
+            <div flex="50" layout-margin>
+              <zoomable-image class="high-ground"
+                src={{$ctrl.vincFiles.cpf.arquivo}}
+                ng-show="$ctrl.vincFiles.cpf"
+                ></zoomable-image>
+            </div>
+            <div flex layout-margin layout="column">
+              <md-input-container>
+                <md-checkbox ng-model="$ctrl.vincFiles.cpf.verificado">Arquivo Verificado</md-checkbox>
+              </md-input-container>
+              <md-input-container>
+                <label>Observações sobre o arquivo</label>
+                <textarea rows="5" name="comentarioFile" ng-model="$ctrl.vincFiles.cpf.comentarios"></textarea>
+              </md-input-container>
+            </div>
+          </div>
         </md-step-body>
-        <md-step-actions>
-          <md-button class="md-primary md-raised">Continue</md-button>
-          <md-button class="md-primary">Cancel</md-button>
+        <md-step-actions layout-align="center end">
+          <md-button class="md-primary md-raised" ng-click="$ctrl.proximoPasso($ctrl.vincFiles.cpf)">Continuar</md-button>
+          <md-button class="md-primary" ng-click="$ctrl.cancelProcesso()">Cancelar</md-button>
         </md-step-actions>
       </md-step>
       <md-step md-label="Verifique o documento de adesão">
         <md-step-body>
-          <p>Rhá2</p>
+          <div layout="row" layout-align="center center">
+            <div flex="50" layout-margin>
+              <zoomable-image class="high-ground"
+                src={{$ctrl.vincFiles.comp.arquivo}}
+                ng-show="$ctrl.vincFiles.comp"
+                ></zoomable-image>
+            </div>
+            <div flex layout-margin layout="column">
+              <md-input-container>
+                <md-checkbox ng-model="$ctrl.vincFiles.comp.verificado">Arquivo Verificado</md-checkbox>
+              </md-input-container>
+              <md-input-container>
+                <label>Observações sobre o arquivo</label>
+                <textarea rows="5" name="comentarioFile" ng-model="$ctrl.vincFiles.comp.comentarios"></textarea>
+              </md-input-container>
+            </div>
+          </div>
         </md-step-body>
-        <md-step-actions>
-          <md-button class="md-primary md-raised">Continue</md-button>
-          <md-button class="md-primary">Cancel</md-button>
+        <md-step-actions layout-align="center end">
+          <md-button class="md-primary md-raised" ng-click="$ctrl.proximoPasso($ctrl.vincFiles.comp)">Continuar</md-button>
+          <md-button class="md-primary" ng-click="$ctrl.cancelProcesso()">Cancelar</md-button>
         </md-step-actions>
       </md-step>
       <md-step md-label="Escreva o despacho do processo">
-        <md-step-body>
-          <md-input-container class="md-block" >
-            <md-icon>subject</md-icon>
-            <label>Descrição do Evento</label>
-            <textarea name="descricaoAtividade" rows="5" ng-select-on-focus ng-model="$ctrl.eventData.descricao"></textarea>
-          </md-input-container>
-        </md-step-body>
-        <md-step-actions layout-align="end center">
-          <md-button class="md-primary md-raised">Continue</md-button>
-          <md-button class="md-primary">Cancel</md-button>
+        <div layout-margin>
+          <md-step-body>
+            <md-input-container class="md-block">
+              <md-icon>subject</md-icon>
+              <label>Despacho e considerações</label>
+              <textarea name="descricaoAtividade" rows="5" ng-select-on-focus ng-model="$ctrl._pedido.descricao"></textarea>
+            </md-input-container>
+            <md-input-container>
+              <md-checkbox ng-model="$ctrl._pedido.aprovado">Aprova Verificação</md-checkbox>
+            </md-input-container>
+          </md-step-body>
+        </div>
+        <md-step-actions layout-align="center end">
+          <md-button class="md-primary md-raised" ng-click="$ctrl.finalizaProcesso($ctrl._pedido)">Continue</md-button>
+          <md-button class="md-primary" ng-click="$ctrl.cancelProcesso()">Cancelar</md-button>
         </md-step-actions>
       </md-step>
     </md-stepper>
