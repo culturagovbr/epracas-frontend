@@ -23,7 +23,7 @@ class PracaCardController {
           controllerAs: '$ctrl',
           templateUrl: 'praca/pracainfo-dialog.tmpl.html',
           parent: angular.element(this._$document.body),
-          locals: { pracaData: result }
+          locals: { praca: result }
         })
       })
   }
