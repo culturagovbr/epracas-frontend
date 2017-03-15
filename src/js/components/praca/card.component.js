@@ -1,11 +1,18 @@
 class PracaCardController {
-  constructor($state, $document, $mdDialog, Praca) {
+  constructor($state, $document, $mdDialog, Toast, Praca) {
     "ngInject";
 
-    this._$state = $state;
-    this._$document = $document;
-    this._$mdDialog = $mdDialog;
-    this._Praca = Praca;
+		angular.extend(this, {
+			_$state: $state,
+			_$document: $document,
+			_$mdDialog: $mdDialog,
+			_Toast: Toast,
+			_Praca: Praca,
+		})
+    // this._$state = $state;
+    // this._$document = $document;
+    // this._$mdDialog = $mdDialog;
+    // this._Praca = Praca;
   }
 
   header_url(praca)
@@ -14,8 +21,7 @@ class PracaCardController {
       praca.header_url: "assets/header.jpg"
   }
 
-  infoPracafunction(praca)
-  {
+  infoPraca(praca) {
     this._Praca.get(praca.id_pub)
       .then(result => {
         this._$mdDialog.show({
@@ -33,9 +39,9 @@ class PracaCardController {
     //TODO: implement
   }
 
-  excluirPraca(praca)
+  excluirPraca()
   {
-    //TODO: implement
+		this.onDelete({praca: this.praca})
   }
 
   navigateTo(route, params)
@@ -81,7 +87,7 @@ const PracaCard = {
             </md-menu-item>
 
             <md-menu-item>
-              <md-button ng-click="$ctrl.excluirPraca($ctrl.praca)">
+              <md-button ng-click="$ctrl.excluirPraca()">
                 <md-icon>clear</md-icon>
                 Excluir Praça
               </md-button>
@@ -102,6 +108,7 @@ const PracaCard = {
     `,
   bindings: {
     praca: "=",
+		onDelete: "&",
   },
 }
 
