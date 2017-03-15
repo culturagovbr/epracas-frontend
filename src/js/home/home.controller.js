@@ -1,27 +1,64 @@
 class HomeCtrl {
-  constructor($q, $state, AppConstants, Praca) {
-    "ngInject";
+    constructor($q, $state, AppConstants, Praca, $document, $window, $scope) {
+        "ngInject";
 
-    this.appName = AppConstants.appName;
-    this._Praca = Praca;
-    this._$state = $state;
-    this._$q = $q;
-  }
+        this.appName = AppConstants.appName;
+        this._Praca = Praca;
+        this._$state = $state;
+        this._$q = $q;
 
-  getMatches(query){
-    let deferred = this._$q.defer();
+        // Pegando o evento scroll da tela para deixar as abas dinamicas conforme o scroll.
+        // angular.element(document).ready(function(){
+        $document.ready(function () {
+            $('.materialboxed').materialbox();
+            let elmTab = $('.tab-home'),
+                intPracasPosition = elmTab.offset().top;
+            $document.on('scroll', () => {
+                let arrElmScrollContainers = $('md-tab'),
+                    arrObjScrollContainers = arrElmScrollContainers.map((intKey, elm) => {
+                        let intPositionStart = $($(elm).attr('scroll')).offset().top, // Pega a posicao do container.
+                            intPositionEnd = (arrElmScrollContainers[intKey + 1]) ? $($(arrElmScrollContainers[intKey + 1]).attr('scroll')).offset().top : ''; // Pega a posicao do proximo container e diminui um, no caso e o limite deste container.
+                        return {
+                            strSelector: $(elm).attr('scroll'),
+                            intPositionStart: intPositionStart - 96,
+                            intPositionEnd: intPositionEnd - 1
+                        }
+                    });
 
-    this._Praca.search(query).then(
-      res => deferred.resolve(res),
-      err => deferred.reject(err)
-    );
+                let intPosition = $window.scrollY;
+                arrObjScrollContainers.each((intKey, objValue) => {
+                    if (intPosition >= objValue.intPositionStart && intKey != $scope.tabIntSelected) {
+                        $scope.tabIntSelected = intKey;
+                        $scope.$apply();
+                        // console.info('Ativou Comeco:' + objValue.intPositionStart + ' Final ' + objValue.intPositionEnd );
+                    }
+                });
+                if ($window.scrollY >= intPracasPosition) {
+                    elmTab.addClass('fixed');
+                    elmTab.addClass('md-whiteframe-6dp');
+                    // $('md-content').css('background-color: red');
+                } else {
+                    elmTab.removeClass('fixed');
+                    elmTab.removeClass('md-whiteframe-6dp');
+                }
+            });
+        });
+    }
 
-    return deferred.promise;
-  }
+    getMatches(query) {
+        let deferred = this._$q.defer();
 
-  selectedItemChange(item) {
-    this._$state.go('app.praca', {pk: item.id_pub});
-  }
+        this._Praca.search(query).then(
+            res => deferred.resolve(res),
+            err => deferred.reject(err)
+        );
+
+        return deferred.promise;
+    }
+
+    selectedItemChange(item) {
+        this._$state.go('app.praca', {pk: item.id_pub});
+    }
 
 }
 

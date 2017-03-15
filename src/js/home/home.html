@@ -1,4 +1,56 @@
-<div id="home" class="limite" layout="column">
+<style>
+    .block {
+        min-height: 100vh;
+    }
+
+    .tab-home.fixed {
+        z-index: 10;
+        display: block !important;
+        position: fixed !important;
+        height: 48px;
+        width: 100%;
+        background-color: rgb(250, 250, 250);
+        top: 0;
+        left: 0;
+    }
+
+    md-tabs {
+        height: 48px;
+    }
+    <!--nav ul li a:hover, nav ul li a.active {-->
+        <!--background-color: rgba(0,0,0,.1);-->
+    <!--}-->
+    <!--footer {-->
+        <!--padding-left: 0;-->
+    <!--}-->
+
+       <!--.pin-top {-->
+           <!--position: relative;-->
+       <!--}-->
+
+       <!--.pin-bottom {-->
+           <!--position: relative;-->
+       <!--}-->
+
+       <!--.pinned {-->
+           <!--position: fixed !important;-->
+       <!--}-->
+</style>
+<div style="height: 48px">
+    <div class="tab-home hoverable md-whiteframe-1dp">
+        <md-content class=" layout-column">
+            <!--<div class="limite">-->
+                <md-tabs md-selected="tabIntSelected" md-dynamic-height md-border-bottom class="center-align container">
+                    <md-tab label="Procurar praças" scroll="header" class=""></md-tab>
+                    <md-tab label="CEUs" scroll="#2"></md-tab>
+                    <md-tab label="Praças próximas" scroll="#3" offset="48"></md-tab>
+                    <md-tab label="Praças do Brasil" scroll="#4" offset="48"></md-tab>
+                </md-tabs>
+            <!--</div>-->
+        </md-content>
+    </div>
+</div>
+<div id="home" class="container" style="height: 85vh;" layout="column">
     <video id="bgvid" playsinline autoplay muted loop>
         <source src="/assets/CEUS.mp4" type="video/mp4">
     </video>
@@ -48,3 +100,26 @@
         </div>
     </div>
 </div>
+<div id="2" class="block" style="background-color: rgba(33, 150, 243, 0.15);">
+</div>
+<div id="3" class="block lighten-1" style="background-color: rgba(239, 83, 80, 0.33);">
+</div>
+<div id="4" class="block lighten-1"  style="background-color: rgba(102, 187, 106, 0.33);">
+</div>
+<script>
+    $('.pushpin-demo-nav').each(function() {
+        var $this = $(this);
+        var $target = $('#' + $(this).attr('data-target'));
+        $this.pushpin({
+            top: $target.offset().top,
+            bottom: $target.offset().top + $target.outerHeight() - $this.height()
+        });
+    });
+    $(document).ready(function(){
+        $('.target').pushpin({
+            top: 0,
+            bottom: 1000,
+            offset: 0
+        });
+    });
+</script>

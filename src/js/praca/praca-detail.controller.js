@@ -78,12 +78,13 @@ class PracaDetailCtrl {
                 }
             }
         );
-        $scope.tabIntSelected = 2;
+        $scope.tabIntSelected = 0;
+        $scope.intWindowHeight = $(window).height();
 
         // Pegando o evento scroll da tela para deixar as abas dinamicas conforme o scroll.
         // angular.element(document).ready(function(){
         $document.ready(function () {
-            $('.materialboxed').materialbox()
+            $('.materialboxed').materialbox();
             let elmTabPracas = $('.tab-pracas'),
                 intPracasPosition = elmTabPracas.offset().top;
             $document.on('scroll', () => {
