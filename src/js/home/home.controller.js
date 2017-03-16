@@ -12,34 +12,53 @@ class HomeCtrl {
         $document.ready(function () {
             $('.materialboxed').materialbox();
             let elmTab = $('.tab-home'),
-                intPracasPosition = elmTab.offset().top;
+                intPracasPosition = elmTab.offset().top,
+                strColorCurrent = '',
+                intCurrentTab = 0;
             $document.on('scroll', () => {
                 let arrElmScrollContainers = $('md-tab'),
                     arrObjScrollContainers = arrElmScrollContainers.map((intKey, elm) => {
                         let intPositionStart = $($(elm).attr('scroll')).offset().top, // Pega a posicao do container.
-                            intPositionEnd = (arrElmScrollContainers[intKey + 1]) ? $($(arrElmScrollContainers[intKey + 1]).attr('scroll')).offset().top : ''; // Pega a posicao do proximo container e diminui um, no caso e o limite deste container.
+                            elmScrollContainer = $($(arrElmScrollContainers[intKey + 1]).attr('scroll')),
+                            intPositionEnd = (arrElmScrollContainers[intKey + 1]) ? elmScrollContainer.offset().top : ''; // Pega a posicao do proximo container e diminui um, no caso e o limite deste container.
                         return {
                             strSelector: $(elm).attr('scroll'),
                             intPositionStart: intPositionStart - 96,
                             intPositionEnd: intPositionEnd - 1
                         }
                     });
-
                 let intPosition = $window.scrollY;
                 arrObjScrollContainers.each((intKey, objValue) => {
                     if (intPosition >= objValue.intPositionStart && intKey != $scope.tabIntSelected) {
+                        let elmScrollContainer = $($(arrElmScrollContainers[intKey]).attr('scroll')),
+                            strColor = elmScrollContainer.attr('scroll-color');
                         $scope.tabIntSelected = intKey;
+                        $('md-content').removeClass(strColorCurrent);
+                        $('md-content').addClass(strColor);
+                        strColorCurrent = strColor;
                         $scope.$apply();
-                        // console.info('Ativou Comeco:' + objValue.intPositionStart + ' Final ' + objValue.intPositionEnd );
                     }
                 });
+                if (intCurrentTab != $scope.tabIntSelected) {
+                    let elmContentCurrent = $($(arrElmScrollContainers[$scope.tabIntSelected]).attr('scroll')).find('.content'),
+                        arrElmContent = $('.content');
+                    arrElmContent.removeClass('animtated').addClass('fadeOutUp animtated');
+                    elmContentCurrent.removeClass('fadeOutUp animtated');
+                    elmContentCurrent.addClass('animtated');
+                    elmContentCurrent.show();
+                    intCurrentTab = $scope.tabIntSelected;
+                }
+
+                console.info(intCurrentTab);
+                console.info($scope.tabIntSelected);
+
+
                 if ($window.scrollY >= intPracasPosition) {
                     elmTab.addClass('fixed');
-                    elmTab.addClass('md-whiteframe-6dp');
-                    // $('md-content').css('background-color: red');
+                    elmTab.addClass('md-whiteframe-8dp');
                 } else {
                     elmTab.removeClass('fixed');
-                    elmTab.removeClass('md-whiteframe-6dp');
+                    elmTab.removeClass('md-whiteframe-8dp');
                 }
             });
         });
@@ -47,12 +66,10 @@ class HomeCtrl {
 
     getMatches(query) {
         let deferred = this._$q.defer();
-
         this._Praca.search(query).then(
             res => deferred.resolve(res),
             err => deferred.reject(err)
         );
-
         return deferred.promise;
     }
 
