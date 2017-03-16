@@ -9,22 +9,25 @@ class HomeCtrl {
 
         // Pegando o evento scroll da tela para deixar as abas dinamicas conforme o scroll.
         // angular.element(document).ready(function(){
+
+        let elmTab = $('.tab-home'),
+            intPracasPosition = elmTab.offset().top,
+            strColorCurrent = '',
+            intCurrentTab = 0;
         $document.ready(function () {
             $('.materialboxed').materialbox();
             let elmTab = $('.tab-home'),
-                intPracasPosition = elmTab.offset().top,
-                strColorCurrent = '',
-                intCurrentTab = 0;
+                intPracasPosition = elmTab.offset().top;
 
-            $scope.scroll(elmTab, intPracasPosition, strColorCurrent, intCurrentTab);
+            $scope.scroll(elmTab, intPracasPosition);
             $document.on('scroll', () => {
-                $scope.scroll(elmTab, intPracasPosition, strColorCurrent, intCurrentTab);
+                $scope.scroll(elmTab, intPracasPosition);
             });
 
 
         });
 
-        $scope.scroll = (elmTab, intPracasPosition, strColorCurrent, intCurrentTab) => {
+        $scope.scroll = (elmTab, intPracasPosition) => {
 
             let arrElmScrollContainers = $('md-tab'),
                 arrObjScrollContainers = arrElmScrollContainers.map((intKey, elm) => {

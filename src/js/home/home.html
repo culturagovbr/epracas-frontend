@@ -97,11 +97,11 @@
         </md-content>
     </div>
 </div>
-<div id="1" class="container " style="height: 85vh;"  layout="column">
+<div id="1" class="container" style="height: 85vh;"  layout="column">
     <video id="bgvid" playsinline autoplay muted loop>
         <source src="/assets/CEUS.mp4" type="video/mp4">
     </video>
-    <div id="home-search" layout-align="center center" layout-margin layout-gt-xs="row" flex>
+    <div id="home-search" class="animated fadeIn" layout-align="center center" layout-margin layout-gt-xs="row" flex>
         <md-icon style="font-size: 48px;
                         height: 48px;
                         width: 48px;
@@ -112,7 +112,7 @@
             search
         </md-icon>
         <md-autocomplete
-                placeholder="Procure por uma cidade ou Estado(UF)"
+                placeholder="Procure por uma cidade ou estado (UF)"
                 md-selected-item="$ctrl.selectedItem"
                 md-selected-item-change="$ctrl.selectedItemChange(item)"
                 md-search-text="$ctrl.searchText"
