@@ -101,7 +101,7 @@ class PracaDetailCtrl {
 
                 let intPosition = $window.scrollY;
                 arrObjScrollContainers.each((intKey, objValue) => {
-                    if (intPosition >= objValue.intPositionStart && intPosition <= objValue.intPositionEnd && intKey != $scope.tabIntSelected) {
+                    if (intPosition >= objValue.intPositionStart && intKey != $scope.tabIntSelected) {
                         $scope.tabIntSelected = intKey;
                         $scope.$apply();
                         // console.info('Ativou Comeco:' + objValue.intPositionStart + ' Final ' + objValue.intPositionEnd );
