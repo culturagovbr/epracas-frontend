@@ -15,53 +15,62 @@ class HomeCtrl {
                 intPracasPosition = elmTab.offset().top,
                 strColorCurrent = '',
                 intCurrentTab = 0;
+
+            $scope.scroll(elmTab, intPracasPosition, strColorCurrent, intCurrentTab);
             $document.on('scroll', () => {
-                let arrElmScrollContainers = $('md-tab'),
-                    arrObjScrollContainers = arrElmScrollContainers.map((intKey, elm) => {
-                        let intPositionStart = $($(elm).attr('scroll')).offset().top, // Pega a posicao do container.
-                            elmScrollContainer = $($(arrElmScrollContainers[intKey + 1]).attr('scroll')),
-                            intPositionEnd = (arrElmScrollContainers[intKey + 1]) ? elmScrollContainer.offset().top : ''; // Pega a posicao do proximo container e diminui um, no caso e o limite deste container.
-                        return {
-                            strSelector: $(elm).attr('scroll'),
-                            intPositionStart: intPositionStart - 96,
-                            intPositionEnd: intPositionEnd - 1
-                        }
-                    });
-                let intPosition = $window.scrollY;
-                arrObjScrollContainers.each((intKey, objValue) => {
-                    if (intPosition >= objValue.intPositionStart && intKey != $scope.tabIntSelected) {
-                        let elmScrollContainer = $($(arrElmScrollContainers[intKey]).attr('scroll')),
-                            strColor = elmScrollContainer.attr('scroll-color');
-                        $scope.tabIntSelected = intKey;
-                        $('md-content').removeClass(strColorCurrent);
-                        $('md-content').addClass(strColor);
-                        strColorCurrent = strColor;
-                        $scope.$apply();
+                $scope.scroll(elmTab, intPracasPosition, strColorCurrent, intCurrentTab);
+            });
+
+
+        });
+
+        $scope.scroll = (elmTab, intPracasPosition, strColorCurrent, intCurrentTab) => {
+
+            let arrElmScrollContainers = $('md-tab'),
+                arrObjScrollContainers = arrElmScrollContainers.map((intKey, elm) => {
+                    let intPositionStart = $($(elm).attr('scroll')).offset().top, // Pega a posicao do container.
+                        elmScrollContainer = $($(arrElmScrollContainers[intKey + 1]).attr('scroll')),
+                        intPositionEnd = (arrElmScrollContainers[intKey + 1]) ? elmScrollContainer.offset().top : ''; // Pega a posicao do proximo container e diminui um, no caso e o limite deste container.
+                    return {
+                        strSelector: $(elm).attr('scroll'),
+                        intPositionStart: intPositionStart - 96,
+                        intPositionEnd: intPositionEnd - 1
                     }
                 });
-                if (intCurrentTab != $scope.tabIntSelected) {
-                    let elmContentCurrent = $($(arrElmScrollContainers[$scope.tabIntSelected]).attr('scroll')).find('.content'),
-                        arrElmContent = $('.content');
-                    arrElmContent.removeClass('animtated').addClass('fadeOutUp animtated');
-                    elmContentCurrent.removeClass('fadeOutUp animtated');
-                    elmContentCurrent.addClass('animtated');
-                    elmContentCurrent.show();
-                    intCurrentTab = $scope.tabIntSelected;
-                }
-
-                console.info(intCurrentTab);
-                console.info($scope.tabIntSelected);
-
-
-                if ($window.scrollY >= intPracasPosition) {
-                    elmTab.addClass('fixed');
-                    elmTab.addClass('md-whiteframe-8dp');
-                } else {
-                    elmTab.removeClass('fixed');
-                    elmTab.removeClass('md-whiteframe-8dp');
+            let intPosition = $window.scrollY;
+            arrObjScrollContainers.each((intKey, objValue) => {
+                if (intPosition >= objValue.intPositionStart && intKey != $scope.tabIntSelected) {
+                    let elmScrollContainer = $($(arrElmScrollContainers[intKey]).attr('scroll')),
+                        strColor = elmScrollContainer.attr('scroll-color');
+                    $scope.tabIntSelected = intKey;
+                    $('md-content').removeClass(strColorCurrent);
+                    $('md-content').addClass(strColor);
+                    strColorCurrent = strColor;
+                    $scope.$apply();
                 }
             });
-        });
+            if (intCurrentTab != $scope.tabIntSelected) {
+                let elmContentCurrent = $($(arrElmScrollContainers[$scope.tabIntSelected]).attr('scroll')).find('.content'),
+                    arrElmContent = $('.content');
+                arrElmContent.removeClass('animtated').addClass('fadeOutUp animtated');
+                elmContentCurrent.removeClass('fadeOutUp animtated');
+                elmContentCurrent.addClass('animtated');
+                elmContentCurrent.show();
+                intCurrentTab = $scope.tabIntSelected;
+            }
+
+            console.info(intCurrentTab);
+            console.info($scope.tabIntSelected);
+
+
+            if ($window.scrollY >= intPracasPosition) {
+                elmTab.addClass('fixed');
+                elmTab.addClass('md-whiteframe-8dp');
+            } else {
+                elmTab.removeClass('fixed');
+                elmTab.removeClass('md-whiteframe-8dp');
+            }
+        }
     }
 
     getMatches(query) {
