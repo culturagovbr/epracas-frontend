@@ -15,7 +15,8 @@
     }
 
     .tab-home md-content {
-        background-color: rgb(63, 81, 181);
+        /*background-color: rgb(63, 81, 181);*/
+        background-color: rgba(0, 0, 0, 0.23);
     }
 
     .tab-home md-tab-item {
@@ -30,6 +31,10 @@
         background-color: red;
     }
 
+    .tab-home .yellow {
+        background-color: yellow;
+    }
+
     .color-transition {
         transition: background-color 0.7s;
     }
@@ -40,6 +45,9 @@
 
     .transparent.red {
         background-color: rgba(239, 83, 80, 0.33) !important;
+    }
+    .transparent.yellow {
+        background-color: rgba(239, 234, 80, 0.33) !important;
     }
 
     .transparent.green {
@@ -81,6 +89,17 @@
         line-height: 70px;
         height: 70px;
         padding: 0 15px 0 70px;
+    }
+
+    .tab-home.fixed {
+         background-color: transparent;
+    }
+
+    md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
+        /*background-color: rgb(63,81,181);*/
+        /*color: rgba(255,255,255,0.87);*/
+        /*background-color: rgba(0, 0, 0, 0.23);*/
+        background-color: rgba(0, 0, 0, 0.6);
     }
 
 </style>
@@ -139,9 +158,9 @@
     </div>
 </div>
 <a ui-sref="app.geoloc">
-    <div id="3" scroll-color="red" class="block transparent red lighten-1" layout="column"
+    <div id="3" scroll-color="yellow darken-1" class="block transparent yellow lighten-1" layout="column"
          layout-align="center center">
-        <div class="content animated fadeInLeft white-text" layout="column" layout-align="center center">
+        <div class="content animated fadeInDown white-text" layout="column" layout-align="center center">
             <h1>Praças próximas a mim</h1>
             <md-icon> near_me</md-icon>
             <h3>Podemos localizar as praças que estão mais próximas a você agora</h3>
@@ -152,7 +171,7 @@
    href="http://mapas.cultura.gov.br/busca/##(global:(enabled:(space:!t),filterEntity:space),space:(filters:(type:!('132'))))">
     <div id="4" scroll-color="green" class="block transparent green lighten-1 hoverable" layout="column"
          layout-align="center center">
-        <div class="content animated fadeInRight white-text" layout="column" layout-align="center center">
+        <div class="content animated fadeInDown white-text" layout="column" layout-align="center center">
             <h1>Todas as praças no Mapa</h1>
             <md-icon> map</md-icon>
             <h3>Visualize todas as praças do Brasil de uma só vez no mapa</h3>
