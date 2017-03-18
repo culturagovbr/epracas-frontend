@@ -2,17 +2,18 @@ export default class User {
   constructor(JWT, AppConstants, $http, $state, $q, $log, $window) {
     "ngInject";
 
-    this._JWT = JWT;
-    this._AppConstants = AppConstants;
-    this._$http = $http;
-    this._$state = $state;
-    this._$q = $q;
-    this._$log = $log;
-    this._$window = $window;
+    angular.extend(this, {
+      _JWT: JWT,
+      _AppConstants: AppConstants,
+      _$http: $http,
+      _$state: $state,
+      _$q: $q,
+      _$log: $log,
+      _$window: $window,
+    })
 
     this.current = null;
   }
-
 
   logout() {
     this.current = null;
@@ -23,12 +24,12 @@ export default class User {
   verifyAuth() {
     const deferred = this._$q.defer();
 
-    if (!this._JWT.get()) {
+    if (angular.isUndefined(this._JWT.get()) || this._JWT.get() === null) {
       deferred.resolve(false);
       return deferred.promise;
     }
 
-    if (this.current) {
+    if (angular.isDefined(this.current)) {
       deferred.resolve(true);
     } else {
       const accessToken = localStorage.access_token;
@@ -58,17 +59,22 @@ export default class User {
     return deferred.promise;
   }
 
+  getUserInfo(accessToken) {
+    return this._$http({
+      url: this._AppConstants.userinfoUrl,
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+  }
+
   setUserInfo(accessToken) {
     const deferred = this._$q.defer();
 
-    if (accessToken && !this.current) {
-      return this._$http({
-        url: this._AppConstants.userinfoUrl,
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }).then(
+    if (angular.isDefined(accessToken) && (angular.isUndefined(this.current) || this.current === null)) {
+      this.getUserInfo(accessToken)
+      .then(
         (res) => {
           this.current = res.data;
           deferred.resolve(true);
@@ -86,9 +92,10 @@ export default class User {
           })
           .then(
             (res) => {
-              if ((this.current.profile_picture_url_picture_url == res.data[0].profile_picture_url) && (this.current.name == res.data[0].name) && (this.current.email == res.data[0].email)) {
-                this.current = res.data[0];
-                deferred.resolve(res.data[0]);
+              let userInfo = res.data[0];
+              if ((this.current.profile_picture_url === userInfo.profile_picture_url) && (this.current.name == userInfo.name) && (this.current.email == userInfo.email)) {
+                this.current = userInfo;
+                deferred.resolve(userInfo);
               } else {
                 this._$http({
                   url: `${this._AppConstants.apiUserInfo}${this.current.sub}/`,
@@ -99,7 +106,7 @@ export default class User {
                   this.current = res.data;
                   deferred.resolve(res.data);
                 })
-                .catch(err => this._$log.log(`setUserInfo() Error on PATCH: ${err.data}`))
+                .catch(err => this._$log.error(`setUserInfo() Error on PATCH: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`))
               }
             },
             (err) => {
@@ -112,12 +119,14 @@ export default class User {
                 res => this.current = res.data
               )
               .catch(
-                err => this._$log.log(`setUserInfo() Error on POST: ${err}`)
+                err => this._$log.error(`setUserInfo() Error on POST: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
               );
             }
           )
         }
       )
+    } else {
+      deferred.resolve(true);
     }
     return deferred.promise;
   }
