@@ -29,7 +29,7 @@ export default class User {
       return deferred.promise;
     }
 
-    if (this.current) {
+    if (angular.isDefined(this.current)) {
       deferred.resolve(true);
     } else {
       const accessToken = localStorage.access_token;
