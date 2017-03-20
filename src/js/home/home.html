@@ -5,11 +5,13 @@
 
     .tab-home {
         transition: box-shadow 0.4s;
+        /*display: none;*/
     }
 
     .tab-home.fixed {
+        display: none;
         z-index: 10;
-        display: block !important;
+        /*display: block !important;*/
         position: fixed !important;
         height: 48px;
         width: 100%;
@@ -68,6 +70,11 @@
     }
 
     .content {
+        text-shadow: 1px 1px 1px #000;
+        text-align: center;
+    }
+
+    .content-hide {
         display: none;
         text-shadow: 1px 1px 1px #000;
         text-align: center;
@@ -120,7 +127,7 @@
         </md-content>
     </div>
 </div>
-<div id="1" class="container" style="height: 85vh;"  layout="column">
+<div id="1" class="container" style="height: 86vh;"  layout="column">
     <video id="bgvid" playsinline autoplay muted loop>
         <source src="/assets/CEUS.mp4" type="video/mp4">
     </video>
@@ -153,9 +160,13 @@
             </md-not-found>
         </md-autocomplete>
     </div>
+    <div class="block white-text content animated fadeInUp" flex>
+        <h1>O que é o E-Praças?</h1>
+        <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h2>
+    </div>
 </div>
 <div id="2" scroll-color="blue" class="block transparent blue" layout="column" layout-align="center center">
-    <div class="content animated fadeInDown white-text" layout="column" layout-align="center center">
+    <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
         <h1>Conheça os CEUs</h1>
         <md-icon layout-align="center center"> explore</md-icon>
         <h3>Entenda o que são e como funcionam os Centros de Artes e Esportes Unificados</h3>
@@ -164,7 +175,7 @@
 <a ui-sref="app.geoloc">
     <div id="3" scroll-color="yellow darken-1" class="block transparent yellow lighten-1" layout="column"
          layout-align="center center">
-        <div class="content animated fadeInDown white-text" layout="column" layout-align="center center">
+        <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
             <h1>Praças próximas a mim</h1>
             <md-icon> near_me</md-icon>
             <h3>Podemos localizar as praças que estão mais próximas a você agora</h3>
@@ -175,7 +186,7 @@
    href="http://mapas.cultura.gov.br/busca/##(global:(enabled:(space:!t),filterEntity:space),space:(filters:(type:!('132'))))">
     <div id="4" scroll-color="green" class="block transparent green lighten-1 hoverable" layout="column"
          layout-align="center center">
-        <div class="content animated fadeInDown white-text" layout="column" layout-align="center center">
+        <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
             <h1>Todas as praças no Mapa</h1>
             <md-icon> map</md-icon>
             <h3>Visualize todas as praças do Brasil de uma só vez no mapa</h3>

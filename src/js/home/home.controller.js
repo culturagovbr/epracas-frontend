@@ -28,7 +28,6 @@ class HomeCtrl {
         });
 
         $scope.scroll = (elmTab, intPracasPosition) => {
-
             let arrElmScrollContainers = $('md-tab'),
                 arrObjScrollContainers = arrElmScrollContainers.map((intKey, elm) => {
                     let intPositionStart = $($(elm).attr('scroll')).offset().top, // Pega a posicao do container.
@@ -53,8 +52,8 @@ class HomeCtrl {
                 }
             });
             if (intCurrentTab != $scope.tabIntSelected) {
-                let elmContentCurrent = $($(arrElmScrollContainers[$scope.tabIntSelected]).attr('scroll')).find('.content'),
-                    arrElmContent = $('.content');
+                let elmContentCurrent = $($(arrElmScrollContainers[$scope.tabIntSelected]).attr('scroll')).find('.content-hide'),
+                    arrElmContent = $('.content-hide');
                 arrElmContent.removeClass('animtated').addClass('fadeOutUp animtated');
                 elmContentCurrent.removeClass('fadeOutUp animtated');
                 elmContentCurrent.addClass('animtated');
@@ -62,14 +61,12 @@ class HomeCtrl {
                 intCurrentTab = $scope.tabIntSelected;
             }
 
-            console.info(intCurrentTab);
-            console.info($scope.tabIntSelected);
-
-
             if ($window.scrollY >= intPracasPosition) {
+                elmTab.fadeIn('slow');
                 elmTab.addClass('fixed');
                 elmTab.addClass('md-whiteframe-8dp');
             } else {
+                elmTab.fadeOut();
                 elmTab.removeClass('fixed');
                 elmTab.removeClass('md-whiteframe-8dp');
             }
