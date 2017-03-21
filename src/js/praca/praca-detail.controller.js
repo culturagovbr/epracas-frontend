@@ -235,7 +235,7 @@ class PracaDetailCtrl {
         const userMenu = {};
 
         if (angular.isDefined(currentUser) &&
-            (this.currentUser.is_staff || this.currentUser.praca_manager === this.praca.id_pub)) {
+            (this.currentUser.is_staff || this.currentUser.id_pub === this.praca.gestor.user_id_pub)) {
             userMenu.event = {
                 id: "evento",
                 name: "Adicionar Evento",
@@ -292,7 +292,7 @@ class PracaDetailCtrl {
             };
         }
 
-        if ((!currentUser.is_staff) && angular.isUndefined(currentUser.praca_manager)) {
+        if ((angular.isUndefined(currentUser.is_staff) || currentUser.is_staff === null) && (angular.isUndefined(this.praca.gestor) || this.praca.gestor === null)) {
             userMenu.vinculo = {
                 id: "evento",
                 name: "Solicitar vinculo para gestão da Praça",
