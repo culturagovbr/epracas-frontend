@@ -52,6 +52,7 @@
     .transparent.red {
         background-color: rgba(239, 83, 80, 0.33) !important;
     }
+
     .transparent.yellow {
         background-color: rgba(239, 234, 80, 0.33) !important;
     }
@@ -80,7 +81,7 @@
         text-align: center;
     }
 
-    .content md-icon {
+    .content md-icon , .content-hide md-icon {
         font-size: 150px;
         height: 150px;
         width: 150px;
@@ -103,7 +104,7 @@
     }
 
     .tab-home.fixed {
-         background-color: transparent;
+        background-color: transparent;
     }
 
     md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
@@ -115,84 +116,93 @@
 
 </style>
 <div id="quadro-container">
-<div style="height: 48px">
-    <div class="tab-home md-whiteframe-1dp">
-        <md-content class=" layout-column color-transition">
-            <md-tabs md-selected="tabIntSelected" md-dynamic-height md-border-bottom class="center-align container">
-                <md-tab label="Procurar praças" scroll="header" class=""></md-tab>
-                <md-tab label="CEUs" scroll="#2"></md-tab>
-                <md-tab label="Praças próximas" scroll="#3" offset="48"></md-tab>
-                <md-tab label="Praças do Brasil" scroll="#4" offset="48"></md-tab>
-            </md-tabs>
-        </md-content>
+    <div style="height: 48px">
+        <div class="tab-home md-whiteframe-1dp">
+            <md-content class=" layout-column color-transition">
+                <md-tabs md-selected="tabIntSelected" md-dynamic-height md-border-bottom class="center-align container">
+                    <md-tab label="Procurar praças" scroll="header" class=""></md-tab>
+                    <md-tab label="CEUs" scroll="#2"></md-tab>
+                    <md-tab label="Praças próximas" scroll="#3" offset="48"></md-tab>
+                    <md-tab label="Praças do Brasil" scroll="#4" offset="48"></md-tab>
+                </md-tabs>
+            </md-content>
+        </div>
     </div>
-</div>
-<div id="1" class="container" style="height: 86vh;"  layout="column">
-    <video id="bgvid" playsinline autoplay muted loop>
-        <source src="/assets/CEUS.mp4" type="video/mp4">
-    </video>
-    <div id="home-search" class="animated fadeIn" layout-align="center center" layout-margin layout-gt-xs="row" flex>
-        <md-icon style="font-size: 48px;
+    <div id="1" class="container" style="height: 86vh;" layout="column">
+        <video id="bgvid" playsinline autoplay muted loop>
+            <source src="/assets/CEUS.mp4" type="video/mp4">
+        </video>
+        <div id="home-search" class="animated fadeIn" layout-align="center center" layout-margin layout-gt-xs="row"
+             flex>
+            <md-icon style="font-size: 48px;
                         height: 48px;
                         width: 48px;
                         color: #d1d1d1;
                         position: relative;
                         left: 74px;
                         z-index: 1;">
-            search
-        </md-icon>
-        <md-autocomplete
-                placeholder="Procure por uma cidade ou estado (UF)"
-                md-selected-item="$ctrl.selectedItem"
-                md-selected-item-change="$ctrl.selectedItemChange(item)"
-                md-search-text="$ctrl.searchText"
-                md-items="item in $ctrl.getMatches($ctrl.searchText)"
-                md-item-text="item.municipio"
-                flex
-                flex-gt-xs="60"
-                class="md-whiteframe-6dp"
-        >
-            <md-item-template>
-                <span md-highlight-text="$ctrl.searchText" md-highlight-flags="^i">{{item.municipio}} - {{item.uf | uppercase}}</span>
-            </md-item-template>
-            <md-not-found>
-                Nenhuma praça encontrada
-            </md-not-found>
-        </md-autocomplete>
-    </div>
-    <div class="block white-text content animated fadeInUp" flex>
-        <h1>O que é o E-Praças?</h1>
-        <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h2>
-    </div>
-</div>
-<div id="2" scroll-color="blue" class="block transparent blue" layout="column" layout-align="center center">
-    <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
-        <h1>Conheça os CEUs</h1>
-        <md-icon layout-align="center center"> explore</md-icon>
-        <h3>Entenda o que são e como funcionam os Centros de Artes e Esportes Unificados</h3>
-    </div>
-</div>
-<a ui-sref="app.geoloc">
-    <div id="3" scroll-color="yellow darken-1" class="block transparent yellow lighten-1" layout="column"
-         layout-align="center center">
-        <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
-            <h1>Praças próximas a mim</h1>
-            <md-icon> near_me</md-icon>
-            <h3>Podemos localizar as praças que estão mais próximas a você agora</h3>
+                search
+            </md-icon>
+            <md-autocomplete
+                    placeholder="Procure por uma cidade ou estado (UF)"
+                    md-selected-item="$ctrl.selectedItem"
+                    md-selected-item-change="$ctrl.selectedItemChange(item)"
+                    md-search-text="$ctrl.searchText"
+                    md-items="item in $ctrl.getMatches($ctrl.searchText)"
+                    md-item-text="item.municipio"
+                    flex
+                    flex-gt-xs="60"
+                    class="md-whiteframe-6dp"
+            >
+                <md-item-template>
+                    <span md-highlight-text="$ctrl.searchText" md-highlight-flags="^i">{{item.municipio}} - {{item.uf | uppercase}}</span>
+                </md-item-template>
+                <md-not-found>
+                    Nenhuma praça encontrada
+                </md-not-found>
+            </md-autocomplete>
+        </div>
+        <div class="block white-text content animated fadeInUp" flex>
+            <h1>O que é o E-Praças?</h1>
+            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum.</h2>
+        </div>
+        <div class="block white-text content animated fadeInUp" flex>
+
         </div>
     </div>
-</a>
-<a target="_blank"
-   href="http://mapas.cultura.gov.br/busca/##(global:(enabled:(space:!t),filterEntity:space),space:(filters:(type:!('132'))))">
-    <div id="4" scroll-color="green" class="block transparent green lighten-1 hoverable" layout="column"
-         layout-align="center center">
+    <div id="2" scroll-color="blue" class="block transparent blue" layout="column" layout-align="center center">
         <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
-            <h1>Todas as praças no Mapa</h1>
-            <md-icon> map</md-icon>
-            <h3>Visualize todas as praças do Brasil de uma só vez no mapa</h3>
+            <h1>Conheça os CEUs</h1>
+            <md-icon layout-align="center center"> explore</md-icon>
+            <h3>Entenda o que são e como funcionam os Centros de Artes e Esportes Unificados</h3>
         </div>
     </div>
-</a>
+    <a ui-sref="app.geoloc">
+        <div id="3" scroll-color="yellow darken-1" class="block transparent yellow lighten-1" layout="column"
+             layout-align="center center">
+            <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
+                <h1>Praças próximas a mim</h1>
+                <md-icon> near_me</md-icon>
+                <h3>Podemos localizar as praças que estão mais próximas a você agora</h3>
+            </div>
+        </div>
+    </a>
+    <a target="_blank"
+       href="http://mapas.cultura.gov.br/busca/##(global:(enabled:(space:!t),filterEntity:space),space:(filters:(type:!('132'))))">
+        <div id="4" scroll-color="green" class="block transparent green lighten-1 hoverable" layout="column"
+             layout-align="center center">
+            <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
+                <h1>Todas as praças no Mapa</h1>
+                <md-icon> map</md-icon>
+                <h3>Visualize todas as praças do Brasil de uma só vez no mapa</h3>
+            </div>
+        </div>
+    </a>
+</div>
 </div>
 <script>
     $('.pushpin-demo-nav').each(function () {

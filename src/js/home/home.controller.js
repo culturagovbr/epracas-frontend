@@ -23,8 +23,6 @@ class HomeCtrl {
             $document.on('scroll', () => {
                 $scope.scroll(elmTab, intPracasPosition);
             });
-
-
         });
 
         $scope.scroll = (elmTab, intPracasPosition) => {
