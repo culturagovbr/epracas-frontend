@@ -23,6 +23,8 @@ class HomeCtrl {
             $document.on('scroll', () => {
                 $scope.scroll(elmTab, intPracasPosition);
             });
+
+            $('.tooltipped').tooltip({delay: 50});
         });
 
         $scope.scroll = (elmTab, intPracasPosition) => {
