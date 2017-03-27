@@ -35,7 +35,7 @@ const paths = {
   },
   buildDest: "./build/",
   distDest: "./dist/",
-  // fonts: "./fonts/",
+  fontFiles: "src/fonts/**/**",
 };
 
 
@@ -125,11 +125,6 @@ gulp.task("angular-bootstrap-calendarCss", () => {
 //     .pipe(cssnano())
 //     .pipe(gulp.dest(`${paths.buildDest}css`))
 // });
-// gulp.task("fonts", () => {
-//   gulp.src(paths.fonts)
-//     .pipe(cssnano())
-//     .pipe(gulp.dest(`${paths.buildDest}fonts`))
-// });
 gulp.task("materialCss", () => {
   gulp.src(paths.cssFiles.material)
     .pipe(cssnano())
@@ -153,9 +148,22 @@ gulp.task("assets", () => {
     .pipe(gulp.dest(`${paths.buildDest}assets`));
 });
 
+// Fonts
+// gulp.task('fonts', () => {
+//     return gulp.src(paths.fontFiles)
+//         .pipe(`${paths.buildDest}fonts`);
+// });
+
+// Fonts
+gulp.task('fonts', () => {
+    return gulp.src([paths.fontFiles])
+        .pipe(gulp.dest(`${paths.buildDest}fonts`));
+});
+
+
 // This task is used for building production ready
 // minified JS/CSS files into the dist/ folder
-gulp.task("build", ["html", "browserify", "angular-bootstrap-calendarCss", "materialCss", "appCss", "steppersCss", "assets"], () => {
+gulp.task("build", ["html", "browserify", "angular-bootstrap-calendarCss", "materialCss", "appCss", "steppersCss", "assets", "fonts"], () => {
   const html = gulp.src("build/index.html")
     .pipe(htmlmin())
     .pipe(gulp.dest(paths.distDest));
@@ -175,10 +183,13 @@ gulp.task("build", ["html", "browserify", "angular-bootstrap-calendarCss", "mate
   const assets = gulp.src(`${paths.buildDest}assets/**`)
     .pipe(gulp.dest(`${paths.distDest}/assets/`));
 
-  return merge(html, js, css, assets);
+  const fonts = gulp.src(`${paths.buildDest}fonts/**`)
+    .pipe(gulp.dest(`${paths.distDest}/fonts/`));
+
+  return merge(html, js, css, assets, fonts);
 });
 
-gulp.task("default", ["html", "browserify", "angular-bootstrap-calendarCss", "materialCss", "appCss", "steppersCss", "assets"], () => {
+gulp.task("default", ["html", "browserify", "angular-bootstrap-calendarCss", "materialCss", "appCss", "steppersCss", "assets", "fonts"], () => {
   browserSync.init([`${paths.buildDest}/**/**.**`], {
     server: paths.buildDest,
     port: 4000,
