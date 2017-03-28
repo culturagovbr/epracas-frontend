@@ -567,7 +567,7 @@ md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolb
     /*background-color: rgb(63,81,181);*/
     /*color: rgba(255,255,255,0.87);*/
     /*background-color: rgba(0, 0, 0, 0.23);*/
-    background-color: rgba(0, 0, 0, 0.6);
+    /* background-color: rgba(0, 0, 0, 0.6); */
 }
 
 i.material-icons.middle{
