@@ -9,16 +9,11 @@ class PracaCardController {
 			_Toast: Toast,
 			_Praca: Praca,
 		})
-    // this._$state = $state;
-    // this._$document = $document;
-    // this._$mdDialog = $mdDialog;
-    // this._Praca = Praca;
-  }
 
-  header_url(praca)
-  {
-    return ~(praca.header_url.lastIndexOf(".jpg") && praca.header_url.lastIndexOf(".png"))?
-      praca.header_url: "assets/header.jpg"
+    if (angular.isUndefined(this.praca.header_img) || this.praca.header_img === null ) {
+      this.praca.header_img = "/assets/header.jpg";
+    }
+
   }
 
   infoPraca(praca) {
@@ -56,7 +51,7 @@ const PracaCard = {
     <md-list-item id="praca-card"
       class="praca-container"
       layout-align="space-between"
-      style="background-image: url({{ $ctrl.header_url($ctrl.praca) }})"
+      style="background-image: url({{$ctrl.praca.header_img}})"
       ng-click="$ctrl.navigateTo('app.praca', {pk: $ctrl.praca.id_pub})">
 
       <div class="md-list-item-text praca-text"

@@ -27,12 +27,11 @@ class PracaDetailCtrl {
             }))
             .then(atividades => {
                 console.log(atividades);
-                // $scope.praca.agenda = atividades
-                this.praca.agenda = atividades
+                praca.agenda = atividades
             })
 
-        if ((praca.header_url.lastIndexOf(".jpg") == -1) && (praca.header_url.lastIndexOf(".png") == -1)) {
-            praca.header_url = "/assets/header.jpg";
+        if (angular.isUndefined(praca.header_img) || praca.header_img === null ) {
+            praca.header_img = "/assets/header.jpg";
         }
 
         if (!praca.bio) {
@@ -133,89 +132,100 @@ class PracaDetailCtrl {
 
             switch (j + 1) {
                 case 1:
-                    it.title = 'Prédio';
+                    it.title = 'Bloco1';
                     it.background = "red";
                     it.span.row = it.span.col = 2;
-                    it.url = "https://tympanus.net/Development/GammaGallery/images/large/1.jpg";
+                    it.url = "/assets/praca-grid/bloco1.jpg";
                     break;
                 case 2:
-                    it.title = 'Prédios';
+                    it.title = 'Bloco2';
                     it.background = "green";
-                    it.url = "https://tympanus.net/Development/GammaGallery/images/large/2.jpg";
+                    it.url = "/assets/praca-grid/bloco2.jpg";
                     break;
                 case 3:
-                    it.title = 'Praça de Skates';
+                    it.title = 'Bloco3';
                     it.background = "darkBlue";
-                    it.url = "https://tympanus.net/Development/GammaGallery/images/large/3.jpg";
+                    it.url = "/assets/praca-grid/bloco3.jpg";
                     break;
                 case 4:
-                    it.title = 'San Francisco';
+                    it.title = 'Bloco4';
                     it.background = "blue";
                     it.span.col = 2;
-                    it.url = "https://tympanus.net/Development/GammaGallery/images/large/4.jpg";
+                    it.url = "/assets/praca-grid/bloco4.jpg";
                     break;
                 case 5:
-                    it.title = 'Farol';
+                    it.title = 'Bloco5';
                     it.background = "yellow";
                     it.span.row = it.span.col = 2;
-                    it.url = "https://tympanus.net/Development/GammaGallery/images/large/5.jpg";
+                    it.url = "/assets/praca-grid/bloco5.jpg";
                     break;
                 case 6:
-                    it.title = 'aAs doauishdoaisdh aosidh ';
+                    it.title = 'Bloco6';
                     it.background = "pink";
-                    it.url = "https://tympanus.net/Development/GammaGallery/images/large/6.jpg";
+                    it.url = "/assets/praca-grid/bloco6.jpg";
                     break;
                 case 7:
+                    it.title = 'Bloco7';
                     it.background = "darkBlue";
-                    it.url = "https://tympanus.net/Development/GammaGallery/images/large/7.jpg";
+                    it.url = "/assets/praca-grid/bloco7.jpg";
                     break;
                 case 8:
-                    it.title = 'Rua';
+                    it.title = 'Bloco8';
                     it.background = "purple";
-                    it.url = "https://tympanus.net/Development/GammaGallery/images/large/8.jpg";
+                    it.url = "/assets/praca-grid/bloco8.jpg";
                     break;
                 case 9:
+                    it.title = 'Bloco9';
                     it.background = "deepBlue";
-                    it.url = "https://tympanus.net/Development/GammaGallery/images/large/9.jpg";
+                    it.url = "/assets/praca-grid/bloco9.jpg";
                     break;
                 case 10:
+                    it.title = 'Bloco10';
                     it.background = "lightPurple";
-                    it.url = "https://tympanus.net/Development/GammaGallery/images/large/10.jpg";
+                    it.url = "/assets/praca-grid/bloco10.jpg";
                     break;
                 case 11:
+                    it.title = 'Bloco11';
                     it.background = "yellow";
-                    it.url = "https://tympanus.net/Development/GammaGallery/images/large/11.jpg";
+                    it.url = "/assets/praca-grid/bloco11.jpg";
                     break;
                 case 12:
+                    it.title = 'Bloco12';
                     it.background = "yellow";
-                    it.url = "https://tympanus.net/Development/GammaGallery/images/large/12.jpg";
+                    it.url = "/assets/praca-grid/bloco12.jpg";
                     // it.span.row = it.span.col = 2;
                     break;
                 case 13:
+                    it.title = 'Bloco13';
                     it.background = "pink";
-                    it.url = "https://tympanus.net/Development/GammaGallery/images/large/13.jpg";
+                    it.url = "/assets/praca-grid/bloco13.jpg";
                     break;
                 case 14:
+                    it.title = 'Bloco14';
                     it.background = "darkBlue";
-                    it.url = "https://tympanus.net/Development/GammaGallery/images/large/14.jpg";
+                    it.url = "/assets/praca-grid/bloco14.jpg";
                     break;
                 case 15:
+                    it.title = 'Bloco15';
                     it.background = "purple";
-                    it.url = "https://tympanus.net/Development/GammaGallery/images/large/15.jpg";
+                    it.url = "/assets/praca-grid/bloco15.jpg";
                     it.span.col = 2;
                     // it.span.row = it.span.col = 2;
                     break;
                 case 16:
+                    it.title = 'Bloco16';
                     it.background = "deepBlue";
-                    it.url = "https://tympanus.net/Development/GammaGallery/images/large/16.jpg";
+                    it.url = "/assets/praca-grid/bloco16.jpg";
                     break;
                 case 17:
+                    it.title = 'Bloco17';
                     it.background = "lightPurple";
-                    it.url = "https://tympanus.net/Development/GammaGallery/images/large/17.jpg";
+                    it.url = "/assets/praca-grid/bloco17.jpg";
                     break;
                 case 18:
+                    it.title = 'Bloco18';
                     it.background = "yellow";
-                    it.url = "https://tympanus.net/Development/GammaGallery/images/large/18.jpg";
+                    it.url = "/assets/praca-grid/bloco18.jpg";
                     break;
             }
             results.push(it);
