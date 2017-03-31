@@ -14,7 +14,7 @@ class PracaDetailCtrl {
         });
 
 
-        Atividade.list(praca)
+        Atividade.list(praca.id_pub)
             .then(atividades => atividades.map(atividade => {
                 if (!atividade.ocorrencia) return atividade;
 
