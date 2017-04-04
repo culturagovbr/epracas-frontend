@@ -21,3 +21,20 @@ nav {
     of the button to still show through. */
     background-color: rgba(33, 150, 243, 0.5);
 }
+
+.fixed-action-btn {
+    position: fixed;
+    right: 23px;
+    bottom: 10px;
+    padding-top: 15px;
+    margin-bottom: 0;
+    z-index: 998;
+}
+
+#footer-brasil {
+    height: 64px;
+}
+
+#wrapper-footer-brasil {
+    padding-top: 8px;
+}

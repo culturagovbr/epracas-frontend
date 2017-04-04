@@ -1,5 +1,13 @@
-<div class="limite" layout="row">
-	<div layout-align="center center">
+<style>
+	.menu-dashboard{
+		position: absolute;
+		z-index: 2;
+		left: 0;
+	}
+</style>
+
+<div class="container" layout="row">
+	<div layout-align="center center" class="menu-dashboard">
 		<md-sidenav
 			class="md-sidenav-left"
 			md-is-locked-open="$mdMedia('gt-md')"
@@ -41,7 +49,5 @@
 					</md-list>
 		</md-sidenav>
 	</div>
-
-  <div ui-view layout-fill></div>
-
+  <div ui-view layout-fill class="container"></div>
 </div>
