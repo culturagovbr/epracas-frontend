@@ -272,7 +272,6 @@ class PracaDetailCtrl {
             };
         }
 
-				debugger;
 				if (this.permissionIsManagerOrAdmin(this.currentUser, this.praca)){
 						userMenu.event = {
 							id: "evento",
