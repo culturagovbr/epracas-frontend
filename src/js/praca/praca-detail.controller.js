@@ -258,7 +258,7 @@ class PracaDetailCtrl {
     buildMenu(currentUser) {
         const userMenu = {};
 
-        if ((angular.isUndefined(currentUser.is_staff) || currentUser.is_staff === null) && (angular.isUndefined(this.praca.gestor) || this.praca.gestor === null)) {
+        if ((currentUser.is_staff === false) && (angular.isUndefined(this.praca.gestor) || this.praca.gestor === null)) {
             userMenu.vinculo = {
                 id: "vinculo",
                 name: "Solicitar vinculo para gestão da Praça",
