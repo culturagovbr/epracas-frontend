@@ -1574,3 +1574,18 @@ mwl-calendar .cal-day-tick {
     width: 100%;
     height: 100%;
 }
+
+md-input-container {
+    /*height: 46px;*/
+    height: 56px;
+}
+md-input-container input.md-datepicker-input{
+    width: 170px;
+}
+md-select {
+    height: 30px;
+}
+
+.md-datepicker , .md-select-menu-container , .md-datepicker-calendar-pane{
+    width: 338px;
+}

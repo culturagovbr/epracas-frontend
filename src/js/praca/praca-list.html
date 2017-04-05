@@ -1,19 +1,14 @@
 <div layout="column" class="limite">
-
 	<md-content>
 		<md-list flex>
 			<md-subheader>Lista de Praças</md-subheader>
-
 			<div layout-gt-xs="row" layout-padding>
-
 				<md-input-container>
 					<input ng-model="filtro.cidade" placeholder="Filtre pelo municipio" autofocus>
 				</md-input-container>
-
 				<md-input-container>
 					<input ng-model="filtro.uf" placeholder="Filtre pelo estado(UF)">
 				</md-input-container>
-
 				<md-input-container>
 					<md-select ng-model="filtro.modelo" placeholder="Filtre pelo modelo">
 						<md-option ng-repeat="modelo in modelos"
@@ -22,23 +17,20 @@
 						</md-option>
 					</md-select>
 				</md-input-container>
-
 				<md-input-container>
 					<md-select ng-model="filtro.situacao" placeholder="Filtre pela situação">
-						<md-option ng-repeat="situacao in situacoes" 
+						<md-option ng-repeat="situacao in situacoes"
 							value="{{ situacao.value }}">
 							{{ situacao.descricao }}
 						</md-option>
 					</md-select>
 				</md-input-container>
-
 			</div>
-
-			<md-list-item 
-				class="md-3-line" 
-				layout-padding 
+			<md-list-item
+				class="md-3-line"
+				layout-padding
 				ng-repeat="praca in $ctrl.pracas |
-					filter: { 
+					filter: {
 						municipio: filtro.municipio,
 						uf: filtro.uf,
 						modelo: filtro.modelo,
@@ -58,5 +50,5 @@
 
 
 
-	
+
 </div>
