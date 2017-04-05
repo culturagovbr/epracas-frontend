@@ -1,0 +1,50 @@
+<md-dialog arial-label="Upload de imagens da Praça">
+  <md-dialog-content>
+    <md-content md-theme="docs-dark" layout-padding>
+      <h2>Upload de imagens da Praça</h2>
+      <p>Você pode enviar imagens relacionadas à Praça. São permitidos apenas arquivos de imagem e com tamanho máximo de 10MB.</p>
+    </md-content>
+    <md-content>
+      <md-button
+        class="md-raised"
+        ngf-select
+        ng-model="$ctrl.images"
+        ngf-multiple="true"
+        ngf-pattern="'image/*'"
+        ngf-accept="'image/*'"
+        ngf-max-size="10MB">
+        Selecione as imagens
+      </md-button>
+      <md-card ng-repeat="image in $ctrl.images" ng-show="$ctrl.images">
+        <div layout="row" layout-align="left center">
+          <div flex=50 layout-margin>
+            <img ngf-resize="{width:350}" ngf-src="image">
+          </div>
+          <div flex=50 layout-margin>
+            <md-input-container>
+              <label>Titulo da Imagem</label>
+              <input name="imageTitle" ng-model="imagem.title" />
+            </md-input-container>
+            <md-input-container>
+              <label>Descrição da Imagem</label>
+              <textarea name="imageDescription" ng-model="imagem.description" rows=5/>
+            </md-input-container>
+          </div>
+        </div>
+      </md-card>
+    </md-content>
+    <md-progress-linear
+      ng-show="$ctrl.progress >= 0"
+      md-mode="determinate"
+      value="{{$ctrl.progress}}">
+    </md-progress-linear>
+  </md-dialog-content>
+  <md-dialog-actions layout="row">
+    <md-button ng-click="$ctrl.cancel()">
+      Cancelar
+    </md-button>
+    <md-button class="md-no-focus md-raised md-primary" ng-disabled="!$ctrl.images" ng-click="$ctrl.upload(images)">
+      Enviar Todas as Imagens
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

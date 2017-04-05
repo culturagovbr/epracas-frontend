@@ -26,5 +26,8 @@ pracaModule.controller("PracaInfoCtrl", PracaInfoCtrl);
 import ParceirosCtrl from "./parceiros.controller";
 pracaModule.controller("ParceirosCtrl", ParceirosCtrl);
 
+import UploadImgCtrl from "./galeria-upload.controller";
+pracaModule.controller("UploadImgCtrl", UploadImgCtrl);
+
 
 export default pracaModule;

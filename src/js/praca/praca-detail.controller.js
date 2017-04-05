@@ -327,6 +327,19 @@ class PracaDetailCtrl {
 								locals: {praca: this.praca},
 							},
 						};
+
+						userMenu.uploadImg = {
+							id: "uploadImg",
+							name: "Enviar imagens para a Praça",
+							icon: "photo_camera",
+							dialog: {
+								controller: "UploadImgCtrl",
+								controllerAs: "$ctrl",
+								templateUrl: "praca/galeria-upload.tmpl.html",
+								parent: angular.element(this._$document.body),
+								locals: {praca: this.praca},
+							},
+						};
 				}
 
 				return userMenu;
