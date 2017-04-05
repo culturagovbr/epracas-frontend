@@ -72,7 +72,7 @@
         <div class="activities-log" layout-gt-xs="row">
             <div class="event-list">
                 <event-previewer ng-repeat="event in $ctrl.praca.agenda
-					| filter: { data_inicio: $ctrl.parseDate($ctrl.myDate) }app
+					| filter: { data_inicio: $ctrl.parseDate($ctrl.myDate) }
 					| orderBy: 'event.data_inicio'
 					| limitTo: 4"
                                  event="event">
@@ -101,8 +101,7 @@
                               md-colspan-sm="1"
                               md-colspan-xs="1"
                               ng-class="objPhoto.background">
-                    <img width="135%" class="materialboxed" data-caption="{{objPhoto.title}}"
-                         src="{{objPhoto.url}}">
+                    <img style="width: 100%; height: 100%" class="materialboxed" data-caption="{{objPhoto.title}}" ng-src="{{objPhoto.url}}">
                     <md-grid-tile-footer><h3>{{objPhoto.title}}</h3></md-grid-tile-footer>
                 </md-grid-tile>
             </md-grid-list>

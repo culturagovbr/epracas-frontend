@@ -241,73 +241,25 @@ class PracaDetailCtrl {
         return moment(dataObj).format("DD.MM.YYYY")
     }
 
+		permissionIsManagerOrAdmin(user, praca){
+			if (user.is_staff === true) {
+				return true
+			} else if ((angular.isDefined(praca.gestor) && praca.gestor !== null)) {
+				return user.id_pub === praca.gestor.user_id_pub
+			} else {
+				return false
+			}
+		}
+
     buildMenu(currentUser) {
         const userMenu = {};
 
-        if (angular.isDefined(currentUser) &&
-            (this.currentUser.is_staff || this.currentUser.id_pub === this.praca.gestor.user_id_pub)) {
-            userMenu.event = {
-                id: "evento",
-                name: "Adicionar Evento",
-                icon: "insert_invitation",
-                dialog: {
-                    controller: "EventCtrl",
-                    controllerAs: "$ctrl",
-                    templateUrl: "praca/event-dialog.tmpl.html",
-                    parent: angular.element(this._$document.body),
-                    locals: {praca: this.praca},
-                    fullscreen: true,
-                },
-            };
-
-            userMenu.partner = {
-                id: "parceiro",
-                name: "Adicionar Parceiro",
-                icon: "people",
-                dialog: {
-                    controller: "ParceirosCtrl",
-                    controllerAs: "$ctrl",
-                    templateUrl: "praca/parceiros-dialog.tmpl.html",
-                    parent: angular.element(this._$document.body),
-                    locals: {praca: this.praca},
-                    fullscreen: true,
-                },
-            };
-
-            userMenu.profile = {
-                id: "perfil",
-                name: "Editar informações sobre a Praça",
-                icon: "info",
-                dialog: {
-                    controller: "PracaInfoCtrl",
-                    controllerAs: "$ctrl",
-                    templateUrl: "praca/pracainfo-dialog.tmpl.html",
-                    parent: angular.element(this._$document.body),
-                    locals: {praca: this.praca},
-                    fullscreen: true,
-                },
-            };
-
-            userMenu.headerImg = {
-                id: "headerImg",
-                name: "Editar o cabeçalho da pagina da Praça",
-                icon: "aspect_ratio",
-                dialog: {
-                    controller: "ChangeHeaderImgCtrl",
-                    controllerAs: "$ctrl",
-                    templateUrl: "praca/header-dialog.tmpl.html",
-                    parent: angular.element(this._$document.body),
-                    locals: {praca: this.praca},
-                },
-            };
-        }
-
-        if ((angular.isUndefined(currentUser.is_staff) || currentUser.is_staff === null) && (angular.isUndefined(this.praca.gestor) || this.praca.gestor === null)) {
+        if ((currentUser.is_staff === false) && (angular.isUndefined(this.praca.gestor) || this.praca.gestor === null)) {
             userMenu.vinculo = {
-                id: "evento",
+                id: "vinculo",
                 name: "Solicitar vinculo para gestão da Praça",
                 icon: "assignment_ind",
-                action: this.showVinculacao,
+                // action: this.showVinculacao,
                 dialog: {
                     controller: "VinculacaoCtrl",
                     controllerAs: "$ctrl",
@@ -319,9 +271,69 @@ class PracaDetailCtrl {
                 },
             };
         }
-        return userMenu;
 
-    }
+				debugger;
+				if (this.permissionIsManagerOrAdmin(this.currentUser, this.praca)){
+						userMenu.event = {
+							id: "evento",
+							name: "Adicionar Evento",
+							icon: "insert_invitation",
+							dialog: {
+								controller: "EventCtrl",
+								controllerAs: "$ctrl",
+								templateUrl: "praca/event-dialog.tmpl.html",
+								parent: angular.element(this._$document.body),
+								locals: {praca: this.praca},
+								fullscreen: true,
+							},
+						};
+
+						userMenu.partner = {
+							id: "parceiro",
+							name: "Adicionar Parceiro",
+							icon: "people",
+							dialog: {
+								controller: "ParceirosCtrl",
+								controllerAs: "$ctrl",
+								templateUrl: "praca/parceiros-dialog.tmpl.html",
+								parent: angular.element(this._$document.body),
+								locals: {praca: this.praca},
+								fullscreen: true,
+							},
+						};
+
+						userMenu.profile = {
+							id: "perfil",
+							name: "Editar informações sobre a Praça",
+							icon: "info",
+							dialog: {
+								controller: "PracaInfoCtrl",
+								controllerAs: "$ctrl",
+								templateUrl: "praca/pracainfo-dialog.tmpl.html",
+								parent: angular.element(this._$document.body),
+								locals: {praca: this.praca},
+								fullscreen: true,
+							},
+						};
+
+						userMenu.headerImg = {
+							id: "headerImg",
+							name: "Editar o cabeçalho da pagina da Praça",
+							icon: "aspect_ratio",
+							dialog: {
+								controller: "ChangeHeaderImgCtrl",
+								controllerAs: "$ctrl",
+								templateUrl: "praca/header-dialog.tmpl.html",
+								parent: angular.element(this._$document.body),
+								locals: {praca: this.praca},
+							},
+						};
+				}
+
+				return userMenu;
+
+		}
+
     showDialog(dialog, $event) {
         this._$mdDialog.show(dialog, $event);
     }

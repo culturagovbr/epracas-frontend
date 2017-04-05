@@ -75,14 +75,8 @@ export default class User {
     if (angular.isDefined(accessToken) && (angular.isUndefined(this.current) || this.current === null)) {
       this.getUserInfo(accessToken)
       .then(
-        (res) => {
-          this.current = res.data;
-          deferred.resolve(true);
-        },
-        (err) => {
-          this.current = null;
-          deferred.resolve(false);
-        }
+        res =>  this.current = res.data,
+        // err =>  this.current = null 
       )
       .then(
         (res) => {
