@@ -1,4 +1,70 @@
 @charset "UTF-8";
+/* CUSTOM FOR UI-ROUTER*/
+
+.fadeInDown.ng-enter, .fadeInDown.ng-leave, .fadeOutUp.ng-enter, .fadeOutUp.ng-leave {
+    position: absolute;
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+}
+.fadeInDown.ng-enter {
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+}
+
+.fadeInDown.ng-leave {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+}
+
+/*.bounce.ng-enter {*/
+/*-webkit-animation-name: bounceInDown;*/
+/*animation-name: bounceInDown;*/
+/*}*/
+
+/*.bounce.ng-leave {*/
+/*-webkit-animation-name: bounceOutDown;*/
+/*animation-name: bounceOutDown;*/
+/*}*/
+* {
+  box-sizing: border-box;
+}
+
+.bounce.ng-leave, .fade.ng-leave, .zoom.ng-leave, .fadeLeftBig, .fadeTightBig {
+    -webkit-animation-duration: 0s;
+    animation-duration: 0s;
+}
+.bounce.ng-enter{
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-name: bounceInDown;
+    animation-name: bounceInDown;
+}
+.fade.ng-enter {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+.zoom.ng-enter {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-name: zoomIn;
+    animation-name: zoomIn;
+}
+.fadeLeftBig.ng-enter {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-name: fadeInLeftBig;
+    animation-name: fadeInLeftBig;
+}
+.fadeRightBig.ng-enter {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-name: fadeInRightBig;
+    animation-name: fadeInRightBig;
+}
+
+
 
 /*!
  * animate.css -http://daneden.me/animate

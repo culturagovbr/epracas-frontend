@@ -1,53 +1,43 @@
-<style>
-	.menu-dashboard{
-		position: absolute;
-		z-index: 2;
-		left: 0;
-	}
-</style>
-
+<div class="dynamic">
+    <div class="menu animated fadeInLeft">
+        <div class="title md-primary">
+            <div class="row showMenu">
+                <div class="col_1">
+                    <section class="material-green">
+                        <div class="material-icon hamburger">
+                            <span class="first"></span>
+                            <span class="second"></span>
+                            <span class="third"></span>
+                        </div>
+                    </section>
+                </div>
+                <div class="col_2">Área do Gestor MinC</div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="row waves-effect waves-orange" data-ng-class="{ active: $state.includes('app.dashboard.pracas') }" ng-click="$state.go('app.dashboard.pracas')">
+                <div class="col_1"><i class="material-icons">account_balance</i></div>
+                <div class="col_2">Praças</div>
+            </div>
+            <div class="row waves-effect waves-orange" >
+                <div class="col_1"><i class="material-icons">group_work</i></div>
+                <div class="col_2">Gestores</div>
+            </div>
+            <div class="row waves-effect waves-orange" data-ng-class="{ active: $state.includes('app.dashboard.events') }" ng-click="$state.go('app.dashboard.events')">
+                <div class="col_1"><i class="material-icons">date_range</i></div>
+                <div class="col_2">Agenda e Eventos</div>
+            </div>
+            <div class="row waves-effect waves-orange" data-ng-class="{ active: $state.includes('app.dashboard.vinculacao') }" ng-click="$state.go('app.dashboard.vinculacao')">
+                <div class="col_1"><i class="material-icons">assignment_ind</i></div>
+                <div class="col_2">Pedidos de Vinculação</div>
+            </div>
+            <div class="row waves-effect waves-orange" data-ng-class="{ active: $state.includes('app.dashboard.usuarios') }" ng-click="$state.go('app.dashboard.usuarios')">
+                <div class="col_1"><i class="material-icons">face</i></div>
+                <div class="col_2">Usuários</div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container" layout="row">
-	<div layout-align="center center" class="menu-dashboard">
-		<md-sidenav
-			class="md-sidenav-left"
-			md-is-locked-open="$mdMedia('gt-md')"
-			md-whiteframe="4"
-			layout="column">
-			<md-toolbar
-				class="md-theme-indigo md-toolbar-tools minc-icon"
-				layout-padding
-				layout="space-between center">
-				<md-button class="md-icon-button">
-					<md-icon>dashboard</md-icon>
-				</md-button>
-				<h2>
-					<span>Área do Gestor MinC</span>
-				</h2>
-			</md-toolbar>
-			<md-content>
-				<md-list flex>
-					<md-list-item ng-click="$state.go('app.dashboard.pracas')">
-						<md-icon class="md-primary">account_balance</md-icon>
-						<p>Praças</p>
-					</md-list-item>
-					<md-list-item ng-click="null">
-						<md-icon class="md-primary">group_work</md-icon>
-						<p>Gestores</p>
-					</md-list-item>
-					<md-list-item ng-click="$state.go('app.dashboard.events')">
-						<md-icon class="md-primary">date_range</md-icon>
-						<p>Agenda e Eventos</p>
-					</md-list-item>
-					<md-list-item ng-click="$state.go('app.dashboard.vinculacao')">
-						<md-icon class="md-primary">assignment_ind</md-icon>
-						<p>Pedidos de Vinculação</p>
-					</md-list-item>
-					<md-list-item ng-click="$state.go('app.dashboard.usuarios')">
-						<md-icon class="md-primary">face</md-icon>
-						<p>Usuários</p>
-					</md-list-item>
-					</md-list>
-		</md-sidenav>
-	</div>
-  <div ui-view layout-fill class="container"></div>
+  <div ui-view layout-fill class="container animated fade"></div>
 </div>

@@ -41,8 +41,12 @@ function AppConfig(
 
   $mdThemingProvider
     .theme("default")
-    .primaryPalette("indigo")
-    .accentPalette("pink")
+    .primaryPalette("blue", {
+        'default': '700',
+    })
+    .accentPalette("orange", {
+      'default': '800'
+    })
     .warnPalette("red")
     .backgroundPalette("grey");
 
