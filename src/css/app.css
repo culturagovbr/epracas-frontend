@@ -1641,12 +1641,13 @@ md-select {
     margin: 0;
     top: 33px;
     z-index: 2;
+    /*z-index: 1;*/
     /*height: 64px;*/
     line-height: 64px;
     white-space: nowrap;
     transition: width 0.3s;
 
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    /*box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);*/
     height: 100%;
     outline: none;
     height: calc(100vh - 97px);
@@ -1680,18 +1681,21 @@ md-select {
 }
 .dynamic .content{
     /*height: 100vh;*/
-    height: calc(100vh - 97px);
+    /*height: calc(100vh - 97px);*/
+    height: calc(100vh );
     /*height: 80vh;*/
     /*background-color: green;*/
     background-color: white;
     text-shadow: none;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 .dynamic .menu .content .row:hover {
     color: #000;
     /*background-color: rgb(255, 156, 67);*/
     background-color: rgba(255, 184, 61, 0.5);
-    transition: background-color 0.1s;
+    /*background-color: rgba(255, 105, 144, 0.34);*/
+    transition: background-color 0.2s;
     /*transition: background-color 0.8s;*/
 }
 .dynamic .menu .content .row{
@@ -1699,7 +1703,15 @@ md-select {
     transition: background-color 0.3s , color 0.3s;
     /*transition-delay: 0.3s, 4ms;*/
     /*transition-delay: 0.2s, 4ms;*/
-    transition-delay: 0.2s;
+    transition-delay: 0.1s;
+    border-bottom: solid 1px rgba(0,0,0,.12);
+}
+.dynamic .menu .content {
+    display: block;
+    transition: background-color 0.3s , color 0.3s;
+    /*transition-delay: 0.3s, 4ms;*/
+    /*transition-delay: 0.2s, 4ms;*/
+    transition-delay: 0.1s;
     border-bottom: solid 1px rgba(0,0,0,.12);
 }
 
@@ -1837,7 +1849,7 @@ section:active:before {
 footer {
     z-index: 3;
 }
-.fixed-action-btn {
+.fixed-action-btn , button.md-fab {
     z-index: 4;
 }
 .waves-effect.waves-pink .waves-ripple {
@@ -1851,4 +1863,6 @@ footer {
 .dynamic .menu .active {
     color: #fff;
     background-color: #EF6C00;
+    /*background-color: #E91E63;*/
+    /*background-color: #1A237E;*/
 }
