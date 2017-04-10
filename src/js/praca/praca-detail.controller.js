@@ -86,6 +86,10 @@ class PracaDetailCtrl {
             $('.materialboxed').materialbox();
             let elmTabPracas = $('.tab-pracas'),
                 intPracasPosition = elmTabPracas.offset().top;
+
+            setTimeout(()=>{
+                intPracasPosition = elmTabPracas.offset().top;
+            }, 300);
             $document.on('scroll', () => {
                 let arrElmScrollContainers = $('md-tab'),
                     arrObjScrollContainers = arrElmScrollContainers.map((intKey, elm) => {
@@ -106,7 +110,7 @@ class PracaDetailCtrl {
                         // console.info('Ativou Comeco:' + objValue.intPositionStart + ' Final ' + objValue.intPositionEnd );
                     }
                 });
-                if ($window.scrollY >= intPracasPosition) {
+                if (intPosition >= intPracasPosition) {
                     elmTabPracas.addClass('fixed');
                 } else {
                     elmTabPracas.removeClass('fixed');
