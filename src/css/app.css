@@ -1681,13 +1681,15 @@ md-select {
 }
 .dynamic .content{
     /*height: 100vh;*/
-    /*height: calc(100vh - 97px);*/
-    height: calc(100vh );
+    height: calc(100vh - 97px);
+    /*height: calc(100vh );*/
     /*height: 80vh;*/
     /*background-color: green;*/
     background-color: white;
     text-shadow: none;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    /*box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);*/
+
+    box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
 }
 
 .dynamic .menu .content .row:hover {
@@ -1865,4 +1867,8 @@ footer {
     background-color: #EF6C00;
     /*background-color: #E91E63;*/
     /*background-color: #1A237E;*/
+    /*box-shadow: inset 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);*/
+    /*box-shadow: inset 0 1px 1px 1px rgba(0,0,0,.2);*/
+    /*box-shadow: inset 0px 0px 3px 1px rgba(0,0,0,.2);*/
+    /*z-index: 4;*/
 }
