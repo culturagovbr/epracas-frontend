@@ -1691,7 +1691,7 @@ md-select {
     color: #000;
     /*background-color: rgb(255, 156, 67);*/
     background-color: rgba(255, 184, 61, 0.5);
-    transition: background-color 0.2s;
+    transition: background-color 0.1s;
     /*transition: background-color 0.8s;*/
 }
 .dynamic .menu .content .row{

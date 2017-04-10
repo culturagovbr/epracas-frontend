@@ -1,57 +1,65 @@
 <md-dialog aria-label="Vinculação de Gestor">
-	<form ng-cloak name="VinculoForm" ng-submit="$ctrl.save()">
-		<md-dialog-content layout-align="start end">
-			<div layout="column">
-				<div>
-					<md-content md-theme="docs-dark" layout-padding>
-						<h2>Pedido de Vinculação como Gestor da Praça</h2>
-						<p>Gestores de Praça tem permissões para alterar informações, agendar eventos e cadastrar parceiros e outros gestores. Lembre-se que para requisitar o vinculo com esta Praça, é necessário enviar uma cópia digitalizada do seu CPF e de algum documento comprobatório do seu vínculo com esta Praça.</p>
-					</md-content>
-					<md-input-container class="md-block" flex-gt-sm layout-padding>
-            <div layout="row" layout-padding>
-              <img ngf-resize="{width:200, height:200}" ngf-src="vincFiles.CPF" ng-show="vincFiles.CPF">
-              <div layout="column">
-                <p ng-show="vincFiles.CPF">Nome do Arquivo: {{vincFiles.CPF.name}}</p>
-                <md-button
-                   type="file"
-                   ngf-accept="'image/*, application/pdf'"
-                   ngf-max-size="10MB"
-                   ngf-select
-                   ng-model="vincFiles.CPF"
-                   class="md-raised"
-                   label="CPF">
-                  Anexe seu CPF
-                </md-button>
-              </div>
+    <form ng-cloak name="VinculoForm" ng-submit="$ctrl.save()">
+        <md-dialog-content layout-align="start end">
+            <div layout="column">
+                <div>
+                    <md-content md-theme="docs-dark" layout-padding>
+                        <h2>Pedido de Vinculação como Gestor da Praça</h2>
+                        <p>Gestores de Praça tem permissões para alterar informações, agendar eventos e cadastrar
+                            parceiros e outros gestores. Lembre-se que para requisitar o vinculo com esta Praça, é
+                            necessário enviar uma cópia digitalizada do seu CPF e de algum documento comprobatório do
+                            seu vínculo com esta Praça.</p>
+                    </md-content>
+                    <!--<md-input-container class="md-block" flex-gt-sm layout-padding>-->
+                    <div layout-padding>
+                        <div layout="row" layout-padding>
+                            <img ngf-resize="{width:200, height:200}" ngf-src="vincFiles.CPF" ng-show="vincFiles.CPF">
+                            <div layout="column">
+                                <p ng-show="vincFiles.CPF">Nome do Arquivo: {{vincFiles.CPF.name}}</p>
+                                <md-button
+                                        type="file"
+                                        ngf-accept="'image/*, application/pdf'"
+                                        ngf-max-size="10MB"
+                                        ngf-select
+                                        ng-model="vincFiles.CPF"
+                                        class="md-raised"
+                                        label="CPF">
+                                    Anexe seu CPF
+                                </md-button>
+                            </div>
+                        </div>
+                        <p>Portaria de Constituição da UGL ou outro documento comprobatório do vínculo como responsável
+                            pelas informações deste CEU:</p>
+                        <div layout="row" layout-padding>
+                            <img ngf-resize="{width:200, height:200}" ngf-src="vincFiles.comp" ng-show="vincFiles.comp">
+                            <div layout="column">
+                                <p ng-show="vincFiles.comp">Nome do Arquivo: {{vincFiles.comp.name}}</p>
+                                <md-button
+                                        type="file"
+                                        ngf-accept="'image/*, application/pdf'"
+                                        ngf-max-size="10MB"
+                                        ngf-select name="cpfFile"
+                                        ng-model="vincFiles.comp"
+                                        class="md-raised"
+                                        label="DocComprobatorio">
+                                    Anexe a comprovação
+                                </md-button>
+                            </div>
+                        </div>
+                        <!--</md-input-container>-->
+                    </div>
+                </div>
             </div>
-            <p>Portaria de Constituição da UGL ou outro documento comprobatório do vínculo como responsável pelas informações deste CEU:</p>
-            <div layout="row" layout-padding>
-              <img ngf-resize="{width:200, height:200}" ngf-src="vincFiles.comp" ng-show="vincFiles.comp">
-              <div layout="column">
-                <p ng-show="vincFiles.comp">Nome do Arquivo: {{vincFiles.comp.name}}</p>
-                <md-button
-                   type="file"
-                   ngf-accept="'image/*, application/pdf'"
-                   ngf-max-size="10MB"
-                   ngf-select name="cpfFile"
-                   ng-model="vincFiles.comp"
-                   class="md-raised"
-                   label="DocComprobatorio">
-                  Anexe a comprovação
-                  </md-button>
-              </div>
-            </div>
-					</md-input-container>
-			</div>
-		</md-dialog-content>
-
-		<md-dialog-actions>
-			<md-button ng-click="$ctrl.cancel()">
-				Cancelar
-			</md-button>
-			<md-button type="submit" class="md-primary md-raised md-no-focus" ng-disabled="!(vincFiles.CPF && vincFiles.comp)" ng-click="$ctrl.upload($ctrl._praca.id_pub, vincFiles)">
-				Enviar
-			</md-button>
-		</md-dialog-actions>
-	</form>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <md-button ng-click="$ctrl.cancel()">
+                Cancelar
+            </md-button>
+            <md-button type="submit" class="md-primary md-raised md-no-focus"
+                       ng-disabled="!(vincFiles.CPF && vincFiles.comp)"
+                       ng-click="$ctrl.upload($ctrl._praca.id_pub, vincFiles)">
+                Enviar
+            </md-button>
+        </md-dialog-actions>
+    </form>
 </md-dialog>
