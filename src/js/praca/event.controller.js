@@ -1,16 +1,18 @@
 import moment from "moment";
 class EventCtrl {
-  constructor($scope, $http, $log, $mdDialog, Toast, Atividade, AppConstants) {
+  constructor($scope, $http, $log, $mdDialog, Toast, Atividade, AppConstants, praca) {
     "ngInject";
 
-    this._$scope = $scope;
-    this._$http = $http;
-    this._$log = $log;
-    this._$mdDialog = $mdDialog;
-    this._Toast = Toast;
-    this._agendaApiUrl = AppConstants.agendaApi;
-    this._Atividade = Atividade;
-    this._praca = $scope.praca;
+    angular.extend(this, {
+      _$scope: $scope,
+      _$http: $http,
+      _$log: $log,
+      _$mdDialog: $mdDialog,
+      _Toast: Toast,
+      _agendaApiUrl: AppConstants.agendaApi,
+      _Atividade: Atividade,
+      praca: praca,
+    })
 
     this._Atividade.options()
       .then(data => {
@@ -326,7 +328,7 @@ class EventCtrl {
     this._$log.log("Salvando");
     this.isSaving = true;
     if (this.eventData.id_pub) {
-      this.eventData.praca = this._praca.id_pub;
+      this.eventData.praca = this.praca.id_pub;
       let date = moment(this.eventData.ocorrencia.repeat_until).format("YYYY-MM-DD");
       this.eventData.ocorrencia.repeat_until = date;
 
@@ -346,7 +348,7 @@ class EventCtrl {
           }
         );
     } else {
-      this.eventData.praca = this._praca.id_pub;
+      this.eventData.praca = this.praca.id_pub;
       let date = moment(this.eventData.ocorrencia.repeat_until).format("YYYY-MM-DD");
       this.eventData.ocorrencia.repeat_until = date;
       this._Atividade.new(this.eventData)

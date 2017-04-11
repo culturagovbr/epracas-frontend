@@ -1,164 +1,175 @@
 <md-dialog layout="column" aria-label="Cadastro de Atividade da Praça">
-    <form name="EventForm" ng-disabled="$ctrl.isSaving" ng-submit="$ctrl.save($ctrl.eventData)">
-        <md-dialog-content>
-            <md-content md-theme="docs-dark" layout-padding>
-                <h2>Adicioniar Atividade</h2>
-                <div layout="row">
-                    <md-input-container class="md-block" flex>
-                        <label>Titulo da atividade</label>
-                        <input name="eventName" ng-required="true" ng-model="$ctrl.eventData.titulo" md-autofocus />
-                    </md-input-container>
-                </div>
-            </md-content>
-            <div layout-padding>
-                <div layout="row">
-                    <md-input-container flex>
-                        <md-icon>work</md-icon>
-                        <label>Área da Atividade</label>
-                        <md-select ng-model="$ctrl.eventData.area" ng-change="$ctrl.parseArea()">
-                            <md-option ng-repeat="area in $ctrl._areaAtividade" value="{{area}}">
-                                {{area.display_name}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-                    <md-input-container flex ng-mouseenter="$ctrl.debug()">
-                        <md-icon>work</md-icon>
-                        <label>Subarea da Atividade</label>
-                        <md-select ng-model="$ctrl.eventData.subarea">
-                            <!-- <md-option ng-repeat="subarea in angular.toJson($ctrl.eventData.area).subarea" value="{{subarea.value}}" {{subarea.display_name}} -->
-                            <md-option ng-repeat="subarea in $ctrl.eventData.subareas" value="{{subarea.value}}">
-                                {{subarea.display_name}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-                <div layout="row">
-                    <md-input-container class="md-block" flex>
-                        <md-icon>swap_vertical_circle</md-icon>
-                        <label>Faixa Etária</label>
-                        <md-select ng-model="$ctrl.eventData.faixaEtaria">
-                            <md-option ng-repeat="faixaEtaria in $ctrl._faixaEtariaAtividade" value="{{faixaEtaria.value}}">
-                                {{faixaEtaria.display_name}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-                <div layout="row">
-                    <md-input-container class="md-block" flex>
-                        <md-icon>edit_location</md-icon>
-                        <label>Abrangência Territorial</label>
-                        <md-select ng-model="$ctrl.eventData.territorio">
-                            <md-option ng-repeat="territorio in $ctrl._territorioAtividade" value="{{territorio.value}}">
-                                {{territorio.display_name}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-                <div layout="row">
-                    <md-input-container class="md-block" flex>
-                        <md-icon>people_outline</md-icon>
-                        <label>Atividade Destinada à Publico ou Grupo Específico</label>
-                        <md-select ng-model="$ctrl.eventData.publico">
-                            <md-option ng-repeat="publico in $ctrl._publicoAtividade" value="{{publico.value}}">
-                                {{publico.display_name}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-                    <md-input-container class="md-block" flex>
-                        <md-icon>people_outline</md-icon>
-                        <md-icon>people_outline</md-icon>
-                        <label>Quantidade de pessoas esperadas para o evento</label>
-                        <input required name="publicoEsperado" type="number" ng-model="$ctrl.eventData.publico_esperado">
-                    </md-input-container>
-                </div>
-                <div layout="row">
-                    <md-input-container class="md-block" flex>
-                        <label>Data de início</label>
-                        <md-datepicker ng-required="true" ng-model="$ctrl.eventData.ocorrencia.start" ></md-datepicker>
-                    </md-input-container>
-                    <md-input-container class="md-block" flex>
-                        <md-icon>schedule</md-icon>
-                        <label>Horário de início</label>
-                        <input name="horaInicio" mask="23:59" ng-model="$ctrl.eventData.hora_inicio"/>
-                    </md-input-container>
-                </div>
-                <div layout="row">
-                    <md-input-container class="md-block" flex>
-                        <label>Data de encerramento</label>
-                        <md-datepicker ng-required="true"
-                                       ng-model="$ctrl.eventData.ocorrencia.repeat_until" style="width: 170px;"></md-datepicker>
-                    </md-input-container>
-                    <md-input-container class="md-block" flex>
-                        <md-icon>schedule</md-icon>
-                        <label>Horário de Encerramento</label>
-                        <input name="horaEncerramento" mask="29:69" ng-model="$ctrl.eventData.hora_encerramento">
-                    </md-input-container>
-                </div>
-                <div layout="row">
-                    <md-input-container class="md-block" flex>
-                        <md-icon>schedule</md-icon>
-                        <label>Carga Horária</label>
-                        <input name="cargaHoraria" type="number" ng-model="$ctrl.eventData.carga_horaria" required>
-                    </md-input-container>
-                    <md-input-container class="md-block" flex>
-                        <md-icon style="top: 0;">date_range</md-icon>
-                        <label>Periodicidade</label>
-                        <!--<md-select name="type" ng-model="$ctrl.eventData.periodicidade" required>-->
-                        <md-select name="type" ng-model="$ctrl.eventData.ocorrencia.frequency_type" required>
-                            <md-option ng-repeat="item in $ctrl._Periodicidade" value={{item.value}}>
-                                {{item.display_name}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-                <div layout="row" ng-if="$ctrl.eventData.ocorrencia.frequency_type == 'daily'" layout-wrap flex style="max-width: 300px;">
-                    <!--<div flex-xs flex="50">-->
-                    <!--<md-checkbox aria-label="Select All"-->
-                    <!--ng-checked="isChecked()"-->
-                    <!--md-indeterminate="isIndeterminate()"-->
-                    <!--ng-click="toggleAll()">-->
-                    <!--<span ng-if="isChecked()">Un-</span>Select All-->
-                    <!--</md-checkbox>-->
-                    <!--</div>-->
-                    <div class="demo-select-all-checkboxes" flex="100" ng-repeat="dia in $ctrl._DiasSemana">
-                        <md-checkbox ng-model="selectedDays[dia.value]">
-                            {{ dia.display_name }}
-                        </md-checkbox>
-                    </div>
-                </div>
-                <div layout="row">
-                    <md-input-container class="md-block" flex>
-                        <md-icon>my_location</md-icon>
-                        <label>Local da Atividade</label>
-                        <md-select ng-model="$ctrl.eventData.local" required>
-                            <md-option ng-repeat="local in $ctrl._localAtividade" value="{{local}}">
-                                {{local.display_name}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-                <div layout="row">
-                    <md-input-container class="md-block" flex>
-                        <md-icon>subject</md-icon>
-                        <label>Descrição do Evento</label>
-                        <textarea name="descricaoAtividade" rows="5" ng-select-on-focus
-                                  ng-model="$ctrl.eventData.descricao"
-                                  required></textarea>
-                    </md-input-container>
-                </div>
+  <form name="EventForm" ng-disabled="$ctrl.isSaving" ng-submit="$ctrl.save($ctrl.eventData)">
+    <md-dialog-content>
+      <md-content md-theme="docs-dark" layout-padding>
+        <h2>Adicioniar Atividade</h2>
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+            <label>Titulo da atividade</label>
+            <input name="eventName" ng-required="true" ng-model="$ctrl.eventData.titulo" md-autofocus />
+          </md-input-container>
+        </div>
+      </md-content>
+      <div layout-padding>
+				<div layout="row">
+          <md-input-container class="md-block" flex>
+            <md-icon>work</md-icon>
+            <label>Tipo de Atividade</label>
+            <md-select required ng-model="$ctrl.eventData.tipo">
+              <md-option ng-repeat="atividade in $ctrl._listaAtividades" value="{{atividade.value}}">
+                {{atividade.display_name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+				</div>
+        <div layout="row">
+          <md-input-container flex>
+            <md-icon>work</md-icon>
+            <label>Área da Atividade</label>
+            <md-select ng-model="$ctrl.eventData.area" ng-change="$ctrl.parseArea()">
+              <md-option ng-repeat="area in $ctrl._areaAtividade" value="{{area}}">
+                {{area.display_name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container flex ng-mouseenter="$ctrl.debug()">
+            <md-icon>work</md-icon>
+            <label>Subarea da Atividade</label>
+            <md-select ng-model="$ctrl.eventData.subarea">
+              <!-- <md-option ng-repeat="subarea in angular.toJson($ctrl.eventData.area).subarea" value="{{subarea.value}}" {{subarea.display_name}} -->
+                <md-option ng-repeat="subarea in $ctrl.eventData.subareas" value="{{subarea.value}}">
+                  {{subarea.display_name}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <div layout="row">
+            <md-input-container class="md-block" flex>
+              <md-icon>swap_vertical_circle</md-icon>
+              <label>Faixa Etária</label>
+              <md-select ng-model="$ctrl.eventData.faixaEtaria">
+                <md-option ng-repeat="faixaEtaria in $ctrl._faixaEtariaAtividade" value="{{faixaEtaria.value}}">
+                  {{faixaEtaria.display_name}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <div layout="row">
+            <md-input-container class="md-block" flex>
+              <md-icon>edit_location</md-icon>
+              <label>Abrangência Territorial</label>
+              <md-select ng-model="$ctrl.eventData.territorio">
+                <md-option ng-repeat="territorio in $ctrl._territorioAtividade" value="{{territorio.value}}">
+                  {{territorio.display_name}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <div layout="row">
+            <md-input-container class="md-block" flex>
+              <md-icon>people_outline</md-icon>
+              <label>Atividade Destinada à Publico ou Grupo Específico</label>
+              <md-select ng-model="$ctrl.eventData.publico">
+                <md-option ng-repeat="publico in $ctrl._publicoAtividade" value="{{publico.value}}">
+                  {{publico.display_name}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container class="md-block" flex>
+              <md-icon>people_outline</md-icon>
+              <md-icon>people_outline</md-icon>
+              <label>Quantidade de pessoas esperadas para o evento</label>
+              <input required name="publicoEsperado" type="number" ng-model="$ctrl.eventData.publico_esperado">
+            </md-input-container>
+          </div>
+          <div layout="row">
+            <md-input-container class="md-block" flex>
+              <label>Data de início</label>
+              <md-datepicker ng-required="true" ng-model="$ctrl.eventData.ocorrencia.start" ></md-datepicker>
+            </md-input-container>
+            <md-input-container class="md-block" flex>
+              <md-icon>schedule</md-icon>
+              <label>Horário de início</label>
+              <input name="horaInicio" mask="23:59" ng-model="$ctrl.eventData.hora_inicio"/>
+            </md-input-container>
+          </div>
+          <div layout="row">
+            <md-input-container class="md-block" flex>
+              <label>Data de encerramento</label>
+              <md-datepicker ng-required="true"
+                ng-model="$ctrl.eventData.ocorrencia.repeat_until" style="width: 170px;"></md-datepicker>
+            </md-input-container>
+            <md-input-container class="md-block" flex>
+              <md-icon>schedule</md-icon>
+              <label>Horário de Encerramento</label>
+              <input name="horaEncerramento" mask="29:69" ng-model="$ctrl.eventData.hora_encerramento">
+            </md-input-container>
+          </div>
+          <div layout="row">
+            <md-input-container class="md-block" flex>
+              <md-icon>schedule</md-icon>
+              <label>Carga Horária</label>
+              <input name="cargaHoraria" type="number" ng-model="$ctrl.eventData.carga_horaria" required>
+            </md-input-container>
+            <md-input-container class="md-block" flex>
+              <md-icon style="top: 0;">date_range</md-icon>
+              <label>Periodicidade</label>
+              <!--<md-select name="type" ng-model="$ctrl.eventData.periodicidade" required>-->
+                <md-select name="type" ng-model="$ctrl.eventData.ocorrencia.frequency_type" required>
+                  <md-option ng-repeat="item in $ctrl._Periodicidade" value={{item.value}}>
+                    {{item.display_name}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
             </div>
-            <!--</md-content>-->
-        </md-dialog-content>
-        <md-dialog-actions layout="row">
-            <md-button ng-click="$ctrl.cancel()">
-                Cancelar
-            </md-button>
-            <!-- <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disable="EventForm.$invalid" ng-click="$ctrl.save($ctrl.eventData)"> -->
-            <!--   Enviar -->
-            <!-- </md-button> -->
-            <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="EventForm.$invalid">
-                Enviar
-            </md-button>
-        </md-dialog-actions>
+            <div layout="row" ng-if="$ctrl.eventData.ocorrencia.frequency_type == 'daily'" layout-wrap flex style="max-width: 300px;">
+              <!--<div flex-xs flex="50">-->
+                <!--<md-checkbox aria-label="Select All"-->
+                  <!--ng-checked="isChecked()"-->
+                  <!--md-indeterminate="isIndeterminate()"-->
+                  <!--ng-click="toggleAll()">-->
+                  <!--<span ng-if="isChecked()">Un-</span>Select All-->
+                  <!--</md-checkbox>-->
+                <!--</div>-->
+              <div class="demo-select-all-checkboxes" flex="100" ng-repeat="dia in $ctrl._DiasSemana">
+                <md-checkbox ng-model="selectedDays[dia.value]">
+                  {{ dia.display_name }}
+                </md-checkbox>
+              </div>
+            </div>
+            <div layout="row">
+              <md-input-container class="md-block" flex>
+                <md-icon>my_location</md-icon>
+                <label>Local da Atividade</label>
+                <md-select ng-model="$ctrl.eventData.local" required>
+                  <md-option ng-repeat="local in $ctrl._localAtividade" value="{{local}}">
+                    {{local.display_name}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+            <div layout="row">
+              <md-input-container class="md-block" flex>
+                <md-icon>subject</md-icon>
+                <label>Descrição do Evento</label>
+                <textarea name="descricaoAtividade" rows="5" ng-select-on-focus
+                  ng-model="$ctrl.eventData.descricao"
+                  required></textarea>
+              </md-input-container>
+            </div>
+          </div>
+          <!--</md-content>-->
+      </md-dialog-content>
+      <md-dialog-actions layout="row">
+        <md-button ng-click="$ctrl.cancel()">
+          Cancelar
+        </md-button>
+        <!-- <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disable="EventForm.$invalid" ng-click="$ctrl.save($ctrl.eventData)"> -->
+          <!--   Enviar -->
+          <!-- </md-button> -->
+        <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="EventForm.$invalid">
+          Enviar
+        </md-button>
+      </md-dialog-actions>
     </form>
-</md-dialog>
+  </md-dialog>
