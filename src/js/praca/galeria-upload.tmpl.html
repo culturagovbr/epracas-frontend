@@ -4,7 +4,8 @@
       <h2>Upload de imagens da Praça</h2>
       <p>Você pode enviar imagens relacionadas à Praça. São permitidos apenas arquivos de imagem e com tamanho máximo de 10MB.</p>
     </md-content>
-    <md-content>
+    
+    <div layout-padding>
       <md-button
         class="md-raised"
         ngf-select
@@ -23,16 +24,16 @@
           <div flex=50 layout-margin>
             <md-input-container>
               <label>Titulo da Imagem</label>
-              <input name="imageTitle" ng-model="imagem.title" />
+              <input name="imageTitle" ng-model="image.titulo" />
             </md-input-container>
             <md-input-container>
               <label>Descrição da Imagem</label>
-              <textarea name="imageDescription" ng-model="imagem.description" rows=5/>
+              <textarea name="imageDescription" ng-model="image.descricao" rows=5/>
             </md-input-container>
           </div>
         </div>
       </md-card>
-    </md-content>
+    </div>
     <md-progress-linear
       ng-show="$ctrl.progress >= 0"
       md-mode="determinate"
@@ -43,7 +44,7 @@
     <md-button ng-click="$ctrl.cancel()">
       Cancelar
     </md-button>
-    <md-button class="md-no-focus md-raised md-primary" ng-disabled="!$ctrl.images" ng-click="$ctrl.upload(images)">
+    <md-button class="md-no-focus md-raised md-primary" ng-disabled="!$ctrl.images" ng-click="$ctrl.uploadImg($ctrl.images)">
       Enviar Todas as Imagens
     </md-button>
   </md-dialog-actions>

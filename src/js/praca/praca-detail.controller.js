@@ -26,7 +26,7 @@ class PracaDetailCtrl {
                 return atividade
             }))
             .then(atividades => {
-                console.log(atividades);
+                // console.log(atividades);
                 praca.agenda = atividades
             })
 

@@ -16,13 +16,20 @@ class UploadImgCtrl {
   }
 
   uploadImg(imagem) {
-    this._Upload.upload({
-      url: `${this._AppConstants.api}/pracas/${this.praca.id_pub}/imagens/`,
-      method: "POST",
-      data: { arquivo: imagem }
-    })
+		if (imagem && imagem.length) {
+			for (let i=0; i < imagem.length; i++) {
+				this._Upload.upload({
+					url: `${this._AppConstants.api}/pracas/${this.praca.id_pub}/imagens/`,
+					method: "POST",
+					data: {
+							arquivo: imagem[i],
+							titulo: imagem[i].titulo,
+							descricao: imagem[i].descricao,
+						}
+					})
+				}
+			}
+		}
   }
-
-}
 
 export default UploadImgCtrl;
