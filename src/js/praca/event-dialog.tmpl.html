@@ -78,7 +78,7 @@
                         <md-icon>people_outline</md-icon>
                         <md-icon>people_outline</md-icon>
                         <label>Quantidade de pessoas esperadas para o evento</label>
-                        <input required name="publicoEsperado" type="number" ng-model="$ctrl.eventData.publico_esperado">
+                        <input required name="publicoEsperado" type="number" min="0" ng-model="$ctrl.eventData.publico_esperado">
                     </md-input-container>
                 </div>
                 <div layout="row">
@@ -108,7 +108,7 @@
                     <md-input-container class="md-block" flex>
                         <md-icon>schedule</md-icon>
                         <label>Carga Horária</label>
-                        <input name="cargaHoraria" type="number" ng-model="$ctrl.eventData.carga_horaria" required>
+                        <input name="cargaHoraria" type="number" min="0" ng-model="$ctrl.eventData.carga_horaria" required>
                     </md-input-container>
                     <md-input-container class="md-block" flex>
                         <md-icon style="top: 0;">date_range</md-icon>
