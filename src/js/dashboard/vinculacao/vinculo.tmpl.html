@@ -1,0 +1,48 @@
+<div layout="column">
+  <md-list>
+
+    <md-list-item md-whiteframe="2" ng-repeat="pedido in $ctrl.pedidos" layout-fill layout-align="space-between center">
+      <div layout="row" layout-fill layout-align="space-between center">
+        <div layout="row">
+          <img class="md-avatar" ng-src={{pedido.user.profile_picture_url}}>
+          <div class="md-list-item-text" layout="column">
+            <h3 ng-click="$ctrl.showUserInfo(pedido.user)">{{pedido.user.full_name}}</h3>
+          </div>
+
+        </div>
+        <div>
+          <span> solicita vinculo com </span>
+        </div>
+        <div layout="row">
+          <div class="md-list-item-text" layout="column">
+            <h3 style="margin-bottom: 2px" ng-click="$ctrl.showPracaInfo(pedido.praca)">{{pedido.praca.nome}}</h3>
+            <p style="margin-top: 2px">{{pedido.praca.municipio}} - {{pedido.praca.uf | uppercase}}</p>
+          </div>
+        </div>
+        <div>
+          <md-menu>
+            <md-button class="md-icon-button">
+              <md-icon>menu</md-icon>
+            </md-button>
+            <md-menu-content width="4">
+              <md-menu-item>
+                <md-button ng-click="$ctrl.startProcessoVinculacao(pedido)" aria-label="Processo de Vinculação">
+                  <md-icon>assignment</md-icon>
+                  Iniciar Processo de Vinculação
+                </md-button>
+              </md-menu-item>
+              <md-divider></md-divider>
+              <md-menu-item>
+                <md-button ng-click="$ctrl.deleteProcessoVinculacao(pedido)">
+                  <md-icon>delete</md-icon>
+                  Excluir Pedido de Vinculação
+                </md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </div>
+      </div>
+    </md-list-item>
+
+  </md-list>
+</div>
