@@ -88,8 +88,9 @@ class PracaDetailCtrl {
                 intPracasPosition = elmTabPracas.offset().top;
 
             setTimeout(()=>{
+                $(document).scrollTop(0);
                 intPracasPosition = elmTabPracas.offset().top;
-            }, 300);
+            }, 20);
             $document.on('scroll', () => {
                 let arrElmScrollContainers = $('md-tab'),
                     arrObjScrollContainers = arrElmScrollContainers.map((intKey, elm) => {
