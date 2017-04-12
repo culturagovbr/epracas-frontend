@@ -161,7 +161,7 @@ class PracaDetailCtrl {
                     it.title = 'Bloco5';
                     it.background = "yellow";
                     it.span.row = it.span.col = 2;
-                    it.url = "/assets/praca-grid/bloco5.jpg";
+                    it.url = "/assets/praca-grid/bloco8.jpg";
                     break;
                 case 6:
                     it.title = 'Bloco6';
@@ -176,7 +176,7 @@ class PracaDetailCtrl {
                 case 8:
                     it.title = 'Bloco8';
                     it.background = "purple";
-                    it.url = "/assets/praca-grid/bloco8.jpg";
+                    it.url = "/assets/praca-grid/bloco5.jpg";
                     break;
                 case 9:
                     it.title = 'Bloco9';
