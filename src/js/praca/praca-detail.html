@@ -55,8 +55,9 @@
             <md-tab label="Inicio" scroll="header"></md-tab>
             <md-tab label="Agenda" scroll="#container-agenda" offset="48"></md-tab>
             <md-tab label="Fotos" scroll="#container-imagens" offset="48"></md-tab>
-            <md-tab ng-if="$ctrl.praca.situacao==i" label="Grupo Gestor" scroll="#container-grupo" offset="48"></md-tab>
-            <md-tab ng-if="$ctrl.praca.situacao!=i" label="Unidade Gestora Local" scroll="#container-unidade" offset="48"></md-tab>
+            <md-tab ng-if="$ctrl.praca.situacao=='i'" label="Parceiros" scroll="#container-parceiros" offset="48"></md-tab>
+            <md-tab ng-if="$ctrl.praca.situacao=='i'" label="Grupo Gestor" scroll="#container-grupogestor" offset="48"></md-tab>
+            <md-tab ng-if="$ctrl.praca.situacao!='i'" label="Unidade Gestora Local" scroll="#container-unidade" offset="48"></md-tab>
             <md-tab label="Localização" scroll="#container-localizacao" offset="48"></md-tab>
           </md-tabs>
         </div>
@@ -107,9 +108,32 @@
       </md-grid-list>
     </div>
   </div>
+  <!-- Parceiros -->
+  <div ng-if="$ctrl.praca.situacao=='i'" id="container-parceiros" layout-gt-xs="row">
+    <div flex layout-padding class="info">
+      <div class="layout-row title">
+        <md-icon>people</md-icon>
+        <h1 flex>Parceiros da Praça</h1>
+      </div>
+      <div>
+        <md-card style="width: 25vw;">
+          <div class="epr-avatar" style="background-image: url('/assets/unb.jpg')">
+          </div>
+          <span class="epr-name">Universidade de Brasilia</span>
+          <span class="epr-subname">@Brasilia - DF</span>
+
+          <div flex></div>
+
+        </md-card>
+      </div>
+      <!-- <div ng-show="!$ctrl.praca.parceiros"> -->
+      <!--   <p>Ainda não existem Parceiros para esta Praça. <b>:(</b></p> -->
+      <!-- </div> -->
+    </div>
+  </div>
   <!-- GrupoGestor -->
-  <div ng-if="$ctrl.praca.situacao==i" id="container-grupo" layout-gt-xs="row">
-    <div flex layout-padding class="info" md-whiteframe="3">
+  <div ng-if="$ctrl.praca.situacao=='i'" id="container-grupogestor" layout-gt-xs="row">
+    <div flex layout-padding class="info">
       <div class="layout-row title">
         <md-icon>group</md-icon>
         <h1 flex>Grupo Gestor</h1>
@@ -119,20 +143,8 @@
       </div>
     </div>
   </div>
-  <!-- Parceiros -->
-  <div ng-if="$ctrl.praca.situacao==i" id="container-parceiros" layout-gt-xs="row">
-    <div flex-gt-xs="30" layout-padding class="info" md-whiteframe="3">
-      <div class="layout-row title">
-        <md-icon>people</md-icon>
-        <h1 flex>Parceiros da Praça</h1>
-      </div>
-      <div ng-show="!$ctrl.praca.parceiros">
-        <p>Ainda não existem Parceiros para esta Praça. <b>:(</b></p>
-      </div>
-    </div>
-  </div>
   <!-- UnidadeGestoraLocal -->
-  <div ng-if="$ctrl.praca.situacao!=i" id="container-unidade" layout-gt-xs="row">
+  <div ng-if="$ctrl.praca.situacao!='i'" id="container-unidade" layout-gt-xs="row">
     <div flex layout-padding class="info">
       <div class="layout-row title">
         <md-icon>location_city</md-icon>

@@ -18,15 +18,34 @@
       </md-button>
       <md-card ng-repeat="image in $ctrl.images" ng-show="$ctrl.images">
         <div layout="row" layout-align="left center">
+          <!-- <md-fab-speed-dial md-direction="left" class="md-scale md-fab-top-right"> -->
+          <!--   <md-fab-trigger> -->
+          <!--     <md-button aria-label="menu" class="md-fab"> -->
+          <!--       <md-tooltip md-direction="top">Menu</md-tooltip> -->
+          <!--       <md-icon>menu</md-icon> -->
+          <!--     </md-button> -->
+          <!--   </md-fab-trigger> -->
+
+          <!--   <md-fab-actions> -->
+
+          <!--     <md-button aria-label="Enviar"> -->
+          <!--       <md-tooltip md-direction="bottom" md-autohide="false">Enviar esta imagem</md-tooltip> -->
+          <!--     </md-button> -->
+
+          <!--     <md-button aria-label="Excluir"> -->
+          <!--       <md-tooltip md-direction="bottom" md-autohide="false">Excluir esta imagem</md-tooltip> -->
+          <!--     </md-button> -->
+
+          <!-- </md-fab-speed-dial> -->
           <div flex=50 layout-margin>
             <img ngf-resize="{width:350}" ngf-src="image">
           </div>
           <div flex=50 layout-margin>
-            <md-input-container>
+            <md-input-container class="md-block" flex>
               <label>Titulo da Imagem</label>
               <input name="imageTitle" ng-model="image.titulo" />
             </md-input-container>
-            <md-input-container>
+            <md-input-container class="md-block" flex>
               <label>Descrição da Imagem</label>
               <textarea name="imageDescription" ng-model="image.descricao" rows=5/>
             </md-input-container>
@@ -44,7 +63,7 @@
     <md-button ng-click="$ctrl.cancel()">
       Cancelar
     </md-button>
-    <md-button class="md-no-focus md-raised md-primary" ng-disabled="!$ctrl.images" ng-click="$ctrl.uploadImg($ctrl.images)">
+    <md-button class="md-no-focus md-raised md-primary" ng-disabled="!$ctrl.images" ng-click="$ctrl.uploadImg($ctrl.images, $event)">
       Enviar Todas as Imagens
     </md-button>
   </md-dialog-actions>
