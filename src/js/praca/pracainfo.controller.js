@@ -30,7 +30,15 @@ class PracaInfoCtrl {
         );
     } else {
       const praca = data.id_pub;
-      this._Praca.save(praca, data)
+      let praca_data = {};
+      const fields = ['nome', 'logradouro', 'cep', 'bairro', 'regiao', 'uf',
+                'municipio', 'bio', 'repasse'];
+
+      for (let field of fields){
+        praca_data[field] = angular.copy(data[field]);
+      }
+
+      this._Praca.save(praca, praca_data)
         .then(
           () => {
             this._$mdDialog.hide();
@@ -38,7 +46,7 @@ class PracaInfoCtrl {
           }
         )
         .catch(
-          (err) => console.error(`saveParceiros: ${err.status} - ${JSON.stringify(err)}`)
+          (err) => console.error(`Save Praca Info: ${err.status} - ${JSON.stringify(err)}`)
         );
     }
   }
