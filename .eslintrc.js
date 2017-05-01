@@ -21,8 +21,9 @@ module.exports = {
     indent: ["error"],
     "linebreak-style": ["error", "unix"],
     quotes: ["error", "double"],
-    semi: ["error", "always"],
+    semi: ["error", "never"],
     "no-underscore-dangle": ["error", { allowAfterThis: true }],
     "no-param-reassign": ["error", { "props": false }],
+    camelcase: [0, {"properties": "never"}],
   },
 };
