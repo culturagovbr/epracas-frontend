@@ -1,5 +1,5 @@
 <md-dialog aria-label="Vinculação de Gestor">
-    <form ng-cloak name="VinculoForm" ng-submit="$ctrl.save()">
+    <form ng-cloak name="VinculoForm">
         <md-dialog-content layout-align="start end">
             <div layout="column">
                 <div>
@@ -57,7 +57,7 @@
             </md-button>
             <md-button type="submit" class="md-primary md-raised md-no-focus"
                        ng-disabled="!(vincFiles.CPF && vincFiles.comp)"
-                       ng-click="$ctrl.upload($ctrl._praca.id_pub, vincFiles)">
+                       ng-click="$ctrl.upload($ctrl.praca.id_pub, vincFiles)">
                 Enviar
             </md-button>
         </md-dialog-actions>
