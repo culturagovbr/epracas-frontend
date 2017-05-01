@@ -18,7 +18,7 @@ export default class User {
   logout() {
     this.current = null;
     this._JWT.destroy();
-    this._$window.location.href = `${this._AppConstants.logoutUrl}${this._$state.href('app.home', {}, {absolute: true})}`;
+    this._$window.location.href = `${this._AppConstants.logoutUrl}${this._$state.href("app.home", {}, {absolute: true})}`;
   }
 
   verifyAuth() {
@@ -75,7 +75,7 @@ export default class User {
     if (angular.isDefined(accessToken) && (angular.isUndefined(this.current) || this.current === null)) {
       this.getUserInfo(accessToken)
       .then(
-        res =>  this.current = res.data,
+        res =>  this.current = res.data
         // err =>  this.current = null 
       )
       .then(
@@ -132,10 +132,10 @@ export default class User {
       url: `${this._AppConstants.apiUserInfo}`,
       method: "GET",
     })
-      .then(
-        res => deferred.resolve(res.data),
-        err => deferred.reject(err),
-      );
+    .then(
+        res => { deferred.resolve(res.data); },
+        err => { deferred.reject(err) }
+    );
     return deferred.promise;
   }
 
