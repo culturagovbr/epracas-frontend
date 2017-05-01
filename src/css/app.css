@@ -172,7 +172,7 @@ video#bgvid {
 .cropArea {
     background: #E4E4E4;
     overflow: hidden;
-    height: 370px;
+    /* height: 200px; */
 }
 
 #mapPane {

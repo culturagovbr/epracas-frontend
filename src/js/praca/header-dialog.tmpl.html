@@ -1,5 +1,5 @@
-<md-dialog aria-label="Alterar imagem de cabeçalho da Praça">
-	<md-dialog-content>
+<md-dialog aria-label="Alterar imagem de cabeçalho da Praça" flex="80">
+	<md-dialog-content style="height: 80vh">
 		<md-content md-theme="docs-dark" layout-padding>
 			<h2>Atualize a imagem de cabeçalho da Praça</h2>
 			<p>Você pode recortar uma imagem e pré-visualizar o resultado antes de alterar.</p>
@@ -20,16 +20,15 @@
 			</md-button>
 
 			<div
-				ngf-drop
 				ng-model="headerImage"
 				ngf-pattern="image/*"
 				class="cropArea"
-				flex>
+        ng-show="headerImage"
+				>
 				<ui-cropper
 					image="headerImage | ngfDataUrl"
 					area-type="rectangle"
-					ng-init="croppedDataUrl=''"
-					aspect-ratio="2.6"
+					ng-init="croppedDataUrl = ''"
 					result-image="croppedDataUrl"
 					result-image-size="{w:960,h:370}"
 					canvas-scalemode="full-width"
@@ -38,19 +37,20 @@
 				</ui-cropper>
 			</div>
 
+      <md-divider ng-show="headerImage"></md-divider>
+      <md-subheader ng-show="headerImage">Pré visualização</md-subheader>
 			<div>
-				<img ng-src="{{croppedDataUrl}}" alt=""/>
+				<img flex="70" ng-src="{{croppedDataUrl}}" alt=""/>
 			</div>
-
-			<md-dialog-actions layout="row">
-				<md-button ng-click="$ctrl.cancel()">
-					Cancelar
-				</md-button>
-				<md-button class="md-no-focus md-raised md-primary" ng-disabled="!headerImage" ng-click="$ctrl.upload(croppedDataUrl, headerImage.name)">
-					Enviar
-				</md-button>
-        </md-dialog-actions>
 
 		</md-input-container>
 	</md-dialog-content>
+  <md-dialog-actions layout="row">
+    <md-button ng-click="$ctrl.cancel()">
+      Cancelar
+    </md-button>
+    <md-button class="md-no-focus md-raised md-primary" ng-disabled="!headerImage" ng-click="$ctrl.upload(croppedDataUrl, headerImage.name)">
+      Enviar
+    </md-button>
+  </md-dialog-actions>
 </md-dialog>
