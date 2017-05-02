@@ -125,7 +125,7 @@ class PracaDetailCtrl {
   /**
    * Constroi o objecto da grid em mozaico com as imagens da praca ficando no formato que o componente do Material Angular espera.
    * @param {Array} arrValue - Array com as imagens das pracas.
-   * @returns {Array} - Array tratado para o componente do Material Angular.
+   * @returns {Array} arrValueTreated - Array tratado para o componente do Material Angular.
    */
   buildGridModel(arrValue) {
     let arrValueTreated = [], arrDefault = [];
