@@ -147,18 +147,18 @@ class PracaDetailCtrl {
     arrDefault[15] = {title: "Bloco 16", url: "/assets/praca-grid/bloco16.jpg", background : "deepBlue", span : {row : 1, col : 1}};
     arrDefault[16] = {title: "Bloco 17", url: "/assets/praca-grid/bloco17.jpg", background : "lightPurple", span : {row : 1, col : 1}};
     arrDefault[17] = {title: "Bloco 18", url: "/assets/praca-grid/bloco18.jpg", background : "yellow", span : {row : 1, col : 1}};
-    for (let j = 0; j < 16; j++) {
-      let it = {
-        title : arrDefault[j].title,
-        url : arrDefault[j].url,
-        span : arrDefault[j].span,
-        background : arrDefault[j].background
+    for (let i = 0; i < 16; i++) {
+      let objValueTreated = {
+        title : arrDefault[i].title,
+        url : arrDefault[i].url,
+        span : arrDefault[i].span,
+        background : arrDefault[i].background
       };
-      if (typeof arrValue[j] == 'object') {
-        it.title = arrValue[j].titulo;
-        it.url = arrValue[j].arquivo;
+      if (typeof arrValue[i] == 'object') {
+        objValueTreated.title = arrValue[i].titulo;
+        objValueTreated.url = arrValue[i].arquivo;
       }
-      arrValueTreated.push(it);
+      arrValueTreated.push(objValueTreated);
     }
     return arrValueTreated;
   }
