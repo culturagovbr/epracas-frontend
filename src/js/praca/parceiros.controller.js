@@ -1,15 +1,14 @@
 class ParceirosCtrl {
-  constructor($scope, $mdDialog, $http, AppConstants, $mdToast, praca, $log) {
+  constructor($mdDialog, $http, AppConstants, Toast, praca, $log) {
     "ngInject";
 
     angular.extend(this, {
-      _$scope: $scope,
-      _$mdDialog: $mdDialog,
-      _$http: $http,
-      _AppConstants: AppConstants,
-      _$mdToast: $mdToast,
-      praca: praca,
-      _$log: $log,
+      $mdDialog,
+      $http,
+      AppConstants,
+      Toast,
+      praca,
+      $log,
     })
 
     this._listaAtividades = [
@@ -68,28 +67,23 @@ class ParceirosCtrl {
   }
 
   cancel() {
-    this._$mdDialog.cancel();
+    this.$mdDialog.cancel();
   }
 
-  save() {
-    this._$http({
-      url: `${this._AppConstants.api}/parceiros/`,
+  save(praca_id_pub, data) {
+    this.$http({
+      url: `${this.AppConstants.api}/pracas/${praca_id_pub}/parceiros/`,
       method: "POST",
-      data: this.parceiro,
+      data: data,
     })
       .then(
         () => {
-          this._$mdDialog.hide();
-          this._$mdToast.show(
-            this._$mdToast.simple()
-            .textContent("Parceiro Cadastrado com Sucesso!")
-            .position("right", "top")
-            .hideDelay(3500)
-          );
+          this.$mdDialog.hide()
+          this.Toast.showSuccessToast("Parceiro Cadastrado com Sucesso!")
         }
       )
       .catch(
-        (err) => this._$log.log(`saveParceiros: ${err.status} - ${JSON.stringify(err)}`)
+        (err) => this.$log.error(`saveParceiros: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
       );
   }
 }

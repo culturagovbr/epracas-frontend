@@ -1,5 +1,5 @@
 <md-dialog layout="column" aria-label="Adicionar um parceiro da Praça">
-  <form name="ParceiroForm" ng-submit="$ctrl.save()">
+  <form name="ParceiroForm" ng-submit="$ctrl.save($ctrl.praca.id_pub, $ctrl.parceiro)">
     <md-dialog-content>
 
       <md-content md-theme="docs-dark" layout-padding>
@@ -16,11 +16,11 @@
         </md-input-container>
 
         <div>
-        <md-input-container class="md-block">
-          <label>Endereço</label>
-          <md-icon>subject</md-icon>
-          <textarea rows="5" name="parceiroLogradouro" required ng-model="$ctrl.parceiro.endereco"></textarea>
-        </md-input-container>
+          <md-input-container class="md-block">
+            <label>Endereço</label>
+            <md-icon>subject</md-icon>
+            <textarea rows="5" name="parceiroLogradouro" required ng-model="$ctrl.parceiro.endereco"></textarea>
+          </md-input-container>
         </div>
 
         <md-input-container class="md-icon-float md-block">
@@ -54,18 +54,33 @@
         </md-input-container>
 
         <div>
-        <md-input-container class="md-block">
-          <label>Quais ações estamos realizando juntos?</label>
-          <md-icon>link</md-icon>
-          <textarea rows="5" name="parceiroAcoes" ng-model="$ctrl.parceiro.acoes"></textarea>
-        </md-input-container>
+          <md-input-container class="md-block">
+            <label>Quais ações estamos realizando juntos?</label>
+            <md-icon>link</md-icon>
+            <textarea rows="5" name="parceiroAcoes" ng-model="$ctrl.parceiro.acoes"></textarea>
+          </md-input-container>
         </div>
 
         <md-input-container flex="50">
           <md-icon>history</md-icon>
           <label>Tempo previsto para a parceria (em dias)</label>
-          <input type="number" name="tempoParceiro" ng-model="$ctrl.parceiro.tempo_parceria">
+          <input type="number" min="0" name="tempoParceiro" ng-model="$ctrl.parceiro.tempo_parceria">
         </md-input-container>
+
+        <div layout-align="start center" layout="row">
+          <div flex="30">
+            <md-switch ng-model="$ctrl.parceiro.rec_financeiro" name="recfinanceiroParceiro">
+              A parceria envolve recursos financeiros?
+            </md-switch>
+          </div>
+          <div>
+            <md-input-container flex ng-show="$ctrl.parceiro.rec_financeiro">
+              <md-icon>attach_money</md-icon>
+              <label>Qual o valor?</label>
+              <input type="number" min="0" name="tempoParceiro" ng-model="$ctrl.parceiro.recursos_financeiros">
+            </md-input-container>
+          </div>
+        </div>
 
       </md-content>
     </md-dialog-content>
