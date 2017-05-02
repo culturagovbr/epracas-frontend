@@ -119,123 +119,48 @@ class PracaDetailCtrl {
       })
     })
 
-    // Dados fake para fotos.
-    $scope.arrPhotos = this.buildGridModel({
-      icon: "avatar:svg-",
-      title: "Svg-",
-      background: ""
-    })
+    $scope.arrPhotos = this.buildGridModel(praca.imagem);
   }
 
-  buildGridModel(tileTmpl) {
-    let it, results = []
+  /**
+   * Constroi o objecto da grid em mozaico com as imagens da praca ficando no formato que o componente do Material Angular espera.
+   * @param {Array} arrValue - Array com as imagens das pracas.
+   * @returns {Array} - Array tratado para o componente do Material Angular.
+   */
+  buildGridModel(arrValue) {
+    let arrValueTreated = [], arrDefault = [];
+    arrDefault[0] = {title: "Bloco 1", url: "/assets/praca-grid/bloco1.jpg", background : "red", span : {row : 2, col : 2}};
+    arrDefault[1] = {title: "Bloco 2", url: "/assets/praca-grid/bloco2.jpg", background : "green", span : {row : 1, col : 1}};
+    arrDefault[2] = {title: "Bloco 3", url: "/assets/praca-grid/bloco3.jpg", background : "darkBlue", span : {row : 1, col : 1}};
+    arrDefault[3] = {title: "Bloco 4", url: "/assets/praca-grid/bloco4.jpg", background : "blue", span : {row : 1, col : 2}};
+    arrDefault[4] = {title: "Bloco 5", url: "/assets/praca-grid/bloco5.jpg", background : "yellow", span : {row : 2, col : 2}};
+    arrDefault[5] = {title: "Bloco 6", url: "/assets/praca-grid/bloco6.jpg", background : "pink", span : {row : 1, col : 1}};
+    arrDefault[6] = {title: "Bloco 7", url: "/assets/praca-grid/bloco7.jpg", background : "darkBlue", span : {row : 1, col : 1}};
+    arrDefault[7] = {title: "Bloco 8", url: "/assets/praca-grid/bloco8.jpg", background : "purple", span : {row : 1, col : 1}};
+    arrDefault[8] = {title: "Bloco 9", url: "/assets/praca-grid/bloco9.jpg", background : "deepBlue", span : {row : 1, col : 1}};
+    arrDefault[9] = {title: "Bloco 10", url: "/assets/praca-grid/bloco10.jpg", background : "lightPurple", span : {row : 1, col : 1}};
+    arrDefault[10] = {title: "Bloco 11", url: "/assets/praca-grid/bloco11.jpg", background : "yellow", span : {row : 1, col : 1}};
+    arrDefault[11] = {title: "Bloco 12", url: "/assets/praca-grid/bloco12.jpg", background : "yellow", span : {row : 1, col : 1}};
+    arrDefault[12] = {title: "Bloco 13", url: "/assets/praca-grid/bloco12.jpg", background : "pink", span : {row : 1, col : 1}};
+    arrDefault[13] = {title: "Bloco 14", url: "/assets/praca-grid/bloco14.jpg", background : "darkBlue", span : {row : 1, col : 1}};
+    arrDefault[14] = {title: "Bloco 15", url: "/assets/praca-grid/bloco15.jpg", background : "purple", span : {row : 1, col : 2}};
+    arrDefault[15] = {title: "Bloco 16", url: "/assets/praca-grid/bloco16.jpg", background : "deepBlue", span : {row : 1, col : 1}};
+    arrDefault[16] = {title: "Bloco 17", url: "/assets/praca-grid/bloco17.jpg", background : "lightPurple", span : {row : 1, col : 1}};
+    arrDefault[17] = {title: "Bloco 18", url: "/assets/praca-grid/bloco18.jpg", background : "yellow", span : {row : 1, col : 1}};
     for (let j = 0; j < 16; j++) {
-      it = angular.extend({}, tileTmpl)
-      it.icon = it.icon + (j + 1)
-      it.title = it.title + (j + 1)
-      it.span = {row: 1, col: 1}
-
-    switch (j + 1) {
-      case 1:
-        it.title = "Bloco1"
-        it.background = "red"
-        it.span.row = it.span.col = 2
-        it.url = "/assets/praca-grid/bloco1.jpg"
-        break
-      case 2:
-          it.title = "Bloco2"
-          it.background = "green"
-          it.url = "/assets/praca-grid/bloco2.jpg"
-          break
-      case 3:
-          it.title = "Bloco3"
-          it.background = "darkBlue"
-          it.url = "/assets/praca-grid/bloco3.jpg"
-          break
-      case 4:
-          it.title = "Bloco4"
-          it.background = "blue"
-          it.span.col = 2
-          it.url = "/assets/praca-grid/bloco4.jpg"
-          break
-      case 5:
-          it.title = "Bloco5"
-          it.background = "yellow"
-          it.span.row = it.span.col = 2
-          it.url = "/assets/praca-grid/bloco8.jpg"
-          break
-      case 6:
-          it.title = "Bloco6"
-          it.background = "pink"
-          it.url = "/assets/praca-grid/bloco6.jpg"
-          break
-      case 7:
-          it.title = "Bloco7"
-          it.background = "darkBlue"
-          it.url = "/assets/praca-grid/bloco7.jpg"
-          break
-      case 8:
-          it.title = "Bloco8"
-          it.background = "purple"
-          it.url = "/assets/praca-grid/bloco5.jpg"
-          break
-      case 9:
-          it.title = "Bloco9"
-          it.background = "deepBlue"
-          it.url = "/assets/praca-grid/bloco9.jpg"
-          break
-      case 10:
-          it.title = "Bloco10"
-          it.background = "lightPurple"
-          it.url = "/assets/praca-grid/bloco10.jpg"
-          break
-      case 11:
-          it.title = "Bloco11"
-          it.background = "yellow"
-          it.url = "/assets/praca-grid/bloco11.jpg"
-          break
-      case 12:
-          it.title = "Bloco12"
-          it.background = "yellow"
-          it.url = "/assets/praca-grid/bloco12.jpg"
-          // it.span.row = it.span.col = 2
-          break
-      case 13:
-          it.title = "Bloco13"
-          it.background = "pink"
-          it.url = "/assets/praca-grid/bloco13.jpg"
-          break
-      case 14:
-          it.title = "Bloco14"
-          it.background = "darkBlue"
-          it.url = "/assets/praca-grid/bloco14.jpg"
-          break
-      case 15:
-          it.title = "Bloco15"
-          it.background = "purple"
-          it.url = "/assets/praca-grid/bloco15.jpg"
-          it.span.col = 2
-          // it.span.row = it.span.col = 2
-          break
-      case 16:
-          it.title = "Bloco16"
-          it.background = "deepBlue"
-          it.url = "/assets/praca-grid/bloco16.jpg"
-          break
-      case 17:
-          it.title = "Bloco17"
-          it.background = "lightPurple"
-          it.url = "/assets/praca-grid/bloco17.jpg"
-          break
-      case 18:
-          it.title = "Bloco18"
-          it.background = "yellow"
-          it.url = "/assets/praca-grid/bloco18.jpg"
-          break
+      let it = {
+        title : arrDefault[j].title,
+        url : arrDefault[j].url,
+        span : arrDefault[j].span,
+        background : arrDefault[j].background
+      };
+      if (typeof arrValue[j] == 'object') {
+        it.title = arrValue[j].titulo;
+        it.url = arrValue[j].arquivo;
+      }
+      arrValueTreated.push(it);
     }
-      results.push(it)
-    }
-    return results
+    return arrValueTreated;
   }
 
   parseDate(dataObj) {
