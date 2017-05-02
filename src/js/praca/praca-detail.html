@@ -35,6 +35,7 @@
       </md-fab-actions>
     </md-fab-speed-dial>
   </div>
+
   <!-- Info&Bio -->
   <div id="container-info" layout-gt-xs="row">
     <div flex-gt-xs="35" layout-padding md-whiteframe="3" class="nome">
@@ -109,26 +110,24 @@
     </div>
   </div>
   <!-- Parceiros -->
-  <div ng-if="$ctrl.praca.situacao=='i'" id="container-parceiros" layout-gt-xs="row">
+  <div ng-if="$ctrl.praca.situacao=='i'" id="container-parceiros">
+  <!-- <div id="container-parceiros"> -->
     <div flex layout-padding class="info">
       <div class="layout-row title">
         <md-icon>people</md-icon>
         <h1 flex>Parceiros da Praça</h1>
       </div>
-      <div>
-        <md-card style="width: 25vw;">
-          <div class="epr-avatar" style="background-image: url('/assets/unb.jpg')">
-          </div>
-          <span class="epr-name">Universidade de Brasilia</span>
-          <span class="epr-subname">@Brasilia - DF</span>
-
-          <div flex></div>
-
+      <div layout-wrap layout-margin layout="row">
+        <md-card  ng-repeat="parceiro in $ctrl.praca.parceiros" layout-padding flex="25">
+          <div class="epr-avatar" style="background-image: url('/assets/unb.jpg')"></div>
+          <span class="epr-name">{{ parceiro.nome }}</span>
+          <span class="epr-subname"></span>
+          <!-- <div flex></div> -->
         </md-card>
       </div>
-      <!-- <div ng-show="!$ctrl.praca.parceiros"> -->
-      <!--   <p>Ainda não existem Parceiros para esta Praça. <b>:(</b></p> -->
-      <!-- </div> -->
+      <div ng-show="!$ctrl.praca.parceiros">
+        <p>Ainda não existem Parceiros para esta Praça. <b>:(</b></p>
+      </div>
     </div>
   </div>
   <!-- GrupoGestor -->
