@@ -29,6 +29,15 @@ pracaModule.controller("ParceirosCtrl", ParceirosCtrl);
 import UploadImgCtrl from "./galeria-upload.controller";
 pracaModule.controller("UploadImgCtrl", UploadImgCtrl);
 
+import ParceirosBoardElement from "./parceiros-components/board.component"
+pracaModule.component("pracaParceirosBoard", ParceirosBoardElement)
+
+import ParceirosListElement from "./parceiros-components/list.component"
+pracaModule.component("pracaParceirosList", ParceirosListElement)
+
+import ParceirosDetailElement from "./parceiros-components/detail.component"
+pracaModule.component("pracaParceirosDetail", ParceirosDetailElement)
+
 import GrupoGestorContainer from "./grupogestor-components/container.component"
 pracaModule.component("pracaGrupogestor", GrupoGestorContainer)
 

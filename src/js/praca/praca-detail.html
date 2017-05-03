@@ -141,25 +141,7 @@
   </div>
 
   <!-- Parceiros -->
-  <div ng-if="$ctrl.praca.situacao == 'i'" id="container-parceiros">
-    <div flex layout-padding class="info">
-      <div class="layout-row title">
-        <md-icon>people</md-icon>
-        <h1 flex>Parceiros da Praça</h1>
-      </div>
-      <div ng-if="$ctrl.praca.parceiros.length==0">
-        <p>Ainda não existem Parceiros para esta Praça. <b>:(</b></p>
-      </div>
-      <div layout-wrap layout-margin layout="row">
-        <md-card  ng-repeat="parceiro in $ctrl.praca.parceiros" layout-padding flex="25">
-          <div class="epr-avatar" style="background-image: url('{{ parceiro.imagem}}')"></div>
-          <span class="epr-name">{{ parceiro.nome }}</span>
-          <span class="epr-subname"></span>
-          <!-- <div flex></div> -->
-        </md-card>
-      </div>
-    </div>
-  </div>
+  <praca-parceiros-board praca="$ctrl.praca" parceiros="$ctrl.praca.parceiros"></praca-parceiros-board>
 
   <!-- GrupoGestor -->
   <praca-grupogestor ng-if="$ctrl.praca.situacao == 'i'" praca="$ctrl.praca" situacao="$ctrl.praca.situacao" grupo_gestor="$ctrl.praca.grupo_gestor"></praca-grupogestor>
