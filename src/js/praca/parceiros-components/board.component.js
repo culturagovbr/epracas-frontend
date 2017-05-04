@@ -1,12 +1,4 @@
-class ParceirosBoardController {
-  constructor() {
-    "ngInject"
-  }
-}
-
 const ParceirosBoardElement = {
-  controller: ParceirosBoardController,
-  controllerAs: "$ctrl",
   template: `
     <div ng-if="$ctrl.praca.situacao=='i'" id="container-parceiros">
       <div flex layout-padding class="info">

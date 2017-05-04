@@ -1,12 +1,4 @@
-class ParceirosListController {
-  constructor() {
-    "ngInject"
-  }
-}
-
 const ParceirosListElement = {
-  controller: ParceirosListController,
-  controllerAs: "$ctrl",
   template: `
         <div ng-if="$ctrl.parceiros.length == 0">
           <p>Ainda não existem Parceiros para esta Praça. <b>:(</b></p>
