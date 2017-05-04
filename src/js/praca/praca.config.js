@@ -37,7 +37,11 @@ function PracaConfig($stateProvider) {
         },
       },
     }
-    );
+    )
+    .state("app.praca.galeria", {
+      url: "/galeria",
+      component: "praca-galeria",
+    });
 }
 
 export default PracaConfig;
