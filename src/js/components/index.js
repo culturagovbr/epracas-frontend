@@ -29,4 +29,7 @@ componentsModule.directive("ttLeafletFlexFit", leafletFlexFit);
 import scroll from "./scroll.directive";
 componentsModule.directive("scroll", scroll);
 
+import ShowAuthedManagers from "./show-authed-managers.directive"
+componentsModule.directive("showAsManager", ShowAuthedManagers)
+
 export default componentsModule;
