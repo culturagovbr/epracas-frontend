@@ -38,9 +38,19 @@ function PracaConfig($stateProvider) {
       },
     }
     )
-    .state("app.praca.galeria", {
-      url: "/galeria",
+    .state("app.galeria", {
+      url: "/pracas/{pk}/galeria",
       component: "praca-galeria",
+      resolve: {
+        praca(Praca, $state, $stateParams) {
+          return Praca.get($stateParams.pk).then(
+            praca => praca,
+            (err) => {
+              $state.go("app.pracas");
+            }
+          );
+        },
+      },
     });
 }
 
