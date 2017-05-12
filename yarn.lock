@@ -18,6 +18,10 @@
   version "2.53.35"
   resolved "https://registry.yarnpkg.com/@types/selenium-webdriver/-/selenium-webdriver-2.53.35.tgz#a0c4b5f090bde48ba9ed16e4d43a5b99112c72fb"
 
+"@uirouter/core@5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@uirouter/core/-/core-5.0.3.tgz#e2b5b1e45190e20c67ba4e15c013de5d4e0ccab3"
+
 JSONStream@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/JSONStream/-/JSONStream-0.10.0.tgz#74349d0d89522b71f30f0a03ff9bd20ca6f12ac0"
@@ -182,13 +186,13 @@ angular-ui-bootstrap@>=0.14.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/angular-ui-bootstrap/-/angular-ui-bootstrap-2.5.0.tgz#2facefb915386655dc5f44150258032517236d01"
 
-angular-ui-router@^0.3.1:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/angular-ui-router/-/angular-ui-router-0.3.2.tgz#c27e0496309c99218d5655985b164a096ab520a9"
+angular-ui-router@^1.0.0:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/angular-ui-router/-/angular-ui-router-1.0.3.tgz#bf2494caae95c37cf01af3761d89747cfed2db45"
   dependencies:
-    angular "^1.0.8"
+    "@uirouter/core" "5.0.3"
 
-angular@1.x, "angular@>= 1.0.8", angular@>=1.4.0, angular@^1.0.8, angular@^1.2, angular@^1.5.0, angular@^1.5.8:
+angular@1.x, "angular@>= 1.0.8", angular@>=1.4.0, angular@^1.2, angular@^1.5.0, angular@^1.5.8:
   version "1.5.8"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.5.8.tgz#925a5392b8c212d09572dc446db7e01264e094cb"
 
