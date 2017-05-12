@@ -29,5 +29,8 @@ pracaModule.controller("ParceirosCtrl", ParceirosCtrl);
 import UploadImgCtrl from "./galeria-upload.controller";
 pracaModule.controller("UploadImgCtrl", UploadImgCtrl);
 
+import GrupoGestorContainer from "./grupogestor-components/container.component"
+pracaModule.component("pracaGrupogestor", GrupoGestorContainer)
+
 
 export default pracaModule;
