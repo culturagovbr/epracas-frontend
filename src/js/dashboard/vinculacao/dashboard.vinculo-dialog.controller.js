@@ -63,7 +63,13 @@ class DashboardVinculoDialogCtrl {
   }
 
   finalizaProcesso(pedido) {
-    this.Vinculacao.save(pedido)
+    const dados = {
+      id_pub: pedido.id_pub,
+      aprovador: pedido.aprovado,
+      descricao: pedido.descricao,
+    }
+
+    this.Vinculacao.save(dados)
     .then(
         () => {
           this.$mdDialog.cancel()

@@ -62,15 +62,15 @@
             <md-input-container class="md-block">
               <md-icon>subject</md-icon>
               <label>Despacho e considerações</label>
-              <textarea name="descricaoAtividade" rows="5" ng-select-on-focus ng-model="$ctrl._pedido.descricao"></textarea>
+              <textarea name="descricaoAtividade" rows="5" ng-select-on-focus ng-model="$ctrl.pedido.descricao"></textarea>
             </md-input-container>
             <md-input-container>
-              <md-checkbox ng-model="$ctrl._pedido.aprovado">Aprova Verificação</md-checkbox>
+              <md-checkbox ng-model="$ctrl.pedido.aprovado">Aprova Verificação</md-checkbox>
             </md-input-container>
           </md-step-body>
         </div>
         <md-step-actions layout-align="center end">
-          <md-button class="md-primary md-raised" ng-click="$ctrl.finalizaProcesso($ctrl._pedido)">Continue</md-button>
+          <md-button class="md-primary md-raised" ng-click="$ctrl.finalizaProcesso($ctrl.pedido)">Continue</md-button>
           <md-button class="md-primary" ng-click="$ctrl.cancelProcesso()">Cancelar</md-button>
         </md-step-actions>
       </md-step>
