@@ -65,7 +65,7 @@ class DashboardVinculoDialogCtrl {
   finalizaProcesso(pedido) {
     const dados = {
       id_pub: pedido.id_pub,
-      aprovador: pedido.aprovado,
+      aprovado: pedido.aprovado,
       descricao: pedido.descricao,
     }
 
