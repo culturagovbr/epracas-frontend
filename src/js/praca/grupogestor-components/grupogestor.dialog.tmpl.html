@@ -1,0 +1,57 @@
+<md-dialog layout="column" aria-label="Adicionar um GrupoGestor da Praça">
+  <form name="GrupoGestorForm" ng-submit="$ctrl.save($ctrl.praca.id_pub, $ctrl.grupogestor)">
+    <md-dialog-content>
+
+      <md-content md-theme="docs-dark" layout-padding>
+
+        <h2>Adicione um Grupo Gestor da Praça</h2>
+      </md-content>
+      <md-content layout="column" layout-padding>
+
+        <md-input-container class="md-block">
+          <label>Data de Instituição do Grupo Gestor</label>
+          <md-datepicker required name="dataInstituicaoGG" ng-model="$ctrl.grupogestor.data_instituicao"></md-datepicker>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Previsão de Espaços do Grupo Gestor</label>
+          <md-icon>subject</md-icon>
+          <input name="previsaoEspacosGG" type="number" min-value="0" required ng-model="$ctrl.grupogestor.previsao_espacos">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <md-icon>description</md-icon>
+          <label>Tipo de Documento de Constituição</label>
+          <md-select ng-model="$ctrl.grupogestor.tipo_documento">
+            <md-option ng-repeat="tipo in $ctrl._listaTipoDocumento" value="{{tipo.value}}">
+              {{tipo.display_name}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container class="md-block" layout-padding>
+          <md-button
+            type="file"
+            ngf-accept="'image/*, application/pdf'"
+            ngf-max-size="10MB"
+            ngf-select
+            ng-model="$ctrl.grupogestor.documento_constituicao"
+            class="md-raised"
+            label="Documento de Constituição">
+            <md-icon>insert_drive_file</md-icon>
+            Anexe o Documento de Constituição...
+          </md-button>
+        </md-input-container>
+
+      </md-dialog-content>
+
+      <md-dialog-actions>
+        <md-button ng-click="$ctrl.cancel()">
+          Cancelar
+        </md-button>
+        <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="GrupoGestorForm.$invalid">
+          Enviar
+        </md-button>
+      </md-dialog-actions>
+
+    </form>
+  </md-dialog>

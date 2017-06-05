@@ -32,5 +32,10 @@ pracaModule.controller("UploadImgCtrl", UploadImgCtrl);
 import GrupoGestorContainer from "./grupogestor-components/container.component"
 pracaModule.component("pracaGrupogestor", GrupoGestorContainer)
 
+import GrupoGestorDialogController from "./grupogestor-components/grupogestor.dialog.ctrl"
+pracaModule.controller("GrupoGestorDialogController", GrupoGestorDialogController)
+
+import MembroGestorDialogController from "./grupogestor-components/membrogestor.dialog.ctrl"
+pracaModule.controller("MembroGestorDialogController", MembroGestorDialogController)
 
 export default pracaModule;

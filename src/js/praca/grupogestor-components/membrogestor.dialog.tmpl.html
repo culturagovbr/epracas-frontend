@@ -1,0 +1,68 @@
+<md-dialog layout="column" aria-label="Adicionar um parceiro da Praça">
+  <form name="MembroGestorForm" ng-submit="$ctrl.save($ctrl.praca.id_pub, $ctrl.membrogestor)">
+    <md-dialog-content>
+
+      <md-content md-theme="docs-dark" layout-padding>
+
+        <div layout="row" layout-align="space-between center">
+        <h2>Adicione um Membro Gestor da Praça</h2>
+        <md-menu>
+          <md-button layout-align="end start" class="md-icon-button" ng-click="$mdMenu.open($event)">
+            <md-icon>menu</md-icon>
+          </md-button>
+            <md-menu-content width="4">
+              <md-menu-item>
+                <md-button ng-click="$ctrl.showFinalizaGrupoGestorDialog($ctrl.praca, $ctrl.grupogestor)">
+                  <md-icon>info</md-icon>
+                  Finaliza a atual gestão e Adiciona um novo Grupo Gestor
+                </md-button>
+              </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+        </div>
+        <p>Adicione um novo Membro Gestor para o atual Grupo Gestor. Para opções relacionadas ao Grupo Gestor, utilize o menu ao lado.</p>
+      </md-content>
+      <md-content layout="column" layout-padding>
+
+        <md-input-container class="md-icon-float md-block">
+          <md-icon>business</md-icon>
+          <label>Nome do(a) Membro</label>
+          <input name="nomeMembro" required ng-model="$ctrl.membrogestor.nome">
+        </md-input-container>
+
+        <div>
+          <md-input-container class="md-block">
+            <label>Segmento de Origem do membro gestor</label>
+            <md-icon>subject</md-icon>
+            <md-select name="origemMembro" required ng-model="$ctrl.membrogestor.origem">
+              <md-option ng-repeat="origem in $ctrl.listaOrigem" value="{{origem.value}}">
+                {{origem.display_name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+
+        <md-input-container class="md-icon-float md-block">
+          <md-icon>person</md-icon>
+          <label>Forma de Constituição</label>
+          <md-select name="constituicaoMembro" required ng-model="$ctrl.membrogestor.constituicao">
+            <md-option ng-repeat="constituicao in $ctrl.listaConstituicao" value="{{constituicao.value}}">
+              {{constituicao.display_name}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+      </md-content>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+      <md-button ng-click="$ctrl.cancel()">
+        Cancelar
+      </md-button>
+      <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="MembroGestorForm.$invalid">
+        Enviar
+      </md-button>
+    </md-dialog-actions>
+
+  </form>
+</md-dialog>

@@ -1,0 +1,29 @@
+<md-dialog layout="column" aria-label="Finaliza a gestão de um GrupoGestor da Praça">
+  <form name="GrupoGestorFinalizaForm" ng-submit="$ctrl.save($ctrl.praca.id_pub, $ctrl.gg)">
+    <md-dialog-content>
+
+      <md-content md-theme="docs-dark" layout-padding>
+
+        <h2>Finaliza a gestão do Grupo Gestor da Praça</h2>
+        <p>Gestão iniciada em {{$ctrl.gg.data_instituicao | date:'dd/MM/yyyy'}}</p>
+      </md-content>
+      <md-content layout="column" layout-padding>
+
+        <md-input-container class="md-block">
+          <label>Data de Finalização do Grupo Gestor</label>
+          <md-datepicker required name="dataFinalizacaoGG" ng-model="$ctrl.gg.data_finalizacao"></md-datepicker>
+        </md-input-container>
+
+      </md-dialog-content>
+
+      <md-dialog-actions>
+        <md-button ng-click="$ctrl.cancel()">
+          Cancelar
+        </md-button>
+        <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="GrupoGestorFinalizaForm.$invalid">
+          Enviar
+        </md-button>
+      </md-dialog-actions>
+
+    </form>
+  </md-dialog>
