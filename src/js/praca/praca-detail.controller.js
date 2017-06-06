@@ -1,7 +1,7 @@
 import moment from "moment"
 
 class PracaDetailCtrl {
-  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, praca) {
+  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, praca, $timeout) {
     "ngInject"
 
       angular.extend(this, {
@@ -11,7 +11,7 @@ class PracaDetailCtrl {
         $log,
         currentUser: User.current,
         praca,
-      })
+      });
 
 
     Atividade.list(praca.id_pub)
@@ -77,7 +77,7 @@ class PracaDetailCtrl {
             this.userMenu = this.buildMenu(this.currentUser)
           }
         }
-    )
+    );
     $scope.tabIntSelected = 0
     $scope.intWindowHeight = $(window).height()
 

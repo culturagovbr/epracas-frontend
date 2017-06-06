@@ -1,6 +1,9 @@
 class GaleriaElementController {
-  constructor(Praca, praca) {
-    "ngInject"
+  constructor(Praca) {
+    "ngInject";
+
+
+    console.info('aaa');
   }
 }
 
@@ -9,12 +12,16 @@ const GaleriaElement = {
   controllerAs: "$ctrl",
   template: `
     <md-icon></md-icon>
-    <md-subheader>Galeria</md-subheader>
+    <md-subheader>Galeria123</md-subheader>
     <galeria-list></galeria-list>
+    
+    
+    
+    
     `,
   bindings: {
     imagens: "<",
   },
-}
+};
 
 export default GaleriaElement

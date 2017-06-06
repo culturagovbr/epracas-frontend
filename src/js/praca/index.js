@@ -38,4 +38,10 @@ pracaModule.controller("GrupoGestorDialogController", GrupoGestorDialogControlle
 import MembroGestorDialogController from "./grupogestor-components/membrogestor.dialog.ctrl"
 pracaModule.controller("MembroGestorDialogController", MembroGestorDialogController)
 
+import Gallery from "./galeria-components/gallery.component"
+pracaModule.component("gallery", Gallery);
+
+import PracaGaleriaCtrl from "./praca-galeria.controller";
+pracaModule.controller("PracaGaleriaCtrl", PracaGaleriaCtrl);
+
 export default pracaModule;

@@ -40,17 +40,31 @@ function PracaConfig($stateProvider) {
     )
     .state("app.galeria", {
       url: "/pracas/{pk}/galeria",
-      component: "praca-galeria",
-      resolve: {
-        praca(Praca, $state, $stateParams) {
-          return Praca.get($stateParams.pk).then(
-            praca => praca,
-            (err) => {
-              $state.go("app.pracas");
-            }
-          );
+      title: "Galeria da Praça",
+      controller: "PracaGaleriaCtrl",
+      controllerAs: "$ctrl",
+      templateUrl: "praca/praca-galeria.html",
+        resolve: {
+          imagens(Praca, $state, $stateParams, $http) {
+            return Praca.getImages($stateParams.pk).then(
+                imagens => imagens,
+              (err) => {
+                $state.go("app.pracas");
+              }
+            );
+          },
         },
-      },
+      // component: "pracaGaleria",
+      // resolve: {
+      //   praca(Praca, $state, $stateParams) {
+      //     return Praca.get($stateParams.pk).then(
+      //       praca => praca,
+      //       (err) => {
+      //         $state.go("app.pracas");
+      //       }
+      //     );
+      //   },
+      // }
     });
 }
 
