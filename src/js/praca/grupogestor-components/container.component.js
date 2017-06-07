@@ -49,7 +49,7 @@ const GrupoGestorContainer = {
         <div ng-show="!$ctrl.grupo_gestor">
           <p>Os dados sobre o Grupo Gestor ainda não foram inseridos nesta Praça.</p>
         </div>
-      <md-fab-speed-dial class="md-fab-top-right" ng-click="$ctrl.showGestorDialog($ctrl.praca)">
+      <md-fab-speed-dial show-as-manager="true" class="md-fab-top-right" ng-click="$ctrl.showGestorDialog($ctrl.praca)">
         <md-fab-trigger>
           <md-button class="md-fab">
             <md-icon>add</md-icon>
