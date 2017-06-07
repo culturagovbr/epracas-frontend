@@ -1879,3 +1879,20 @@ footer {
 .card, .card-panel{
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
 }
+
+md-grid-list md-grid-tile md-grid-tile-footer, md-grid-list md-grid-tile md-grid-tile-header {
+    background: rgba(0, 0, 0, 0.58);
+}
+
+md-grid-list.content-gallery md-grid-tile{
+    /*transition: all 0.4s ease-out;*/
+    box-shadow: 0 35px 77px -17px rgba(0,0,0,0.44);
+}
+
+md-grid-list.content-gallery md-grid-tile:hover
+{
+    transition: all 0.4s ease-out;
+    box-shadow: 0 35px 77px -17px rgba(0,0,0,0.64);
+    transform:scale(1.15);
+    z-index: 1000;
+}

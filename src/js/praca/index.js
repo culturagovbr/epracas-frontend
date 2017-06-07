@@ -38,8 +38,8 @@ pracaModule.controller("GrupoGestorDialogController", GrupoGestorDialogControlle
 import MembroGestorDialogController from "./grupogestor-components/membrogestor.dialog.ctrl"
 pracaModule.controller("MembroGestorDialogController", MembroGestorDialogController)
 
-import Gallery from "./galeria-components/gallery.component"
-pracaModule.component("gallery", Gallery);
+import PracaGaleriaContent from "./galeria-components/praca-galeria-content.component"
+pracaModule.component("pracaGaleriaContent", PracaGaleriaContent);
 
 import PracaGaleriaCtrl from "./praca-galeria.controller";
 pracaModule.controller("PracaGaleriaCtrl", PracaGaleriaCtrl);

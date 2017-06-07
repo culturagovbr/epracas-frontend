@@ -1,4 +1,4 @@
-class GalleryController {
+class PracaGaleriaContentController {
   constructor($attrs, Praca, $scope, $stateParams, $document, $mdMedia) {
     "ngInject";
       $scope.imagens = [];
@@ -57,6 +57,7 @@ class GalleryController {
                     this.paginator.intRendered++;
                     setTimeout(() => {
                         $('.materialboxed').materialbox();
+                        $('.materialboxed').closest('md-grid-tile').css('transition', 'all 0.4s ease-out'); // Adicionando animacao para tornar o hover mais fluido, mas isso só deve ser feito apos a imagem ser renderizada,.
                     }, 100);
                 }
             }
@@ -66,23 +67,22 @@ class GalleryController {
     }
 }
 
-const Gallery = {
-  controller: GalleryController,
+const PracaGaleriaContent = {
+  controller: PracaGaleriaContentController,
   controllerAs: "$ctrl",
   template: `
-    <md-icon></md-icon>
-    <md-subheader>Galeriass</md-subheader>
-    <!--<galeria-list></galeria-list>-->
     <md-grid-list
       md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6"
       md-row-height-gt-md="1:1" md-row-height="4:3"
-      md-gutter="8px" md-gutter-gt-sm="4px">
+      md-gutter="8px" md-gutter-gt-sm="4px"
+      class="content-gallery">
       <md-grid-tile
                     ng-repeat="objPhoto in paginatorData"
                     md-rowspan="{{objPhoto.span.row}}"
                     md-colspan="{{objPhoto.span.col}}"
                     md-colspan-sm="1"
-                    md-colspan-xs="1">
+                    md-colspan-xs="1"
+                    class="animated fadeIn">
         <img width="135%" class="materialboxed animated fadeIn" data-caption="{{objPhoto.title}}" ng-src="{{objPhoto.url}}">
         <md-grid-tile-footer><h3>{{objPhoto.title}}</h3></md-grid-tile-footer>
       </md-grid-tile>
@@ -93,4 +93,4 @@ const Gallery = {
     `
 };
 
-export default Gallery
+export default PracaGaleriaContent
