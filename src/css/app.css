@@ -1894,5 +1894,15 @@ md-grid-list.content-gallery md-grid-tile:hover
     transition: all 0.4s ease-out;
     box-shadow: 0 35px 77px -17px rgba(0,0,0,0.64);
     transform:scale(1.15);
-    z-index: 1000;
+    z-index: 3;
+}
+
+figcaption {
+    width: 100%;
+}
+figcaption div.row {
+    margin: 0 !important;
+}
+figcaption div.md-open-menu-container  {
+    z-index: 4;
 }
