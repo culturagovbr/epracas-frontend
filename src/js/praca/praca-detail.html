@@ -48,6 +48,8 @@
       <p>{{ $ctrl.praca.bio }}</p>
     </div>
   </div>
+
+  <!-- TabBar Secções -->
   <div style="height: 48px">
     <div class="tab-pracas">
       <md-content class="limite layout-column">
@@ -56,15 +58,16 @@
             <md-tab label="Inicio" scroll="header"></md-tab>
             <md-tab label="Agenda" scroll="#container-agenda" offset="48"></md-tab>
             <md-tab label="Fotos" scroll="#container-imagens" offset="48"></md-tab>
-            <md-tab ng-if="$ctrl.praca.situacao=='i'" label="Parceiros" scroll="#container-parceiros" offset="48"></md-tab>
-            <md-tab ng-if="$ctrl.praca.situacao=='i'" label="Grupo Gestor" scroll="#container-grupogestor" offset="48"></md-tab>
-            <md-tab ng-if="$ctrl.praca.situacao!='i'" label="Unidade Gestora Local" scroll="#container-unidade" offset="48"></md-tab>
+            <md-tab ng-if="$ctrl.praca.situacao == 'i'" label="Parceiros" scroll="#container-parceiros" offset="48"></md-tab>
+            <md-tab ng-if="$ctrl.praca.situacao == 'i'" label="Grupo Gestor" scroll="#container-grupogestor" offset="48"></md-tab>
+            <md-tab ng-if="$ctrl.praca.situacao != 'i'" label="Unidade Gestora Local" scroll="#container-unidade" offset="48"></md-tab>
             <md-tab label="Localização" scroll="#container-localizacao" offset="48"></md-tab>
           </md-tabs>
         </div>
       </md-content>
     </div>
   </div>
+
   <!-- Agenda -->
   <div id="container-agenda" layout-padding class="agenda" layout-align="start center">
     <div class="layout-row title">
@@ -109,8 +112,9 @@
       </md-grid-list>
     </div>
   </div>
+
   <!-- Parceiros -->
-  <div ng-if="$ctrl.praca.situacao=='i'" id="container-parceiros">
+  <div ng-if="$ctrl.praca.situacao == 'i'" id="container-parceiros">
     <div flex layout-padding class="info">
       <div class="layout-row title">
         <md-icon>people</md-icon>
@@ -131,20 +135,22 @@
   </div>
 
   <!-- GrupoGestor -->
-  <praca-grupogestor praca="$ctrl.praca" situacao="$ctrl.praca.situacao" grupo_gestor="$ctrl.praca.grupo_gestor"></praca-grupogestor>
+  <praca-grupogestor ng-if="$ctrl.praca.situacao == 'i'" praca="$ctrl.praca" situacao="$ctrl.praca.situacao" grupo_gestor="$ctrl.praca.grupo_gestor"></praca-grupogestor>
 
   <!-- UnidadeGestoraLocal -->
-  <div ng-if="$ctrl.praca.situacao!='i'" id="container-unidade" layout-gt-xs="row">
-    <div flex layout-padding class="info">
-      <div class="layout-row title">
-        <md-icon>location_city</md-icon>
-        <h1 flex>Unidade Gestora Local</h1>
-      </div>
-      <div ng-show="!$ctrl.praca.unidade_gestora">
-        <p>Os dados sobre a Unidade Gestora ainda não foram inseridos nesta Praça.</p>
-      </div>
-    </div>
-  </div>
+  <praca-unidadegestora ng-if="$ctrl.praca.situacao != 'i'" praca="$ctrl.praca" situacao="$ctrl.praca.situacao" unidade_gestora="$ctrl.praca.unidade_gestora"></praca-unidadegestora>
+
+  <!-- <div ng-if="$ctrl.praca.situacao == 'i'" id="container-unidade" layout-gt-xs="row"> -->
+  <!--   <div flex layout-padding class="info"> -->
+  <!--     <div class="layout-row title"> -->
+  <!--       <md-icon>location_city</md-icon> -->
+  <!--       <h1 flex>Unidade Gestora Local</h1> -->
+  <!--     </div> -->
+  <!--     <div ng-show="!$ctrl.praca.unidade_gestora"> -->
+  <!--       <p>Os dados sobre a Unidade Gestora ainda não foram inseridos nesta Praça.</p> -->
+  <!--     </div> -->
+  <!--   </div> -->
+  <!-- </div> -->
   <!-- Localização -->
   <div id="container-localizacao" layout-gt-xs="row" class="localizacao">
     <div flex-gt-xs="30" layout-padding class="info" md-whiteframe="3">

@@ -1,0 +1,33 @@
+<md-dialog layout="column" aria-label="Adiciona um Membro da Unidade Gestora Local">
+  <form name="MembroUGLForm" ng-submit="$ctrl.save($ctrl.praca, $ctrl.membrougl)">
+    <md-dialog-content>
+
+      <md-content md-theme="docs-dark" layout-padding>
+
+        <div layout="row" layout-align="space-between center">
+          <h2>Adicione um Membro da Unidade Gestora Local</h2>
+        </div>
+        <p>Adicione um novo membro à Unidade Gestora Local desta Unidade</p>
+      </md-content>
+      <md-content layout="column" layout-padding>
+
+        <md-input-container class="md-icon-float md-block">
+          <md-icon>business</md-icon>
+          <label>Nome do(a) Membro</label>
+          <input name="nomeMembro" required ng-model="$ctrl.membrougl.nome">
+        </md-input-container>
+
+      </md-content>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+      <md-button ng-click="$ctrl.cancel()">
+        Cancelar
+      </md-button>
+      <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="MembroUGLForm.$invalid">
+        Enviar
+      </md-button>
+    </md-dialog-actions>
+
+  </form>
+</md-dialog>
