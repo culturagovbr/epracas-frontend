@@ -16,15 +16,9 @@ export default class GrupoGestorDialogController {
 
     this.GrupoGestor.options_grupogestor(praca)
       .then((data) => {
-        this.listaConstituicao = data.tipo_documento.choices
+        this.listaTipoDocumento = data.tipo_documento.choices
       })
 
-    // this._listaTipoDocumento = [
-    //   { value: "d", display_name: "Decreto" },
-    //   { value: "p", display_name: "Portaria" },
-    //   { value: "l", display_name: "Lei" },
-    //   { value: "n", display_name: "Não Formalizado" },
-    // ]
   }
 
   cancel() { this.$mdDialog.cancel() }

@@ -9,7 +9,7 @@
       <md-content layout="column" layout-padding>
 
         <md-input-container class="md-block">
-          <label>Data de Instituição do Grupo Gestor</label>
+          <label>Data de Instituição</label>
           <md-datepicker required name="dataInstituicaoGG" ng-model="$ctrl.grupogestor.data_instituicao"></md-datepicker>
         </md-input-container>
 
@@ -23,7 +23,7 @@
           <md-icon>description</md-icon>
           <label>Tipo de Documento de Constituição</label>
           <md-select ng-model="$ctrl.grupogestor.tipo_documento">
-            <md-option ng-repeat="tipo in $ctrl._listaTipoDocumento" value="{{tipo.value}}">
+            <md-option ng-repeat="tipo in $ctrl.listaTipoDocumento" value="{{tipo.value}}">
               {{tipo.display_name}}
             </md-option>
           </md-select>
