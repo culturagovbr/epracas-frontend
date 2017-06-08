@@ -37,6 +37,7 @@ class UnidadeGestoraController {
 const UnidadeGestoraContainer = {
   controller: UnidadeGestoraController,
   template: `
+<<<<<<< HEAD
     <div id="container-unidade" layout-padding layout-gt-xs="row">
       <div flex class="info">
         <div class="layout-row title">
@@ -46,6 +47,7 @@ const UnidadeGestoraContainer = {
         <div ng-if="$ctrl.praca.unidade_gestora.length == 0">
           <p>Os dados sobre a Unidade Gestora ainda não foram inseridos nesta Praça. </p>
         </div>
+
       </div>
 
       <div layout-wrap layout-margin layout="row">
@@ -61,17 +63,6 @@ const UnidadeGestoraContainer = {
             <md-icon class="material-icons">add</md-icon>
           </md-button>
         </md-fab-trigger>
-        <!--<md-fab-actions>
-            <md-button aria-label="Twitter" class="md-fab md-raised md-mini">
-              <md-icon md-svg-src="img/icons/twitter.svg" aria-label="Twitter"></md-icon>
-            </md-button>
-            <md-button aria-label="Facebook" class="md-fab md-raised md-mini">
-              <md-icon md-svg-src="img/icons/facebook.svg" aria-label="Facebook"></md-icon>
-            </md-button>
-            <md-button aria-label="Google Hangout" class="md-fab md-raised md-mini">
-              <md-icon md-svg-src="img/icons/hangout.svg" aria-label="Google Hangout"></md-icon>
-            </md-button>
-          </md-fab-actions>-->
       </md-fab-speed-dial>
     </div>
     `,
