@@ -88,4 +88,14 @@ export default class Praca {
     })
     .then(res => res.data)
   }
+
+  // Retorna as opções disponiveis para alguns campos
+  options(data) {
+    return this._$http({
+      url: this._PracaEndPoint,
+      method: "OPTIONS",
+    })
+    .then(response => response.data)
+    .then(data => data.actions.POST)
+  }
 }

@@ -1,54 +1,68 @@
 class PracaInfoCtrl {
-  constructor($mdDialog, Praca, praca, Toast) {
-    "ngInject";
+  constructor($mdDialog, $log, Praca, Toast, praca) {
+    "ngInject"
 
     angular.extend(this, {
-      _$mdDialog: $mdDialog,
-      _Praca: Praca,
-      praca: praca,
-      _Toast: Toast,
+      $mdDialog,
+      $log,
+      Praca,
+      Toast,
+      praca,
     })
+
+    this.Praca.options()
+      .then((data) => {
+        this.listaUf = data.uf.choices
+        this.listaRegiao = data.regiao.choices
+      })
+
+    this.isSaving = false
   }
 
   cancel() {
-    this._$mdDialog.cancel();
+    this._$mdDialog.cancel()
   }
 
   save(data) {
-    if (angular.isUndefined(data.id_pub)) {
-      this._Praca.new(data)
+    this.isSaving = true
+    if (angular.isUndefined(data.id_pub) || data.id_pub === null) {
+      this.Praca.new(data)
         .then(
           () => {
-            this._$mdDialog.hide();
-            this._Toast.showSuccessToast("Praca cadastrada com Sucesso!");
+            this.$mdDialog.hide()
+            this.Toast.showSuccessToast("Praca cadastrada com Sucesso!")
           }
         )
         .catch(
           (err) => {
-            this._Toast.showRejectedToast(`Problemas ao alterar a Praça. ${err.data}`);
+            this.isSaving = false
+            this.Toast.showRejectedToast(`Problemas ao criar a Praça. ${angular.toJson(err.data)}`)
+            this.$log.error(`Save Praca info: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
           }
-        );
+        )
     } else {
-      const praca = data.id_pub;
-      let praca_data = {};
-      const fields = ['nome', 'logradouro', 'cep', 'bairro', 'regiao', 'uf',
-                'municipio', 'bio', 'repasse'];
+      let praca_data = {}
+      const fields = ["id_pub", "nome", "logradouro", "cep", "bairro", "regiao", "uf", "municipio", "bio", "repasse"]
 
-      for (let field of fields){
-        praca_data[field] = angular.copy(data[field]);
-      }
+      praca_data = fields.reduce((acc, field) => {
+        acc[field] = angular.copy(data[field])
+        return acc
+      }, {})
 
-      this._Praca.save(praca, praca_data)
+      this.Praca.save(praca_data.id_pub, praca_data)
         .then(
           () => {
-            this._$mdDialog.hide();
-            this._Toast.showSuccessToast("Informações alteradas com sucesso!");
+            this.$mdDialog.hide()
+            this.Toast.showSuccessToast("Informações alteradas com sucesso!")
           }
         )
         .catch(
-          (err) => console.error(`Save Praca Info: ${err.status} - ${JSON.stringify(err)}`)
-        );
+          (err) => {
+            this.isSaving = false
+            $log.error(`Save Praca Info: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
+          }
+        )
     }
   }
 }
-export default PracaInfoCtrl;
+export default PracaInfoCtrl

@@ -1,12 +1,12 @@
 <md-dialog layout="column" aria-label="Editar Informações sobre a Praça">
-  <form name="PracaForm" ng-submit="$ctrl.save($ctrl.praca)">
+  <form name="PracaForm" ng-disabled="$ctrl.isSaving" ng-submit="$ctrl.save($ctrl.praca)">
     <md-dialog-content>
 
       <md-content md-theme="docs-dark" layout-padding>
         <h2>Informações sobre a Praça</h2>
         <md-input-container class="md-block" flex>
           <label>Nome da Praça</label>
-          <input name="pracaNome" ng-required="true" ng-model="$ctrl.praca.nome">
+          <input name="pracaNome" required ng-model="$ctrl.praca.nome">
         </md-input-container>
       </md-content>
 
@@ -36,17 +36,27 @@
 
         <md-input-container>
           <label>Região</label>
-          <input name="pracaRegiao" ng-model="$ctrl.praca.regiao">
+          <md-icon></md-icon>
+          <md-select name="pracaRegiao" required ng-model="$ctrl.praca.regiao">
+            <md-option ng-repeat="regiao in $ctrl.listaRegiao" value="{{regiao.value}}">
+              {{regiao.display_name}}
+            </md-option>
+          </md-select>
         </md-input-container>
 
         <md-input-container>
           <label>UF</label>
-          <input name="pracaUf" ng-model="$ctrl.praca.uf">
+          <md-icon></md-icon>
+          <md-select name="pracaUf" required ng-model="$ctrl.praca.uf">
+            <md-option ng-repeat="uf in $ctrl.listaUf" value="{{uf.value}}">
+              {{uf.display_name}}
+            </md-option>
+          </md-select>
         </md-input-container>
 
         <md-input-container>
           <label>Municipio</label>
-          <input name="pracaMunicipio" ng-model="$ctrl.praca.municipio">
+          <input name="pracaMunicipio" required ng-model="$ctrl.praca.municipio">
         </md-input-container>
 
         <div>
@@ -63,7 +73,7 @@
       <md-button ng-click="$ctrl.cancel()">
         Cancelar
       </md-button>
-      <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="!$ctrl.praca.nome">
+      <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="MembroGestorForm.$invalid">
         Enviar
       </md-button>
     </md-dialog-actions>
