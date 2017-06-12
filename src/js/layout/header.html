@@ -16,8 +16,8 @@
 			<!-- Exibe o Login para usário não loggados -->
 			<md-list show-authed="false">
 				<md-list-item>
-					<md-button oauth-login-button aria-label="Entre com idCultura">
-          <md-icon md-svg-icon="idcultura" class="s48" style="width: 56px; height:56px;"></md-icon>
+					<md-button oauth-login-button aria-label="Entre com idCultura" id="btn-login">
+          <md-icon md-svg-icon="idcultura" id="idcultura" class="s48"></md-icon>
 					</md-button>
           <p hide-xs>Entrar</p>
 				</md-list-item>
@@ -27,7 +27,7 @@
 			<md-list show-authed="true">
         <md-menu>
           <md-list-item ng-click="$mdOpenMenu($event)">
-            <img ng-src={{$ctrl.currentUser.profile_picture_url}} class="md-avatar" style="height: 56px; width:56px;">
+            <img ng-src={{$ctrl.currentUser.profile_picture_url}} class="md-avatar">
             <span hide-xs>Olá {{::$ctrl.currentUser.first_name}}</span>
           </md-list-item>
           <md-menu-content width="5">

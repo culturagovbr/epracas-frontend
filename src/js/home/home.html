@@ -25,15 +25,7 @@
         </video>
         <div id="home-search" class="animated fadeIn" layout-align="center center" layout-margin layout-gt-xs="row"
              flex>
-            <md-icon style="font-size: 48px;
-                        height: 48px;
-                        width: 48px;
-                        color: #d1d1d1;
-                        position: relative;
-                        left: 74px;
-                        z-index: 1;">
-                search
-            </md-icon>
+            <md-icon>search</md-icon>
             <md-autocomplete
                     placeholder="Procure por uma cidade ou estado (UF)"
                     md-selected-item="$ctrl.selectedItem"
@@ -66,14 +58,14 @@
                 <!--<a class="transparent waves-effect waves-yellow btn-large white" flex="33" scroll="#3"><i class="material-icons left">near_me</i>Praças Próximas</a>-->
                 <!--<a class="transparent waves-effect waves-green btn-large white " flex="33" scroll="#4"><i class="material-icons left">map</i>Praças do Brasil</a>-->
         <!--</div>-->
-        <div class="block white-text animated fadeIn" layout="row" layout-align="center center" flex layout-margin>
-            <a class="blue waves-effect waves-light btn-large  yellow-text tooltipped" flex="33" scroll="#2" data-position="top" data-tooltip="Ir para o ceus">
+        <div class="quadro-btns block white-text animated fadeIn" layout="row" layout-xs="column" layout-align="center center" flex layout-margin>
+            <a class="blue waves-effect waves-light btn-large  yellow-text tooltipped" flex-gt-xs="33" flex="100" scroll="#2" data-position="top" data-tooltip="Ir para o ceus">
                 <i class="material-icons middle">explore</i>
                 Ceus
             </a>
-            <a class="yellow waves-effect waves-light btn-large green-text text-darken-4 tooltipped" flex="33" scroll="#3" data-position="top" data-tooltip="Ir para praças próximas à você">
+            <a class="yellow waves-effect waves-light btn-large green-text text-darken-4 tooltipped" flex-gt-xs="33" flex="100" scroll="#3" data-position="top" data-tooltip="Ir para praças próximas à você">
                 <i class="material-icons middle">near_me</i>Praças Próximas</a>
-            <a class="green waves-effect waves-light btn-large blue-text text-darken-4 tooltipped" flex="33" scroll="#4" data-position="top" data-tooltip="Ir para todas as praças do brasil">
+            <a class="green waves-effect waves-light btn-large blue-text text-darken-4 tooltipped" flex-gt-xs="33" flex="100" scroll="#4" data-position="top" data-tooltip="Ir para todas as praças do brasil">
                 <i class="material-icons middle">map</i>Praças do Brasil</a>
         </div>
     </div>
