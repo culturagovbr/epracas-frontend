@@ -1,6 +1,8 @@
 class HomeCtrl {
-    constructor($q, $state, AppConstants, Praca, $document, $window, $scope) {
+    constructor($q, $state, AppConstants, Praca, $document, $window, $scope, $mdMedia) {
         "ngInject";
+
+        $scope.$mdMedia = $mdMedia;
 
         this.appName = AppConstants.appName;
         this._Praca = Praca;

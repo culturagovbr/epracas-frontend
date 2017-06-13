@@ -1861,7 +1861,7 @@ md-select {
             -webkit-transform: rotate(45deg) translateY(-144%) translateX(102%);
         }
         footer {
-            z-index: 3;
+            /*z-index: 3;*/
         }
         .fixed-action-btn , button.md-fab {
             z-index: 4;
