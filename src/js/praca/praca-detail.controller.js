@@ -129,34 +129,37 @@ class PracaDetailCtrl {
    */
   buildGridModel(arrValue) {
     let arrValueTreated = [], arrDefault = [];
-    arrDefault[0] = {title: "Bloco 1", url: "/assets/praca-grid/bloco1.jpg", background : "red", span : {row : 2, col : 2}};
-    arrDefault[1] = {title: "Bloco 2", url: "/assets/praca-grid/bloco2.jpg", background : "green", span : {row : 1, col : 1}};
-    arrDefault[2] = {title: "Bloco 3", url: "/assets/praca-grid/bloco3.jpg", background : "darkBlue", span : {row : 1, col : 1}};
-    arrDefault[3] = {title: "Bloco 4", url: "/assets/praca-grid/bloco4.jpg", background : "blue", span : {row : 1, col : 2}};
-    arrDefault[4] = {title: "Bloco 5", url: "/assets/praca-grid/bloco5.jpg", background : "yellow", span : {row : 2, col : 2}};
-    arrDefault[5] = {title: "Bloco 6", url: "/assets/praca-grid/bloco6.jpg", background : "pink", span : {row : 1, col : 1}};
-    arrDefault[6] = {title: "Bloco 7", url: "/assets/praca-grid/bloco7.jpg", background : "darkBlue", span : {row : 1, col : 1}};
-    arrDefault[7] = {title: "Bloco 8", url: "/assets/praca-grid/bloco8.jpg", background : "purple", span : {row : 1, col : 1}};
-    arrDefault[8] = {title: "Bloco 9", url: "/assets/praca-grid/bloco9.jpg", background : "deepBlue", span : {row : 1, col : 1}};
-    arrDefault[9] = {title: "Bloco 10", url: "/assets/praca-grid/bloco10.jpg", background : "lightPurple", span : {row : 1, col : 1}};
-    arrDefault[10] = {title: "Bloco 11", url: "/assets/praca-grid/bloco11.jpg", background : "yellow", span : {row : 1, col : 1}};
-    arrDefault[11] = {title: "Bloco 12", url: "/assets/praca-grid/bloco12.jpg", background : "yellow", span : {row : 1, col : 1}};
-    arrDefault[12] = {title: "Bloco 13", url: "/assets/praca-grid/bloco12.jpg", background : "pink", span : {row : 1, col : 1}};
-    arrDefault[13] = {title: "Bloco 14", url: "/assets/praca-grid/bloco14.jpg", background : "darkBlue", span : {row : 1, col : 1}};
-    arrDefault[14] = {title: "Bloco 15", url: "/assets/praca-grid/bloco15.jpg", background : "purple", span : {row : 1, col : 2}};
-    arrDefault[15] = {title: "Bloco 16", url: "/assets/praca-grid/bloco16.jpg", background : "deepBlue", span : {row : 1, col : 1}};
-    arrDefault[16] = {title: "Bloco 17", url: "/assets/praca-grid/bloco17.jpg", background : "lightPurple", span : {row : 1, col : 1}};
-    arrDefault[17] = {title: "Bloco 18", url: "/assets/praca-grid/bloco18.jpg", background : "yellow", span : {row : 1, col : 1}};
+    arrDefault[0] = {title: "Bloco 1", description: " ", url: "/assets/praca-grid/bloco1.jpg", background : "red", span : {row : 2, col : 2}};
+    arrDefault[1] = {title: "Bloco 2", description: " ", url: "/assets/praca-grid/bloco2.jpg", background : "green", span : {row : 1, col : 1}};
+    arrDefault[2] = {title: "Bloco 3", description: " ", url: "/assets/praca-grid/bloco3.jpg", background : "darkBlue", span : {row : 1, col : 1}};
+    arrDefault[3] = {title: "Bloco 4", description: " ", url: "/assets/praca-grid/bloco4.jpg", background : "blue", span : {row : 1, col : 2}};
+    arrDefault[4] = {title: "Bloco 5", description: " ", url: "/assets/praca-grid/bloco5.jpg", background : "yellow", span : {row : 2, col : 2}};
+    arrDefault[5] = {title: "Bloco 6", description: " ", url: "/assets/praca-grid/bloco6.jpg", background : "pink", span : {row : 1, col : 1}};
+    arrDefault[6] = {title: "Bloco 7", description: " ", url: "/assets/praca-grid/bloco7.jpg", background : "darkBlue", span : {row : 1, col : 1}};
+    arrDefault[7] = {title: "Bloco 8", description: " ", url: "/assets/praca-grid/bloco8.jpg", background : "purple", span : {row : 1, col : 1}};
+    arrDefault[8] = {title: "Bloco 9", description: " ", url: "/assets/praca-grid/bloco9.jpg", background : "deepBlue", span : {row : 1, col : 1}};
+    arrDefault[9] = {title: "Bloco 10", description: " ", url: "/assets/praca-grid/bloco10.jpg", background : "lightPurple", span : {row : 1, col : 1}};
+    arrDefault[10] = {title: "Bloco 11", description: " ", url: "/assets/praca-grid/bloco11.jpg", background : "yellow", span : {row : 1, col : 1}};
+    arrDefault[11] = {title: "Bloco 12", description: " ", url: "/assets/praca-grid/bloco12.jpg", background : "yellow", span : {row : 1, col : 1}};
+    arrDefault[12] = {title: "Bloco 13", description: " ", url: "/assets/praca-grid/bloco12.jpg", background : "pink", span : {row : 1, col : 1}};
+    arrDefault[13] = {title: "Bloco 14", description: " ", url: "/assets/praca-grid/bloco14.jpg", background : "darkBlue", span : {row : 1, col : 1}};
+    arrDefault[14] = {title: "Bloco 15", description: " ", url: "/assets/praca-grid/bloco15.jpg", background : "purple", span : {row : 1, col : 2}};
+    arrDefault[15] = {title: "Bloco 16", description: " ", url: "/assets/praca-grid/bloco16.jpg", background : "deepBlue", span : {row : 1, col : 1}};
+    arrDefault[16] = {title: "Bloco 17", description: " ", url: "/assets/praca-grid/bloco17.jpg", background : "lightPurple", span : {row : 1, col : 1}};
+    arrDefault[17] = {title: "Bloco 18", description: " ", url: "/assets/praca-grid/bloco18.jpg", background : "yellow", span : {row : 1, col : 1}};
     for (let i = 0; i < 16; i++) {
       let objValueTreated = {
         title : arrDefault[i].title,
         url : arrDefault[i].url,
         span : arrDefault[i].span,
-        background : arrDefault[i].background
+        background : arrDefault[i].background,
+        description : ' '
       };
       if (typeof arrValue[i] == 'object') {
         objValueTreated.title = arrValue[i].titulo;
         objValueTreated.url = arrValue[i].arquivo;
+          console.info(arrValue[i].descricao)
+        objValueTreated.description = (typeof arrValue[i].descricao == 'string' && arrValue[i].descricao.length > 1)? arrValue[i].descricao : ' '; // Tratando bug do materialize caso nao exista o objeto.
       }
       arrValueTreated.push(objValueTreated);
     }

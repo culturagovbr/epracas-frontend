@@ -1,5 +1,5 @@
 class PracaGaleriaContentController {
-  constructor($attrs, Praca, $scope, $stateParams, $document, $mdMedia, $mdMenu) {
+  constructor($attrs, Praca, $scope, $stateParams, $document, $mdMedia, $mdMenu, $mdDialog) {
     "ngInject";
       $scope.imagens = [];
       Praca.getImages($stateParams.pk).then(function(arrResult) {
@@ -34,6 +34,24 @@ class PracaGaleriaContentController {
       this.scope = $scope;
 
 
+      this.delete = (ev) =>{
+          // Appending dialog to document.body to cover sidenav in docs app
+          var confirm = $mdDialog.confirm()
+              .title('Você tem certeza que deseja excluir esta imagem?')
+              // .textContent('Não será possível desfazer essa ação depois.')
+              .ariaLabel('Lucky day')
+              .targetEvent(ev)
+              .ok('Exclur')
+              .cancel('Não excluir');
+
+          $mdDialog.show(confirm).then(function() {
+              $scope.status = 'You decided to get rid of your debt.';
+          }, function() {
+              $scope.status = 'You decided to keep your debt.';
+          });
+      }
+
+
   }
     openMenu($mdMenu, ev) {
         originatorEv = ev;
@@ -52,6 +70,7 @@ class PracaGaleriaContentController {
             arrValueTreated[key].title = objValue.titulo;
             arrValueTreated[key].url = objValue.arquivo;
             arrValueTreated[key].span = {row : 1, col : 1};
+            arrValueTreated[key].description = (typeof objValue.descricao == 'string')? objValue.descricao : ' '; // Tratando bug do materialize caso nao exista o objeto.
         });
         return arrValueTreated;
     }
@@ -75,6 +94,10 @@ class PracaGaleriaContentController {
             $('#container-btmais').fadeOut('slow');
         }
     }
+    edit()
+    {
+        console.info('edit')
+    }
 }
 
 const PracaGaleriaContent = {
@@ -93,7 +116,7 @@ const PracaGaleriaContent = {
                     md-colspan-sm="1"
                     md-colspan-xs="1"
                     class="animated fadeIn">
-        <img width="135%" class="materialboxed animated fadeIn" data-caption="{{objPhoto.title}}" ng-src="{{objPhoto.url}}">
+        <img width="135%" class="materialboxed animated fadeIn" data-caption="{{objPhoto.description}}" ng-src="{{objPhoto.url}}">
         <md-grid-tile-footer>
         <h3 class="left">{{objPhoto.title}}
         <md-menu style="
@@ -106,13 +129,13 @@ const PracaGaleriaContent = {
           </md-button>
           <md-menu-content width="4">
             <md-menu-item>
-              <md-button ng-click="ctrl.redial($event)">
+              <md-button ng-click="$ctrl.edit($event)">
                 <i class="material-icons left">edit</i>
                 Editar
               </md-button>
             </md-menu-item>
             <md-menu-item>
-              <md-button ng-click="ctrl.checkVoicemail()">
+              <md-button ng-click="$ctrl.delete()">
                 <i class="material-icons left">delete</i>
                 Excluir
               </md-button>
