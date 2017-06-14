@@ -12,70 +12,151 @@
 
       <md-content layout-padding>
 
-        <div layout-gt-xs="row" layout-padding>
-
-          <md-input-container class="md-block" flex>
-            <label>Logradouro</label>
-            <textarea rows="5" name="pracaLogradouro" ng-model="$ctrl.praca.logradouro"></textarea>
+        <div layout-gt-xs="row">
+          <md-input-container flex-gt-xs=50>
+            <md-icon>assignment</md-icon>
+            <label>Numero do Contrato</label> 
+            <input ng-disabled="!$ctrl.isAdmin" name="pracaContrato" required type="number" ng-model="$ctrl.praca.contrato">
           </md-input-container>
 
-          <div layout-gt-xs="column">
-
-            <md-input-container flex-gt-xs="30">
-              <label>CEP</label>
-              <input name="pracaCep" ng-model="$ctrl.praca.cep">
-            </md-input-container>
-
-            <md-input-container flex-gt-xs="30">
-              <label>Bairro</label>
-              <input name="pracaBairro" ng-model="$ctrl.praca.bairro">
-            </md-input-container>
-          </div>
-
-        </div>
-
-        <md-input-container>
-          <label>Região</label>
-          <md-icon></md-icon>
-          <md-select name="pracaRegiao" required ng-model="$ctrl.praca.regiao">
-            <md-option ng-repeat="regiao in $ctrl.listaRegiao" value="{{regiao.value}}">
-              {{regiao.display_name}}
-            </md-option>
-          </md-select>
-        </md-input-container>
-
-        <md-input-container>
-          <label>UF</label>
-          <md-icon></md-icon>
-          <md-select name="pracaUf" required ng-model="$ctrl.praca.uf">
-            <md-option ng-repeat="uf in $ctrl.listaUf" value="{{uf.value}}">
-              {{uf.display_name}}
-            </md-option>
-          </md-select>
-        </md-input-container>
-
-        <md-input-container>
-          <label>Municipio</label>
-          <input name="pracaMunicipio" required ng-model="$ctrl.praca.municipio">
-        </md-input-container>
-
-        <div>
-          <md-input-container class="md-block" flex>
-            <label>Texto de Apresentação da Praça</label>
-            <textarea rows="5" name="pracaBio" ng-model="$ctrl.praca.bio"></textarea>
+          <md-input-container ng-disabled="!$ctrl.isAdmin" flex-gt-xs=50>
+            <md-icon>attach_money</md-icon>
+            <label>Valor do Repasse</label> 
+            <input ng-disabled="!$ctrl.isAdmin" name="pracaRepasse" type="number" ng-model="$ctrl.praca.repasse">
           </md-input-container>
         </div>
-      </md-content>
 
-    </md-dialog-content>
+        <div layout-gt-xs="row">
 
-    <md-dialog-actions>
-      <md-button ng-click="$ctrl.cancel()">
-        Cancelar
-      </md-button>
-      <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="MembroGestorForm.$invalid">
-        Enviar
-      </md-button>
-    </md-dialog-actions>
-  </form>
+          <md-input-container flex-gt-xs="50">
+            <md-icon>format_paint</md-icon>
+            <label>Situação da Obra</label>
+            <md-icon></md-icon>
+            <md-select name="pracaSituacao" required ng-model="$ctrl.praca.situacao">
+              <md-option ng-repeat="situacao in $ctrl.listaSituacao" value="{{situacao.value}}">
+                {{situacao.display_name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+
+          <md-input-container flex-gt-xs="50">
+            <md-icon>account_balance</md-icon>
+            <label>Modelo de Praça</label>
+            <md-icon></md-icon>
+            <md-select ng-disabled="!$ctrl.isAdmin" name="pracaModelo" required ng-model="$ctrl.praca.modelo">
+              <md-option ng-repeat="modelo in $ctrl.listaModelo" value="{{modelo.value}}">
+                {{modelo.display_name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+
+        <md-input-container class="md-block" flex ng-if="$ctrl.praca.situacao == 'i'">
+          <label>Data de Inauguração</label>
+          <md-datepicker ng-model="$ctrl.praca.data_inauguracao"></md-datepicker>
+        </md-input-container>
+
+      <div>
+        <md-input-container class="md-block" flex>
+          <md-icon>subject</md-icon>
+          <label>Texto de Apresentação da Praça</label>
+          <textarea rows="5" name="pracaBio" ng-model="$ctrl.praca.bio"></textarea>
+        </md-input-container>
+      </div>
+
+      <div layout-gt-xs="row">
+        <md-input-container flex-gt-xs=50>
+          <md-icon>phone</md-icon>
+          <label>Telefone1</label>
+          <input name="pracaTelefone1" ng-model="$ctrl.praca.telefone1" mask="(99) 9?9999-9999" clean="true">
+        </md-input-container>
+
+        <md-input-container flex-gt-xs=50>
+          <md-icon>phone</md-icon>
+          <label>Telefone2</label>
+          <input name="pracaTelefone2" ng-model="$ctrl.praca.telefone2" mask="(99) 9?9999-9999" clean="true">
+        </md-input-container>
+      </div>
+
+      <div layout-gt-xs="row">
+        <md-input-container flex-gt-xs=50>
+          <md-icon>settings_phone</md-icon>
+          <label>Fax</label>
+          <input name="pracaFax" ng-model="$ctrl.praca.fax" mask="(99) 9?9999-9999" clean="true">
+        </md-input-container>
+
+        <md-input-container flex-gt-xs=50>
+          <md-icon>email</md-icon>
+          <label>E-Mail</label>
+          <input name="pracaEMail" type="email" ng-model="$ctrl.praca.email">
+        </md-input-container>
+      </div>
+
+      <md-input-container class="md-block" flex>
+        <md-icon>public</md-icon>
+        <label>Pagina nas redes sociais</label>
+        <input name="pracaPagina" type="url" ng-model="$ctrl.pagina.praca">
+      </md-input-container>
+
+      <div layout-gt-xs="row" layout-padding>
+
+        <md-input-container class="md-block" flex>
+          <label>Logradouro</label>
+          <textarea rows="5" name="pracaLogradouro" ng-model="$ctrl.praca.logradouro"></textarea>
+        </md-input-container>
+
+        <div layout-gt-xs="column">
+
+          <md-input-container flex-gt-xs="30">
+            <label>CEP</label>
+            <input name="pracaCep" ng-model="$ctrl.praca.cep" mask="99.999-999" clean="true">
+          </md-input-container>
+
+          <md-input-container flex-gt-xs="30">
+            <label>Bairro</label>
+            <input name="pracaBairro" ng-model="$ctrl.praca.bairro">
+          </md-input-container>
+        </div>
+
+      </div>
+
+      <md-input-container>
+        <label>Região</label>
+        <md-select name="pracaRegiao" required ng-model="$ctrl.praca.regiao">
+          <md-option ng-repeat="regiao in $ctrl.listaRegiao" value="{{regiao.value}}">
+            {{regiao.display_name}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container>
+        <label>UF</label>
+        <md-select name="pracaUf" required ng-model="$ctrl.praca.uf">
+          <md-option ng-repeat="uf in $ctrl.listaUf" value="{{uf.value}}">
+            {{uf.display_name}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Municipio</label>
+        <input name="pracaMunicipio" required ng-model="$ctrl.praca.municipio">
+      </md-input-container>
+
+    </md-content>
+
+
+
+
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button ng-click="$ctrl.cancel()">
+      Cancelar
+    </md-button>
+    <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="PracaForm.$invalid">
+      Enviar
+    </md-button>
+  </md-dialog-actions>
+</form>
 </md-dialog>
