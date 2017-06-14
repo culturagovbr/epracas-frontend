@@ -68,13 +68,13 @@
         <md-input-container flex-gt-xs=50>
           <md-icon>phone</md-icon>
           <label>Telefone1</label>
-          <input name="pracaTelefone1" ng-model="$ctrl.praca.telefone1" mask="(99) 9?9999-9999">
+          <input name="pracaTelefone1" ng-model="$ctrl.praca.telefone1" mask="(99) 9?9999-9999" clean="true">
         </md-input-container>
 
         <md-input-container flex-gt-xs=50>
           <md-icon>phone</md-icon>
           <label>Telefone2</label>
-          <input name="pracaTelefone2" ng-model="$ctrl.praca.telefone2" mask="(99) 9?9999-9999">
+          <input name="pracaTelefone2" ng-model="$ctrl.praca.telefone2" mask="(99) 9?9999-9999" clean="true">
         </md-input-container>
       </div>
 
@@ -82,7 +82,7 @@
         <md-input-container flex-gt-xs=50>
           <md-icon>settings_phone</md-icon>
           <label>Fax</label>
-          <input name="pracaFax" ng-model="$ctrl.praca.fax" mask="(99) 9?9999-9999">
+          <input name="pracaFax" ng-model="$ctrl.praca.fax" mask="(99) 9?9999-9999" clean="true">
         </md-input-container>
 
         <md-input-container flex-gt-xs=50>
@@ -109,7 +109,7 @@
 
           <md-input-container flex-gt-xs="30">
             <label>CEP</label>
-            <input name="pracaCep" ng-model="$ctrl.praca.cep" mask="99.999-999">
+            <input name="pracaCep" ng-model="$ctrl.praca.cep" mask="99.999-999" clean="true">
           </md-input-container>
 
           <md-input-container flex-gt-xs="30">
