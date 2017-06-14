@@ -106,7 +106,15 @@ export default class Praca {
   }
 
   // Retorna as opções disponiveis para alguns campos
-  options(data) {
+  options(praca) {
+    if (praca) {
+      return this._$http({
+        url: `${this._PracaEndPoint}${praca.id_pub}/`,
+        method: "OPTIONS",
+      })
+      .then(response => response.data)
+      .then(data => data.actions.PUT)
+    }
     return this._$http({
       url: this._PracaEndPoint,
       method: "OPTIONS",
