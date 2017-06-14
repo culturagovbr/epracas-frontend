@@ -164,4 +164,23 @@ export default class User {
       )
     return deferred.promise;
   }
+
+  IsManagerOrAdmin(praca) {
+    if (angular.isUndefined(this.current) || (this.current === null)) {
+      return false
+    } else if (this.current.is_staff === true) {
+      return true
+    } else if ((angular.isDefined(praca.gestor) && praca.gestor !== null)) {
+      return this.current.id_pub === praca.gestor.user_id_pub
+    }
+    return false
+  }
+
+  IsAdmin() {
+    if (angular.isUndefined(this.current) || (this.current === null)) {
+      return false
+    }
+    return this.current.is_staff
+  }
+
 }
