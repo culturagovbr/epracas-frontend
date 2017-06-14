@@ -60,6 +60,22 @@ export default class Praca {
     .then(res => res.data)
   }
 
+  // Recupera as imagens de uma praca
+  deleteImg(pkPraca, pkImg) {
+    return this._$q((resolve, reject) => {
+      if(!pkPraca.replace(" ", "")) {
+        reject("O id_pub está vazio!")
+      } else {
+        resolve()
+      }
+    })
+    .then(() => this._$http({
+      url: `${this._PracaEndPoint}${pkPraca}/imagens/${pkImg}/`,
+      method: 'DELETE'
+    }))
+    .then(res => res.data)
+  }
+
   // Lista todas as Praças
   list() {
     return this._$http({
