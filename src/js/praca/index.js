@@ -45,9 +45,12 @@ import PracaGaleriaCtrl from "./praca-galeria.controller";
 pracaModule.controller("PracaGaleriaCtrl", PracaGaleriaCtrl);
 
 import UnidadeGestoraContainer from "./unidadegestora-components/container.component"
-pracaModule.component("pracaUnidadegestora", UnidadeGestoraContainer)
+pracaModule.component("pracaUnidadegestora", UnidadeGestoraContainer);
 
 import MembroUglDialogController from "./unidadegestora-components/membrougl.dialog.ctrl"
-pracaModule.controller("MembroUglDialogController", MembroUglDialogController)
+pracaModule.controller("MembroUglDialogController", MembroUglDialogController);
+
+import GaleriaEditDialogCtrl from "./galeria-edit.dialog.ctrl.js"
+pracaModule.controller("GaleriaEditDialogCtrl", GaleriaEditDialogCtrl);
 
 export default pracaModule;

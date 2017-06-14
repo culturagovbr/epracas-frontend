@@ -33,7 +33,7 @@ class PracaGaleriaContentController {
       );
       this.scope = $scope;
 
-      this.delete = (ev, pkImg) =>{
+      this.delete = (ev, pkImg) => {
         // Appending dialog to document.body to cover sidenav in docs app
         var confirm = $mdDialog.confirm()
           .title('Você tem certeza que deseja excluir esta imagem?')
@@ -59,6 +59,21 @@ class PracaGaleriaContentController {
           $scope.status = 'You decided to keep your debt.';
         });
       }
+
+      this.edit = function(ev, id) {
+          $mdDialog.show({
+              controller: 'GaleriaEditDialogCtrl',
+              controllerAs: "$ctrl",
+              templateUrl: 'praca/galeria-edit.dialog.tmpl.html',
+              parent: angular.element(document.body),
+              targetEvent: ev,
+              clickOutsideToClose:true,
+              locals: {
+                  id: id
+              },
+              fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+          });
+      };
   }
     openMenu($mdMenu, ev) {
         originatorEv = ev;
@@ -100,10 +115,6 @@ class PracaGaleriaContentController {
         } else if (intTotal != 0) {
             $('#container-btmais').fadeOut('slow');
         }
-    }
-    edit()
-    {
-        console.info('edit')
     }
 }
 
