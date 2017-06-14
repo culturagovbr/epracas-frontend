@@ -54,17 +54,6 @@ function PracaConfig($stateProvider) {
             );
           },
         },
-      // component: "pracaGaleria",
-      // resolve: {
-      //   praca(Praca, $state, $stateParams) {
-      //     return Praca.get($stateParams.pk).then(
-      //       praca => praca,
-      //       (err) => {
-      //         $state.go("app.pracas");
-      //       }
-      //     );
-      //   },
-      // }
     });
 }
 
