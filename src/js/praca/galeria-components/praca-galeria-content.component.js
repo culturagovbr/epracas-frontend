@@ -1,5 +1,5 @@
 class PracaGaleriaContentController {
-  constructor($attrs, Praca, $scope, $stateParams, $document, $mdMedia, $mdMenu, $mdDialog) {
+  constructor($attrs, Praca, $scope, $stateParams, $document, $mdMedia, $mdMenu, $mdDialog, Toast, $log) {
     "ngInject";
       $scope.imagens = [];
       Praca.getImages($stateParams.pk).then(function(arrResult) {
@@ -33,30 +33,36 @@ class PracaGaleriaContentController {
       );
       this.scope = $scope;
 
-
-      this.delete = (ev) =>{
-          // Appending dialog to document.body to cover sidenav in docs app
-          var confirm = $mdDialog.confirm()
-              .title('Você tem certeza que deseja excluir esta imagem?')
-              // .textContent('Não será possível desfazer essa ação depois.')
-              .ariaLabel('Lucky day')
-              .targetEvent(ev)
-              .ok('Exclur')
-              .cancel('Não excluir');
-
+      this.delete = (ev, pkImg) =>{
+        // Appending dialog to document.body to cover sidenav in docs app
+        var confirm = $mdDialog.confirm()
+          .title('Você tem certeza que deseja excluir esta imagem?')
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Sim, Exclur')
+          .cancel('Não excluir');
           $mdDialog.show(confirm).then(function() {
-              $scope.status = 'You decided to get rid of your debt.';
-          }, function() {
-              $scope.status = 'You decided to keep your debt.';
-          });
+            Praca.deleteImg($stateParams.pk, pkImg)
+              .then(
+                  response => {
+                      $scope.paginatorData = $scope.paginatorData.filter((obj) => {return obj.id != pkImg;}); // Retira do array de objetos a imagem deletada.
+                      Toast.showSuccessToast('Imagem excluida com sucesso');
+                  })
+              .catch(
+                  err => {
+                      $log.error(`Erro ao excluir esta imagem. ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`);
+                      Toast.showRejectedToast("Erro ao excluir a imagem.");
+                  }
+              );
+        }, function() {
+          console.info('Canceled');
+          $scope.status = 'You decided to keep your debt.';
+        });
       }
-
-
   }
     openMenu($mdMenu, ev) {
         originatorEv = ev;
         $mdMenu.open(ev);
-        console.info('aa');
     };
     /**
      * Constroi o objecto da grid em mozaico com as imagens da praca ficando no formato que o componente do Material Angular espera.
@@ -67,6 +73,7 @@ class PracaGaleriaContentController {
         let arrValueTreated = [], arrDefault = [];
         arrValue.forEach((objValue, key) => {
             arrValueTreated[key] = {};
+            arrValueTreated[key].id = objValue.id_pub;
             arrValueTreated[key].title = objValue.titulo;
             arrValueTreated[key].url = objValue.arquivo;
             arrValueTreated[key].span = {row : 1, col : 1};
@@ -115,7 +122,8 @@ const PracaGaleriaContent = {
                     md-colspan="{{objPhoto.span.col}}"
                     md-colspan-sm="1"
                     md-colspan-xs="1"
-                    class="animated fadeIn">
+                    class="animated fadeIn"
+                    ng-if="objPhoto.url">
         <img width="135%" class="materialboxed animated fadeIn" data-caption="{{objPhoto.description}}" ng-src="{{objPhoto.url}}">
         <md-grid-tile-footer>
         <h3 class="left">{{objPhoto.title}}
@@ -129,13 +137,13 @@ const PracaGaleriaContent = {
           </md-button>
           <md-menu-content width="4">
             <md-menu-item>
-              <md-button ng-click="$ctrl.edit($event)">
+              <md-button ng-click="$ctrl.edit($event, objPhoto.id)">
                 <i class="material-icons left">edit</i>
                 Editar
               </md-button>
             </md-menu-item>
             <md-menu-item>
-              <md-button ng-click="$ctrl.delete()">
+              <md-button ng-click="$ctrl.delete($event, objPhoto.id)">
                 <i class="material-icons left">delete</i>
                 Excluir
               </md-button>
