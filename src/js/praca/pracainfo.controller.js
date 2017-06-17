@@ -1,5 +1,5 @@
 class PracaInfoCtrl {
-  constructor($mdDialog, $log, User, Praca, Toast, praca) {
+  constructor($mdDialog, $log, User, Praca, ErrorCatcher, Toast, praca) {
     "ngInject"
 
     angular.extend(this, {
@@ -7,6 +7,7 @@ class PracaInfoCtrl {
       $log,
       User,
       Praca,
+      ErrorCatcher,
       Toast,
       praca,
     })
@@ -41,13 +42,15 @@ class PracaInfoCtrl {
         .catch(
           (err) => {
             this.isSaving = false
-            this.Toast.showRejectedToast(`Problemas ao criar a Praça. ${angular.toJson(err.data)}`)
-            this.$log.error(`Save Praca info: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
+            this.$mdDialog.hide()
+            this.ErrorCatcher.error("PracaInfoCtrl", err)
+            // this.Toast.showRejectedToast(`Problemas ao criar a Praça. ${angular.toJson(err.data)}`)
           }
         )
     } else {
       let praca_data = {}
       let fields = ["id_pub", "nome", "logradouro", "cep", "bairro", "regiao", "uf", "municipio", "bio"]
+
       if (this.isAdmin) {
         fields.push("repasse", "modelo", "contrato", "lat", "long")
       }
@@ -67,7 +70,8 @@ class PracaInfoCtrl {
         .catch(
           (err) => {
             this.isSaving = false
-            this.$log.error(`Save Praca Info: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
+            this.Toast.showRejectedToast("Problema ao salvar a Praça")
+            this.$mdDialog.hide()
           }
         )
     }
