@@ -1,63 +1,95 @@
 class Atividade {
   constructor(AppConstants, $http, $q) {
-    "ngInject";
+    "ngInject"
 
-    this._AtividadeEndPoint = AppConstants.agendaApi;
-    this._$http = $http;
-    this._$q = $q;
+    angular.extend(this, {
+      $http,
+      $q,
+      AtividadeEndPoint: AppConstants.agendaApi,
+    })
   }
 
   // Cria um novo evento.
   new(data) {
-    return this._$http({
-      url: this._AtividadeEndPoint,
+    return this.$http({
+      url: this.AtividadeEndPoint,
       method: "POST",
       data: data
     })
     .then(res => res.data)
+    .catch(
+      (err) => {
+        this.ErrorCatcher.error(caller, err)
+        return this.$q.reject()
+      }
+    )
   }
 
   options(data) {
-    return this._$http({
-      url: this._AtividadeEndPoint,
+    return this.$http({
+      url: this.AtividadeEndPoint,
       method: "OPTIONS"
     })
     .then(response => response.data)
     .then(data => data.actions.POST)
+    .catch(
+      (err) => {
+        this.ErrorCatcher.error(caller, err)
+        return this.$q.reject()
+      }
+    )
   }
 
   // Recupera o registro de um evento
   get(id_pub) {
-    return this._$http({
-      url: `${this._AtividadeEndPoint}${id_pub}`,
+    return this.$http({
+      url: `${this.AtividadeEndPoint}${id_pub}`,
       method: 'GET'
     })
     .then(res => res.data)
+    .catch(
+      (err) => {
+        this.ErrorCatcher.error(caller, err)
+        return this.$q.reject()
+      }
+    )
   }
 
   // Atualiza um evento
   update(id_pub, data) {
-    return this._$http({
-      url: `${this._AtividadeEndPoint}${id_pub}`,
+    return this.$http({
+      url: `${this.AtividadeEndPoint}${id_pub}`,
       method: 'PATCH',
       data: data
     })
     .then(res => res.data)
+    .catch(
+      (err) => {
+        this.ErrorCatcher.error(caller, err)
+        return this.$q.reject()
+      }
+    )
   }
 
   // Exclui um evento
   delete(id_pub) {
-    return this._$http({
-      url: `${this._AtividadeEndPoint}${id_pub}`,
+    return this.$http({
+      url: `${this.AtividadeEndPoint}${id_pub}`,
       method: 'DELETE'
     })
     .then(res => res.data)
+    .catch(
+      (err) => {
+        this.ErrorCatcher.error(caller, err)
+        return this.$q.reject()
+      }
+    )
   }
 
   // Lista todos os eventos
   list(praca, month) {
-    return this._$http({
-      url: this._AtividadeEndPoint,
+    return this.$http({
+      url: this.AtividadeEndPoint,
       method: 'GET',
       params: {
         praca: praca ? praca : undefined,
@@ -65,7 +97,13 @@ class Atividade {
       }
     })
     .then(res => res.data)
+    .catch(
+      (err) => {
+        this.ErrorCatcher.error(caller, err)
+        return this.$q.reject()
+      }
+    )
   }
 }
 
-export default Atividade;
+export default Atividade
