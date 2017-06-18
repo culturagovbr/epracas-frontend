@@ -1,20 +1,23 @@
 class Atividade {
-  constructor(AppConstants, $http, $q) {
+  constructor($http, $q, ErrorCatcher, AppConstants) {
     "ngInject"
 
     angular.extend(this, {
       $http,
       $q,
+      ErrorCatcher,
       AtividadeEndPoint: AppConstants.agendaApi,
     })
   }
 
   // Cria um novo evento.
   new(data) {
+    const caller = this.ErrorCatcher.callerName()
+
     return this.$http({
       url: this.AtividadeEndPoint,
       method: "POST",
-      data: data
+      data: data,
     })
     .then(res => res.data)
     .catch(
@@ -26,6 +29,8 @@ class Atividade {
   }
 
   options(data) {
+    const caller = this.ErrorCatcher.callerName()
+
     return this.$http({
       url: this.AtividadeEndPoint,
       method: "OPTIONS"
@@ -42,9 +47,11 @@ class Atividade {
 
   // Recupera o registro de um evento
   get(id_pub) {
+    const caller = this.ErrorCatcher.callerName()
+
     return this.$http({
       url: `${this.AtividadeEndPoint}${id_pub}`,
-      method: 'GET'
+      method: "GET"
     })
     .then(res => res.data)
     .catch(
@@ -57,9 +64,11 @@ class Atividade {
 
   // Atualiza um evento
   update(id_pub, data) {
+    const caller = this.ErrorCatcher.callerName()
+
     return this.$http({
       url: `${this.AtividadeEndPoint}${id_pub}`,
-      method: 'PATCH',
+      method: "PATCH",
       data: data
     })
     .then(res => res.data)
@@ -73,9 +82,11 @@ class Atividade {
 
   // Exclui um evento
   delete(id_pub) {
+    const caller = this.ErrorCatcher.callerName()
+
     return this.$http({
       url: `${this.AtividadeEndPoint}${id_pub}`,
-      method: 'DELETE'
+      method: "DELETE"
     })
     .then(res => res.data)
     .catch(
@@ -88,12 +99,14 @@ class Atividade {
 
   // Lista todos os eventos
   list(praca, month) {
+    const caller = this.ErrorCatcher.callerName()
+
     return this.$http({
       url: this.AtividadeEndPoint,
-      method: 'GET',
+      method: "GET",
       params: {
-        praca: praca ? praca : undefined,
-        mes: month ? month : undefined
+        praca: praca,
+        mes: month,
       }
     })
     .then(res => res.data)
