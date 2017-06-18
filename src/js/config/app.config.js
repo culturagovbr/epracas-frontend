@@ -1,11 +1,12 @@
-import moment from "moment";
-import "moment/locale/pt-br";
-import authInterceptor from "./auth.interceptor";
+import moment from "moment"
+import "moment/locale/pt-br"
+import authInterceptor from "./auth.interceptor"
+import errorHttpInterceptor from "./error.interceptor"
 
-import calendarConfig from "angular-bootstrap-calendar";
+import calendarConfig from "angular-bootstrap-calendar"
 
-import Raven from "raven-js"
-import Angular from "raven-js/plugins/angular"
+// import Raven from "raven-js"
+// import Angular from "raven-js/plugins/angular"
 
 function AppConfig(
   $httpProvider,
@@ -17,18 +18,18 @@ function AppConfig(
   $mdIconProvider,
   $sceDelegateProvider,
   calendarConfig) {
-  "ngInject";
+  "ngInject"
 
 
-  Raven
-    .config("https://dc41e2fe67a348b494e22e73d0dbf4b7@sentry.cultura.gov.br/5")
-    .addPlugin(Angular)
-    .install()
+  // Raven
+  //   .config("https://dc41e2fe67a348b494e22e73d0dbf4b7@sentry.cultura.gov.br/5")
+  //   .addPlugin(Angular, angular)
+  //   .install()
 
   // Raven.addPlugin(Angular, angular)
 
-  $httpProvider.interceptors.push(authInterceptor);
-  $httpProvider.defaults.headers.common = { "Content-Type": "application/json" };
+  $httpProvider.interceptors.push(authInterceptor, errorHttpInterceptor)
+  $httpProvider.defaults.headers.common = { "Content-Type": "application/json" }
 
   $stateProvider
   .state("app", {
