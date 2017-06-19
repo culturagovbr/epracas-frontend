@@ -1,5 +1,5 @@
 <div layout="column" class="limite" id="praca">
-  <div flex id="praca_header">
+  <div flex id="praca_header" class="no-print">
     <img ng-src="{{ $ctrl.praca.header_img }}" style="width: 100%"/>
     <md-fab-speed-dial
       show-authed="true"
@@ -51,7 +51,7 @@
 
   <!-- TabBar Secções -->
   <div style="height: 48px">
-    <div class="tab-pracas">
+    <div class="tab-pracas no-print">
       <md-content class="limite layout-column">
         <div class="">
           <md-tabs md-selected="tabIntSelected" md-dynamic-height md-border-bottom class="">
@@ -69,7 +69,7 @@
   </div>
 
   <!-- Agenda -->
-  <div id="container-agenda" layout-padding class="agenda" layout-align="start center">
+  <div id="container-agenda" layout-padding class="agenda no-print" layout-align="start center">
     <div class="layout-row title">
       <md-icon>insert_invitation</md-icon>
       <h1 flex>Agenda</h1>
@@ -90,7 +90,7 @@
     </div>
   </div>
   <!-- Imagens -->
-  <div id="container-imagens" layout-gt-xs="row" flex>
+  <div id="container-imagens" layout-gt-xs="row" class="no-print" flex>
     <div flex layout-padding class="info gridListdemoDynamicTiles" md-whiteframe="3">
       <div class="layout-row title">
         <md-icon>photo_camera</md-icon>
@@ -161,9 +161,9 @@
       <p>{{$ctrl.praca.logradouro}}</p>
       <p>{{$ctrl.praca.municipio}} | {{$ctrl.praca.uf | uppercase}}
       <p>Aberto todos os dias de 8h às 22h.</p>
-      <p>Mais informações</p>
+      <p class="no-print">Mais informações</p>
     </div>
-    <div id="map" flex md-whiteframe="3">
+    <div id="map" flex md-whiteframe="3" class="no-print">
       <leaflet style="z-index: -1" id="mapPane" width="100%" height="300px" lf-center="geoLoc.center"
         defaults="geoLoc.defaults" markers="geoLoc.markers"></leaflet>
     </div>
