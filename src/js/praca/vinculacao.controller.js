@@ -1,5 +1,5 @@
 class VinculacaoCtrl {
-  constructor($http, $scope, $timeout, $log, $mdDialog, Upload, AppConstants, Vinculacao, praca) {
+  constructor($http, $scope, $timeout, $log, $mdDialog, ErrorCatcher, Upload, AppConstants, Vinculacao, praca) {
     "ngInject"
 
     angular.extend(this, {
@@ -8,6 +8,7 @@ class VinculacaoCtrl {
       $timeout,
       $log,
       $mdDialog,
+      ErrorCatcher,
       Upload,
       AppConstants,
       Vinculacao,
@@ -20,6 +21,8 @@ class VinculacaoCtrl {
   }
 
   upload(id_pub, vincFiles) {
+    const caller = this.ErrorCatcher.callerName()
+
     this.$mdDialog.show({
       clickOutsideToClose: false,
       template: `
@@ -58,11 +61,17 @@ class VinculacaoCtrl {
                 )
               }
           )
+          .catch(
+            (err) => {
+              this.ErrorCatcher.error(caller, err)
+              return this.$q.reject()
+            }
+          )
         }
     )
     .catch(
       (err) => {
-        if (err.status > 400) {
+        if (err.status == 403) {
           this.$log.log(`VinculacaoCtrl Error: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
           this.$mdDialog.show(
               this.$mdDialog.alert({
@@ -73,15 +82,7 @@ class VinculacaoCtrl {
               })
           )
         } else {
-          this.$log.log(`VinculacaoCtrl Error: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
-          this.$mdDialog.show(
-              this.$mdDialog.alert({
-                title: "Erro!",
-                textContent: "Ocorreu um erro durante o seu pedido." +
-                  "Nossa equipe está monitorando o sistema para soluciona-lo o mais rapido possivel.",
-                ok: "Ok, estou ciente.",
-              })
-          )
+          this.ErrorCatcher.error(caller, err)
         }
       }
     )
