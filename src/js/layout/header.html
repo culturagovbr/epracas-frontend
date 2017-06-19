@@ -4,17 +4,18 @@
         <li><a style="font-family:sans,sans-serif; text-decoration:none; color:white;" href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a></li>
     </ul>
 </div>
-<md-toolbar layout="row" layout-align="space-between center" class="md-toolbar-tools no-print">
+<md-toolbar layout="row" layout-align="space-between center" class="md-toolbar-tools">
 	<div layout="row" layout-align="space-between center" flex class="limite">
 		<div>
-			<a 
+      <md-icon md-svg-icon="idcultura" id="logo-print" class="only-print" class="s48"></md-icon>
+			<a class="home-link" 
 				ui-sref="app.home"
 				ng-bind="::$ctrl.appName | lowercase">
 			</a>
 		</div>
 		<div>
 			<!-- Exibe o Login para usário não loggados -->
-			<md-list show-authed="false">
+			<md-list show-authed="false" class="no-print">
 				<md-list-item>
 					<md-button oauth-login-button aria-label="Entre com idCultura" id="btn-login">
           <md-icon md-svg-icon="idcultura" id="idcultura" class="s48"></md-icon>
@@ -24,7 +25,7 @@
 			</md-list>
 
 			<!-- Exibe as opções para usuários logados -->
-			<md-list show-authed="true">
+			<md-list show-authed="true" class="no-print">
         <md-menu>
           <md-list-item ng-click="$mdOpenMenu($event)">
             <img ng-src={{$ctrl.currentUser.profile_picture_url}} class="md-avatar">
