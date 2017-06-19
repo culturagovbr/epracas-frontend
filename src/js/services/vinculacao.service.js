@@ -6,6 +6,7 @@ class Vinculacao {
       $http,
       $q,
       Upload,
+      ErrorCatcher,
       AppConstants,
     })
   }

@@ -1,15 +1,15 @@
 import Raven from "raven-js"
 
 const factoriesModule = angular.module("ErrorCatcherHandler", [])
-  .factory("$exceptionHandler", ($window, $log) => {
-    "ngInject"
+  .factory("$exceptionHandler", ["$window", "$log", function ($window, $log) {
+    // "ngInject"
 
     $log.log("Using the RavenJS exception handler.")
 
-    return function (exception, cause, ...args) {
-      $log.error($log, args)
-      Raven.captureException(angular.toJson(exception))
+    return function (exception, cause) {
+      $log.error(arguments)
+      Raven.captureException(exception)
     }
-  })
+  }])
 
 export default factoriesModule

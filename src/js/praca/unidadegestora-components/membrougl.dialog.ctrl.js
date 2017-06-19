@@ -10,6 +10,11 @@ export default class MembroUglDialogController {
       UnidadeGestora,
       praca,
     })
+
+    this.UnidadeGestora.options(praca)
+      .then((data) => {
+        this.listaTipoMembro = data.tipo.choices
+      })
   }
 
   cancel() { this.$mdDialog.cancel() }
