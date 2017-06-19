@@ -17,6 +17,28 @@
           <input name="nomeMembro" required ng-model="$ctrl.membrougl.nome">
         </md-input-container>
 
+        <md-input-container class="md-icon-float md-block">
+          <md-icon></md-icon>
+          <label>Tipo de Membro</label>
+          <md-select name="tipoMembro" required ng-model="$ctrl.membrougl.tipo">
+            <md-option ng-repeat="tipo in $ctrl.listaTipoMembro" value="{{tipo.value}}">
+              {{tipo.display_name}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container flex-gt-xs=50>
+          <md-icon>phone</md-icon>
+          <label>Telefone</label>
+          <input name="telefoneMembro" ng-model="$ctrl.membrougl.telefone" mask="(99) 9?9999-9999" clean="true">
+        </md-input-container>
+
+        <md-input-container flex-gt-xs=50>
+          <md-icon>email</md-icon>
+          <label>E-Mail</label>
+          <input name="emailMembro" type="email" ng-model="$ctrl.membrougl.email">
+        </md-input-container>
+
       </md-content>
     </md-dialog-content>
 
