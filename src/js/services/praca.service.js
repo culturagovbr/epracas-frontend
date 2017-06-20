@@ -94,6 +94,48 @@ export default class Praca {
     )
   }
 
+  // Recupera uma unica imagem da praca
+  getImg(pkPraca, pkImg) {
+    const caller = this.ErrorCatcher.callerName();
+
+    return this.$q((resolve, reject) => {
+      if (!pkPraca.replace(" ", "")) {
+        reject("O id_pub está vazio!")
+      } else {
+        resolve()
+      }
+    })
+    .then(() => this.$http({
+      url: `${this.PracaEndPoint}${pkPraca}/imagens/${pkImg}/`,
+      method: "GET",
+    }))
+    .then(res => res.data)
+    .catch(
+      (err) => {
+        this.ErrorCatcher.error(caller, err);
+        return this.$q.reject()
+      }
+    )
+  }
+
+    // Salva os dados da imagem de uma Praça.
+    saveImg(praca, data) {
+        const caller = this.ErrorCatcher.callerName()
+
+        return this.$http({
+            url: `${this.PracaEndPoint}${praca}/imagens/`,
+            method: "PATCH",
+            data: data,
+        })
+            .then(res => res.data)
+            .catch(
+                (err) => {
+                    this.ErrorCatcher.error(caller, err);
+                    return this.$q.reject()
+                }
+            )
+    }
+
   // Recupera as imagens de uma praca
   deleteImg(pkPraca, pkImg) {
     const caller = this.ErrorCatcher.callerName()
@@ -112,7 +154,7 @@ export default class Praca {
     .then(res => res.data)
     .catch(
       (err) => {
-        this.ErrorCatcher.error(caller, err)
+        this.ErrorCatcher.error(caller, err);
         return this.$q.reject()
       }
     )
