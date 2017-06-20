@@ -38,14 +38,39 @@
 
   <!-- Info&Bio -->
   <div id="container-info" layout-gt-xs="row">
-    <div flex-gt-xs="35" layout-padding md-whiteframe="3" class="nome">
-      <h2>{{ $ctrl.praca.nome }}</h2>
-      <p>{{ $ctrl.praca.situacao_descricao }}</p>
-      <p>Área Total da Praça: {{ $ctrl.praca.modelo_descricao }}</p>
+    <div flex-gt-xs="35" class="nome">
+      <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-left-0">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{ $ctrl.praca.nome }}</span>
+            <span class="md-subhead"><strong>Situação: </strong>{{ $ctrl.praca.situacao_descricao }}</span>
+            <span class="md-subhead"><strong>Inaugurada em: </strong>{{ $ctrl.praca.data_inauguracao }}</span>
+            <span class="md-subhead"><strong>Contrato: </strong>{{ $ctrl.praca.contrato }}</span>
+            <span class="md-subhead"><strong>Modelo: </strong>{{ $ctrl.praca.modelo_descricao }}</span>
+            <span class="md-subhead"><strong>Repasse: </strong>{{ $ctrl.praca.repasse | currency: 'R$ ' }}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-header ng-if="$ctrl.praca.gestor">
+          <md-card-avatar class="no-print">
+            <img src="{{ $ctrl.praca.gestor.profile_picture_url }}" class="md-avatar">
+          </md-card-avatar>
+          <md-card-header-text>
+            <span class="print-only">Gestor da praça: </span>
+            <span class="md-title">{{ $ctrl.praca.gestor.nome }}</span>
+            <span class="md-subhead no-print">Gestor da praça</span>
+          </md-card-header-text>
+        </md-card-header>
+      </md-card>
     </div>
 
-    <div flex-gt-xs="65" layout-padding md-whiteframe="3" class="bio">
-      <p>{{ $ctrl.praca.bio }}</p>
+    <div flex-gt-xs="65" class="bio">
+      <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-right-0">
+        <md-card-title>
+          <md-card-title-text>
+            <p>{{ $ctrl.praca.bio }}</p>
+          </md-card-title-text>
+        </md-card-title>
+      </md-card>
     </div>
   </div>
 

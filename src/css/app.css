@@ -148,16 +148,37 @@ md-toolbar h1 {
                 height: 108px;
             }
 
-
-            #praca .nome {
-                color: #fff;
-                background-color: grey;
+            #container-info{
+                margin-bottom: 15px;
             }
 
-            #praca .bio {
-                background-color: white;
+            #container-info md-card{
+                height: 100%;
             }
 
+            #container-info md-card md-card-header:last-child md-card-avatar{
+                margin-left: 0;
+                margin-right: 12px;
+            }
+
+            #praca .nome .md-headline {
+                font-size: 24px;
+                font-weight: 900;
+                line-height: 32px;
+                font-size: 28px;
+            }
+
+            #praca .nome md-card{
+                background-color: rgb(224, 224, 224);
+            }
+
+            #praca .nome md-card img{
+                border-radius: 50%;
+            }
+
+            #praca .nome md-card md-card-title md-card-title-text:only-child .md-subhead{
+                padding-top: 6px;
+            }
 
             video#bgvid {
                 position: fixed;
@@ -1933,7 +1954,15 @@ md-list-item .md-avatar{
     margin-right: 10px;
 }
 
-.only-print {
+.margin-right-0 {
+    margin-right: 0;
+}
+
+.margin-left-0 {
+    margin-left: 0;
+}
+
+.print-only {
     display: none;
 }
 
@@ -2038,7 +2067,7 @@ md-list-item .md-avatar{
         max-width: none !important;   
     }
 
-    .only-print{
+    .print-only{
         display: inline-block;
     }
 
@@ -2099,6 +2128,20 @@ md-list-item .md-avatar{
     #container-grupogestor,
     #container-localizacao{
         margin-bottom: 30px;
+    }
+
+    #container-info {
+        margin-bottom: 0;
+    }
+
+    #container-info md-card{
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #container-info md-card-header,
+    #container-info md-card-title{
+        padding: 0;
     }
 
     .no-print,

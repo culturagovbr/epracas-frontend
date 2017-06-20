@@ -39,6 +39,10 @@ class PracaDetailCtrl {
       praca.bio = "Texto de apresentação da Praça(a ser preenchido pelo Gestor)"
     }
 
+    if (praca.data_inauguracao) {
+      praca.data_inauguracao = moment(praca.data_inauguracao).format('L')
+    }
+
     const geoLoc = {
       defaults: {
         tileLayerOptions: {
