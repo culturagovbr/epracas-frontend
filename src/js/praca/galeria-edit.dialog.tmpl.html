@@ -1,22 +1,22 @@
 <md-dialog arial-label="Upload de imagens da Praça">
   <md-dialog-content>
     <md-content md-theme="docs-dark" layout-padding>
-      <h2>Edit imagem da Praça</h2>
+      <h2>Editar imagem da Praça</h2>
     </md-content>
     <div layout-padding>
       <md-card >
         <div layout="row" layout-align="left center">
-          <div flex=50 layout-margin>
-            <img ngf-resize="{width:350}" ngf-src="image">
+          <div flex=100 layout-margin>
+            <img width="300px;" ngf-src="objForm.arquivo">
           </div>
-          <div flex=50 layout-margin>
+          <div flex=100 layout-margin>
             <md-input-container class="md-block" flex>
               <label>Titulo da Imagem</label>
-              <input name="imageTitle" ng-model="image.titulo" />
+              <input name="imageTitle" ng-model="objForm.titulo" />
             </md-input-container>
             <md-input-container class="md-block" flex>
               <label>Descrição da Imagem</label>
-              <textarea name="imageDescription" ng-model="image.descricao" rows="5"/>
+              <textarea name="imageDescription" ng-model="objForm.descricao" rows="6"></textarea>
             </md-input-container>
           </div>
         </div>
@@ -27,8 +27,8 @@
     <md-button ng-click="$ctrl.cancel($event)">
       Cancelar
     </md-button>
-    <md-button class="md-no-focus md-raised md-primary" ng-disabled="!$ctrl.images" ng-click="$ctrl.uploadImg($ctrl.images, $event)">
-      Enviar Todas as Imagens
+    <md-button class="md-no-focus md-raised md-primary" ng-disabled="!objForm.arquivo"  ng-click="$ctrl.save()">
+      Salvar
     </md-button>
   </md-dialog-actions>
 </md-dialog>

@@ -67,7 +67,7 @@ class PracaGaleriaContentController {
               templateUrl: 'praca/galeria-edit.dialog.tmpl.html',
               parent: angular.element(document.body),
               targetEvent: ev,
-              clickOutsideToClose:true,
+              clickOutsideToClose: true,
               locals: {
                   id: id
               },
