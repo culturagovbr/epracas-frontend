@@ -36,14 +36,24 @@
                     flex
                     flex-gt-xs="60"
                     class="md-whiteframe-6dp"
+                    md-menu-class="autocomplete-epracas-template"
             >
-                <md-item-template>
-                    <span md-highlight-text="$ctrl.searchText" md-highlight-flags="^i">{{item.municipio}} - {{item.uf | uppercase}}</span>
-                </md-item-template>
-                <md-not-found>
-                    Nenhuma praça encontrada
-                </md-not-found>
-            </md-autocomplete>
+            <md-item-template>
+              <span class="item-title">
+                <span>{{item.nome}}</span>
+              </span>
+              <span class="item-metadata">
+                <span>
+                  <strong>{{item.municipio}}</strong> - {{item.uf | uppercase}}
+                </span>
+                <span>Modelo: {{item.modelo_descricao}}</span>
+                <span>Situação: {{item.situacao_descricao}}</span>
+              </span>
+            </md-item-template>
+            <md-not-found>
+                Nenhuma praça encontrada
+            </md-not-found>
+          </md-autocomplete>
         </div>
         <div class="block white-text content animated fadeInUp" flex>
             <h1>O que é o E-Praças?</h1>

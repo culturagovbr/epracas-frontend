@@ -1966,6 +1966,44 @@ md-list-item .md-avatar{
     display: none;
 }
 
+.autocomplete-epracas-template li {
+  border-bottom: 1px solid #ccc;
+  height: auto;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  white-space: normal;
+}
+
+.autocomplete-epracas-template li:last-child {
+  border-bottom-width: 0;
+}
+
+.autocomplete-epracas-template .item-title{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.autocomplete-epracas-template .item-metadata {
+    font-size: 14px;
+}
+
+.autocomplete-epracas-template .item-title,
+.autocomplete-epracas-template .item-metadata,
+.autocomplete-epracas-template .item-metadata > span {
+  display: block;
+  line-height: 1.5;
+}
+
+.autocomplete-epracas-template .item-title md-icon {
+  height: 18px;
+  width: 18px;
+}
+
+md-autocomplete .md-show-clear-button button md-icon{
+    position: absolute !important;
+    left: 0 !important;
+}
+
 @media (max-width: 599px) {
     #btn-login{
         margin-right: -26px;
