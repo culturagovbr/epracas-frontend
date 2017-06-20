@@ -1933,6 +1933,10 @@ md-list-item .md-avatar{
     margin-right: 10px;
 }
 
+.only-print {
+    display: none;
+}
+
 @media (max-width: 599px) {
     #btn-login{
         margin-right: -26px;
@@ -2000,5 +2004,116 @@ md-list-item .md-avatar{
 
     #home-search md-icon{
         position: relative;
+    }
+}
+
+@media print {
+    * {
+        background:transparent !important;
+        color:#000 !important;
+        text-shadow:none !important;
+        filter:none !important;
+        -ms-filter:none !important;
+        box-shadow: none !important;
+    }
+
+    body {
+        margin:0;
+        padding:0;
+        line-height: 1.4em;
+    }
+
+    [class^='layout-']{
+        display: block !important;
+        max-width: none !important;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .layout-padding,
+    .layout-padding > *,
+    [class^='layout-padding']{
+        padding: 0!important;
+        width: 100%;
+        max-width: none !important;   
+    }
+
+    .only-print{
+        display: inline-block;
+    }
+
+    @page {
+        margin: 1.5cm;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    h1,
+    #container-info h2{
+        font-size: 18pt;
+        margin: 0 0 20px 0;
+    }
+
+    #container-info h2{
+        padding-bottom: 20px !important;
+        border-bottom: 1px solid #808080;
+    }
+
+    h2 {
+        font-size: 16pt;
+        margin: 0 0 15px 0;
+    }
+
+    h3 {
+        font-size: 14pt;
+        margin: 0 0 10px 0;
+    }
+
+    a, a:visited {
+        text-decoration: underline;
+    }
+
+    p a {
+        word-wrap: break-word;
+    }
+
+    p {
+        widows: 3;
+        orphans: 3;
+        padding: 0 !important;
+        margin: 0 0 10px 0 !important;
+    }
+
+    .home-link {
+        font-size: 24pt;
+        font-weight: bold;
+    }
+
+    #praca .title h1{
+        margin: 0 0 15px 0;
+    }
+
+    #container-parceiros,
+    #container-grupogestor,
+    #container-localizacao{
+        margin-bottom: 30px;
+    }
+
+    .no-print,
+    .tab-pracas.fixed,
+    .material-icons{
+        display: none !important;
+    }
+
+    #logo-print{
+        width: 56px;
+        height: 56px;
+        margin-left: -23px;
+    }
+
+    md-toolbar:not(.md-menu-toolbar) {
+        margin-bottom: 50px;
     }
 }
