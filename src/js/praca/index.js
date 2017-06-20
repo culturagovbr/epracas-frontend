@@ -53,4 +53,7 @@ pracaModule.controller("MembroUglDialogController", MembroUglDialogController);
 import GaleriaEditDialogCtrl from "./galeria-edit.dialog.ctrl.js"
 pracaModule.controller("GaleriaEditDialogCtrl", GaleriaEditDialogCtrl);
 
+import PracaAtividadeCtrl from "./praca-atividade.ctrl.js"
+pracaModule.controller("PracaAtividadeCtrl", PracaAtividadeCtrl);
+
 export default pracaModule;

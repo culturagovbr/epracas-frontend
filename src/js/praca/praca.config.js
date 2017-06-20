@@ -45,9 +45,26 @@ function PracaConfig($stateProvider) {
       controllerAs: "$ctrl",
       templateUrl: "praca/praca-galeria.html",
         resolve: {
-          imagens(Praca, $state, $stateParams, $http) {
+          imagens(Praca, $state, $stateParams) {
             return Praca.getImages($stateParams.pk).then(
                 imagens => imagens,
+              (err) => {
+                $state.go("app.pracas");
+              }
+            );
+          },
+        },
+    })
+    .state("app.atividade", {
+      url: "/praca/atividade/{pk}",
+      title: "Atividade da Praça",
+      controller: "PracaAtividadeCtrl",
+      controllerAs: "$ctrl",
+      templateUrl: "praca/praca-atividade.html",
+        resolve: {
+          objData(Atividade, $state, $stateParams) {
+            return Atividade.get($stateParams.pk).then(
+                objData => objData,
               (err) => {
                 $state.go("app.pracas");
               }

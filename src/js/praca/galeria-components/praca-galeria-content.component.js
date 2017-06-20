@@ -55,7 +55,6 @@ class PracaGaleriaContentController {
                   }
               );
         }, function() {
-          console.info('Canceled');
           $scope.status = 'You decided to keep your debt.';
         });
       }

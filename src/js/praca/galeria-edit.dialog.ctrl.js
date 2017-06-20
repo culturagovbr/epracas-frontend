@@ -13,10 +13,13 @@ class GaleriaEditDialogCtrl {
       _$log: $log,
       _Upload: Upload,
       _AppConstants: AppConstants,
-    })
+    });
 
     this.save = () => {
-        Praca.saveImg($stateParams.pk, $scope.objForm)
+        delete $scope.objForm.arquivo; // E esperado pela api um valor binario, como este valor esta tratado informando a localizacao da imagem e preciso retirar na hora de editar a imagem.
+        delete $scope.objForm.url;
+        console.info($scope.objForm)
+        Praca.saveImg(id, $scope.objForm)
             .then(
                 response => {
                     this._$mdDialog.cancel();

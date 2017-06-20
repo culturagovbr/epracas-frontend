@@ -162,7 +162,6 @@ class PracaDetailCtrl {
       if (typeof arrValue[i] == 'object') {
         objValueTreated.title = arrValue[i].titulo;
         objValueTreated.url = arrValue[i].arquivo;
-          console.info(arrValue[i].descricao)
         objValueTreated.description = (typeof arrValue[i].descricao == 'string' && arrValue[i].descricao.length > 1)? arrValue[i].descricao : ' '; // Tratando bug do materialize caso nao exista o objeto.
       }
       arrValueTreated.push(objValueTreated);

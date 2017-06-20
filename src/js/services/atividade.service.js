@@ -50,7 +50,7 @@ class Atividade {
     const caller = this.ErrorCatcher.callerName()
 
     return this.$http({
-      url: `${this.AtividadeEndPoint}${id_pub}`,
+      url: `${this.AtividadeEndPoint}${id_pub}/`,
       method: "GET"
     })
     .then(res => res.data)
