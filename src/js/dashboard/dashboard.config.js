@@ -1,5 +1,5 @@
 function DashBoardConfig($stateProvider) {
-  "ngInject";
+  "ngInject"
 
   // $scope.$state = $state;
 
@@ -20,9 +20,10 @@ function DashBoardConfig($stateProvider) {
       controllerAs: "$ctrl",
       templateUrl: "dashboard/pracas/pracas.tmpl.html",
     })
-    // .state("app.dashboard.gestores", {
-    //   url: "/gestores",
-    // })
+    .state("app.dashboard.gestores", {
+      url: "/gestores",
+      component: "gestorList",
+    })
     .state("app.dashboard.events", {
       url: "/agenda",
       controller: "DashboardEventsCtrl",
@@ -40,7 +41,7 @@ function DashBoardConfig($stateProvider) {
       controller: "DashboardUsersCtrl",
       controllerAs: "$ctrl",
       templateUrl: "dashboard/users/users.tmpl.html",
-    });
+    })
 }
 
-export default DashBoardConfig;
+export default DashBoardConfig

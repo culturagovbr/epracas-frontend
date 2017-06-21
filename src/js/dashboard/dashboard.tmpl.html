@@ -19,7 +19,7 @@
                 <div class="col_1"><i class="material-icons">account_balance</i></div>
                 <div class="col_2 animated fadeIn">Praças</div>
             </div>
-            <div class="row waves-effect waves-orange" >
+            <div class="row waves-effect waves-orange" data-ng-class="{ active: $state.includes('app.dashboard.gestores') }" ng-click="$state.go('app.dashboard.gestores')">
                 <div class="col_1"><i class="material-icons">group_work</i></div>
                 <div class="col_2 animated fadeIn">Gestores</div>
             </div>
