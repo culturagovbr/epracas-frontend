@@ -25,7 +25,13 @@ function DashBoardConfig($stateProvider) {
       component: "gestorList",
     })
     .state("app.dashboard.events", {
-      url: "/agenda/{ano}/{mes}",
+      url: "/agenda",
+      controller: "DashboardEventsCtrl",
+      controllerAs: "$ctrl",
+      templateUrl: "dashboard/events.tmpl.html",
+    })
+    .state("app.dashboard.eventbydate", {
+      url: "/agenda/{year}/{month}",
       controller: "DashboardEventsCtrl",
       controllerAs: "$ctrl",
       templateUrl: "dashboard/events.tmpl.html",

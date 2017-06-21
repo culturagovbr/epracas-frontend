@@ -1,12 +1,32 @@
-<div style="width: 50vw; margin: auto;">
-  <mwl-calendar
-    style="width: 100%"
-    view="$ctrl.config.calendarView"
-    view-date="$ctrl.config.viewDate"
-    events="$ctrl.events"
-    view-title="$ctrl.config.calendarTitle"
-    on-event-click="eventClicked(calendarEvent)"
-    on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-    cell-is-open="true">
-  </mwl-calendar>
-</div>
+  <div layout-gt-sm="row">
+    <md-input-container class="md-block" flex-gt-sm>
+      <label>Mês</label>
+      <md-select ng-model="$ctrl.objForm.intMonth">
+        <md-option ng-repeat="data in $ctrl.arrMonth" value="{{data.id}}" ng-click="$ctrl.goToYear()">
+          {{data.name}}
+        </md-option>
+      </md-select>
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-sm>
+      <label>Ano</label>
+      <md-select ng-model="$ctrl.objForm.intYear">
+        <md-option ng-repeat="data in $ctrl.arrYear" value="{{data.id}}">
+          {{data.name}}
+        </md-option>
+      </md-select>
+    </md-input-container>
+  </div>
+  <div layout-gt-sm="row">
+    <div style="width: 50vw; margin: auto;" class="animated {{$ctrl.strAnimate}}">
+      <mwl-calendar
+              style="width: 100%"
+              view="$ctrl.config.calendarView"
+              view-date="$ctrl.config.viewDate"
+              events="$ctrl.events"
+              view-title="$ctrl.config.calendarTitle"
+              on-event-click="eventClicked(calendarEvent)"
+              on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+              cell-is-open="true">
+      </mwl-calendar>
+    </div>
+  </div>
