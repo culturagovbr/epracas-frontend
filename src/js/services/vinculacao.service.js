@@ -57,7 +57,7 @@ class Vinculacao {
     )
   }
 
-  list() {
+  list_all() {
     const caller = this.ErrorCatcher.callerName()
 
     return this.$http({
@@ -70,6 +70,24 @@ class Vinculacao {
         return this.$q.reject()
       }
     )
+  }
+
+  list() {
+    const caller = this.ErrorCatcher.callerName()
+
+    return this.$http({
+      url: this.AppConstants.vinculoEndPoint,
+      method: "GET",
+      params: {
+        finalizado: false,
+      }
+    })
+      .catch(
+        (err) => {
+          this.ErrorCatcher.error(caller, err)
+          return this.$q.reject()
+        }
+      )
   }
 
   delete(id_pub) {
