@@ -1,11 +1,12 @@
 class DashboardVinculoCtrl {
-  constructor($scope, $http, $mdDialog, $document, $log, Toast, Praca, Vinculacao, AppConstants) {
+  constructor($mdDialog, $document, $log, ErrorCatcher, Toast, Praca, Vinculacao, AppConstants) {
     "ngInject"
 
       angular.extend(this, {
-        $http,
         $mdDialog,
         $document,
+        $log,
+        ErrorCatcher,
         Toast,
         Praca,
         Vinculacao,

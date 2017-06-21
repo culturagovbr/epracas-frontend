@@ -1,21 +1,24 @@
 <md-dialog aria-label="Processo de Vinculação">
+
   <md-dialog-content>
+
     <md-content md-theme="docs-dark" layout-padding>
       <h2>Processo de Vinculação</h2>
       <p>Verifique os documentos enviados pelo proponente para efetivar seu vinculo como gestor da praça.</p>
     </md-content>
+
     <md-stepper id="vinculoStepper" md-linear="true" >
-      <md-step md-label="Verifique o documento de identidade"
-      ng-mouseenter="showToast($event)">
+
+      <md-step md-label="Verifique o documento de identidade" ng-mouseenter="showToast($event)">
+
         <md-step-body>
-          <div layout="row" layout-align="center center">
+          <div layout="row" layout-align="start stretch">
+
             <div flex="50" layout-margin>
-              <zoomable-image class="high-ground"
-                src={{$ctrl.vincFiles.cpf.arquivo}}
-                ng-show="$ctrl.vincFiles.cpf"
-                ></zoomable-image>
+              <zoomable-image ng-if="$ctrl.vincFiles.cpf.tipo!='pdf'" class="high-ground" src={{$ctrl.vincFiles.cpf.arquivo}} ng-show="$ctrl.vincFiles.cpf"></zoomable-image>
             </div>
-            <div flex layout-margin layout="column">
+
+            <div flex layout-margin layout="column" layout-align="start stretch">
               <md-input-container>
                 <md-checkbox ng-model="$ctrl.vincFiles.cpf.verificado">Arquivo Verificado</md-checkbox>
               </md-input-container>
@@ -24,22 +27,29 @@
                 <textarea rows="5" name="comentarioFile" ng-model="$ctrl.vincFiles.cpf.comentarios"></textarea>
               </md-input-container>
             </div>
+
           </div>
         </md-step-body>
+
         <md-step-actions layout-align="center end">
           <md-button class="md-primary md-raised" ng-click="$ctrl.proximoPasso($ctrl.vincFiles.cpf)">Continuar</md-button>
           <md-button class="md-primary" ng-click="$ctrl.cancelProcesso()">Cancelar</md-button>
         </md-step-actions>
+
       </md-step>
+
       <md-step md-label="Verifique o documento de adesão">
+
         <md-step-body>
-          <div layout="row" layout-align="center center">
+          <div layout="row" layout-align="start stretch">
+
             <div flex="50" layout-margin>
-              <zoomable-image class="high-ground"
+              <zoomable-image ng-if="$ctrl.vincFiles.comp.tipo!='pdf'" class="high-ground"
                 src={{$ctrl.vincFiles.comp.arquivo}}
                 ng-show="$ctrl.vincFiles.comp"
                 ></zoomable-image>
             </div>
+
             <div flex layout-margin layout="column">
               <md-input-container>
                 <md-checkbox ng-model="$ctrl.vincFiles.comp.verificado">Arquivo Verificado</md-checkbox>
@@ -49,31 +59,62 @@
                 <textarea rows="5" name="comentarioFile" ng-model="$ctrl.vincFiles.comp.comentarios"></textarea>
               </md-input-container>
             </div>
+
           </div>
         </md-step-body>
+        
         <md-step-actions layout-align="center end">
           <md-button class="md-primary md-raised" ng-click="$ctrl.proximoPasso($ctrl.vincFiles.comp)">Continuar</md-button>
           <md-button class="md-primary" ng-click="$ctrl.cancelProcesso()">Cancelar</md-button>
         </md-step-actions>
+
       </md-step>
-      <md-step md-label="Escreva o despacho do processo">
+
+      <md-step md-label="Encaminhamento do Processo">
+
         <div layout-margin>
           <md-step-body>
-            <md-input-container class="md-block">
-              <md-icon>subject</md-icon>
-              <label>Despacho e considerações</label>
-              <textarea name="descricaoAtividade" rows="5" ng-select-on-focus ng-model="$ctrl.pedido.descricao"></textarea>
-            </md-input-container>
+
             <md-input-container>
-              <md-checkbox ng-model="$ctrl.pedido.aprovado">Aprova Verificação</md-checkbox>
+              <label>Situação do Pedido</label>
+              <md-select ng-model="$ctrl.pedido.situacao" placeholder="Situação do Processo">
+                <md-option ng-repeat="situacao in $ctrl.listaSituacao" value="{{situacao.value}}">
+                  {{ situacao.display_name }}
+                </md-option>
+              </md-select>
             </md-input-container>
+
+            <md-input-container ng-show="$ctrl.pedido.situacao" ng-if="$ctrl.pedido.situacao!='a'">
+              <label>Despacho da atual situação</label>
+              <textarea name="despachoSituacaoProcesso" rows="3" ng-model="$ctrl.pedido.descricao"></textarea>
+            </md-input-container>
+
+            <md-input-container>
+              <md-switch ng-model="$ctrl.pedido.finalizado">Finaliza Processo de Vinculação</md-switch>
+            </md-input-container>
+
+            <md-input-container ng-if="$ctrl.pedido.finalizado==true">
+              <md-switch ng-model="$ctrl.pedido.aprovado">Aprova Pedido de Vinculação</md-switch>
+            </md-input-container>
+
+            <md-input-container class="md-block" ng-if="$ctrl.pedido.finalizado==true">
+              <md-icon>subject</md-icon>
+              <label>Despacho e considerações finais</label>
+              <textarea required name="despachoFinalProcesso" rows="5" ng-select-on-focus ng-model="$ctrl.pedido.despacho"></textarea>
+            </md-input-container>
+
           </md-step-body>
         </div>
+
         <md-step-actions layout-align="center end">
           <md-button class="md-primary md-raised" ng-click="$ctrl.finalizaProcesso($ctrl.pedido)">Continue</md-button>
           <md-button class="md-primary" ng-click="$ctrl.cancelProcesso()">Cancelar</md-button>
         </md-step-actions>
+
       </md-step>
+
     </md-stepper>
+
   </md-dialog-content>
+
 </md-dialog>

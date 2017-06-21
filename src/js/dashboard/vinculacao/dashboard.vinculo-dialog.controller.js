@@ -1,6 +1,6 @@
 class DashboardVinculoDialogCtrl {
   constructor($scope, $document, $log, $mdDialog, $mdToast, $mdStepper,
-    Vinculacao, Toast, AppConstants, pedido) {
+    ErrorCatcher, Vinculacao, Toast, AppConstants, pedido) {
     "ngInject"
 
     angular.extend(this, {
@@ -9,6 +9,7 @@ class DashboardVinculoDialogCtrl {
       $log,
       $mdDialog,
       $mdStepper,
+      ErrorCatcher,
       Vinculacao,
       Toast,
       AppConstants,
@@ -36,7 +37,19 @@ class DashboardVinculoDialogCtrl {
         cpf: response.files.filter(file => file.tipo == "cpfFile")[0],
         comp: response.files.filter(file => file.tipo == "compFile")[0],
       }
+      Object.assign(this.vincFiles.cpf, {
+        tipo: this.vincFiles.cpf.arquivo.split(".").pop(),
+      })
+      Object.assign(this.vincFiles.comp, {
+        tipo: this.vincFiles.comp.arquivo.split(".").pop(),
+      })
     })
+
+    this.listaSituacao = [
+      { value: "c", display_name: "Cancelado" },
+      { value: "p", display_name: "Pendente" },
+      { value: "a", display_name: "Aprovado" },
+    ]
   }
 
   cancelProcesso() {
@@ -63,10 +76,24 @@ class DashboardVinculoDialogCtrl {
   }
 
   finalizaProcesso(pedido) {
-    const dados = {
-      id_pub: pedido.id_pub,
-      aprovado: pedido.aprovado,
-      descricao: pedido.descricao,
+    const caller = this.ErrorCatcher.callerName()
+
+    let dados = {}
+    if (!pedido.finalizado) {
+      dados = {
+        id_pub: pedido.id_pub,
+        situacao: pedido.situacao,
+        descricao: pedido.descricao,
+      }
+    } else {
+      dados = {
+        id_pub: pedido.id_pub,
+        situacao: pedido.situacao,
+        descricao: pedido.descricao,
+        aprovado: pedido.aprovado,
+        finalizado: pedido.finalizado,
+        despacho: pedido.despacho,
+      }
     }
 
     this.Vinculacao.save(dados)
@@ -77,7 +104,7 @@ class DashboardVinculoDialogCtrl {
         }
     )
     .catch((err) => {
-      this.$log.error(`Erro ao finalizar o Processo de Vinculação ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
+      this.ErrorCatcher.error(caller, err)
       this.Toast.showRejectedToast("Erro ao finalizar o Processo de Vinculação")
     })
   }
