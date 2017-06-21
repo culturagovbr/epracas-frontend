@@ -1,9 +1,16 @@
+import moment from "moment"
+
 class PracaAtividadeCtrl {
   constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, $timeout, objData) {
     "ngInject";
 
     angular.extend(this, {$scope});
 console.info(objData)
+
+
+    objData.ocorrencia.repeat_until = moment(objData.ocorrencia.repeat_until).format("DD/MM/YYYY");
+    objData.ocorrencia.start = moment(objData.ocorrencia.start).format("DD/MM/YYYY");
+
     this.objData = objData;
 
     // let arrImgHeight = [];

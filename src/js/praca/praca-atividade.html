@@ -1,6 +1,44 @@
+<md-toolbar layout="row" class="">
+  <div class="container">
+    <div class="md-toolbar-tools">
+      <!--<md-button class="md-icon-button" aria-label="Settings" ng-click="">-->
+        <!--<md-icon>arrow_back</md-icon>-->
+      <!--</md-button>-->
+      <span><md-icon class="material-icons" role="img" aria-label="insert_invitation">insert_invitation</md-icon> {{$ctrl.objData.titulo}}</span>
+    </div>
+  </div>
+</md-toolbar>
 <div class="container">
   <md-content class="md-padding">
-    <h1>Atividade: {{$ctrl.objData.titulo}}</h1>
-    <!--{{$ctrl.objData}}-->
+    <md-list flex>
+      <md-subheader class="md-no-sticky">Descrição</md-subheader>
+      <md-list-item class="md-2-line">
+        <md-icon ng-class="md-avatar-icon" style="margin-top: 30px; margin-right: 23px;">format_align_justify</md-icon>
+        <div class="md-list-item-text" ng-class="md-offset">
+          <h3>{{$ctrl.objData.descricao}}</h3>
+        </div>
+      </md-list-item>
+      </md-list-item>
+      <md-subheader class="md-no-sticky">Participação</md-subheader>
+      <md-list-item class="md-3-line">
+        <md-icon  style="margin-top: 32px; margin-right: 23px;">people</md-icon>
+        <div class="md-list-item-text" layout="column" ng-class="md-offset">
+          <h3>{{$ctrl.objData.publico_esperado}} pessoas</h3>
+        </div>
+      </md-list-item>
+      <md-subheader class="md-no-sticky">Data e duração</md-subheader>
+      <md-list-item class="md-3-line">
+        <md-icon  style="margin-top: 32px; margin-right: 23px;">date_range</md-icon>
+        <div class="md-list-item-text" layout="column" ng-class="md-offset">
+          <h3>Data: {{$ctrl.objData.ocorrencia.start}} à {{$ctrl.objData.ocorrencia.repeat_until}}</h3>
+          <h3>Duração: {{$ctrl.objData.carga_horaria}}h</h3>
+        </div>
+      </md-list-item>
+      <!--<md-list-item class="md-3-line" ng-repeat="obj in $ctrl.objData.ocorrencia" ng-click="null">-->
+        <!--<h3>{{obj}}</h3>-->
+        <!--<h3>{{obj.repeat_until}}</h3>-->
+        <!--<h3>{{obj.start}}</h3>-->
+      <!--</md-list-item>-->
+    </md-list>
   </md-content>
 </div>
