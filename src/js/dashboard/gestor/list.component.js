@@ -21,10 +21,9 @@ const GestorListElement = {
   controller: GestorListController,
   template: `
     <md-list>
-      <gestor-detail gestor="gestor" ng-repeat="gestor in $ctrl.gestores"><gestor-detail>
-      // <md-list-item md-whiteframe="2" ng-repeat="gestor in $ctrl.gestores">
-      //   <p>{{gestor}}</p>
-      // </md-list-item>
+      <div class="row">
+        <gestor-detail gestor="gestor" ng-repeat="gestor in $ctrl.gestores" class="col s12 m6 l4"><gestor-detail>
+      </div>
     </md-list>
     `,
   bindings: {

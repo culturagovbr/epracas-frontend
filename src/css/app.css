@@ -2052,6 +2052,85 @@ user-card md-card{
     display: inline;
 }
 
+gestor-detail md-card{
+    margin-left: 0;
+    margin-right: 0;
+    height: 375px;
+}
+
+gestor-detail md-card md-card-title{
+    padding-top: 0;
+}
+
+gestor-detail md-card md-card-header md-card-avatar{
+    margin-top: -40px;
+    width: 80px;
+    height: 80px;
+    display: table;
+}
+
+gestor-detail md-card md-card-header md-card-header-text > span{
+    padding-left: 10px;
+}
+
+gestor-detail md-card md-card-header md-card-avatar img{
+    border-radius: 50%;
+    width: 100%;
+    height: auto;
+    max-height: 80px;
+    border: 2px solid #fff;
+}
+
+gestor-detail md-card .md-headline{
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 22px;
+}
+
+gestor-detail md-card .md-subhead{
+    padding-top: 0;
+    font-size: 12px;
+}
+
+.card-vinculacao {
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
+    height: 275px;
+}
+
+.card-vinculacao .md-headline{
+    font-size: 20px;
+}
+
+.card-vinculacao .card-media{
+    margin-right: 15px;
+}
+
+.card-vinculacao .card-media .md-avatar{
+    border-radius: 50%;
+}
+
+.card-vinculacao .praca {
+    background-color: #e0e0e0;
+}
+
+.card-vinculacao md-card-title {
+    padding-top: 20px;
+    cursor: pointer;
+}
+
+.card-vinculacao .praca md-card-title-text{
+    padding-left: 25%;
+    text-align: right;
+}
+
+.card-vinculacao md-menu {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
 @media (max-width: 599px) {
     #btn-login{
         margin-right: -26px;
