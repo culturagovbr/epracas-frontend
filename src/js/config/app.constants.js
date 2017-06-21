@@ -13,6 +13,7 @@ AppConstants.logoutUrl = `${AppConstants.idcultura_url}/openid/connect/session/e
 AppConstants.api = "/* @echo EPRACAS_API_URL */"
 AppConstants.apiUserInfo = `${AppConstants.api}/user/`
 AppConstants.pracaEndPoint = `${AppConstants.api}/pracas/`
+AppConstants.gestorEndPoint = `${AppConstants.api}/gestor/`
 AppConstants.agendaApi = `${AppConstants.api}/atividades/`
 AppConstants.vinculoEndPoint = `${AppConstants.api}/processo/`
 AppConstants.parceirosEndPoint = `${AppConstants.api}/parceiros/`
