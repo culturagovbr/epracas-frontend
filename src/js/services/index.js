@@ -3,6 +3,7 @@ import angular from "angular"
 import UserService from "./user.service"
 import JwtService from "./jwt.service"
 import PracaService from "./praca.service"
+import GestorService from "./gestor.service"
 import ErrorCatcherService from "./errorcatcher.service"
 import AtividadeService from "./atividade.service"
 import VinculacaoService from "./vinculacao.service"
@@ -16,6 +17,7 @@ const servicesModule = angular.module("app.services", [])
 .service("User", UserService)
 .service("JWT", JwtService)
 .service("Praca", PracaService)
+.service("Gestor", GestorService)
 .service("ErrorCatcher", ErrorCatcherService)
 .service("Atividade", AtividadeService)
 .service("Vinculacao", VinculacaoService)

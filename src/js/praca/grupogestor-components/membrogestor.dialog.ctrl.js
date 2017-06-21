@@ -20,19 +20,6 @@ export default class MembroGestorDialogController {
       .then((data) => {
         this.listaOrigem = data.origem.choices
       })
-
-    // this.listaOrigem = [
-    //   { value: "pp", display_name: "Poder Publico" },
-    //   { value: "sc", display_name: "Sociedade Civil" },
-    //   { value: "me", display_name: "Moradores do Entorno" },
-    // ]
-
-    // this.listaConstituicao = [
-    //   { value: "d", display_name: "Decreto" },
-    //   { value: "p", display_name: "Portaria" },
-    //   { value: "l", display_name: "Lei" },
-    //   { value: "n", display_name: "Não formalizado" },
-    // ]
   }
 
   cancel() { this.$mdDialog.cancel() }

@@ -29,4 +29,10 @@ dashboardModule.controller("DashboardPracasCtrl", DashboardPracasCtrl);
 import DashboardEventsCtrl from "./dashboard.events.controller";
 dashboardModule.controller("DashboardEventsCtrl", DashboardEventsCtrl);
 
+import GestorListElement from "./gestor/list.component"
+dashboardModule.component("gestorList", GestorListElement)
+
+import GestorDetailElement from "./gestor/detail.component"
+dashboardModule.component("gestorDetail", GestorDetailElement)
+
 export default dashboardModule;
