@@ -34,9 +34,8 @@ class PracaCardController {
     //TODO: implement
   }
 
-  excluirPraca()
-  {
-		this.onDelete({praca: this.praca})
+  excluirPraca() {
+    this.onDelete({praca: this.praca})
   }
 
   navigateTo(route, params)
@@ -93,12 +92,6 @@ const PracaCard = {
         </md-menu>
       </div>
 
-      <!-- <div class="md-list-item-text" layout="column">
-        <h3>{{ praca.nome }}</h3>
-        <h4>{{ praca.municipio}} - {{ praca.uf | uppercase }}</h4>
-        <p>Modelo: {{ praca.modelo_descricao }}</p>
-        <p>Situação: {{ praca.situacao_descricao }}</p>
-      </div> -->
     </md-list-item>
     `,
   bindings: {
