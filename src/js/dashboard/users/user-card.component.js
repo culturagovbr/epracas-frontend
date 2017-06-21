@@ -130,50 +130,43 @@ class UserCardController {
 const UserCardElement = {
   controller: UserCardController,
   template: `
-        <div class='col s12 m6 l4 '>
-            <md-card style="min-height: 215px;">
-            <div class="epr-avatar" style="background-image: url('{{$ctrl.user.profile_picture_url}}')">
-            </div>
-            <span class="epr-name">{{$ctrl.user.full_name}}</span>
-            <!-- <span class="epr-subname">@João Pessoa - PB</span> -->
-            <md-card-actions layout="row">
-                <div layout="row" layout-align="space-between">
-                <md-button class="md-icon-button no-action-btn"
-                aria-label="is_staff">
-                <md-tooltip>Este usuário<span ng-if="!$ctrl.user.is_staff"> não</span> é um administrador</md-tooltip>
-                <md-icon ng-style="{
-                color: $ctrl.user.is_staff? 'green' : 'red'
-                }">supervisor_account</md-icon>
-                </md-button>
-        
-                <md-button class="md-icon-button no-action-btn"
-                aria-label="is_">
-                <md-tooltip>Este usuário<span ng-if="!$ctrl.user.praca_manager"> não</span> é um gestor de praças.</md-tooltip>
-                <md-icon ng-style="{
-                color: $ctrl.user.praca_manager? 'green':'red'
-                }">store</md-icon>
-                </md-button>
-        
-                <div flex></div>
-        
-                <md-menu>
+        <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme user-card-item">
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{$ctrl.user.full_name}}</span>
+              <span class="md-subhead">{{$ctrl.user.email}}</span>
+            </md-card-title-text>
+            <md-card-title-media>
+              <div class="md-media-sm card-media epr-avatar" style="background-image: url('{{$ctrl.user.profile_picture_url}}')"></div>
+              <md-button class="md-fab md-mini" ng-if="$ctrl.user.praca_manager">
+                <md-tooltip>Este usuário é um gestor de praças.</md-tooltip>
+                <md-icon>store</md-icon>
+              </md-button>
+
+              <md-button ng-class="$ctrl.user.praca_manager ? 'second-badge md-fab md-mini' : 'md-fab md-mini'" ng-if="$ctrl.user.is_staff">
+                <md-tooltip>Este usuário é um administrador.</md-tooltip>
+                <md-icon>supervisor_account</md-icon>
+              </md-button>
+            </md-card-title-media>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="end center" class="layout-align-end-center layout-row">
+            <div layout="row" layout-align="space-between">
+              <md-menu>
                 <md-button class="md-icon-button" aria-label="Menu" ng-click="$mdOpenMenu($event)">
-                <md-icon>menu</md-icon>
+                  <md-icon>menu</md-icon>
                 </md-button>
                 <md-menu-content width="4">
-                <md-menu-item ng-repeat="item in $ctrl.user.menu">
-                <md-button ng-click="item.action($ctrl.user.sub)">
-                <md-icon>{{item.icon}}</md-icon>
-                {{item.name}}
-                </md-button>
-                </md-menu-item>
+                  <md-menu-item ng-repeat="item in $ctrl.user.menu">
+                    <md-button ng-click="item.action($ctrl.user.sub)">
+                      <md-icon>{{item.icon}}</md-icon>
+                      {{item.name}}
+                    </md-button>
+                  </md-menu-item>
                 </md-menu-content>
-                </md-menu>
-                </div>
-    
-            </md-card-actions>
-            </md-card>
-        </div>
+              </md-menu>
+            </div>
+          </md-card-actions>
+        </md-card>
         `,
   bindings: {
     user: "=",

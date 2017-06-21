@@ -2004,6 +2004,54 @@ md-autocomplete .md-show-clear-button button md-icon{
     left: 0 !important;
 }
 
+user-card md-card{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.user-card-item{
+    height: 160px;
+}
+
+.user-card-item md-card-title md-card-title-text{
+    word-break: break-word;
+    word-spacing: all;
+}
+
+.user-card-item md-card-title-media{
+    position: relative;
+}
+
+.user-card-item md-card-title-media .md-button.md-fab.md-mini,
+.user-card-item md-card-title-media .md-button.md-fab.md-mini:hover {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    line-height: 20px;
+    width: 30px;
+    height: 30px;
+    min-width: inherit;
+    min-height: inherit;
+    background: green;
+    padding: 0;
+    cursor: default;
+}
+
+.user-card-item md-card-title-media .md-button.md-fab.md-mini.second-badge {
+    top: 15px;
+    right: -30px;
+}
+
+.user-card-item md-card-title-media .md-button.md-fab.md-mini > md-icon{
+    font-size: 20px;
+    line-height: 20px;
+    width: 20px;
+    height: 20px;
+    min-width: inherit;
+    min-height: inherit;
+    display: inline;
+}
+
 @media (max-width: 599px) {
     #btn-login{
         margin-right: -26px;
