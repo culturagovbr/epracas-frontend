@@ -3,14 +3,32 @@ import moment from "moment"
 class PracaAtividadeCtrl {
   constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, $timeout, objData) {
     "ngInject";
-
     angular.extend(this, {$scope});
-console.info(objData)
+
+      // console.info(objData)
+
+      Atividade.options().then(
+          (data) => {
+              objData.tipos = data.tipo.choices;
+              objData.espacos = data.espaco.child.choices;
+              objData.faixa_etarias = data.faixa_etaria.child.choices;
+              objData.territorios = data.territorio.choices;
+              objData.publicos = data.publico.choices;
+          }
+      );
+
+      console.info(objData)
+
+
+      // console.info(objData)
+      // objData.options()
+      //     .then((obj) => {
+      //         console.info(obj)
+      //     });
 
 
     objData.ocorrencia.repeat_until = moment(objData.ocorrencia.repeat_until).format("DD/MM/YYYY");
     objData.ocorrencia.start = moment(objData.ocorrencia.start).format("DD/MM/YYYY");
-
     this.objData = objData;
 
     // let arrImgHeight = [];

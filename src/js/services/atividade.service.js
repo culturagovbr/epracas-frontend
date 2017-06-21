@@ -98,7 +98,7 @@ class Atividade {
   }
 
   // Lista todos os eventos
-  list(praca, month) {
+  list(praca, month, year) {
     const caller = this.ErrorCatcher.callerName()
 
     return this.$http({
@@ -107,6 +107,7 @@ class Atividade {
       params: {
         praca: praca,
         mes: month,
+        ano: year,
       }
     })
     .then(res => res.data)

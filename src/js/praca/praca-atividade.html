@@ -1,44 +1,74 @@
-<md-toolbar layout="row" class="">
-  <div class="container">
-    <div class="md-toolbar-tools">
-      <!--<md-button class="md-icon-button" aria-label="Settings" ng-click="">-->
-        <!--<md-icon>arrow_back</md-icon>-->
-      <!--</md-button>-->
-      <span><md-icon class="material-icons" role="img" aria-label="insert_invitation">insert_invitation</md-icon> {{$ctrl.objData.titulo}}</span>
+<div class="animated fadeIn">
+    <div class="container" ng-cloak>
+        <div id="container-info" layout-gt-xs="row">
+            <div flex-gt-xs="35" class="nome">
+                <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-left-0">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">{{$ctrl.objData.titulo}}</span>
+                            <span class="md-subhead"><strong>Esperado </strong>{{$ctrl.objData.publico_esperado}} pessoas</span>
+                            <span class="md-subhead"><strong>Dia </strong>{{$ctrl.objData.ocorrencia.start}} à {{$ctrl.objData.ocorrencia.repeat_until}}</span>
+                            <span class="md-subhead"><strong>Duração de </strong>{{$ctrl.objData.carga_horaria}} hora(s)</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-header ng-if="$ctrl.praca.gestor">
+                        <md-card-header-text>
+                            <span class="print-only">Gestor da praça: </span>
+                            <span class="md-title">{{ $ctrl.praca.gestor.nome }}</span>
+                            <span class="md-subhead no-print">Gestor da praça</span>
+                        </md-card-header-text>
+                    </md-card-header>
+                </md-card>
+            </div>
+            <div flex-gt-xs="65" class="bio">
+                <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-right-0">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <p>{{$ctrl.objData.descricao}}</p>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
+        </div>
     </div>
-  </div>
-</md-toolbar>
-<div class="container">
-  <md-content class="md-padding">
-    <md-list flex>
-      <md-subheader class="md-no-sticky">Descrição</md-subheader>
-      <md-list-item class="md-2-line">
-        <md-icon ng-class="md-avatar-icon" style="margin-top: 30px; margin-right: 23px;">format_align_justify</md-icon>
-        <div class="md-list-item-text" ng-class="md-offset">
-          <h3>{{$ctrl.objData.descricao}}</h3>
+    <div class="container" ng-cloak layout-gt-sm="row" layout="column">
+        <div flex-gt-sm="50" flex-sm="100" flex>
+            <md-content class="md-padding">
+                <md-list flex>
+                    <md-subheader class="md-no-sticky">Categorias</md-subheader>
+                    <md-list-item ng-repeat="obj in $ctrl.objData.tipos" class="md-2-line">
+                        <md-icon style="margin-top: 32px; margin-right: 23px;">date_range</md-icon>
+                        <div class="md-list-item-text" layout="column" ng-class="md-offset">
+                            <h3>{{obj.display_name}}</h3>
+                        </div>
+                    </md-list-item>
+                    <md-divider ></md-divider>
+                    <md-subheader class="md-no-sticky">Faixa etária</md-subheader>
+                    <md-list-item ng-repeat="obj in $ctrl.objData.faixa_etarias" class="md-2-line">
+                        <md-icon style="margin-top: 32px; margin-right: 23px;">date_range</md-icon>
+                        <div class="md-list-item-text" layout="column" ng-class="md-offset">
+                            <h3>{{obj.display_name}}</h3>
+                        </div>
+                    </md-list-item>
+                    <md-divider ></md-divider>
+                    <md-subheader class="md-no-sticky">Locais</md-subheader>
+                    <md-list-item ng-repeat="obj in $ctrl.objData.territorios" class="md-2-line">
+                        <md-icon style="margin-top: 32px; margin-right: 23px;">date_range</md-icon>
+                        <div class="md-list-item-text" layout="column" ng-class="md-offset">
+                            <h3>{{obj.display_name}}</h3>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </md-content>
         </div>
-      </md-list-item>
-      </md-list-item>
-      <md-subheader class="md-no-sticky">Participação</md-subheader>
-      <md-list-item class="md-3-line">
-        <md-icon  style="margin-top: 32px; margin-right: 23px;">people</md-icon>
-        <div class="md-list-item-text" layout="column" ng-class="md-offset">
-          <h3>{{$ctrl.objData.publico_esperado}} pessoas</h3>
+        <div flex-gt-sm="50" flex-sm="100" flex>
+            <md-subheader class="md-no-sticky">Públicos</md-subheader>
+            <md-list-item ng-repeat="obj in $ctrl.objData.publicos" class="md-3-line">
+                <md-icon style="margin-top: 32px; margin-right: 23px;">people</md-icon>
+                <div class="md-list-item-text" layout="column" ng-class="md-offset">
+                    <h3>{{obj.display_name}}</h3>
+                </div>
+            </md-list-item>
         </div>
-      </md-list-item>
-      <md-subheader class="md-no-sticky">Data e duração</md-subheader>
-      <md-list-item class="md-3-line">
-        <md-icon  style="margin-top: 32px; margin-right: 23px;">date_range</md-icon>
-        <div class="md-list-item-text" layout="column" ng-class="md-offset">
-          <h3>Data: {{$ctrl.objData.ocorrencia.start}} à {{$ctrl.objData.ocorrencia.repeat_until}}</h3>
-          <h3>Duração: {{$ctrl.objData.carga_horaria}}h</h3>
-        </div>
-      </md-list-item>
-      <!--<md-list-item class="md-3-line" ng-repeat="obj in $ctrl.objData.ocorrencia" ng-click="null">-->
-        <!--<h3>{{obj}}</h3>-->
-        <!--<h3>{{obj.repeat_until}}</h3>-->
-        <!--<h3>{{obj.start}}</h3>-->
-      <!--</md-list-item>-->
-    </md-list>
-  </md-content>
+    </div>
 </div>
