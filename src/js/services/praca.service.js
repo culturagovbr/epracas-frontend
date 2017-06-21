@@ -20,13 +20,13 @@ export default class Praca {
       method: "POST",
       data: data,
     })
-    .then(res => res.data)
-    .catch(
-      (err) => {
-        this.ErrorCatcher.error(caller, err)
-        return this.$q.reject()
-      }
-    )
+      .then(res => res.data)
+      .catch(
+        (err) => {
+          this.ErrorCatcher.error(caller, err)
+          return this.$q.reject()
+        }
+      )
   }
 
   // Exclui uma Praça
@@ -37,13 +37,13 @@ export default class Praca {
       url: `${this.PracaEndPoint}${pk}/`,
       method: "DELETE",
     })
-    .then(res => res.data)
-    .catch(
-      (err) => {
-        this.ErrorCatcher.error(caller, err)
-        return this.$q.reject()
-      }
-    )
+      .then(res => res.data)
+      .catch(
+        (err) => {
+          this.ErrorCatcher.error(caller, err)
+          return this.$q.reject()
+        }
+      )
   }
 
   // Recupera o registro de uma Praça
@@ -57,17 +57,17 @@ export default class Praca {
         resolve()
       }
     })
-    .then(() => this.$http({
-      url: `${this.PracaEndPoint}${pk}/`,
-      method: "GET",
-    }))
-    .then(res => res.data)
-    .catch(
-      (err) => {
-        this.ErrorCatcher.error(caller, err)
-        return this.$q.reject()
-      }
-    )
+      .then(() => this.$http({
+        url: `${this.PracaEndPoint}${pk}/`,
+        method: "GET",
+      }))
+      .then(res => res.data)
+      .catch(
+        (err) => {
+          this.ErrorCatcher.error(caller, err)
+          return this.$q.reject()
+        }
+      )
   }
 
   // Recupera as imagens de uma praca
@@ -81,22 +81,22 @@ export default class Praca {
         resolve()
       }
     })
-    .then(() => this.$http({
-      url: `${this.PracaEndPoint}${pk}/imagens/`,
-      method: "GET",
-    }))
-    .then(res => res.data)
-    .catch(
-      (err) => {
-        this.ErrorCatcher.error(caller, err)
-        return this.$q.reject()
-      }
-    )
+      .then(() => this.$http({
+        url: `${this.PracaEndPoint}${pk}/imagens/`,
+        method: "GET",
+      }))
+      .then(res => res.data)
+      .catch(
+        (err) => {
+          this.ErrorCatcher.error(caller, err)
+          return this.$q.reject()
+        }
+      )
   }
 
   // Recupera uma unica imagem da praca
   getImg(pkPraca, pkImg) {
-    const caller = this.ErrorCatcher.callerName();
+    const caller = this.ErrorCatcher.callerName()
 
     return this.$q((resolve, reject) => {
       if (!pkPraca.replace(" ", "")) {
@@ -105,36 +105,36 @@ export default class Praca {
         resolve()
       }
     })
-    .then(() => this.$http({
-      url: `${this.PracaEndPoint}${pkPraca}/imagens/${pkImg}/`,
-      method: "GET",
-    }))
-    .then(res => res.data)
-    .catch(
-      (err) => {
-        this.ErrorCatcher.error(caller, err);
-        return this.$q.reject()
-      }
-    )
+      .then(() => this.$http({
+        url: `${this.PracaEndPoint}${pkPraca}/imagens/${pkImg}/`,
+        method: "GET",
+      }))
+      .then(res => res.data)
+      .catch(
+        (err) => {
+          this.ErrorCatcher.error(caller, err)
+          return this.$q.reject()
+        }
+      )
   }
 
-    // Salva os dados da imagem de uma Praça.
-    saveImg(praca, data) {
-        const caller = this.ErrorCatcher.callerName()
+  // Salva os dados da imagem de uma Praça.
+  saveImg(praca, data) {
+    const caller = this.ErrorCatcher.callerName()
 
-        return this.$http({
-            url: `${this.PracaEndPoint}${praca}/imagens/`,
-            method: "PATCH",
-            data: data,
-        })
-            .then(res => res.data)
-            .catch(
-                (err) => {
-                    this.ErrorCatcher.error(caller, err);
-                    return this.$q.reject()
-                }
-            )
-    }
+    return this.$http({
+      url: `${this.PracaEndPoint}${praca}/imagens/`,
+      method: "PATCH",
+      data: data,
+    })
+      .then(res => res.data)
+      .catch(
+        (err) => {
+          this.ErrorCatcher.error(caller, err)
+          return this.$q.reject()
+        }
+      )
+  }
 
   // Recupera as imagens de uma praca
   deleteImg(pkPraca, pkImg) {
@@ -147,17 +147,17 @@ export default class Praca {
         resolve()
       }
     })
-    .then(() => this.$http({
-      url: `${this.PracaEndPoint}${pkPraca}/imagens/${pkImg}/`,
-      method: "DELETE",
-    }))
-    .then(res => res.data)
-    .catch(
-      (err) => {
-        this.ErrorCatcher.error(caller, err);
-        return this.$q.reject()
-      }
-    )
+      .then(() => this.$http({
+        url: `${this.PracaEndPoint}${pkPraca}/imagens/${pkImg}/`,
+        method: "DELETE",
+      }))
+      .then(res => res.data)
+      .catch(
+        (err) => {
+          this.ErrorCatcher.error(caller, err)
+          return this.$q.reject()
+        }
+      )
   }
 
   // Lista todas as Praças
@@ -168,13 +168,13 @@ export default class Praca {
       url: this.PracaEndPoint,
       method: "GET",
     })
-    .then(res => res.data)
-    .catch(
-      (err) => {
-        this.ErrorCatcher.error(caller, err)
-        return this.$q.reject()
-      },
-    )
+      .then(res => res.data)
+      .catch(
+        (err) => {
+          this.ErrorCatcher.error(caller, err)
+          return this.$q.reject()
+        }
+      )
   }
 
   // Procura por uma Praça utilizando o parametro query
@@ -186,13 +186,13 @@ export default class Praca {
       method: "GET",
       params: { search: query },
     })
-    .then(res => res.data)
-    .catch(
-      (err) => {
-        this.ErrorCatcher.error(caller, err)
-        return this.$q.reject()
-      }
-    )
+      .then(res => res.data)
+      .catch(
+        (err) => {
+          this.ErrorCatcher.error(caller, err)
+          return this.$q.reject()
+        }
+      )
   }
 
   // Salva os dados de uma Praça
@@ -222,26 +222,26 @@ export default class Praca {
         url: `${this.PracaEndPoint}${praca.id_pub}/`,
         method: "OPTIONS",
       })
+        .then(response => response.data)
+        .then(data => data.actions.PUT)
+        .catch(
+          (err) => {
+            this.ErrorCatcher.error(caller, err)
+            return this.$q.reject()
+          }
+        )
+    }
+    return this.$http({
+      url: this.PracaEndPoint,
+      method: "OPTIONS",
+    })
       .then(response => response.data)
-      .then(data => data.actions.PUT)
+      .then(data => data.actions.POST)
       .catch(
         (err) => {
           this.ErrorCatcher.error(caller, err)
           return this.$q.reject()
         }
       )
-    }
-    return this.$http({
-      url: this.PracaEndPoint,
-      method: "OPTIONS",
-    })
-    .then(response => response.data)
-    .then(data => data.actions.POST)
-    .catch(
-      (err) => {
-        this.ErrorCatcher.error(caller, err)
-        return this.$q.reject()
-      }
-    )
   }
 }
