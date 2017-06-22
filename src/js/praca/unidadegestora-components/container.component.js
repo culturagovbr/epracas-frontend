@@ -1,11 +1,25 @@
 class UnidadeGestoraController {
-  constructor($mdDialog, $log) {
+  constructor($mdDialog, $log, UnidadeGestora) {
     "ngInject"
 
     angular.extend(this, {
       $mdDialog,
       $log,
+      UnidadeGestora,
     })
+
+    UnidadeGestora.options(this.praca)
+    .then(data => (this.listaTipo = data.tipo.choices))
+      .then(() => {
+        if (this.praca.unidade_gestora.length > 0) {
+          this.unidade_gestora = this.praca.unidade_gestora.map((membro) => {
+            Object.assign(membro,
+              { descricao: this.listaTipo.find(x => x.value === membro.tipo).display_name }
+            )
+            return membro
+          })
+        }
+      })
   }
 
   showUGLDialog(praca) {
@@ -34,9 +48,9 @@ const UnidadeGestoraContainer = {
             </div>
 
         <div layout-wrap layout-margin layout="row">
-          <md-card  ng-repeat="membro in $ctrl.praca.unidade_gestora" layout-padding flex="18">
+          <md-card  ng-repeat="membro in $ctrl.unidade_gestora" layout-padding flex="18">
             <span class="epr-name">{{ membro.nome }}</span>
-            <span class="epr-subname">{{ membro.tipo }}</span>
+            <span class="epr-subname">{{ membro.descricao }}</span>
           </md-card>
         </div>
 
@@ -52,8 +66,6 @@ const UnidadeGestoraContainer = {
     `,
   bindings: {
     praca: "<",
-    unidade_gestora: "<",
-    situacao: "<",
   },
 }
 
