@@ -44,11 +44,13 @@ class DashboardEventsCtrl {
       .catch($log.log('Erro na transformação de eventos'));
 
 
-      this.goToNex = () => {
-          console.info('foi')
-      };
-      this.goToPrev = () => {
-          console.info('voltou')
+      this.goToMonth = (intYear, intMonth) => {
+
+          // if (intYear == null) intYear = $stateParams.year;
+          // if (intMonth == null) intMonth = $stateParams.month;
+          console.info(intYear);
+          console.info(intMonth);
+          // $stateParams.go('app.dashboard.eventbydate', {year: intYear, month: intMonth});
       };
 
   }
