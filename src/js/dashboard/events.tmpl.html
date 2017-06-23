@@ -1,16 +1,16 @@
   <div layout-gt-sm="row">
     <md-input-container class="md-block" flex-gt-sm>
       <label>Mês</label>
-      <md-select ng-model="$ctrl.objForm.intMonth">
-        <md-option ng-repe at="data in $ctrl.arrMonth" value="{{data.id}}" ng-click="$ctrl.goToYear($ctrl.intYear, data.id)">
+      <md-select ng-model="$ctrl.objForm.intMonth" ng-change="$ctrl.changeDate()">
+        <md-option ng-repeat="data in $ctrl.arrMonth" value="{{data.id}}">
           {{data.name}}
         </md-option>
       </md-select>
     </md-input-container>
     <md-input-container class="md-block" flex-gt-sm>
       <label>Ano</label>
-      <md-select ng-model="$ctrl.objForm.intYear">
-        <md-option ng-repeat="data in $ctrl.arrYear" value="{{data.id}}" ng-click="$ctrl.goToYear(data.id, $ctrl.intMonth)">
+      <md-select ng-model="$ctrl.objForm.intYear" ng-change="$ctrl.changeDate()">
+        <md-option ng-repeat="data in $ctrl.arrYear" value="{{data.id}}">
           {{data.name}}
         </md-option>
       </md-select>
@@ -22,6 +22,9 @@
               style="width: 100%"
               view="$ctrl.config.calendarView"
               view-date="$ctrl.config.viewDate"
+
+
+
               events="$ctrl.events"
               view-title="$ctrl.config.calendarTitle"
               on-event-click="eventClicked(calendarEvent)"

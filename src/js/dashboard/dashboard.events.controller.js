@@ -24,6 +24,8 @@ class DashboardEventsCtrl {
         });
     }
 
+    console.info(this.arrMonth)
+
     this.config = {
       calendarView: 'month',
       viewDate: new Date(),
@@ -44,15 +46,19 @@ class DashboardEventsCtrl {
       .catch($log.log('Erro na transformação de eventos'));
 
 
-      this.goToMonth = (intYear, intMonth) => {
 
-          // if (intYear == null) intYear = $stateParams.year;
-          // if (intMonth == null) intMonth = $stateParams.month;
-          console.info(intYear);
-          console.info(intMonth);
-          // $stateParams.go('app.dashboard.eventbydate', {year: intYear, month: intMonth});
+
+
+      this.changeDate = () => {
+          this.events = [];
+          Atividade.list(null, this.objForm.intMonth, this.objForm.intYear)
+              .then(apiReturn => apiReturn.map(this.returnEvent))
+              .then(mappedEvents => {
+                      mappedEvents.forEach(event => this.events.push(event));
+                  }
+              )
+              .catch($log.log('Erro na transformação de eventos'));
       };
-
   }
 
   returnEvent(event) {
