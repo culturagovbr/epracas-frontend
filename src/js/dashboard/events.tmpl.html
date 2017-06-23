@@ -1,7 +1,7 @@
   <div layout-gt-sm="row">
     <md-input-container class="md-block" flex-gt-sm>
       <label>Mês</label>
-      <md-select ng-model="$ctrl.objForm.intMonth" ng-change="$ctrl.changeDate()">
+      <md-select ng-model="$ctrl.objForm.intMonth" ng-change="$ctrl.loadEvents()">
         <md-option ng-repeat="data in $ctrl.arrMonth" value="{{data.id}}">
           {{data.name}}
         </md-option>
@@ -9,7 +9,7 @@
     </md-input-container>
     <md-input-container class="md-block" flex-gt-sm>
       <label>Ano</label>
-      <md-select ng-model="$ctrl.objForm.intYear" ng-change="$ctrl.changeDate()">
+      <md-select ng-model="$ctrl.objForm.intYear" ng-change="$ctrl.loadEvents()">
         <md-option ng-repeat="data in $ctrl.arrYear" value="{{data.id}}">
           {{data.name}}
         </md-option>
