@@ -2131,6 +2131,18 @@ gestor-detail md-card .md-subhead{
     right: 15px;
 }
 
+md-card.no-margin-left{
+    margin-left: 0 !important;
+}
+
+md-card.no-margin-right{
+    margin-right: 0 !important;
+}
+
+md-content.md-default-theme, md-content{
+    background: none;
+}
+
 @media (max-width: 599px) {
     #btn-login{
         margin-right: -26px;
@@ -2291,6 +2303,7 @@ gestor-detail md-card .md-subhead{
 
     #container-parceiros,
     #container-grupogestor,
+    #container-unidade,
     #container-localizacao{
         margin-bottom: 30px;
     }
@@ -2307,6 +2320,25 @@ gestor-detail md-card .md-subhead{
     #container-info md-card-header,
     #container-info md-card-title{
         padding: 0;
+    }
+
+    #container-unidade .layout-wrap,
+    #container-unidade .layout-wrap md-card{
+        margin: 0;
+        padding: 0;
+    }
+
+    .epr-name{
+        font-size: 14px;
+        font-weight: normal;
+        display: inline-block;
+        padding-top: 6px;
+        margin-bottom: 10px;
+        text-align: left;
+    }
+
+    .epr-subname{
+        display: none;
     }
 
     .no-print,

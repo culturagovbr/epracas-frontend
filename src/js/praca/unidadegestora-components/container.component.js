@@ -37,32 +37,43 @@ class UnidadeGestoraController {
 const UnidadeGestoraContainer = {
   controller: UnidadeGestoraController,
   template: `
-        <div id="container-unidade" layout-padding layout-gt-xs="row">
-          <div flex layout-padding class="info">
-            <div class="layout-row title">
-              <md-icon>location_city</md-icon>
-              <h1 flex>Unidade Gestora Local</h1>
-            </div>
-            <div ng-if="$ctrl.praca.unidade_gestora.length == 0">
-              <p>Os dados sobre a Unidade Gestora ainda não foram inseridos nesta Praça. </p>
-            </div>
-
-        <div layout-wrap layout-margin layout="row">
-          <md-card  ng-repeat="membro in $ctrl.unidade_gestora" layout-padding flex="18">
-            <span class="epr-name">{{ membro.nome }}</span>
-            <span class="epr-subname">{{ membro.descricao }}</span>
-          </md-card>
+    <div id="container-unidade" layout-padding layout-gt-xs="row">
+      <div flex class="info">
+        <div class="layout-row title">
+          <md-icon class="material-icons">location_city</md-icon>
+          <h1 flex class="flex">Unidade Gestora Local</h1>
         </div>
-
-        <md-fab-speed-dial show-as-manager="true" class="md-fab-top-right" ng-click="$ctrl.showUGLDialog($ctrl.praca)">
-          <md-fab-trigger>
-            <md-button class="md-fab">
-              <md-icon>add</md-icon>
-            </md-button>
-          </md-fab-trigger>
-        </md-fab-speed>
+        <div ng-if="$ctrl.praca.unidade_gestora.length == 0">
+          <p>Os dados sobre a Unidade Gestora ainda não foram inseridos nesta Praça. </p>
         </div>
       </div>
+
+      <div layout-wrap layout-margin layout="row">
+        <md-card  ng-repeat="membro in $ctrl.unidade_gestora" layout-padding flex="18">
+          <span class="epr-name">{{ membro.nome }}</span>
+          <span class="epr-subname">{{ membro.descricao }}</span>
+        </md-card>
+      </div>
+
+      <md-fab-speed-dial show-as-manager="true" class="md-fab-top-right" ng-click="$ctrl.showUGLDialog($ctrl.praca)" style="padding:0;">
+        <md-fab-trigger>
+          <md-button class="md-fab">
+            <md-icon class="material-icons">add</md-icon>
+          </md-button>
+        </md-fab-trigger>
+        <!--<md-fab-actions>
+            <md-button aria-label="Twitter" class="md-fab md-raised md-mini">
+              <md-icon md-svg-src="img/icons/twitter.svg" aria-label="Twitter"></md-icon>
+            </md-button>
+            <md-button aria-label="Facebook" class="md-fab md-raised md-mini">
+              <md-icon md-svg-src="img/icons/facebook.svg" aria-label="Facebook"></md-icon>
+            </md-button>
+            <md-button aria-label="Google Hangout" class="md-fab md-raised md-mini">
+              <md-icon md-svg-src="img/icons/hangout.svg" aria-label="Google Hangout"></md-icon>
+            </md-button>
+          </md-fab-actions>-->
+      </md-fab-speed-dial>
+    </div>
     `,
   bindings: {
     praca: "<",
