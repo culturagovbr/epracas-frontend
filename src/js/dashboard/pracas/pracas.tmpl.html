@@ -10,7 +10,7 @@
             <md-button class="big-btn md-primary" ng-click="$ctrl.toggleFilter()">
                 <md-icon>search</md-icon>
             </md-button>
-            <div class="epr-animate" ng-if="$ctrl.isFilterOpen">
+            <div id="container-search" class="" ng-if="$ctrl.isFilterOpen">
                 <md-input-container class="epr-small">
                     <input ng-model="$ctrl.filtro.municipio" placeholder="Filtre pelo municipio" autofocus>
                 </md-input-container>
@@ -43,8 +43,8 @@
         <praca-list pracas="$ctrl.pracas" filter="$ctrl.filtro">
         </praca-list>
     </div>
-        <!--<a class="btn-floating btn-large waves-effect waves-light red "><i class="material-icons">add</i></a>-->
-        <md-progress-circular class="btn-floating" ng-if="$ctrl.loadingPracas"
-                              md-mode="indeterminate">
-        </md-progress-circular>
+    <!--<a class="btn-floating btn-large waves-effect waves-light red "><i class="material-icons">add</i></a>-->
+    <md-progress-circular class="btn-floating" ng-if="$ctrl.loadingPracas"
+                          md-mode="indeterminate">
+    </md-progress-circular>
 </div>

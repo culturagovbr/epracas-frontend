@@ -1,3 +1,12 @@
+$.fn.extend({
+  animateCss: function (animationName) {
+    var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+    this.addClass('animated ' + animationName).one(animationEnd, function() {
+      $(this).removeClass('animated ' + animationName);
+    });
+  }
+});
+
 class DashboardPracasCtrl {
   constructor(Praca) {
     "ngInject";
@@ -50,6 +59,9 @@ class DashboardPracasCtrl {
   }
 
   toggleFilter() {
+
+    // (this.isFilterOpen) ? $('#container-search').animateCss('bounceInUp') : $('#container-search').animateCss('bounceInDown');
+
     this.isFilterOpen = !this.isFilterOpen
   }
 

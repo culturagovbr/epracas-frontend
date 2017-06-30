@@ -38,7 +38,7 @@ class DashboardEventsCtrl {
           .then(mappedEvents => {
               mappedEvents.forEach(event => this.events.push(event));
           }).catch($log.log('Erro na transformação de eventos'));
-      }
+      };
 
       this.loadEvents();
   }
@@ -48,7 +48,7 @@ class DashboardEventsCtrl {
         title: event.titulo,
         startsAt: new Date(event.ocorrencia.start),
         endsAt: new Date(event.ocorrencia.repeat_until)
-      }
+      };
       return newEvent;
     }
   }

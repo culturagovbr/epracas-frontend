@@ -10,10 +10,13 @@ class PracaCardController {
 			_Praca: Praca,
 		})
 
-    if (angular.isUndefined(this.praca.header_img) || this.praca.header_img === null ) {
-      this.praca.header_img = "/assets/header.jpg";
-    }
+      if (angular.isUndefined(this.praca)) {
+          this.praca = {};
+      }
 
+      if (angular.isUndefined(this.praca.header_img) || this.praca.header_img === null ) {
+          this.praca.header_img = "/assets/header.jpg";
+      }
   }
 
   infoPraca(praca) {
