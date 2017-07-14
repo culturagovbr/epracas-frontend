@@ -48,6 +48,8 @@ const ListElement = {
     <md-list>
       <praca-card ng-repeat="praca in $ctrl.pracas |
         filter:{
+          contrato: $ctrl.filter.contrato,
+          regiao: $ctrl.filter.regiao,
           municipio: $ctrl.filter.municipio,
           uf: $ctrl.filter.uf,
           modelo: $ctrl.filter.modelo,

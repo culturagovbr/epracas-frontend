@@ -53,16 +53,60 @@ class DashboardPracasCtrl {
       },
     ];
 
+    this.regiao = [
+      {
+        name: "",
+        value: "",
+      },
+      {
+        name: "Centro-Oeste",
+        value: "CO",
+      },
+      {
+        name: "Nordeste",
+        value: "NE",
+      },
+      {
+        name: "Norte",
+        value: "N",
+      },
+      {
+        name: "Sul",
+        value: "S",
+      },
+      {
+        name: "Sudeste",
+        value: "SE",
+      },
+    ];
+
     Praca.list()
       .then(values => this.pracas = values)
       .then(x => this.loadingPracas = false)
   }
 
   toggleFilter() {
-
-    // (this.isFilterOpen) ? $('#container-search').animateCss('bounceInUp') : $('#container-search').animateCss('bounceInDown');
-
-    this.isFilterOpen = !this.isFilterOpen
+    let elmContianerSearch = $('#container-search');
+    let elmPracas = $('#pracas').find('.layout-row');
+    let elmBtnSearch = $('#btn-search');
+    if (this.isFilterOpen) {
+        elmContianerSearch.animateCss('bounceOutUp');
+        elmContianerSearch.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
+        elmPracas.css('height', '4em');
+        elmContianerSearch.hide();
+        elmBtnSearch.css('width', '100%');
+      });
+    } else {
+      elmBtnSearch.css('width', '10%');
+      elmPracas.css('height', '13em');
+      setTimeout(function() {
+        elmContianerSearch.show();
+        elmContianerSearch.animateCss('bounceInDown');
+        elmContianerSearch.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
+        });
+      }, 300);
+    }
+    this.isFilterOpen = !this.isFilterOpen;
   }
 
 }

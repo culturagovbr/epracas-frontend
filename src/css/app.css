@@ -102,7 +102,12 @@ md-toolbar h1 {
                     flex-direction: column;
                     background: transparent;
                     width: 100%;
+
                 }
+
+div.main-master md-toolbar {
+    z-index: 0;
+}
 
 
                 #footer-brasil {
@@ -1682,7 +1687,7 @@ md-select {
     transition: width 0.3s;
 
     /*box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);*/
-    height: 100%;
+    /*height: 100%;*/
     outline: none;
     height: calc(100vh - 97px);
 }

@@ -1,43 +1,71 @@
-<div class="" style="margin-left: 0">
+<style>
+    #btn-search {
+        transition: width 0.3s;
+    }
+</style>
+<div style="margin-left: 0">
     <div class="fixed-action-btn animated bounceInUp">
         <md-button aria-label="Adicionar Praça" class=" md-fab md-fab-bottom-right">
             <md-tooltip md-direction="top">Adicionar Praça</md-tooltip>
             <md-icon>add</md-icon>
         </md-button>
     </div>
-    <div flex class="" id="pracas">
-        <div layout="row" style="height:5em">
-            <md-button class="big-btn md-primary" ng-click="$ctrl.toggleFilter()">
-                <md-icon>search</md-icon>
-            </md-button>
-            <div id="container-search" class="" ng-if="$ctrl.isFilterOpen">
-                <md-input-container class="epr-small">
-                    <input ng-model="$ctrl.filtro.municipio" placeholder="Filtre pelo municipio" autofocus>
-                </md-input-container>
-
-                <md-input-container class="epr-small">
-                    <input ng-model="$ctrl.filtro.uf" placeholder="Filtre pelo estado(UF)">
-                </md-input-container>
-
-                <md-input-container class="epr-small">
-                    <md-select ng-model="$ctrl.filtro.modelo" placeholder="Filtre pelo modelo">
-                        <md-option ng-repeat="modelo in $ctrl.models"
-                                   value="{{ modelo.value }}">
-                            {{ modelo.descricao }}
-                        </md-option>
-                    </md-select>
-                    <div class="md-errors-spacer"></div>
-                </md-input-container>
-
-                <md-input-container class="epr-small">
-                    <md-select ng-model="$ctrl.filtro.situacao" placeholder="Filtre pela situação">
-                        <md-option ng-repeat="situacao in $ctrl.situations"
-                                   value="{{ situacao.value }}">
-                            {{ situacao.descricao }}
-                        </md-option>
-                    </md-select>
-                    <div class="md-errors-spacer"></div>
-                </md-input-container>
+    <div id="pracas">
+        <div class="bottom-sheet-demo inset" layout="row" layout-sm="column" style="transition: all 0.4s; height: 4em;">
+            <md-button id="btn-search" style="transition: width 0.4s; width: 100%;" class="md-accent md-raised" ng-click="$ctrl.toggleFilter()"><md-icon>search</md-icon></md-button>
+            <div id="container-search" style="display: none;transition: width 0.4s;width: 100%;">
+                <div class="row">
+                    <div class="col s3 l4">
+                        <md-input-container class="md-block" flex>
+                            <input ng-model="$ctrl.filtro.contrato" placeholder="Filtre pelo número do contrato"
+                                   autofocus>
+                        </md-input-container>
+                    </div>
+                    <div class="col s4  l4">
+                        <md-input-container class="md-block" flex>
+                            <md-select ng-model="$ctrl.filtro.regiao" placeholder="Filtre pela região">
+                                <md-option ng-repeat="row in $ctrl.regiao"
+                                           value="{{ row.value }}">
+                                    {{ row.name }}
+                                </md-option>
+                            </md-select>
+                            <div class="md-errors-spacer"></div>
+                        </md-input-container>
+                    </div>
+                    <div class="col s3  l4">
+                        <md-input-container class="md-block" flex>
+                            <input ng-model="$ctrl.filtro.municipio" placeholder="Filtre pelo municipio"
+                                   autofocus>
+                        </md-input-container>
+                    </div>
+                    <div class="col s3 l4">
+                        <md-input-container class="md-block" flex>
+                            <input ng-model="$ctrl.filtro.uf" placeholder="Filtre pelo estado(UF)">
+                        </md-input-container>
+                    </div>
+                    <div class="col s4 l4">
+                        <md-input-container class="md-block" flex>
+                            <md-select ng-model="$ctrl.filtro.modelo" placeholder="Filtre pelo modelo">
+                                <md-option ng-repeat="modelo in $ctrl.models"
+                                           value="{{ modelo.value }}">
+                                    {{ modelo.descricao }}
+                                </md-option>
+                            </md-select>
+                            <div class="md-errors-spacer"></div>
+                        </md-input-container>
+                    </div>
+                    <div class="col s3 l4">
+                        <md-input-container class="md-block" flex>
+                            <md-select ng-model="$ctrl.filtro.situacao" placeholder="Filtre pela situação">
+                                <md-option ng-repeat="situacao in $ctrl.situations"
+                                           value="{{ situacao.value }}">
+                                    {{ situacao.descricao }}
+                                </md-option>
+                            </md-select>
+                            <div class="md-errors-spacer"></div>
+                        </md-input-container>
+                    </div>
+                </div>
             </div>
         </div>
         <praca-list pracas="$ctrl.pracas" filter="$ctrl.filtro">
