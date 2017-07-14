@@ -90,21 +90,28 @@ class DashboardPracasCtrl {
     let elmPracas = $('#pracas').find('.layout-row');
     let elmBtnSearch = $('#btn-search');
     if (this.isFilterOpen) {
-        elmContianerSearch.animateCss('bounceOutUp');
+
+        elmContianerSearch.removeClass('animated');
+        elmContianerSearch.animateCss('fadeOutUp');
         elmContianerSearch.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
-        elmPracas.css('height', '4em');
-        elmContianerSearch.hide();
-        elmBtnSearch.css('width', '100%');
+            // elmContianerSearch.hide();
+            // elmBtnSearch.css('width', '100%');
+            // elmPracas.css('height', '4em');
       });
+        setTimeout(function() {
+            elmContianerSearch.hide();
+            elmBtnSearch.css('width', '100%');
+            elmPracas.css('height', '4em');
+        }, 150);
     } else {
       elmBtnSearch.css('width', '10%');
       elmPracas.css('height', '13em');
       setTimeout(function() {
-        elmContianerSearch.show();
-        elmContianerSearch.animateCss('bounceInDown');
-        elmContianerSearch.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
-        });
-      }, 300);
+          elmContianerSearch.show();
+        elmContianerSearch.animateCss('slideInDown');
+        // elmContianerSearch.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
+        // });
+      }, 200);
     }
     this.isFilterOpen = !this.isFilterOpen;
   }
