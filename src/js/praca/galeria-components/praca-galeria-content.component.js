@@ -121,47 +121,48 @@ const PracaGaleriaContent = {
   controller: PracaGaleriaContentController,
   controllerAs: "$ctrl",
   template: `
-    <md-grid-list
-      md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="5"
-      md-row-height-gt-md="1:1" md-row-height="4:3"
-      md-gutter="8px" md-gutter-gt-sm="4px"
-      class="content-gallery">
-      <md-grid-tile
-                    ng-repeat="objPhoto in paginatorData"
-                    md-rowspan="{{objPhoto.span.row}}"
-                    md-colspan="{{objPhoto.span.col}}"
-                    md-colspan-sm="1"
-                    md-colspan-xs="1"
-                    class="animated fadeIn"
-                    ng-if="objPhoto.url">
-        <img width="135%" class="materialboxed animated fadeIn" data-caption="{{objPhoto.description}}" ng-src="{{objPhoto.url}}">
-        <md-grid-tile-footer>
-        <h3 class="left">{{objPhoto.title}}
-        <md-menu style="
-    position: absolute;
-    right: 0px;
-    top: 5px;"
-    show-as-manager="true">
-          <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="$mdMenu.open()">
-            <i class="material-icons right">more_vert</i>
-          </md-button>
-          <md-menu-content width="4">
-            <md-menu-item>
-              <md-button ng-click="$ctrl.edit($event, objPhoto.id)">
-                <i class="material-icons left">edit</i>
-                Editar
-              </md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="$ctrl.delete($event, objPhoto.id)">
-                <i class="material-icons left">delete</i>
-                Excluir
-              </md-button>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
-        </h3></md-grid-tile-footer>
-      </md-grid-tile>
+      <md-grid-list
+        md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="5"
+        md-row-height-gt-md="1:1" md-row-height="4:3"
+        md-gutter="8px" md-gutter-gt-sm="4px" 
+        class="content-gallery">
+        <md-grid-tile ng-repeat="objPhoto in paginatorData"
+          md-rowspan="{{objPhoto.span.row}}"
+          md-colspan="{{objPhoto.span.col}}"
+          md-colspan-sm="1"
+          md-colspan-xs="1"
+          ng-class="objPhoto.background">
+          <img width="135%" class="materialboxed animated fadeIn" data-caption="{{objPhoto.description}}" ng-src="{{objPhoto.url}}">
+          <md-grid-tile-footer>
+              <h3>
+                {{objPhoto.title}}
+                <md-menu style="
+                position: absolute;
+                right: 0;
+                top: 5px;"
+                show-as-manager="true">
+                      <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="$mdMenu.open()">
+                        <i class="material-icons right">more_vert</i>
+                      </md-button>
+                      <md-menu-content width="4">
+                        <md-menu-item>
+                          <md-button ng-click="$ctrl.edit($event, objPhoto.id)">
+                            <i class="material-icons left">edit</i>
+                            Editar
+                          </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                          <md-button ng-click="$ctrl.delete($event, objPhoto.id)">
+                            <i class="material-icons left">delete</i>
+                            Excluir
+                          </md-button>
+                        </md-menu-item>
+                      </md-menu-content>
+                </md-menu>
+              </h3>
+          </md-grid-tile-footer>
+        </md-grid-tile>
+      </md-grid-list>
     </md-grid-list>
     <div id="container-btmais" class="row md-padding">
       <div class="col s12"><a ng-click="$ctrl.paginatorRender($ctrl.scope)" class="waves-effect waves-light btn">Mais</a></div>
