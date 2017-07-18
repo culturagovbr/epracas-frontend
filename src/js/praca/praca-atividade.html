@@ -33,52 +33,62 @@
     </div>
     <md-content class="container" ng-cloak layout-gt-sm="row" layout="column">
         <div flex-gt-sm="50" flex-sm="100" flex>
-                <md-list flex>
-                    <md-subheader class="md-no-sticky">
-                        <md-icon>flag</md-icon>
-                        Categorias
-                    </md-subheader>
-                    <md-list-item ng-repeat="obj in $ctrl.objData.tipos" class="md-2-line">
-                        <!--<md-icon style="margin-top: 32px; margin-right: 23px;">date_range</md-icon>-->
-                        <div class="md-list-item-text" layout="column" ng-class="md-offset">
-                            <h3>{{obj.display_name}}</h3>
-                        </div>
-                    </md-list-item>
-                    <md-divider ></md-divider>
-                    <md-subheader class="md-no-sticky">
-                        <md-icon>face</md-icon>
-                        <!--<md-icon>person</md-icon>-->
-                        Faixa etária
-                    </md-subheader>
-                    <md-list-item ng-repeat="obj in $ctrl.objData.faixa_etarias" class="md-2-line">
-                        <!--<md-icon style="margin-top: 32px; margin-right: 23px;">date_range</md-icon>-->
-                        <div class="md-list-item-text" layout="column" ng-class="md-offset">
-                            <h3>{{obj.display_name}}</h3>
-                        </div>
-                    </md-list-item>
-                    <md-divider ></md-divider>
-                    <md-subheader class="md-no-sticky">
-                        <md-icon>terrain</md-icon>
-                        Locais
-                    </md-subheader>
-                    <md-list-item ng-repeat="obj in $ctrl.objData.territorios" class="md-2-line">
-                        <div class="md-list-item-text" layout="column" ng-class="md-offset">
-                            <h3>{{obj.display_name}}</h3>
-                        </div>
-                    </md-list-item>
-                </md-list>
+            <md-list flex>
+                <md-subheader class="md-no-sticky">
+                    <md-icon>flag</md-icon>
+                    Categoria
+                </md-subheader>
+                <md-list-item ng-repeat="obj in $ctrl.objData.tipos" class="md-2-line">
+                    <!--<md-icon style="margin-top: 32px; margin-right: 23px;">date_range</md-icon>-->
+                    <div class="md-list-item-text" layout="column" ng-class="md-offset">
+                        <h3>{{obj.display_name}}</h3>
+                    </div>
+                </md-list-item>
+                <md-subheader class="md-no-sticky">
+                    <md-icon>face</md-icon>
+                    <!--<md-icon>person</md-icon>-->
+                    Faixa etária
+                </md-subheader>
+                <md-list-item ng-repeat="obj in $ctrl.objData.faixa_etarias" class="md-2-line">
+                    <md-divider></md-divider>
+                    <div class="md-list-item-text" layout="column" ng-class="md-offset">
+                        <h3>{{obj.display_name}}</h3>
+                    </div>
+                </md-list-item>
+                <md-subheader class="md-no-sticky">
+                    <md-icon>terrain</md-icon>
+                    Local
+                </md-subheader>
+                <md-list-item ng-repeat="obj in $ctrl.objData.territorios" class="md-2-line">
+                    <div class="md-list-item-text" layout="column" ng-class="md-offset">
+                        <h3>{{obj.display_name}}</h3>
+                    </div>
+                </md-list-item>
+            </md-list>
         </div>
         <div flex-gt-sm="50" flex-sm="100" flex>
-            <md-subheader class="md-no-sticky">
-                <md-icon>group</md-icon>
-                Públicos
-            </md-subheader>
-            <md-list-item ng-repeat="obj in $ctrl.objData.publicos" class="md-3-line">
-                <!--<md-icon style="margin-top: 32px; margin-right: 23px;">people</md-icon>-->
-                <div class="md-list-item-text" layout="column" ng-class="md-offset">
-                    <h3>{{obj.display_name}}</h3>
-                </div>
-            </md-list-item>
+            <md-list flex>
+                <md-subheader class="md-no-sticky">
+                    <md-icon>group</md-icon>
+                    Público
+                </md-subheader>
+                <md-list-item ng-repeat="obj in $ctrl.objData.publicos" class="md-2-line">
+                    <div class="md-list-item-text" layout="column" ng-class="md-offset">
+                        <h3>{{obj.display_name}}</h3>
+                    </div>
+                </md-list-item>
+                <md-subheader class="md-no-sticky">
+                    <md-icon>location_city</md-icon>
+                    <!--<md-icon>person</md-icon>-->
+                    Espaços
+                </md-subheader>
+                <md-list-item ng-repeat="obj in $ctrl.objData.espacos" class="md-2-line">
+                    <md-divider></md-divider>
+                    <div class="md-list-item-text" layout="column" ng-class="md-offset">
+                        <h3>{{obj.display_name}}</h3>
+                    </div>
+                </md-list-item>
+            </md-list>
         </div>
     </md-content>
 </div>

@@ -1933,12 +1933,12 @@ md-select {
         }
 
         /* Comentado temporariamente por causa do erro de profundidade doc omponente zoom*/
-        /*md-grid-list.content-gallery md-grid-tile:hover*/
-        /*{*/
-            /*box-shadow: 0 35px 77px -17px rgba(0,0,0,0.64);*/
+        md-grid-list.content-gallery md-grid-tile:hover
+        {
+            box-shadow: 0 35px 77px -17px rgba(0,0,0,0.64);
             /*transform:scale(1.15);*/
             /*z-index: 3;*/
-        /*}*/
+        }
 
         figcaption {
             width: 100%;
