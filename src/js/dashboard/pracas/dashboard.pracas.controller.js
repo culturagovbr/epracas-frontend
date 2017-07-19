@@ -39,7 +39,7 @@ class DashboardPracasCtrl {
     if (this.isFilterOpen) {
 
         elmContianerSearch.removeClass('animated');
-        elmContianerSearch.animateCss('fadeOutUp');
+        elmContianerSearch.animateCss('fadeOutRight');
         elmContianerSearch.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
             // elmContianerSearch.hide();
             // elmBtnSearch.css('width', '100%');
@@ -55,7 +55,7 @@ class DashboardPracasCtrl {
       elmPracas.css('height', '13em');
       setTimeout(function() {
           elmContianerSearch.show();
-        elmContianerSearch.animateCss('slideInDown');
+        elmContianerSearch.animateCss('slideInRight');
         // elmContianerSearch.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
         // });
       }, 200);
