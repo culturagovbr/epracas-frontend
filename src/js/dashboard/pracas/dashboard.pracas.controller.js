@@ -15,70 +15,17 @@ class DashboardPracasCtrl {
 
     this.loadingPracas = true;
 
-    this.situations = [
-      {
-        value: "",
-        descricao: "",
-      },
-      {
-        value: "i",
-        descricao: "Inaugurada",
-      },
-      {
-        value: "a",
-        descricao: "Obras em Andamento",
-      },
-      {
-        value: "c",
-        descricao: "Obras Concluidas",
-      },
-    ];
-
-    this.models = [
-      {
-        value: "",
-        descricao: "",
-      },
-      {
-        value: "p",
-        descricao: "700m²",
-      },
-      {
-        value: "m",
-        descricao: "3000m²",
-      },
-      {
-        value: "g",
-        descricao: "7000m²",
-      },
-    ];
-
-    this.regiao = [
-      {
-        name: "",
-        value: "",
-      },
-      {
-        name: "Centro-Oeste",
-        value: "CO",
-      },
-      {
-        name: "Nordeste",
-        value: "NE",
-      },
-      {
-        name: "Norte",
-        value: "N",
-      },
-      {
-        name: "Sul",
-        value: "S",
-      },
-      {
-        name: "Sudeste",
-        value: "SE",
-      },
-    ];
+    Praca.options()
+      .then((data) => {
+        this.listaUf = data.uf.choices
+        this.listaUf.unshift({value: "", display_name: "----"})
+        this.listaRegiao = data.regiao.choices
+        this.listaRegiao.unshift({value: "", display_name: "----"})
+        this.listaModelo = data.modelo.choices
+        this.listaModelo.unshift({value: "", display_name: "----"})
+        this.listaSituacao = data.situacao.choices
+        this.listaSituacao.unshift({value: "", display_name: "----"})
+      })
 
     Praca.list()
       .then(values => this.pracas = values)
