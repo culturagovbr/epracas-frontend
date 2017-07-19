@@ -44,12 +44,11 @@ class PracaInfoCtrl {
             this.isSaving = false
             this.$mdDialog.hide()
             this.ErrorCatcher.error("PracaInfoCtrl", err)
-            // this.Toast.showRejectedToast(`Problemas ao criar a Praça. ${angular.toJson(err.data)}`)
           }
         )
     } else {
       let praca_data = {}
-      let fields = ["id_pub", "nome", "logradouro", "cep", "bairro", "regiao", "uf", "municipio", "bio"]
+      let fields = ["id_pub", "situacao", "modelo", "nome", "data_inauguracao", "bio", "telefone1", "telefone2", "fax", "email1", "email2", "pagina", "logradouro", "cep", "bairro", "regiao", "uf", "municipio"]
 
       if (this.isAdmin) {
         fields.push("repasse", "modelo", "contrato", "lat", "long")
