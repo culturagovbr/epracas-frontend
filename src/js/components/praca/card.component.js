@@ -99,7 +99,7 @@ const PracaCard = {
     `,
   bindings: {
     praca: "=",
-		onDelete: "&",
+    onDelete: "&",
   },
 }
 

@@ -1,10 +1,11 @@
 class UserCardController {
-  constructor($mdDialog, User, Toast) {
+  constructor($mdDialog, User, Toast, ErrorCatcher) {
     "ngInject";
 
     this._$mdDialog = $mdDialog;
     this._User = User;
     this._Toast = Toast;
+    this.ErrorCatcher = ErrorCatcher
 
   }
 
@@ -93,23 +94,23 @@ class UserCardController {
     }
   }
 
-  deleteUserFactory(sub)
-  {
-    return function() {
-      this.dialog.show(
-          this.dialog.confirm()
+  deleteUserFactory(sub) {
+    const caller = this.ErrorCatcher.callerName()
+
+      this._$mdDialog.show(
+          this._$mdDialog.confirm()
           .title("Excluir Usuário")
           .textContent("Ao excluir um usuário, você remove quaisquer permissões que ele tenha no e-Praças, permitindo que ele tenha acesso apenas às informações publicas disponiveis.")
           .ariaLabel("Excluir Usuário")
           .ok("Sim, excluir usuário")
-          .cancel("Não, matenha o usuário")
-          )
-        .then(
-            () => this._User.delete(sub)
-            .then(this._Toast.showSuccessToast("Usuário excluido com sucesso"))
-            .catch((err) => this._Toast.showRejectedToast(`Problema ao excluir usuário. ${err.data}`))
-            );
-    }
+          .cancel("Não, matenha o usuário"))
+        .then(() => this._User.delete(sub))
+        .then(() => this.onDelete({ user: sub }))
+        .then(this._Toast.showSuccessToast("Usuário excluido com sucesso"))
+        .catch((err) => {
+          this.ErrorCatcher.error(caller, err)
+          this._Toast.showRejectedToast(`Problema ao excluir usuário. ${err.data}`)
+        })
   }
 
   showUserDetailDialog(user, ev)
@@ -170,7 +171,8 @@ const UserCardElement = {
         `,
   bindings: {
     user: "=",
+    onDelete: "&",
   },
-};
+}
 
-export default UserCardElement;
+export default UserCardElement

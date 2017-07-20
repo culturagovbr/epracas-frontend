@@ -8,11 +8,8 @@ dashboardModule.config(DashBoardConfig);
 import DashBoardCtrl from './dashboard.controller';
 dashboardModule.controller('DashBoardCtrl', DashBoardCtrl);
 
-import DashboardUsersCtrl from "./users/dashboard.users.controller";
-dashboardModule.controller("DashboardUsersCtrl", DashboardUsersCtrl);
-
-import UserCardControllerElement from "./users/user-card.component";
-dashboardModule.component("userCard", UserCardControllerElement);
+// import DashboardUsersCtrl from "./users/dashboard.users.controller";
+// dashboardModule.controller("DashboardUsersCtrl", DashboardUsersCtrl);
 
 import UserDetailController from "./users/user-detail.controller.js";
 dashboardModule.controller("UserDetailController", UserDetailController);
@@ -34,5 +31,11 @@ dashboardModule.component("gestorList", GestorListElement)
 
 import GestorDetailElement from "./gestor/detail.component"
 dashboardModule.component("gestorDetail", GestorDetailElement)
+
+import DashboardUsersListElement from "./users/list.component"
+dashboardModule.component("userList", DashboardUsersListElement)
+
+import UserCardControllerElement from "./users/user-card.component";
+dashboardModule.component("userCard", UserCardControllerElement);
 
 export default dashboardModule;

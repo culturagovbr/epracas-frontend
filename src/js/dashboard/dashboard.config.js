@@ -44,9 +44,7 @@ function DashBoardConfig($stateProvider) {
     })
     .state("app.dashboard.usuarios", {
       url: "/usuarios",
-      controller: "DashboardUsersCtrl",
-      controllerAs: "$ctrl",
-      templateUrl: "dashboard/users/users.tmpl.html",
+      component: "userList",
     })
 }
 
