@@ -1,120 +1,107 @@
 class UserCardController {
   constructor($mdDialog, User, Toast, ErrorCatcher) {
-    "ngInject";
+    "ngInject"
 
-    this._$mdDialog = $mdDialog;
-    this._User = User;
-    this._Toast = Toast;
-    this.ErrorCatcher = ErrorCatcher
-
+    angular.extend(this, {
+      $mdDialog,
+      User,
+      Toast,
+      ErrorCatcher,
+    })
   }
 
-  $onInit(){
-    const user = this.buildMenu(this.user);
+  $onInit() {
+    const user = this.buildMenu(this.user)
   }
 
   buildMenu(user) {
-      let menu = {
-        userInfo: {
-          name: "Visualizar informações do usuário",
-          icon: "info",
-          action: this.showUserDetailDialog(user),
-          dialog: this._$mdDialog,
-        },
-        changeStaffPowers: {
-          dialog: this._$mdDialog,
-          _User: this._User,
-          _Toast: this._Toast
-        },
-        deleteUser: {
-          name: "Excluir usuário",
-          icon: "delete",
-          action: this.deleteUserFactory(user.sub),
-          dialog: this._$mdDialog,
-          _User: this._User,
-          _Toast: this._Toast,
-        }
-      };
+    const menu = {
+      userInfo: {
+        name: "Visualizar informações do usuário",
+        icon: "info",
+        action: this.showUserDetailDialog(user),
+        dialog: this.$mdDialog,
+      },
+      changeStaffPowers: {
+        dialog: this.$mdDialog,
+        User: this.User,
+        Toast: this.Toast,
+      },
+      deleteUser: {
+        name: "Excluir usuário",
+        icon: "delete",
+        action: this.deleteUserFactory({user: user}),
+        dialog: this.$mdDialog,
+        User: this.User,
+        Toast: this.Toast,
+      },
+    }
 
-      if (user.is_staff === false) {
-        Object.assign(menu.changeStaffPowers, {
-          name: "Conceder acesso como gestor do Ministério",
-          icon: "supervisor_account",
-          action: this.grantStaffPowersFactory(user.sub),
-        });
-      } else {
-        Object.assign(menu.changeStaffPowers, {
-          name: "Revogar acesso como gestor do Ministério",
-          icon: "clear",
-          action: this.revokeStaffPowersFactory(user.sub),
-        })
-      }
+    if (user.is_staff === false) {
+      Object.assign(menu.changeStaffPowers, {
+        name: "Conceder acesso como gestor do Ministério",
+        icon: "supervisor_account",
+        action: this.grantStaffPowersFactory(user.sub),
+      })
+    } else {
+      Object.assign(menu.changeStaffPowers, {
+        name: "Revogar acesso como gestor do Ministério",
+        icon: "clear",
+        action: this.revokeStaffPowersFactory(user.sub),
+      })
+    }
 
-      user.menu = menu;
-      return user;
+    user.menu = menu
+    return user
   }
 
-  grantStaffPowersFactory(sub)
-  {
+  grantStaffPowersFactory(sub) {
     return function() {
       this.dialog.show(
-          this.dialog.confirm()
-          .title("Conceder permissões de Gestor do MinC")
-          .textContent("Ao conceder permissões de Gestor do MinC, o usuário poderá utilizar o sistema, executar tarefas administrativas e visualizar informações que não sejam públicas.")
-          .ariaLabel("Conceder permissões de Gestor do MinC")
-          // .targetEvent(ev)
-          .ok("Sim, conceder permissão")
-          .cancel("Não, não conceda a permissão")
-          )
+        this.dialog.confirm()
+        .title("Conceder permissões de Gestor do MinC")
+        .textContent("Ao conceder permissões de Gestor do MinC, o usuário poderá utilizar o sistema, executar tarefas administrativas e visualizar informações que não sejam públicas.")
+        .ariaLabel("Conceder permissões de Gestor do MinC")
+        // .targetEvent(ev)
+        .ok("Sim, conceder permissão")
+        .cancel("Não, não conceda a permissão")
+      )
         .then(
-            () => this._User.changeStaffPowers(sub, true)
-            .then(this._Toast.showSuccessToast("Permissão concedida com sucesso"))
-            .catch((err) => this._Toast.showRejectedToast(`Problemas ao conceder permissão. ${err.data}`))
-            );
-    };
-  }
-
-  revokeStaffPowersFactory(sub)
-  {
-    return function() {
-      this.dialog.show(
-          this.dialog.confirm()
-          .title("Revogar permissões de Gestor do MinC")
-          .textContent("Ao revogar as permissões de Gestor do MinC, o usuário ainda poderá utilizar o sistema, porém, não poderá executar tarefas administrativas e nem visualizar informações que não sejam públicas.")
-          .ariaLabel("Revogar permissões de Gestor do MinC")
-          // .targetEvent(ev)
-          .ok("Sim, revogar permissão")
-          .cancel("Não, mantenha a permissão")
-          )
-        .then(
-            () => this._User.changeStaffPowers(sub, false)
-            .then(this._Toast.showSuccessToast("Permissões revogadas com sucesso"))
-            .catch((err) => this._Toast.showRejectedToast(`Problema ao revogar permissões. ${err.data}`))
-            );
+          () => this.User.changeStaffPowers(sub, true)
+          .then(this.Toast.showSuccessToast("Permissão concedida com sucesso"))
+          .catch((err) => this.Toast.showRejectedToast(`Problemas ao conceder permissão. ${err.data}`))
+        )
     }
   }
 
-  deleteUserFactory(sub) {
-    const caller = this.ErrorCatcher.callerName()
-
-      this._$mdDialog.show(
-          this._$mdDialog.confirm()
-          .title("Excluir Usuário")
-          .textContent("Ao excluir um usuário, você remove quaisquer permissões que ele tenha no e-Praças, permitindo que ele tenha acesso apenas às informações publicas disponiveis.")
-          .ariaLabel("Excluir Usuário")
-          .ok("Sim, excluir usuário")
-          .cancel("Não, matenha o usuário"))
-        .then(() => this._User.delete(sub))
-        .then(() => this.onDelete({ user: sub }))
-        .then(this._Toast.showSuccessToast("Usuário excluido com sucesso"))
-        .catch((err) => {
-          this.ErrorCatcher.error(caller, err)
-          this._Toast.showRejectedToast(`Problema ao excluir usuário. ${err.data}`)
-        })
+  revokeStaffPowersFactory(sub) {
+    return function() {
+      this.dialog.show(
+        this.dialog.confirm()
+        .title("Revogar permissões de Gestor do MinC")
+        .textContent("Ao revogar as permissões de Gestor do MinC, o usuário ainda poderá utilizar o sistema, porém, não poderá executar tarefas administrativas e nem visualizar informações que não sejam públicas.")
+        .ariaLabel("Revogar permissões de Gestor do MinC")
+        // .targetEvent(ev)
+        .ok("Sim, revogar permissão")
+        .cancel("Não, mantenha a permissão")
+      )
+        .then(
+          () => this.User.changeStaffPowers(sub, false)
+          .then(this.Toast.showSuccessToast("Permissões revogadas com sucesso"))
+          .catch((err) => this.Toast.showRejectedToast(`Problema ao revogar permissões. ${err.data}`))
+        )
+    }
   }
 
-  showUserDetailDialog(user, ev)
-  {
+  deleteUserFactory(user) {
+    const vm = this
+
+    return function() {
+      vm.onDelete({ user: vm.user })
+    }
+  }
+
+  showUserDetailDialog(user, ev) {
     return function() {
       this.dialog.show({
         controller: "UserDetailController",
@@ -170,7 +157,7 @@ const UserCardElement = {
         </md-card>
         `,
   bindings: {
-    user: "=",
+    user: "<",
     onDelete: "&",
   },
 }

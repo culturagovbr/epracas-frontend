@@ -19,16 +19,27 @@ class DashboardUsersCtrl {
   }
 
   deleteUser(user) {
-    debugger
-    this.$mdDialog.confirm()
-    .title("Oi")
-    .textContent("Ola ola")
-    .ok("Sim")
-    .cancel("Não")
-    const idx = this.users.indexOf(user)
-    if (idx >= 0) {
-      this.users.splice(idx, 1)
-    }
+    const caller = this.ErrorCatcher.callerName()
+
+    this.$mdDialog.show(
+      this.$mdDialog.confirm()
+      .title("Excluir Usuário")
+      .textContent("Ao excluir um usuário, você remove quaisquer permissões que ele tenha no e-Praças, permitindo que ele tenha acesso apenas às informações publicas disponiveis.")
+      .ariaLabel("Excluir Usuário")
+      .ok("Sim, excluir usuário")
+      .cancel("Não, matenha o usuário"))
+      .then(() => this.User.delete(user.sub))
+      .then(() => {
+        const idx = this.users.indexOf(user)
+        if (idx >= 0) {
+          this.users.splice(idx, 1)
+        }
+      })
+      .then(this._Toast.showSuccessToast("Usuário excluido com sucesso"))
+      .catch((err) => {
+        this.ErrorCatcher.error(caller, err)
+        this.Toast.showRejectedToast(`Problema ao excluir usuário. ${err.data}`)
+      })
   }
 }
 
