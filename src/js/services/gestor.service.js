@@ -10,6 +10,7 @@ class Gestor {
     })
   }
 
+
   list() {
     const caller = this.ErrorCatcher.callerName()
 
@@ -22,6 +23,23 @@ class Gestor {
         this.ErrorCatcher.error(caller, err)
         return this.$q.reject()
       })
+  }
+
+  // Desfaz o vinculo
+  delete(strUrl) {
+    const caller = this.ErrorCatcher.callerName()
+    return this.$http({
+      // url: `${this.gestorEndPoint}${pk}/`,
+      url: `${strUrl}/`,
+      method: "DELETE",
+    })
+        .then(res => res.data)
+        .catch(
+            (err) => {
+              this.ErrorCatcher.error(caller, err)
+              return this.$q.reject()
+            }
+        )
   }
 }
 

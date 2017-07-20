@@ -1,5 +1,5 @@
 class GestorListController {
-  constructor(Gestor, ErrorCatcher) {
+  constructor(Gestor, ErrorCatcher, $scope) {
     "ngInject"
 
     angular.extend(this, {
@@ -7,13 +7,16 @@ class GestorListController {
       ErrorCatcher,
     })
 
-    this.gestores = {}
-
+    this.gestores = {};
     this.Gestor.list()
       .then(response => this.gestores = response.data)
       .catch((err) => {
         ErrorCatcher.error("GestorListController.constructor", err)
       })
+
+    this.refreshData = function(gestor) {
+      this.gestores = this.gestores.filter((val) => {return val.url != gestor.url});
+    };
   }
 }
 
@@ -22,7 +25,7 @@ const GestorListElement = {
   template: `
     <md-list>
       <div class="row">
-        <gestor-detail gestor="gestor" ng-repeat="gestor in $ctrl.gestores" class="col s12 m6 l4"><gestor-detail>
+        <gestor-detail gestor="gestor" on-delete="$ctrl.refreshData(gestor)"  ng-repeat="gestor in $ctrl.gestores" class="col s12 m6 l4"><gestor-detail>
       </div>
     </md-list>
     `,

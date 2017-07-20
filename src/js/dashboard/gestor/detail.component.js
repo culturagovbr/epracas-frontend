@@ -1,10 +1,34 @@
 class GestorDetailController {
-  constructor(ErrorCatcher) {
+  constructor(ErrorCatcher, $mdDialog, Gestor, Toast, $stateParams) {
     "ngInject"
 
     angular.extend(this, {
       ErrorCatcher,
-    })
+    });
+
+    let ctrl = this;
+    this.delete = (ev, pk) => {
+      var confirm = $mdDialog.confirm()
+          .title('Você tem certeza que deseja desfazer este vínculo?')
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Sim, Desfazer vínculo')
+          .cancel('Não desfazer vínculo');
+      $mdDialog.show(confirm).then(function() {
+        Gestor.delete(pk)
+            .then(
+                response => {
+                  ctrl.onDelete(); // Retira do array de objetos um objeto especifico da listagem.
+                  Toast.showSuccessToast('Vínculo desfeito com sucesso');
+                })
+            .catch(
+                err => {
+                  $log.error(`Erro ao desfazer o vínculo. ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`);
+                  Toast.showRejectedToast("Erro ao desfazer o vínculo.");
+                }
+            );
+      });
+    }
   }
 }
 
@@ -32,10 +56,17 @@ const GestorDetailElement = {
         <p>Início da gestão em: {{$ctrl.gestor.data_inicio_gestao | date:'dd/MM/yyyy' }}</p>
         <p>Situação da praça: {{$ctrl.gestor.praca.situacao}}</p>
       </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-icon-button" aria-label="Share" ng-click="$ctrl.delete($event, $ctrl.gestor.url)">
+          <i class="material-icons">delete</i>
+        </md-button>
+      </md-card-actions>
     </md-card>
   `,
   bindings: {
     gestor: "<",
+    onDelete: "&",
+    pk: "<",
   },
 }
 
