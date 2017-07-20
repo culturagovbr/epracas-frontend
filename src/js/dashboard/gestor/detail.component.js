@@ -58,6 +58,7 @@ const GestorDetailElement = {
       </md-card-content>
       <md-card-actions layout="row" layout-align="end center">
         <md-button class="md-icon-button" aria-label="Share" ng-click="$ctrl.delete($event, $ctrl.gestor.url)">
+          <md-tooltip md-direction="top">Desfazer vínculo</md-tooltip>
           <i class="material-icons">delete</i>
         </md-button>
       </md-card-actions>
