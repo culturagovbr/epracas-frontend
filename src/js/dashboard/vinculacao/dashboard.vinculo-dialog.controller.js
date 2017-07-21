@@ -83,7 +83,8 @@ class DashboardVinculoDialogCtrl {
       dados = {
         id_pub: pedido.id_pub,
         situacao: pedido.situacao,
-        descricao: pedido.descricao,
+        descricao: pedido.despacho,
+        despacho: pedido.despacho,
       }
     } else {
       dados = {
