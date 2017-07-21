@@ -46,7 +46,7 @@ class DashboardUsersCtrl {
 const DashboardUsersListElement = {
   controller: DashboardUsersCtrl,
   template: `
-  <div layout="row" layout-margin>
+  <div layout-fill class="row">
     <user-card user="user" on-delete="$ctrl.deleteUser(user)" ng-repeat="user in $ctrl.users" class="col s12 m6 l4">
     </user-card>
   </div>
