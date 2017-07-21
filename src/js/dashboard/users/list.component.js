@@ -28,14 +28,15 @@ class DashboardUsersCtrl {
       .ariaLabel("Excluir Usuário")
       .ok("Sim, excluir usuário")
       .cancel("Não, matenha o usuário"))
-      .then(() => this.User.delete(user.sub))
-      .then(() => {
-        const idx = this.users.indexOf(user)
-        if (idx >= 0) {
-          this.users.splice(idx, 1)
-        }
-      })
-      .then(this._Toast.showSuccessToast("Usuário excluido com sucesso"))
+      .then(() => this.User.delete(user.sub)
+        .then(() => {
+          const idx = this.users.indexOf(user)
+          if (idx >= 0) {
+            this.users.splice(idx, 1)
+          }
+        })
+        .then(this.Toast.showSuccessToast("Usuário excluido com sucesso"))
+      )
       .catch((err) => {
         this.ErrorCatcher.error(caller, err)
         this.Toast.showRejectedToast(`Problema ao excluir usuário. ${err.data}`)
