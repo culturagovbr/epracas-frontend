@@ -26,11 +26,11 @@ class Gestor {
   }
 
   // Desfaz o vinculo
-  delete(strUrl) {
+
+  delete(pk) {
     const caller = this.ErrorCatcher.callerName()
     return this.$http({
-      // url: `${this.gestorEndPoint}${pk}/`,
-      url: `${strUrl}/`,
+      url: `${this.AppConstants.gestorEndPoint}${pk}/`,
       method: "DELETE",
     })
         .then(res => res.data)

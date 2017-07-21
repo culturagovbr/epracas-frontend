@@ -15,18 +15,23 @@ class GestorDetailController {
           .ok('Sim, Desfazer vínculo')
           .cancel('Não desfazer vínculo');
       $mdDialog.show(confirm).then(function() {
+
+        pk = pk.split('/')[4];
+          Toast.showSuccessToast('Vínculo desfeito com sucesso');
         Gestor.delete(pk)
             .then(
                 response => {
+                    Toast.showSuccessToast('Vínculo desfeito com sucesso');
                   ctrl.onDelete(); // Retira do array de objetos um objeto especifico da listagem.
-                  Toast.showSuccessToast('Vínculo desfeito com sucesso');
                 })
             .catch(
                 err => {
+                    Toast.showRejectedToast("Erro ao desfazer o vínculo.");
                   $log.error(`Erro ao desfazer o vínculo. ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`);
-                  Toast.showRejectedToast("Erro ao desfazer o vínculo.");
                 }
             );
+      }, function() {
+          $scope.status = 'You decided to keep your debt.';
       });
     }
   }
