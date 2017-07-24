@@ -8,8 +8,13 @@ $.fn.extend({
 });
 
 class DashboardPracasCtrl {
-  constructor(Praca) {
+  constructor(Praca, $scope, $mdMedia) {
     "ngInject";
+
+
+      angular.extend(this, {
+          $mdMedia,
+      });
 
     this.isFilterOpen = false;
 
@@ -17,18 +22,23 @@ class DashboardPracasCtrl {
 
     Praca.options()
       .then((data) => {
-        this.listaUf = data.uf.choices
-        this.listaUf.unshift({value: "", display_name: "----"})
-        this.listaRegiao = data.regiao.choices
-        this.listaRegiao.unshift({value: "", display_name: "----"})
-        this.listaModelo = data.modelo.choices
-        this.listaModelo.unshift({value: "", display_name: "----"})
-        this.listaSituacao = data.situacao.choices
-        this.listaSituacao.unshift({value: "", display_name: "----"})
-      })
+        this.listaUf = data.uf.choices;
+        this.listaUf.unshift({value: "", display_name: "----"});
+        this.listaRegiao = data.regiao.choices;
+        this.listaRegiao.unshift({value: "", display_name: "----"});
+        this.listaModelo = data.modelo.choices;
+        this.listaModelo.unshift({value: "", display_name: "----"});
+        this.listaSituacao = data.situacao.choices;
+        this.listaSituacao.unshift({value: "", display_name: "----"});
+        this.dataInicial = '';
+        this.dataFinal = '';
+      });
 
     Praca.list()
-      .then(values => this.pracas = values)
+      .then((values) => {
+          console.info(values)
+           return this.pracas = values
+      })
       .then(x => this.loadingPracas = false)
   }
 
@@ -52,7 +62,11 @@ class DashboardPracasCtrl {
         }, 150);
     } else {
       elmBtnSearch.css('width', '10%');
-      elmPracas.css('height', '13em');
+        if (this.$mdMedia('xs')) {
+            elmPracas.css('height', '60em');
+        } else {
+            elmPracas.css('height', '20em');
+        }
       setTimeout(function() {
           elmContianerSearch.show();
         elmContianerSearch.animateCss('slideInRight');
