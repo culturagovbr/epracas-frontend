@@ -65,7 +65,7 @@ class DashboardPracasCtrl {
         if (this.$mdMedia('xs')) {
             elmPracas.css('height', '60em');
         } else {
-            elmPracas.css('height', '20em');
+            elmPracas.css('height', '22em');
         }
       setTimeout(function() {
           elmContianerSearch.show();
