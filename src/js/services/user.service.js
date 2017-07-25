@@ -74,51 +74,51 @@ export default class User {
 
     if (angular.isDefined(accessToken) && (angular.isUndefined(this.current) || this.current === null)) {
       this.getUserInfo(accessToken)
-      .then(
-        res =>  this.current = res.data
-        // err =>  this.current = null 
-      )
-      .then(
-        (res) => {
-          this._$http({
-            url: `${this._AppConstants.apiUserInfo}${this.current.sub}/`,
-            method: "GET",
-          })
-          .then(
-            (res) => {
-              let userInfo = res.data[0];
-              if ((this.current.profile_picture_url === userInfo.profile_picture_url) && (this.current.name == userInfo.name) && (this.current.email == userInfo.email)) {
-                this.current = userInfo;
-                deferred.resolve(userInfo);
-              } else {
-                this._$http({
-                  url: `${this._AppConstants.apiUserInfo}${this.current.sub}/`,
-                  method: "PATCH",
-                  data: this.current,
-                })
-                .then(res =>  {
-                  this.current = res.data;
-                  deferred.resolve(res.data);
-                })
-                .catch(err => this._$log.error(`setUserInfo() Error on PATCH: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`))
-              }
-            },
-            (err) => {
-              this._$http({
-                url: `${this._AppConstants.apiUserInfo}${this.current.sub}/`,
-                method: "POST",
-                data: this.current,
-              })
+        .then(res =>  (this.current = res.data))
+        .then(
+          () => {
+            this._$http({
+              url: `${this._AppConstants.apiUserInfo}${this.current.sub}/`,
+              method: "GET",
+            })
               .then(
-                res => this.current = res.data
+                (res) => {
+                  const userInfo = res.data[0]
+                  if ((this.current.profile_picture_url === userInfo.profile_picture_url) &&
+                      (this.current.name === userInfo.name) &&
+                      (this.current.email === userInfo.email) &&
+                      (this.current.cpf === userInfo.cpf)) {
+                        this.current = userInfo;
+                        deferred.resolve(userInfo);
+                  } else {
+                    this._$http({
+                      url: `${this._AppConstants.apiUserInfo}${this.current.sub}/`,
+                      method: "PATCH",
+                      data: this.current,
+                    })
+                      .then(res =>  {
+                        this.current = res.data
+                        deferred.resolve(res.data)
+                      })
+                      .catch(err => this._$log.error(`setUserInfo() Error on PATCH: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`))
+                  }
+                },
+                (err) => {
+                  this._$http({
+                    url: `${this._AppConstants.apiUserInfo}${this.current.sub}/`,
+                    method: "POST",
+                    data: this.current,
+                  })
+                    .then(
+                      res => this.current = res.data
+                    )
+                    .catch(
+                      err => this._$log.error(`setUserInfo() Error on POST: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
+                    )
+                }
               )
-              .catch(
-                err => this._$log.error(`setUserInfo() Error on POST: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
-              );
-            }
-          )
-        }
-      )
+          }
+        )
     } else {
       deferred.resolve(true);
     }
