@@ -9,6 +9,7 @@ import calendarConfig from "angular-bootstrap-calendar"
 // import Angular from "raven-js/plugins/angular"
 
 function AppConfig(
+  $compileProvider,
   $httpProvider,
   $stateProvider,
   $locationProvider,
@@ -28,6 +29,7 @@ function AppConfig(
 
   // Raven.addPlugin(Angular, angular)
 
+  $compileProvider.debugInfoEnabled(false)
   $httpProvider.interceptors.push(authInterceptor, errorHttpInterceptor)
   $httpProvider.defaults.headers.common = { "Content-Type": "application/json" }
 
