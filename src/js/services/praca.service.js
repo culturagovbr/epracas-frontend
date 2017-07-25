@@ -122,18 +122,29 @@ export default class Praca {
   saveImg(praca, data) {
     const caller = this.ErrorCatcher.callerName()
 
+    if (data.id_pub) {
+      return this.$http({
+        url: `${this.PracaEndPoint}${praca}/imagems/{$data.id_pub}/`,
+        method: "PATCH",
+        data: data,
+      })
+        .then(res => res.data)
+        .catch((err) => {
+          this.ErrorCatcher.error(caller, err)
+          return this.$q.reject()
+        })
+    }
+
     return this.$http({
       url: `${this.PracaEndPoint}${praca}/imagens/`,
-      method: "PATCH",
+      method: "POST",
       data: data,
     })
       .then(res => res.data)
-      .catch(
-        (err) => {
-          this.ErrorCatcher.error(caller, err)
-          return this.$q.reject()
-        }
-      )
+      .catch((err) => {
+        this.ErrorCatcher.error(caller, err)
+        return this.$q.reject()
+      })
   }
 
   // Recupera as imagens de uma praca
