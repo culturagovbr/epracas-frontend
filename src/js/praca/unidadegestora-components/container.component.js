@@ -37,7 +37,6 @@ class UnidadeGestoraController {
 const UnidadeGestoraContainer = {
   controller: UnidadeGestoraController,
   template: `
-<<<<<<< HEAD
     <div id="container-unidade" layout-padding layout-gt-xs="row">
       <div flex class="info">
         <div class="layout-row title">
