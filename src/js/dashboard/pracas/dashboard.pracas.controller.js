@@ -97,6 +97,16 @@ class DashboardPracasCtrl {
     this.pracasFiltered = this.$filter("filter")(this.pracas, { situacao }, true)
   }
 
+  filtrarDataInicial(data_inauguracao) {
+    console.info(this.pracas);
+    console.info(data_inauguracao);
+    this.pracasFiltered = this.$filter("filter")(this.pracas, { data_inauguracao }, true)
+  }
+
+  filtrarDataFinal(situacao) {
+    this.pracasFiltered = this.$filter("filter")(this.pracas, { situacao }, true)
+  }
+
 }
 
 export default DashboardPracasCtrl

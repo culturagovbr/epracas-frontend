@@ -70,7 +70,7 @@
           <div class="col s12 m3 l3">
             <div flex>
               <h4 style="color: rgb(173, 173, 173);">Filtre pela data inícial</h4>
-              <md-datepicker style="width: 400px;" md-max-date="$ctrl.dataFinal" ng-model="$ctrl.dataInicial" md-placeholder="Insira uma data"></md-datepicker>
+              <md-datepicker style="width: 400px;" md-max-date="$ctrl.dataFinal" ng-model="$ctrl.dataInicial" md-placeholder="Insira uma data"  ng-change="$ctrl.filtrarDataInicial($ctrl.filtro.dataInicial)"></md-datepicker>
             </div>
           </div>
           <div class="col s12 m3 l3">
