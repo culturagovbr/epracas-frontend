@@ -53,13 +53,12 @@ const PracaCard = {
     <md-list-item id="praca-card"
       class="praca-container"
       layout-align="space-between"
-      style="background-image: url({{$ctrl.praca.header_img}})"
+      style="background-image: url({{::$ctrl.praca.header_img}})"
       ng-click="$ctrl.navigateTo('app.praca', {pk: $ctrl.praca.id_pub})">
 
-      <div class="md-list-item-text praca-text"
-        >
-        {{ $ctrl.praca.municipio }} - {{ $ctrl.praca.uf | uppercase }}
-        <span class="big">{{ $ctrl.praca.nome }}</span>
+      <div class="md-list-item-text praca-text">
+        {{ ::$ctrl.praca.municipio }} - {{ ::$ctrl.praca.uf | uppercase }}
+        <span class="big">{{ ::$ctrl.praca.nome }}</span>
       </div>
       <div class="md-secondary epr-fill" layout-align="end start">
         <md-menu>
@@ -98,7 +97,7 @@ const PracaCard = {
     </md-list-item>
     `,
   bindings: {
-    praca: "=",
+    praca: "<",
     onDelete: "&",
   },
 }

@@ -17,12 +17,12 @@
         <div class="row">
           <div class="col s12 m3 l4">
             <md-input-container class="md-block" flex>
-              <input ng-model="$ctrl.filtro.municipio" placeholder="Filtre pelo municipio" autofocus>
+              <input ng-model="$ctrl.filtro.municipio" placeholder="Filtre pelo municipio" ng-change="$ctrl.filtraMunicipio($ctrl.filtro.municipio);"autofocus>
             </md-input-container>
           </div>
           <div class="col s12 m3 l4">
             <md-input-container class="md-block" flex>
-              <md-select ng-model="$ctrl.filtro.uf" placeholder="Filtre pelo Estado(UF)">
+              <md-select ng-model="$ctrl.filtro.uf" placeholder="Filtre pelo Estado(UF)" ng-change="$ctrl.filtraUf($ctrl.filtro.uf)">
                 <md-option ng-repeat="uf in $ctrl.listaUf" value="{{ uf.value }}">
                   {{ uf.display_name }}
                 </md-option>
@@ -31,7 +31,7 @@
           </div>
           <div class="col s12 m4 l4">
             <md-input-container class="md-block" flex>
-              <md-select ng-model="$ctrl.filtro.regiao" placeholder="Filtre pela região">
+              <md-select ng-model="$ctrl.filtro.regiao" placeholder="Filtre pela região" ng-change="$ctrl.filtraRegiao($ctrl.filtro.regiao)">
                 <md-option ng-repeat="regiao in $ctrl.listaRegiao"
                   value="{{ regiao.value }}">
                   {{ regiao.display_name }}
@@ -42,13 +42,12 @@
           </div>
           <div class="col s12 m3 l4">
             <md-input-container class="md-block" flex>
-              <input ng-model="$ctrl.filtro.contrato" placeholder="Filtre pelo número do contrato"
-              autofocus>
+              <input ng-model="$ctrl.filtro.contrato" placeholder="Filtre pelo número do contrato" ng-change="$ctrl.filtraContrato($ctrl.filtro.contrato)" autofocus>
             </md-input-container>
           </div>
           <div class="col s12 m4 l4">
             <md-input-container class="md-block" flex>
-              <md-select ng-model="$ctrl.filtro.modelo" placeholder="Filtre pelo modelo">
+              <md-select ng-model="$ctrl.filtro.modelo" placeholder="Filtre pelo modelo" ng-change="$ctrl.filtraModelo($ctrl.filtro.modelo)">
                 <md-option ng-repeat="modelo in $ctrl.listaModelo"
                   value="{{ modelo.value }}">
                   {{ modelo.display_name }}
@@ -59,7 +58,7 @@
           </div>
           <div class="col s12 m3 l4">
             <md-input-container class="md-block" flex>
-              <md-select ng-model="$ctrl.filtro.situacao" placeholder="Filtre pela situação">
+              <md-select ng-model="$ctrl.filtro.situacao" placeholder="Filtre pela situação" ng-change="$ctrl.listaSituacao($ctrl.filtro.situacao)">
                 <md-option ng-repeat="situacao in $ctrl.listaSituacao"
                   value="{{ situacao.value }}">
                   {{ situacao.display_name }}
@@ -101,7 +100,7 @@
         </div>
       </div>
     </div>
-    <praca-list pracas="$ctrl.pracas" filter="$ctrl.filtro">
+    <praca-list pracas="$ctrl.pracasFiltered">
     </praca-list>
   </div>
   <md-progress-circular ng-show="$ctrl.loadingPracas" md-mode="indeterminate"></md-progress-circular>
