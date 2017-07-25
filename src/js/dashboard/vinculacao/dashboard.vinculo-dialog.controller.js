@@ -90,7 +90,7 @@ class DashboardVinculoDialogCtrl {
       dados = {
         id_pub: pedido.id_pub,
         situacao: pedido.situacao,
-        descricao: pedido.descricao,
+        descricao: pedido.despacho,
         aprovado: pedido.aprovado,
         finalizado: pedido.finalizado,
         despacho: pedido.despacho,
