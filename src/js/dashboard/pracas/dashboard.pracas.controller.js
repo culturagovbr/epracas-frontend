@@ -45,7 +45,7 @@ class DashboardPracasCtrl {
       .then(values => (this.pracasFiltered = values))
       .then(() => (this.loadingPracas = false))
 
-
+      // Filtrando json conforme o formulario.
       $scope.$watch('form',
           () => {
               this.pracasFiltered = this.$filter("filter")(this.pracas, {
@@ -57,18 +57,23 @@ class DashboardPracasCtrl {
                   situacao : $scope.form.situacao,
                   data_inauguracao : $scope.form.data_inauguracao,
                   repasse : $scope.form.repasse,
-              })
+              });
+
+              console.info(this.pracasFiltered)
 
               this.pracasFiltered = this.pracasFiltered.filter((value) => {
                   // Filtrando registros por range de data.
                   let booReturn = true;
                   let intDateTrated = (typeof value.data_inauguracao == 'string')? parseInt(value.data_inauguracao.replace(/-/g, '')): moment().format('YYYYMMDD'),
-                      intDateTratedBeggin = parseInt(moment($scope.form.data_inauguracao_inicial).format('YYYYMMDD')),
+                      intDateTratedStart = parseInt(moment($scope.form.data_inauguracao_inicial).format('YYYYMMDD')),
                       intDateTratedEnd = parseInt(moment($scope.form.data_inauguracao_final).format('YYYYMMDD'));
-                  if (intDateTrated < intDateTratedBeggin) booReturn = false;
+                  if (intDateTrated < intDateTratedStart) booReturn = false;
                   if (intDateTrated > intDateTratedEnd) booReturn = false;
 
                   // Filtrando os registros por range de valor.
+                  if (value.repasse == null && ($scope.form.repasse_start != null || $scope.form.repasse_end != null)) booReturn = false;
+                  if (parseInt($scope.form.repasse_start) > parseInt(value.repasse)) booReturn = false;
+                  if (parseInt($scope.form.repasse_end) < parseInt(value.repasse)) booReturn = false;
                   return booReturn;
               });
           }, true

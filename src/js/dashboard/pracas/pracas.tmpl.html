@@ -82,18 +82,16 @@
           <div class="col s12 m3 l6">
             <md-slider-container>
               <span>Valor inicíal</span>
-              <md-slider flex min="0" max="255" ng-model="color.red" aria-label="red" id="red-slider">
-              </md-slider>
+              <md-slider flex min="0" max="10000000" ng-model="form.repasse_start"></md-slider>
               <md-input-container>
-                <input flex type="number" min="0" max="255" ng-model="color.red" aria-label="red" aria-controls="red-slider">
+                <input flex type="number" min="0" max="10000000" ng-model="form.repasse_start" aria-controls="red-slider">
               </md-input-container>
             </md-slider-container>
             <md-slider-container>
-              <span>Valor inicíal</span>
-              <md-slider flex min="0" max="255" ng-model="color.red" aria-label="red" id="red-slider">
-              </md-slider>
+              <span>Valor final</span>
+              <md-slider flex min="0" max="10000000" ng-model="form.repasse_end"></md-slider>
               <md-input-container>
-                <input flex type="number" min="0" max="255" ng-model="color.red" aria-label="red" aria-controls="red-slider">
+                <input flex type="number" min="0" max="10000000" ng-model="form.repasse_end" aria-controls="red-slider">
               </md-input-container>
             </md-slider-container>
           </div>
