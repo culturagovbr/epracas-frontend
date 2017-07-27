@@ -1,7 +1,7 @@
 
 
 class GaleriaEditDialogCtrl {
-  constructor($mdDialog, $log, Upload, AppConstants, id, $stateParams, Praca, $scope) {
+  constructor($mdDialog, $log, Upload, AppConstants, id, $stateParams, Praca, $scope, Toast) {
     "ngInject";
       $scope.objForm = {};
       Praca.getImg($stateParams.pk, id).then(function(arrResult) {
