@@ -18,7 +18,6 @@ class GaleriaEditDialogCtrl {
     this.save = () => {
         delete $scope.objForm.arquivo; // E esperado pela api um valor binario, como este valor esta tratado informando a localizacao da imagem e preciso retirar na hora de editar a imagem.
         delete $scope.objForm.url;
-        console.info($scope.objForm)
         Praca.saveImg(id, $scope.objForm)
             .then(
                 response => {

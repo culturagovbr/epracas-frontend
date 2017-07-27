@@ -1,3 +1,5 @@
+import moment from "moment"
+
 $.fn.extend({
   animateCss: function (animationName) {
     var animationEnd = "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend"
@@ -18,12 +20,13 @@ class DashboardPracasCtrl {
       Praca,
     })
 
-    this.isFilterOpen = false
+    $scope.form = {
+        data_inauguracao_inicial: "",
+        data_inauguracao_final: "",
+    };
 
-    this.loadingPracas = true
-
-    this.dataInicial = ""
-    this.dataFinal = ""
+    this.isFilterOpen = false;
+    this.loadingPracas = true;
 
     Praca.options()
       .then((data) => {
@@ -41,6 +44,35 @@ class DashboardPracasCtrl {
       .then(values => (this.pracas = values))
       .then(values => (this.pracasFiltered = values))
       .then(() => (this.loadingPracas = false))
+
+
+      $scope.$watch('form',
+          () => {
+              this.pracasFiltered = this.$filter("filter")(this.pracas, {
+                  municipio : $scope.form.municipio,
+                  uf : $scope.form.uf,
+                  regiao : $scope.form.regiao,
+                  contrato : $scope.form.contrato,
+                  modelo : $scope.form.modelo,
+                  situacao : $scope.form.situacao,
+                  data_inauguracao : $scope.form.data_inauguracao,
+                  repasse : $scope.form.repasse,
+              })
+
+              this.pracasFiltered = this.pracasFiltered.filter((value) => {
+                  // Filtrando registros por range de data.
+                  let booReturn = true;
+                  let intDateTrated = (typeof value.data_inauguracao == 'string')? parseInt(value.data_inauguracao.replace(/-/g, '')): moment().format('YYYYMMDD'),
+                      intDateTratedBeggin = parseInt(moment($scope.form.data_inauguracao_inicial).format('YYYYMMDD')),
+                      intDateTratedEnd = parseInt(moment($scope.form.data_inauguracao_final).format('YYYYMMDD'));
+                  if (intDateTrated < intDateTratedBeggin) booReturn = false;
+                  if (intDateTrated > intDateTratedEnd) booReturn = false;
+
+                  // Filtrando os registros por range de valor.
+                  return booReturn;
+              });
+          }, true
+      );
   }
 
   toggleFilter() {
@@ -72,41 +104,6 @@ class DashboardPracasCtrl {
     }
     this.isFilterOpen = !this.isFilterOpen
   }
-
-  filtraUf(uf) {
-    this.pracasFiltered = this.$filter("filter")(this.pracas, { uf })
-  }
-
-  filtraMunicipio(municipio) {
-    this.pracasFiltered = this.$filter("filter")(this.pracas, { municipio })
-  }
-
-  filtraRegiao(regiao) {
-    this.pracasFiltered = this.$filter("filter")(this.pracas, { regiao }, true)
-  }
-
-  filtraContrato(contrato) {
-    this.pracasFiltered = this.$filter("filter")(this.pracas, { contrato })
-  }
-
-  filtraModelo(modelo) {
-    this.pracasFiltered = this.$filter("filter")(this.pracas, { modelo }, true)
-  }
-
-  filtraSituacao(situacao) {
-    this.pracasFiltered = this.$filter("filter")(this.pracas, { situacao }, true)
-  }
-
-  filtrarDataInicial(data_inauguracao) {
-    console.info(this.pracas);
-    console.info(data_inauguracao);
-    this.pracasFiltered = this.$filter("filter")(this.pracas, { data_inauguracao }, true)
-  }
-
-  filtrarDataFinal(situacao) {
-    this.pracasFiltered = this.$filter("filter")(this.pracas, { situacao }, true)
-  }
-
 }
 
 export default DashboardPracasCtrl

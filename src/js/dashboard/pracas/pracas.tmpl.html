@@ -17,12 +17,12 @@
         <div class="row">
           <div class="col s12 m3 l4">
             <md-input-container class="md-block" flex>
-              <input ng-model="$ctrl.filtro.municipio" placeholder="Filtre pelo municipio" ng-change="$ctrl.filtraMunicipio($ctrl.filtro.municipio);"autofocus>
+              <input ng-model="form.municipio" placeholder="Filtre pelo municipio" autofocus>
             </md-input-container>
           </div>
           <div class="col s12 m3 l4">
             <md-input-container class="md-block" flex>
-              <md-select ng-model="$ctrl.filtro.uf" placeholder="Filtre pelo Estado(UF)" ng-change="$ctrl.filtraUf($ctrl.filtro.uf)">
+              <md-select ng-model="form.uf" placeholder="Filtre pelo Estado(UF)">
                 <md-option ng-repeat="uf in $ctrl.listaUf" value="{{ uf.value }}">
                   {{ uf.display_name }}
                 </md-option>
@@ -31,7 +31,7 @@
           </div>
           <div class="col s12 m4 l4">
             <md-input-container class="md-block" flex>
-              <md-select ng-model="$ctrl.filtro.regiao" placeholder="Filtre pela região" ng-change="$ctrl.filtraRegiao($ctrl.filtro.regiao)">
+              <md-select ng-model="form.regiao" placeholder="Filtre pela região" ng-change="$ctrl.filtraRegiao(form.regiao)">
                 <md-option ng-repeat="regiao in $ctrl.listaRegiao"
                   value="{{ regiao.value }}">
                   {{ regiao.display_name }}
@@ -42,12 +42,12 @@
           </div>
           <div class="col s12 m3 l4">
             <md-input-container class="md-block" flex>
-              <input ng-model="$ctrl.filtro.contrato" placeholder="Filtre pelo número do contrato" ng-change="$ctrl.filtraContrato($ctrl.filtro.contrato)" autofocus>
+              <input ng-model="form.contrato" placeholder="Filtre pelo número do contrato" ng-change="$ctrl.filtraContrato(form.contrato)" autofocus>
             </md-input-container>
           </div>
           <div class="col s12 m4 l4">
             <md-input-container class="md-block" flex>
-              <md-select ng-model="$ctrl.filtro.modelo" placeholder="Filtre pelo modelo" ng-change="$ctrl.filtraModelo($ctrl.filtro.modelo)">
+              <md-select ng-model="form.modelo" placeholder="Filtre pelo modelo" ng-change="$ctrl.filtraModelo(form.modelo)">
                 <md-option ng-repeat="modelo in $ctrl.listaModelo"
                   value="{{ modelo.value }}">
                   {{ modelo.display_name }}
@@ -58,7 +58,7 @@
           </div>
           <div class="col s12 m3 l4">
             <md-input-container class="md-block" flex>
-              <md-select ng-model="$ctrl.filtro.situacao" placeholder="Filtre pela situação" ng-change="$ctrl.listaSituacao($ctrl.filtro.situacao)">
+              <md-select ng-model="form.situacao" placeholder="Filtre pela situação" ng-change="$ctrl.listaSituacao(form.situacao)">
                 <md-option ng-repeat="situacao in $ctrl.listaSituacao"
                   value="{{ situacao.value }}">
                   {{ situacao.display_name }}
@@ -70,13 +70,13 @@
           <div class="col s12 m3 l3">
             <div flex>
               <h4 style="color: rgb(173, 173, 173);">Filtre pela data inícial</h4>
-              <md-datepicker style="width: 400px;" md-max-date="$ctrl.dataFinal" ng-model="$ctrl.dataInicial" md-placeholder="Insira uma data"  ng-change="$ctrl.filtrarDataInicial($ctrl.filtro.dataInicial)"></md-datepicker>
+              <md-datepicker style="width: 400px;" md-max-date="form.data_inauguracao_final" ng-model="form.data_inauguracao_inicial" md-placeholder="Insira uma data"  ng-change="$ctrl.filtrarDataInicial(form.dataInicial)"></md-datepicker>
             </div>
           </div>
           <div class="col s12 m3 l3">
             <div flex>
               <h4 style="color: rgb(173, 173, 173);">Filtre pela data final</h4>
-              <md-datepicker md-min-date="$ctrl.dataInicial" ng-model="$ctrl.dataFinal" md-placeholder="Insira uma data"></md-datepicker>
+              <md-datepicker md-min-date="form.data_inauguracao_inicial" ng-model="form.data_inauguracao_final" md-placeholder="Insira uma data"></md-datepicker>
             </div>
           </div>
           <div class="col s12 m3 l6">

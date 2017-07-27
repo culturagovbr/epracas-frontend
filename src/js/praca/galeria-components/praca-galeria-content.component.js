@@ -28,7 +28,9 @@ class PracaGaleriaContentController {
       $scope.$watch('imagens',
           () => {
           this.arrImg = this.buildGridModel($scope.imagens);
-          this.paginatorRender($scope);
+              if (this.arrImg.length > 0) {
+                  this.paginatorRender($scope);
+              }
           }
       );
       this.scope = $scope;
@@ -97,12 +99,11 @@ class PracaGaleriaContentController {
     }
     paginatorRender($scope)
     {
-        // console.info($scope.paginatorData);
         let intTotal = this.arrImg.length,
             intRenderedPerPage = this.paginator.page * this.paginator.perpage;
         if (this.paginator.intRendered < intTotal) {
             for (let i = 0; i < intRenderedPerPage; i++) {
-                if (this.arrImg[this.paginator.intRendered].url != '') {
+                if (!angular.isUndefined(this.arrImg[this.paginator.intRendered]) && this.arrImg[this.paginator.intRendered].url != '') {
                     $scope.paginatorData[this.paginator.intRendered] = this.arrImg[this.paginator.intRendered];
                     this.paginator.intRendered++;
                     setTimeout(() => {
