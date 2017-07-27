@@ -59,8 +59,6 @@ class DashboardPracasCtrl {
                   repasse : $scope.form.repasse,
               });
 
-              console.info(this.pracasFiltered)
-
               this.pracasFiltered = this.pracasFiltered.filter((value) => {
                   // Filtrando registros por range de data.
                   let booReturn = true;
