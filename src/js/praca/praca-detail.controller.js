@@ -27,6 +27,17 @@ class PracaDetailCtrl {
         return atividade
       }))
     .then((atividades) => {
+
+
+      atividades = atividades.map((objData) => {
+          Atividade.options().then(
+              (data) => {
+                  objData.espacos = data.espaco.child.choices.filter((objValue) => {return (objData.espaco.indexOf(objValue.value) >= 0)});
+              }
+          );
+          return objData;
+      })
+
       // console.log(atividades)
       praca.agenda = atividades
     })
