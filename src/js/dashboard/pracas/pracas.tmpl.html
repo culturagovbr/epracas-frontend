@@ -68,6 +68,16 @@
             </md-input-container>
           </div>
           <div class="col s12 m3 l3">
+            <md-input-container class="md-block" flex>
+              <input mask="999.999.999,99" ng-model="form.repasse_start" placeholder="Filtre pelo valor inicíal" autofocus>
+            </md-input-container>
+          </div>
+          <div class="col s12 m3 l3">
+            <md-input-container class="md-block" flex>
+              <input mask="999.999.999,99" ng-model="form.repasse_end" placeholder="Filtre pelo valor final" autofocus>
+            </md-input-container>
+          </div>
+          <div class="col s12 m3 l3">
             <div flex>
               <h4 style="color: rgb(173, 173, 173);">Filtre pela data inícial</h4>
               <md-datepicker style="width: 400px;" md-max-date="form.data_inauguracao_final" ng-model="form.data_inauguracao_inicial" md-placeholder="Insira uma data"  ng-change="$ctrl.filtrarDataInicial(form.dataInicial)"></md-datepicker>
@@ -78,22 +88,6 @@
               <h4 style="color: rgb(173, 173, 173);">Filtre pela data final</h4>
               <md-datepicker md-min-date="form.data_inauguracao_inicial" ng-model="form.data_inauguracao_final" md-placeholder="Insira uma data"></md-datepicker>
             </div>
-          </div>
-          <div class="col s12 m3 l6">
-            <md-slider-container>
-              <span>Valor inicíal</span>
-              <md-slider flex min="0" max="10000000" ng-model="form.repasse_start"></md-slider>
-              <md-input-container>
-                <input flex type="number" min="0" max="10000000" ng-model="form.repasse_start" aria-controls="red-slider">
-              </md-input-container>
-            </md-slider-container>
-            <md-slider-container>
-              <span>Valor final</span>
-              <md-slider flex min="0" max="10000000" ng-model="form.repasse_end"></md-slider>
-              <md-input-container>
-                <input flex type="number" min="0" max="10000000" ng-model="form.repasse_end" aria-controls="red-slider">
-              </md-input-container>
-            </md-slider-container>
           </div>
         </div>
       </div>

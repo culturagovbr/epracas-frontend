@@ -59,21 +59,31 @@ class DashboardPracasCtrl {
                   repasse : $scope.form.repasse,
               });
 
-              this.pracasFiltered = this.pracasFiltered.filter((value) => {
-                  // Filtrando registros por range de data.
-                  let booReturn = true;
-                  let intDateTrated = (typeof value.data_inauguracao == 'string')? parseInt(value.data_inauguracao.replace(/-/g, '')): moment().format('YYYYMMDD'),
-                      intDateTratedStart = parseInt(moment($scope.form.data_inauguracao_inicial).format('YYYYMMDD')),
-                      intDateTratedEnd = parseInt(moment($scope.form.data_inauguracao_final).format('YYYYMMDD'));
-                  if (intDateTrated < intDateTratedStart) booReturn = false;
-                  if (intDateTrated > intDateTratedEnd) booReturn = false;
+              if (this.pracasFiltered) {
+                  this.pracasFiltered = this.pracasFiltered.filter((value) => {
+                      // Filtrando registros por range de data.
+                      let booReturn = true;
+                      let intDateTrated = (typeof value.data_inauguracao == 'string')? parseInt(value.data_inauguracao.replace(/-/g, '')): moment().format('YYYYMMDD'),
+                          intDateTratedStart = parseInt(moment($scope.form.data_inauguracao_inicial).format('YYYYMMDD')),
+                          intDateTratedEnd = parseInt(moment($scope.form.data_inauguracao_final).format('YYYYMMDD'));
+                      if (intDateTrated < intDateTratedStart) booReturn = false;
+                      if (intDateTrated > intDateTratedEnd) booReturn = false;
 
-                  // Filtrando os registros por range de valor.
-                  if (value.repasse == null && ($scope.form.repasse_start != null || $scope.form.repasse_end != null)) booReturn = false;
-                  if (parseInt($scope.form.repasse_start) > parseInt(value.repasse)) booReturn = false;
-                  if (parseInt($scope.form.repasse_end) < parseInt(value.repasse)) booReturn = false;
-                  return booReturn;
-              });
+                      // Filtrando os registros por range de valor.
+                      if (value.repasse == null && ($scope.form.repasse_start != null || $scope.form.repasse_end != null)) booReturn = false;
+                      let intValueStart = ($scope.form.repasse_start)? $scope.form.repasse_start.replace(/\./g, '') : '',
+                          intValueEnd = ($scope.form.repasse_end)? $scope.form.repasse_end.replace(/\./g, '') : '';
+                      if (parseInt(intValueStart) > parseInt(value.repasse)) booReturn = false;
+                      if (parseInt(intValueEnd) < parseInt(value.repasse)) booReturn = false;
+
+                      console.log($scope.form.repasse_start);
+                      console.log($scope.form.repasse_start.replace(/\./g, ''));
+                      console.log(parseInt($scope.form.repasse_start));
+                      return booReturn;
+                  });
+              }
+
+              console.log(this.pracasFiltered);
           }, true
       );
   }
