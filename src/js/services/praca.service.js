@@ -124,7 +124,7 @@ export default class Praca {
 
     if (data.id_pub) {
       return this.$http({
-        url: `${this.PracaEndPoint}${praca}/imagems/{$data.id_pub}/`,
+        url: `${this.PracaEndPoint}${praca}/imagens/${data.id_pub}/`,
         method: "PATCH",
         data: data,
       })
