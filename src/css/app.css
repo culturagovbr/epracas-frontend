@@ -2362,3 +2362,7 @@ md-content.md-default-theme, md-content{
         margin-bottom: 50px;
     }
 }
+
+.quadro-btns > a {
+    text-transform: inherit;
+}
