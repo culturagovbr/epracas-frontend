@@ -23,6 +23,8 @@ class DashboardPracasCtrl {
     $scope.form = {
         data_inauguracao_inicial: "",
         data_inauguracao_final: "",
+        repasse_start_limit: "0",
+        repasse_end_limit: "9000000000",
     };
 
     this.isFilterOpen = false;
@@ -38,16 +40,26 @@ class DashboardPracasCtrl {
         this.listaModelo.unshift({ value: "", display_name: "----" })
         this.listaSituacao = data.situacao.choices
         this.listaSituacao.unshift({ value: "", display_name: "----" })
-      })
+      });
 
     Praca.list()
-      .then(values => (this.pracas = values))
+      .then((arrValues) => {
+          let arrIntValues = [];
+          angular.forEach(arrValues, function(objValue){if (objValue.repasse) arrIntValues.push(parseInt(objValue.repasse));});
+          $scope.form.repasse_start = $scope.form.repasse_start_limit = Math.min.apply(null, arrIntValues);
+          $scope.form.repasse_end = $scope.form.repasse_end_limit = Math.max.apply(null, arrIntValues);
+          this.pracas = arrValues;
+          return arrValues;
+      })
       .then(values => (this.pracasFiltered = values))
-      .then(() => (this.loadingPracas = false))
+      .then(() => (this.loadingPracas = false));
 
       // Filtrando json conforme o formulario.
       $scope.$watch('form',
           () => {
+
+              $scope.form.repasse_start_treated = $scope.form.repasse_start;
+              $scope.form.repasse_end_treated = $scope.form.repasse_end;
               this.pracasFiltered = this.$filter("filter")(this.pracas, {
                   municipio : $scope.form.municipio,
                   uf : $scope.form.uf,
@@ -71,19 +83,14 @@ class DashboardPracasCtrl {
 
                       // Filtrando os registros por range de valor.
                       if (value.repasse == null && ($scope.form.repasse_start != null || $scope.form.repasse_end != null)) booReturn = false;
-                      let intValueStart = ($scope.form.repasse_start)? $scope.form.repasse_start.replace(/\./g, '') : '',
-                          intValueEnd = ($scope.form.repasse_end)? $scope.form.repasse_end.replace(/\./g, '') : '';
+                      let intValueStart = ($scope.form.repasse_start)? $scope.form.repasse_start : '',
+                          intValueEnd = ($scope.form.repasse_end)? $scope.form.repasse_end : '';
                       if (parseInt(intValueStart) > parseInt(value.repasse)) booReturn = false;
                       if (parseInt(intValueEnd) < parseInt(value.repasse)) booReturn = false;
-
-                      console.log($scope.form.repasse_start);
-                      console.log($scope.form.repasse_start.replace(/\./g, ''));
-                      console.log(parseInt($scope.form.repasse_start));
                       return booReturn;
                   });
               }
 
-              console.log(this.pracasFiltered);
           }, true
       );
   }
