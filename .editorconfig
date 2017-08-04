@@ -1,3 +1,5 @@
-[*.html]
+root = true
+
+[*.{html,js,css}]
 indent_style = space
 indent_size = 2
