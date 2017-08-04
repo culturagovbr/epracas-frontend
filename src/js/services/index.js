@@ -10,6 +10,7 @@ import VinculacaoService from "./vinculacao.service"
 import ToastService from "./toast.service"
 import GrupoGestorService from "./grupogestor.service"
 import UnidadeGestoraService from "./unidadegestora.service"
+import RecursoHumanoService from "./rh.service"
 
 // Create the module where our functionality can attach to
 const servicesModule = angular.module("app.services", [])
@@ -24,5 +25,6 @@ const servicesModule = angular.module("app.services", [])
 .service("Toast", ToastService)
 .service("GrupoGestor", GrupoGestorService)
 .service("UnidadeGestora", UnidadeGestoraService)
+.service("RecursoHumano", RecursoHumanoService)
 
 export default servicesModule

@@ -39,21 +39,33 @@ import MembroGestorDialogController from "./grupogestor-components/membrogestor.
 pracaModule.controller("MembroGestorDialogController", MembroGestorDialogController)
 
 import PracaGaleriaContent from "./galeria-components/praca-galeria-content.component"
-pracaModule.component("pracaGaleriaContent", PracaGaleriaContent);
+pracaModule.component("pracaGaleriaContent", PracaGaleriaContent)
 
-import PracaGaleriaCtrl from "./praca-galeria.controller";
-pracaModule.controller("PracaGaleriaCtrl", PracaGaleriaCtrl);
+import PracaGaleriaCtrl from "./praca-galeria.controller"
+pracaModule.controller("PracaGaleriaCtrl", PracaGaleriaCtrl)
 
 import UnidadeGestoraContainer from "./unidadegestora-components/container.component"
-pracaModule.component("pracaUnidadegestora", UnidadeGestoraContainer);
+pracaModule.component("pracaUnidadegestora", UnidadeGestoraContainer)
 
 import MembroUglDialogController from "./unidadegestora-components/membrougl.dialog.ctrl"
-pracaModule.controller("MembroUglDialogController", MembroUglDialogController);
+pracaModule.controller("MembroUglDialogController", MembroUglDialogController)
 
 import GaleriaEditDialogCtrl from "./galeria-edit.dialog.ctrl.js"
-pracaModule.controller("GaleriaEditDialogCtrl", GaleriaEditDialogCtrl);
+pracaModule.controller("GaleriaEditDialogCtrl", GaleriaEditDialogCtrl)
 
 import PracaAtividadeCtrl from "./praca-atividade.ctrl.js"
-pracaModule.controller("PracaAtividadeCtrl", PracaAtividadeCtrl);
+pracaModule.controller("PracaAtividadeCtrl", PracaAtividadeCtrl)
+
+import RecursosHumanosList from "./rh-components/list.component"
+pracaModule.component("pracaRh", RecursosHumanosList)
+
+import RecursosHumanosDetail from "./rh-components/detail.component"
+pracaModule.component("rhDetail", RecursosHumanosDetail)
+
+import RhAddDialogController from "./rh-components/rh-add.dialog.ctrl"
+pracaModule.controller("RhAddDialogController", RhAddDialogController)
+
+import RhListDialogController from "./rh-components/rh-list.dialog.ctrl"
+pracaModule.controller("RhListDialogController", RhListDialogController)
 
 export default pracaModule;
