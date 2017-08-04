@@ -28,6 +28,8 @@
             </md-option>
           </md-select>
         </md-input-container>
+
+        <p ng-show="$ctrl.grupogestor.documento_constituicao">Nome do Arquivo: {{$ctrl.grupogestor.documento_constituicao.name}}</p>
         <md-input-container class="md-block" layout-padding>
           <md-button
             type="file"
@@ -39,6 +41,21 @@
             label="Documento de Constituição">
             <md-icon>insert_drive_file</md-icon>
             Anexe o Documento de Constituição...
+          </md-button>
+        </md-input-container>
+
+        <p ng-show="$ctrl.grupogestor.estatuto">Nome do Arquivo: {{$ctrl.grupogestor.estatuto.name}}</p>
+        <md-input-container class="md-block" layout-padding>
+          <md-button
+            type="file"
+            ngf-accept="'image/*, application/pdf'"
+            ngf-max-size="10MB"
+            ngf-select
+            ng-model="$ctrl.grupogestor.estatuto"
+            class="md-raised"
+            label="Estatuto do Grupo Gestor">
+            <md-icon>insert_drive_file</md-icon>
+            Anexe o Estatuto...
           </md-button>
         </md-input-container>
 

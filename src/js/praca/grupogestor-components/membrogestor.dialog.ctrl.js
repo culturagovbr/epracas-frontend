@@ -1,9 +1,9 @@
 export default class MembroGestorDialogController {
-  constructor($http, $mdDialog, $log, Toast, GrupoGestor, praca) {
+  constructor($state, $mdDialog, $log, Toast, GrupoGestor, praca) {
     "ngInject"
 
     angular.extend(this, {
-      $http,
+      $state,
       $mdDialog,
       $log,
       Toast,
@@ -32,6 +32,7 @@ export default class MembroGestorDialogController {
         (response) => {
           this.$mdDialog.hide()
           this.Toast.showSuccessToast("Membro Gestor Adicionado")
+          this.$state.reload()
         }
       )
       .catch(
