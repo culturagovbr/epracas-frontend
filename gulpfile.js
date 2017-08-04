@@ -191,13 +191,20 @@ gulp.task("build", ["html", "browserify", "angular-bootstrap-calendarCss", "mate
 
 gulp.task("default", ["html", "browserify", "angular-bootstrap-calendarCss", "materialCss", "appCss", "steppersCss", "assets", "fonts"], () => {
   browserSync.init([`${paths.buildDest}/**/**.**`], {
-    server: paths.buildDest,
+    server: {
+      baseDir: paths.buildDest,
+      routes: {
+        "/media": "media",
+      },
+    },
     port: 4000,
     middleware: [historyFB()],
-    notify: true,
     ui: {
       port: 4001,
     },
+    online: false,
+    open: false,
+    notify: false,
   });
 
   gulp.watch("src/index.html", ["html"]);

@@ -7,3 +7,5 @@ dist/*
 .tern-port
 
 app.yml
+
+media/**
