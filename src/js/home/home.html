@@ -1,117 +1,128 @@
 <style>
-    md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
-    /*background-color: rgb(63,81,181);*/
-    /*color: rgba(255,255,255,0.87);*/
-    /*background-color: rgba(0, 0, 0, 0.23);*/
-        background-color: rgba(0, 0, 0, 0.6);
-    }
+  md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
 </style>
 <div id="quadro-container">
-    <div style="height: 48px">
-        <div class="tab-home md-whiteframe-1dp">
-            <md-content class=" layout-column color-transition">
-                <md-tabs md-selected="tabIntSelected" md-dynamic-height md-border-bottom class="center-align container">
-                    <md-tab label="Procurar Praças" scroll="header" class=""></md-tab>
-                    <md-tab label="Praças CEUs" scroll="#2"></md-tab>
-                    <md-tab label="Praças CEUs Próximas" scroll="#3" offset="48"></md-tab>
-                    <md-tab label="Mapa das Praças CEUs" scroll="#4" offset="48"></md-tab>
-                </md-tabs>
-            </md-content>
-        </div>
+  <div style="height: 48px">
+    <div class="tab-home md-whiteframe-1dp">
+      <md-content class=" layout-column color-transition">
+        <md-tabs md-selected="tabIntSelected" md-dynamic-height md-border-bottom class="center-align container">
+          <md-tab label="Procurar Praças" scroll="header" class=""></md-tab>
+          <md-tab label="Praças CEUs" scroll="#2"></md-tab>
+          <md-tab label="Praças CEUs Próximas" scroll="#3" offset="48"></md-tab>
+          <md-tab label="Mapa das Praças CEUs" scroll="#4" offset="48"></md-tab>
+        </md-tabs>
+      </md-content>
     </div>
-    <div id="1" class="container" style="height: 86vh;" layout="column">
-        <video id="bgvid" playsinline autoplay muted loop>
-            <source src="/assets/CEUS.mp4" type="video/mp4">
-        </video>
-        <div id="home-search" class="animated fadeIn" layout-align="center center" layout-margin layout-gt-xs="row"
-             flex>
-            <md-icon>search</md-icon>
-            <md-autocomplete
-                    placeholder="Procure por uma cidade ou estado (UF)"
-                    md-selected-item="$ctrl.selectedItem"
-                    md-selected-item-change="$ctrl.selectedItemChange(item)"
-                    md-search-text="$ctrl.searchText"
-                    md-items="item in $ctrl.getMatches($ctrl.searchText)"
-                    md-item-text="item.municipio"
-                    flex
-                    flex-gt-xs="60"
-                    class="md-whiteframe-6dp"
-                    md-menu-class="autocomplete-epracas-template"
-            >
-            <md-item-template>
-              <span class="item-title">
-                <span>{{item.nome}}</span>
-              </span>
-              <span class="item-metadata">
-                <span>
-                  <strong>{{item.municipio}}</strong> - {{item.uf | uppercase}}
-                </span>
-                <span>Modelo: {{item.modelo_descricao}}</span>
-                <span>Situação: {{item.situacao_descricao}}</span>
-              </span>
-            </md-item-template>
-            <md-not-found>
-                Nenhuma praça encontrada
-            </md-not-found>
-          </md-autocomplete>
-        </div>
-        <div class="block white-text content animated fadeInUp" flex>
-            <h1>O que é o E-Praças?</h1>
-            <h2>O ePraças é um sistema para gestão das Praças CEUs quem tem as seguintes funcionalidades: 1) transparência e divulgação das atividades das Praças CEUs a todos os cidadãos; 2) apoio ao planejamento, monitoramento e avaliação das atividades desenvolvidas nos espaços; 3) fornecimento de indicadores (relatórios e estatísticas) para a avaliação e melhoria contínua da gestão dos CEUs; e 4) apoio à comunicação entre municípios, MinC, gestores e comunidades dos CEUs</h2>
-        </div>
-        <div class="quadro-btns block white-text animated fadeIn" layout="row" layout-xs="column" layout-align="center center" flex layout-margin ng-hide="$mdMedia('sm')">
-            <a class="blue waves-effect waves-light btn-large  yellow-text tooltipped" flex-gt-xs="33" flex="100" scroll="#2" data-position="top" data-tooltip="Ir para as Praças CEUs">
-                <i class="material-icons middle">explore</i>Praças CEUs</a>
-            <a class="yellow waves-effect waves-light btn-large green-text text-darken-4 tooltipped" flex-gt-xs="33" flex="100" scroll="#3" data-position="top" data-tooltip="Ir para praças próximas à você">
-                <i class="material-icons middle">near_me</i>Praças CEUs Próximas</a>
-            <a class="green waves-effect waves-light btn-large blue-text text-darken-4 tooltipped" flex-gt-xs="33" flex="100" scroll="#4" data-position="top" data-tooltip="Ir para todas as praças do brasil">
-                <i class="material-icons middle">map</i>Mapa das Praças CEUs</a>
-        </div>
+  </div>
+  <div id="1" class="container" style="height: 86vh;" layout="column">
+    <video id="bgvid" playsinline autoplay muted loop>
+      <source src="/assets/CEUS.mp4" type="video/mp4">
+    </video>
+    <div id="home-search" class="animated fadeIn" layout-align="center center" layout-margin layout-gt-xs="row"
+      flex>
+      <md-icon>search</md-icon>
+      <md-autocomplete
+        placeholder="Procure por uma cidade ou estado (UF)"
+        md-selected-item="$ctrl.selectedItem"
+        md-selected-item-change="$ctrl.selectedItemChange(item)"
+        md-search-text="$ctrl.searchText"
+        md-items="item in $ctrl.getMatches($ctrl.searchText)"
+        md-item-text="item.municipio"
+        flex
+        flex-gt-xs="60"
+        class="md-whiteframe-6dp"
+        md-menu-class="autocomplete-epracas-template"
+        ng-model-options="{debounce: 550}"
+        >
+        <md-item-template>
+          <span class="item-title">
+            <span>{{item.nome}}</span>
+          </span>
+          <span class="item-metadata">
+            <span>
+              <strong>{{item.municipio}}</strong> - {{item.uf | uppercase}}
+            </span>
+            <span>Modelo: {{item.modelo_descricao}}</span>
+            <span>Situação: {{item.situacao_descricao}}</span>
+          </span>
+        </md-item-template>
+        <md-not-found>
+          Nenhuma praça encontrada
+        </md-not-found>
+      </md-autocomplete>
     </div>
-    <div id="2" scroll-color="blue" class="block transparent blue" layout="column" layout-align="center center">
-        <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
-            <h1>Conheça as Praças CEUs</h1>
-            <md-icon layout-align="center center"> explore</md-icon>
-            <h3>Entenda o que são e como funcionam os Centros de Artes e Esportes Unificados</h3>
-        </div>
+    <div class="block white-text content animated fadeInUp" flex>
+      <h1>O que é o E-Praças?</h1>
+      <h2>O ePraças é um sistema para gestão das Praças CEUs quem tem as seguintes funcionalidades: 1) transparência e divulgação das atividades das Praças CEUs a todos os cidadãos; 2) apoio ao planejamento, monitoramento e avaliação das atividades desenvolvidas nos espaços; 3) fornecimento de indicadores (relatórios e estatísticas) para a avaliação e melhoria contínua da gestão dos CEUs; e 4) apoio à comunicação entre municípios, MinC, gestores e comunidades dos CEUs</h2>
     </div>
-    <a ui-sref="app.geoloc">
-        <div id="3" scroll-color="yellow darken-1" class="block transparent yellow lighten-1" layout="column"
-             layout-align="center center">
-            <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
-                <h1>Praças próximas a mim</h1>
-                <md-icon> near_me</md-icon>
-                <h3>Podemos localizar as praças que estão mais próximas a você agora</h3>
-            </div>
-        </div>
-    </a>
-    <a target="_blank"
-       href="http://mapas.cultura.gov.br/busca/##(global:(enabled:(space:!t),filterEntity:space),space:(filters:(type:!('132'))))">
-        <div id="4" scroll-color="green" class="block transparent green lighten-1 hoverable" layout="column"
-             layout-align="center center">
-            <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
-                <h1>Todas as praças no Mapa</h1>
-                <md-icon> map</md-icon>
-                <h3>Visualize todas as praças do Brasil de uma só vez no mapa</h3>
-            </div>
-        </div>
-    </a>
+    <div class="quadro-btns block white-text animated fadeIn" layout="row" layout-xs="column" layout-align="center center" flex layout-margin ng-hide="$mdMedia('sm')">
+      <a class="blue waves-effect waves-light btn-large  yellow-text tooltipped" flex-gt-xs="33" flex="100" scroll="#2" data-position="top" data-tooltip="Ir para as Praças CEUs">
+        <i class="material-icons middle">explore</i>Praças CEUs</a>
+      <a class="yellow waves-effect waves-light btn-large green-text text-darken-4 tooltipped" flex-gt-xs="33" flex="100" scroll="#3" data-position="top" data-tooltip="Ir para praças próximas à você">
+        <i class="material-icons middle">near_me</i>Praças CEUs Próximas</a>
+      <a class="green waves-effect waves-light btn-large blue-text text-darken-4 tooltipped" flex-gt-xs="33" flex="100" scroll="#4" data-position="top" data-tooltip="Ir para todas as praças do brasil">
+        <i class="material-icons middle">map</i>Mapa das Praças CEUs</a>
+    </div>
+  </div>
+  <div class="block white-text content animated fadeInUp" flex>
+    <h1>O que é o E-Praças?</h1>
+    <h2>O ePraças é um sistema para gestão das Praças CEUs quem tem as seguintes funcionalidades: 1) transparência e divulgação das atividades das Praças CEUs a todos os cidadãos; 2) apoio ao planejamento, monitoramento e avaliação das atividades desenvolvidas nos espaços; 3) fornecimento de indicadores (relatórios e estatísticas) para a avaliação e melhoria contínua da gestão dos CEUs; e 4) apoio à comunicação entre municípios, MinC, gestores e comunidades dos CEUs</h2>
+  </div>
+  <div class="quadro-btns block white-text animated fadeIn" layout="row" layout-xs="column" layout-align="center center" flex layout-margin ng-hide="$mdMedia('sm')">
+    <a class="blue waves-effect waves-light btn-large  yellow-text tooltipped" flex-gt-xs="33" flex="100" scroll="#2" data-position="top" data-tooltip="Ir para as Praças CEUs">
+      <i class="material-icons middle">explore</i>Praças Ceus</a>
+    <a class="yellow waves-effect waves-light btn-large green-text text-darken-4 tooltipped" flex-gt-xs="33" flex="100" scroll="#3" data-position="top" data-tooltip="Ir para praças próximas à você">
+      <i class="material-icons middle">near_me</i>Praças Próximas</a>
+    <a class="green waves-effect waves-light btn-large blue-text text-darken-4 tooltipped" flex-gt-xs="33" flex="100" scroll="#4" data-position="top" data-tooltip="Ir para todas as praças do brasil">
+      <i class="material-icons middle">map</i>Mapa das praças</a>
+  </div>
+</div>
+<div id="2" scroll-color="blue" class="block transparent blue" layout="column" layout-align="center center">
+  <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
+    <h1>Conheça as Praças CEUs</h1>
+    <md-icon layout-align="center center"> explore</md-icon>
+    <h3>Entenda o que são e como funcionam os Centros de Artes e Esportes Unificados</h3>
+  </div>
+</div>
+<a ui-sref="app.geoloc">
+  <div id="3" scroll-color="yellow darken-1" class="block transparent yellow lighten-1" layout="column"
+    layout-align="center center">
+    <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
+      <h1>Praças próximas a mim</h1>
+      <md-icon> near_me</md-icon>
+      <h3>Podemos localizar as praças que estão mais próximas a você agora</h3>
+    </div>
+  </div>
+</a>
+<a target="_blank"
+  href="http://mapas.cultura.gov.br/busca/##(global:(enabled:(space:!t),filterEntity:space),space:(filters:(type:!('132'))))">
+  <div id="4" scroll-color="green" class="block transparent green lighten-1 hoverable" layout="column"
+    layout-align="center center">
+    <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
+      <h1>Todas as praças no Mapa</h1>
+      <md-icon> map</md-icon>
+      <h3>Visualize todas as praças do Brasil de uma só vez no mapa</h3>
+    </div>
+  </div>
+</a>
 </div>
 </div>
 <script>
-    $('.pushpin-demo-nav').each(function () {
-        var $this = $(this);
-        var $target = $('#' + $(this).attr('data-target'));
-        $this.pushpin({
-            top: $target.offset().top,
-            bottom: $target.offset().top + $target.outerHeight() - $this.height()
-        });
+  $('.pushpin-demo-nav').each(function () {
+    var $this = $(this);
+    var $target = $('#' + $(this).attr('data-target'));
+    $this.pushpin({
+      top: $target.offset().top,
+      bottom: $target.offset().top + $target.outerHeight() - $this.height()
     });
-    $(document).ready(function () {
-        $('.target').pushpin({
-            top: 0,
-            bottom: 1000,
-            offset: 0
-        });
-    });
+  });
+$(document).ready(function () {
+  $('.target').pushpin({
+    top: 0,
+    bottom: 1000,
+    offset: 0
+  });
+});
 </script>
