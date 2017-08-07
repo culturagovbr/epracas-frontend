@@ -1,6 +1,6 @@
 class ParceirosCtrl {
   constructor($mdDialog, $http, AppConstants, Toast, praca, $log) {
-    "ngInject";
+    "ngInject"
 
     angular.extend(this, {
       $mdDialog,
@@ -60,14 +60,14 @@ class ParceirosCtrl {
         value: 12,
         display_name: "serviços",
       },
-    ];
+    ]
 
-    this.parceiro = {};
-    this.parceiro.praca = praca.id_pub;
+    this.parceiro = {}
+    this.parceiro.praca = praca.id_pub
   }
 
   cancel() {
-    this.$mdDialog.cancel();
+    this.$mdDialog.cancel()
   }
 
   save(praca_id_pub, data) {
@@ -84,8 +84,18 @@ class ParceirosCtrl {
       )
       .catch(
         (err) => this.$log.error(`saveParceiros: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
-      );
+      )
+  }
+
+  ImgDialog() {
+    this.$mdDialog.show({
+      controller: "ParceiroImgController",
+      controllerAs: "$ctrl",
+      templateUrl: "praca/parceiros-components/parceiros-img-upload.dialog.tmpl.html",
+      // multiple: true,
+    })
+    .then(data => (this.parceiro.imagem = data))
   }
 }
 
-export default ParceirosCtrl;
+export default ParceirosCtrl

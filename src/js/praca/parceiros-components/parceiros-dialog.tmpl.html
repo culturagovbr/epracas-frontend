@@ -44,13 +44,13 @@
         </div>
 
         <md-input-container class="md-block">
-            <md-icon>work</md-icon>
-            <label>Ramo de Atividade do Parceiro</label>
-            <md-select ng-model="$ctrl.parceiro.ramo_atividade">
-              <md-option ng-repeat="atividade in $ctrl._listaAtividades" value="{{atividade.value}}">
-                {{atividade.display_name}}
-              </md-option>
-            </md-select>
+          <md-icon>work</md-icon>
+          <label>Ramo de Atividade do Parceiro</label>
+          <md-select ng-model="$ctrl.parceiro.ramo_atividade">
+            <md-option ng-repeat="atividade in $ctrl._listaAtividades" value="{{atividade.value}}">
+              {{atividade.display_name}}
+            </md-option>
+          </md-select>
         </md-input-container>
 
         <div>
@@ -82,17 +82,28 @@
           </div>
         </div>
 
-      </md-content>
-    </md-dialog-content>
+        <md-subheader ng-show="$ctrl.parceiro.imagem">Pré visualização</md-subheader>
+        <div>
+          <img flex="70" ng-show="$ctrl.parceiro.imagem" ng-src="{{$ctrl.parceiro.imagem}}" alt=""/>
+        </div>
 
-    <md-dialog-actions>
-      <md-button ng-click="$ctrl.cancel()">
-        Cancelar
-      </md-button>
-      <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="ParceiroForm.$invalid">
-        Enviar
-      </md-button>
-    </md-dialog-actions>
+        <div>
+          <!-- <md-button ng-click="$ctrl.ImgDialog()">Anexe uma imagem do Parceiro</md-button> -->
+        </div>
 
-  </form>
+      </div>
+
+  <md-dialog-actions>
+    <md-button ng-click="$ctrl.cancel()">
+      Cancelar
+    </md-button>
+    <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="ParceiroForm.$invalid">
+      Enviar
+    </md-button>
+  </md-dialog-actions>
+    </md-content>
+  </md-dialog-content>
+
+
+</form>
 </md-dialog>
