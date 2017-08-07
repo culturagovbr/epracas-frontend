@@ -1,7 +1,7 @@
 
 
 class GaleriaEditDialogCtrl {
-  constructor($mdDialog, $log, Upload, AppConstants, id, $stateParams, Praca, $scope, Toast) {
+  constructor($mdDialog, $log, Upload, AppConstants, id, $stateParams, Praca, $scope, Toast, $state) {
     "ngInject";
       $scope.objForm = {};
       Praca.getImg($stateParams.pk, id).then(function(arrResult) {
@@ -13,6 +13,7 @@ class GaleriaEditDialogCtrl {
       _$log: $log,
       _Upload: Upload,
       _AppConstants: AppConstants,
+      state: $state,
     });
 
     this.save = () => {
@@ -24,11 +25,13 @@ class GaleriaEditDialogCtrl {
                     this._$mdDialog.cancel();
                     // $scope.paginatorData = $scope.paginatorData.filter((obj) => {return obj.id != pkImg;}); // Retira do array de objetos a imagem deletada.
                     Toast.showSuccessToast('Imagem salva com sucesso');
+                    this.state.reload();
                 })
             .catch(
                 err => {
                     $log.error(`Erro ao salvar esta imagem. ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`);
                     Toast.showRejectedToast("Erro ao salvar a imagem.");
+                    this.state.reload();
                 }
             );
     }
