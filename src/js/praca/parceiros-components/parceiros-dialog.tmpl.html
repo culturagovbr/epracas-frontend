@@ -87,11 +87,12 @@
           <img flex="70" ng-show="$ctrl.parceiro.imagem" ng-src="{{$ctrl.parceiro.imagem}}" alt=""/>
         </div>
 
-        <div>
-          <!-- <md-button ng-click="$ctrl.ImgDialog()">Anexe uma imagem do Parceiro</md-button> -->
-        </div>
+        <md-button ng-click="$ctrl.ImgDialog()">
+          Anexe uma imagem do Parceiro
+        </md-button>
 
-      </div>
+    </md-content>
+  </md-dialog-content>
 
   <md-dialog-actions>
     <md-button ng-click="$ctrl.cancel()">
@@ -101,9 +102,6 @@
       Enviar
     </md-button>
   </md-dialog-actions>
-    </md-content>
-  </md-dialog-content>
-
 
 </form>
 </md-dialog>

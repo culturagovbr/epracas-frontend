@@ -1,14 +1,17 @@
 class ParceirosCtrl {
-  constructor($mdDialog, $http, AppConstants, Toast, praca, $log) {
+  constructor($scope, $mdDialog, $http, $log, Upload, AppConstants, Toast, ErrorCatcher, praca) {
     "ngInject"
 
     angular.extend(this, {
+      $scope,
       $mdDialog,
       $http,
+      $log,
+      Upload,
       AppConstants,
       Toast,
+      ErrorCatcher,
       praca,
-      $log,
     })
 
     this._listaAtividades = [
@@ -71,7 +74,10 @@ class ParceirosCtrl {
   }
 
   save(praca_id_pub, data) {
-    this.$http({
+    const caller = this.ErrorCatcher.callerName()
+
+    if (data.imagem) { data.imagem = this.Upload.dataUrltoBlob(data.imagem) }
+    this.Upload.upload({
       url: `${this.AppConstants.api}/pracas/${praca_id_pub}/parceiros/`,
       method: "POST",
       data: data,
@@ -80,11 +86,14 @@ class ParceirosCtrl {
         () => {
           this.$mdDialog.hide()
           this.Toast.showSuccessToast("Parceiro Cadastrado com Sucesso!")
+          this.$scope.reload()
         }
       )
       .catch(
-        (err) => this.$log.error(`saveParceiros: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
-      )
+        (err) => {
+          this.ErrorCatcher.error(caller, err)
+        this.$log.error(`saveParceiros: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
+        })
   }
 
   ImgDialog() {
@@ -92,7 +101,7 @@ class ParceirosCtrl {
       controller: "ParceiroImgController",
       controllerAs: "$ctrl",
       templateUrl: "praca/parceiros-components/parceiros-img-upload.dialog.tmpl.html",
-      // multiple: true,
+      multiple: true,
     })
     .then(data => (this.parceiro.imagem = data))
   }
