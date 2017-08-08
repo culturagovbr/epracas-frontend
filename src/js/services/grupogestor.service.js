@@ -19,6 +19,8 @@ class GrupoGestor {
 
     if (grupogestor.data_finalizacao) {
       grupogestor.data_finalizacao = moment(grupogestor.data_finalizacao).format("YYYY-MM-DD")
+      delete grupogestor.estatuto
+      delete grupogestor.documento_constituicao
     }
 
     if (grupogestor.id_pub) {
