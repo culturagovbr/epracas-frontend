@@ -39,9 +39,9 @@
   <md-content class="container" ng-cloak layout-gt-sm="row" layout="column">
     <div flex-gt-sm="50" flex-sm="100" flex>
       <md-list flex>
-        <md-subheader class="md-no-sticky" ng-if="$ctrl.objData.tipos.length">
+        <md-subheader class="md-no-sticky grey white-text grey white-text" ng-if="$ctrl.objData.tipos.length">
           <h3><b>
-            <md-icon>flag</md-icon>
+            <md-icon class="white-text">flag</md-icon>
             Categoria</b></h3>
         </md-subheader>
         <md-list-item ng-repeat="obj in $ctrl.objData.tipos" class="md-2-line">
@@ -50,9 +50,9 @@
             <h4>{{obj.display_name}}</h4>
           </div>
         </md-list-item>
-        <md-subheader class="md-no-sticky" ng-if="$ctrl.objData.faixa_etarias.length">
+        <md-subheader class="md-no-sticky grey white-text" ng-if="$ctrl.objData.faixa_etarias.length">
           <h3><b>
-            <md-icon>face</md-icon>
+            <md-icon class="white-text">face</md-icon>
             Faixa etária</b></h3>
         </md-subheader>
         <md-list-item ng-repeat="obj in $ctrl.objData.faixa_etarias" class="md-2-line">
@@ -61,9 +61,9 @@
             <h4>{{obj.display_name}}</h4>
           </div>
         </md-list-item>
-        <md-subheader class="md-no-sticky">
+        <md-subheader class="md-no-sticky grey white-text">
           <h3><b>
-            <md-icon>terrain</md-icon>
+            <md-icon class="white-text">terrain</md-icon>
             Local</b></h3>
         </md-subheader>
         <md-list-item ng-repeat="obj in $ctrl.objData.territorios" class="md-2-line">
@@ -75,9 +75,9 @@
     </div>
     <div flex-gt-sm="50" flex-sm="100" flex>
       <md-list flex>
-        <md-subheader class="md-no-sticky" ng-if="$ctrl.objData.publicos.length">
+        <md-subheader class="md-no-sticky grey white-text" ng-if="$ctrl.objData.publicos.length">
           <h3><b>
-            <md-icon>group</md-icon>
+            <md-icon class="white-text">group</md-icon>
             Atividade Destinada à Publico ou Grupo Específico</b></h3>
         </md-subheader>
         <md-list-item ng-repeat="obj in $ctrl.objData.publicos" class="md-2-line">
@@ -85,9 +85,9 @@
             <h4>{{obj.display_name}}</h4>
           </div>
         </md-list-item>
-        <md-subheader class="md-no-sticky" ng-if="$ctrl.objData.espacos.length">
+        <md-subheader class="md-no-sticky grey white-text" ng-if="$ctrl.objData.espacos.length">
           <h3><b>
-            <md-icon>location_city</md-icon>
+            <md-icon class="white-text">location_city</md-icon>
             Espaços</b></h3>
         </md-subheader>
         <md-list-item ng-repeat="obj in $ctrl.objData.espacos" class="md-2-line">
