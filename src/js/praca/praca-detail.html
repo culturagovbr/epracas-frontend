@@ -87,6 +87,7 @@
             <md-tab ng-if="$ctrl.praca.situacao == 'i'" label="Grupo Gestor" scroll="#container-grupogestor" offset="48"></md-tab>
             <md-tab ng-if="$ctrl.praca.situacao != 'i'" label="Unidade Gestora Local" scroll="#container-unidade" offset="48"></md-tab>
             <md-tab label="Recursos Humanos" scroll="#container-rh" offset="48"></md-tab>
+            <md-tab label="Atores" scroll="#container-atores" offset="48"></md-tab>
             <md-tab label="Localização" scroll="#container-localizacao" offset="48"></md-tab>
           </md-tabs>
         </div>
@@ -151,6 +152,9 @@
 
   <!-- Recursos Humanos -->
   <praca-rh praca="$ctrl.praca" rhs="$ctrl.praca.rh"></praca-rh>
+
+  <!-- Atores -->
+  <praca-atores praca="$ctrl.praca" atores="$ctrl.praca.atores"></praca-atores>
 
   <!-- Localização -->
   <div id="container-localizacao" layout-gt-xs="row" class="localizacao">

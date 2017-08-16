@@ -80,4 +80,13 @@ pracaModule.controller("RhAddDialogController", RhAddDialogController)
 import RhListDialogController from "./rh-components/rh-list.dialog.ctrl"
 pracaModule.controller("RhListDialogController", RhListDialogController)
 
+import AtoresBoardElement from "./atores-components/board.component"
+pracaModule.component("pracaAtores", AtoresBoardElement)
+
+import AtoresListElement from "./atores-components/list.component"
+pracaModule.component("pracaAtoresList", AtoresListElement)
+
+import AtoresDetailElement from "./atores-components/detail.component"
+pracaModule.component("pracaAtoresDetail", AtoresDetailElement)
+
 export default pracaModule;
