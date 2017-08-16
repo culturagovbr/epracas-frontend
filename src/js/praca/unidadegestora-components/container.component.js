@@ -43,7 +43,7 @@ const UnidadeGestoraContainer = {
           <md-icon class="material-icons">location_city</md-icon>
           <h1 flex class="flex">Unidade Gestora Local</h1>
         </div>
-        <div ng-if="$ctrl.praca.unidade_gestora.length == 0">
+        <div ng-if="$ctrl.praca.unidade_gestora.length == '0'">
           <p>Os dados sobre a Unidade Gestora ainda não foram inseridos nesta Praça. </p>
         </div>
 
