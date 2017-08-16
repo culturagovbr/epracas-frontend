@@ -131,68 +131,46 @@
         <label>Municipio</label>
         <input name="pracaMunicipio" required ng-model="$ctrl.praca.municipio">
       </md-input-container>
-
-
-
-        <md-input-container flex-gt-xs="30">
-          <div class="switch">
-            <label>
-              Off
-              <input type="checkbox">
-              <span class="lever"></span>
-              On
-            </label>
-          </div>
-        </md-input-container>
         <h4>
           Horários de funcionamento <span ng-attr-style="border: 1px solid #333; background: rgb({{color.red}},{{color.green}},{{color.blue}})">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         </h4>
         <div layout>
-          <div flex="20" layout layout-align="center center">
+          <div flex="30" layout layout-align="center center">
             <span class="md-body-1">Segunda - Sexta</span>
           </div>
           <md-slider flex min="0" max="24" ng-model="$ctrl.praca.funcionamento_h_uteis_abre" aria-label="red" id="red-slider" class>
           </md-slider>
-          <div flex="10" layout layout-align="center center">
-            <input flex type="number" max="24" ng-model="$ctrl.praca.funcionamento_h_uteis_abre" aria-label="red" aria-controls="red-slider">
-          </div>
-           &nbsp;&nbsp;
+          &nbsp;&nbsp;
           <md-slider flex min="0" max="24" ng-model="$ctrl.praca.funcionamento_h_uteis_fecha" aria-label="red" id="red-slider" class>
           </md-slider>
-          <div flex="10" layout layout-align="center center">
-            <input flex type="number" max="24" ng-model="$ctrl.praca.funcionamento_h_uteis_fecha" aria-label="red" aria-controls="red-slider">
+          <div flex="20" layout layout-align="center center">
+            {{$ctrl.praca.funcionamento_h_uteis_abre}}h às {{$ctrl.praca.funcionamento_h_uteis_fecha}}h
           </div>
         </div>
         <div layout>
           <div flex="20" layout layout-align="center center">
             <span class="md-body-1">Sábado</span>
           </div>
-          <md-slider flex ng-model="color.green" min="0" max="24" aria-label="green" id="green-slider" class="md-accent">
+          <md-slider flex ng-model="$ctrl.praca.funcionamento_h_sabado_abre" min="0" max="24" aria-label="green" id="green-slider" class="md-accent">
           </md-slider>
-          <div flex="10" layout layout-align="center center">
-            <input flex type="number" min="0" max="24" ng-model="$ctrl.praca.funcionamento_h_sabado_abre" aria-label="green" aria-controls="green-slider">
-          </div>
           &nbsp;&nbsp;
-          <md-slider flex ng-model="color.green" min="0" max="24" aria-label="green" id="green-slider" class="md-accent">
+          <md-slider flex ng-model="$ctrl.praca.funcionamento_h_sabado_fecha" min="0" max="24" aria-label="green" id="green-slider" class="md-accent">
           </md-slider>
-          <div flex="10" layout layout-align="center center">
-            <input flex type="number" max="24" ng-model="$ctrl.praca.funcionamento_h_sabado_fecha" aria-label="green" aria-controls="green-slider">
+          <div flex="20" layout layout-align="center center">
+            {{$ctrl.praca.funcionamento_h_sabado_abre}}h às {{$ctrl.praca.funcionamento_h_sabado_fecha}}h
           </div>
         </div>
         <div layout>
           <div flex="20" layout layout-align="center center">
             <span class="md-body-1">Domingo</span>
           </div>
-          <md-slider flex ng-model="color.blue" min="0" max="24" aria-label="blue" id="blue-slider" class="md-primary">
+          <md-slider flex ng-model="$ctrl.praca.funcionamento_h_domingo_abre" min="0" max="24" aria-label="blue" id="blue-slider" class="md-primary">
           </md-slider>
-          <div flex="10" layout layout-align="center center">
-            <input flex type="number" max="24" ng-model="$ctrl.praca.funcionamento_h_domingo_abre" aria-label="blue" aria-controls="blue-slider">
-          </div>
           &nbsp;&nbsp;
-          <md-slider flex ng-model="color.blue" min="0" max="24" aria-label="blue" id="blue-slider" class="md-primary">
+          <md-slider flex ng-model="$ctrl.praca.funcionamento_h_domingo_fecha" min="0" max="24" aria-label="blue" id="blue-slider" class="md-primary">
           </md-slider>
-          <div flex="10" layout layout-align="center center">
-            <input flex type="number" max="24" ng-model="$ctrl.praca.funcionamento_h_domingo_fecha" aria-label="blue" aria-controls="blue-slider">
+          <div flex="20" layout layout-align="center center">
+            {{$ctrl.praca.funcionamento_h_domingo_abre}}h às {{$ctrl.praca.funcionamento_h_domingo_fecha}}h
           </div>
         </div>
 
