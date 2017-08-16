@@ -13,6 +13,7 @@ class ParceirosBoardController {
       controllerAs: "$ctrl",
       templateUrl: "praca/parceiros-components/parceiros-dialog.tmpl.html",
       locals: { praca },
+      fullscreen: true,
     })
   }
 }

@@ -92,7 +92,8 @@ class PracaDetailCtrl {
             this.userMenu = this.buildMenu(this.currentUser)
           }
         }
-    );
+    )
+
     $scope.tabIntSelected = 0
     $scope.intWindowHeight = $(window).height()
 
@@ -241,7 +242,7 @@ class PracaDetailCtrl {
         dialog: {
           controller: "ParceirosCtrl",
           controllerAs: "$ctrl",
-          templateUrl: "praca/parceiros-dialog.tmpl.html",
+          templateUrl: "praca/parceiros-components/parceiros-dialog.tmpl.html",
           parent: angular.element(this.$document.body),
           locals: { praca: this.praca },
           fullscreen: true,
