@@ -89,4 +89,10 @@ pracaModule.component("pracaAtoresList", AtoresListElement)
 import AtoresDetailElement from "./atores-components/detail.component"
 pracaModule.component("pracaAtoresDetail", AtoresDetailElement)
 
+import AtoresCtrl from "./atores-components/atores.controller"
+pracaModule.controller("AtoresCtrl", AtoresCtrl)
+
+import AtoresListDialogController from "./atores-components/atores-list.dialog.ctrl"
+pracaModule.controller("AtoresListDialogController", AtoresListDialogController)
+
 export default pracaModule;

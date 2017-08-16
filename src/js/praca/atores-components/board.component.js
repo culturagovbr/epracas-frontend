@@ -7,16 +7,28 @@ class AtoresBoardController {
     })
   }
 
-  showAddDialog(praca) {
+  showAddDialog(praca, ator) {
     this.$mdDialog.show({
       controller: "AtoresCtrl",
       controllerAs: "$ctrl",
       templateUrl: "praca/atores-components/atores-dialog.tmpl.html",
+      locals: { praca, ator },
+      fullscreen: true,
+    })
+  }
+
+  showListDialog(praca) {
+    this.$mdDialog.show({
+      controller: "AtoresListDialogController",
+      controllerAs: "$ctrl",
+      templateUrl: "praca/atores-components/atores-list.dialog.tmpl.html",
       locals: { praca },
       fullscreen: true,
     })
   }
+
 }
+
 const AtoresBoardElement = {
   controller: AtoresBoardController,
   template: `
@@ -24,7 +36,7 @@ const AtoresBoardElement = {
       <div flex layout-padding class="info">
         <div class="layout-row title">
           <md-icon>group_work</md-icon>
-          <h1 flex>Atores da Praça</h1>
+          <h1 flex><a href="#" ng-disable="!$ctrl.atores" ng-click="$ctrl.showListDialog($ctrl.praca)">Atores da Praça</a></h1>
         </div>
         <md-fab-speed-dial show-as-manager="true" class="md-fab-top-right" ng-click="$ctrl.showAddDialog($ctrl.praca)" style="padding:0;">
           <md-fab-trigger>

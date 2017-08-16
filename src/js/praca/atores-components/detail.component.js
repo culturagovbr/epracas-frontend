@@ -1,6 +1,6 @@
 const AtoresDetailElement = {
   template: `
-    <md-card layout-padding flex="25">
+    <md-card layout-padding>
       <div class="epr-avatar" ng-show="$ctrl.ator.imagem" style="background-image: url('{{ $ctrl.ator.imagem}}')"></div>
       <span class="epr-name">{{ $ctrl.ator.nome }}</span>
       <span class="epr-subname"></span>
