@@ -138,10 +138,10 @@
           <div flex="30" layout layout-align="center center">
             <span class="md-body-1">Segunda - Sexta</span>
           </div>
-          <md-slider flex min="0" max="24" ng-model="$ctrl.praca.funcionamento_h_uteis_abre" aria-label="red" id="red-slider" class>
+          <md-slider flex min="0" max="$ctrl.praca.funcionamento_h_uteis_fecha" ng-model="{{$ctrl.praca.funcionamento_h_uteis_abre}}" aria-label="red" id="red-slider" class>
           </md-slider>
           &nbsp;&nbsp;
-          <md-slider flex min="0" max="24" ng-model="$ctrl.praca.funcionamento_h_uteis_fecha" aria-label="red" id="red-slider" class>
+          <md-slider flex min="$ctrl.praca.funcionamento_h_uteis_abre" max="24" ng-model="{{$ctrl.praca.funcionamento_h_uteis_fecha}}" aria-label="red" id="red-slider" class>
           </md-slider>
           <div flex="20" layout layout-align="center center">
             {{$ctrl.praca.funcionamento_h_uteis_abre}}h às {{$ctrl.praca.funcionamento_h_uteis_fecha}}h
@@ -151,10 +151,10 @@
           <div flex="20" layout layout-align="center center">
             <span class="md-body-1">Sábado</span>
           </div>
-          <md-slider flex ng-model="$ctrl.praca.funcionamento_h_sabado_abre" min="0" max="24" aria-label="green" id="green-slider" class="md-accent">
+          <md-slider flex ng-model="$ctrl.praca.funcionamento_h_sabado_abre" min="0" max="{{$ctrl.praca.funcionamento_h_sabado_fecha}}" aria-label="green" id="green-slider" class="md-accent">
           </md-slider>
           &nbsp;&nbsp;
-          <md-slider flex ng-model="$ctrl.praca.funcionamento_h_sabado_fecha" min="0" max="24" aria-label="green" id="green-slider" class="md-accent">
+          <md-slider flex ng-model="$ctrl.praca.funcionamento_h_sabado_fecha" min="{{$ctrl.praca.funcionamento_h_sabado_abre}}" max="24" aria-label="green" id="green-slider" class="md-accent">
           </md-slider>
           <div flex="20" layout layout-align="center center">
             {{$ctrl.praca.funcionamento_h_sabado_abre}}h às {{$ctrl.praca.funcionamento_h_sabado_fecha}}h
@@ -164,10 +164,10 @@
           <div flex="20" layout layout-align="center center">
             <span class="md-body-1">Domingo</span>
           </div>
-          <md-slider flex ng-model="$ctrl.praca.funcionamento_h_domingo_abre" min="0" max="24" aria-label="blue" id="blue-slider" class="md-primary">
+          <md-slider flex ng-model="$ctrl.praca.funcionamento_h_domingo_abre" step="1" min="0" max="{{$ctrl.praca.funcionamento_h_domingo_fecha}}" aria-label="blue" id="blue-slider" class="md-primary">
           </md-slider>
           &nbsp;&nbsp;
-          <md-slider flex ng-model="$ctrl.praca.funcionamento_h_domingo_fecha" min="0" max="24" aria-label="blue" id="blue-slider" class="md-primary">
+          <md-slider flex ng-model="$ctrl.praca.funcionamento_h_domingo_fecha" step="1" min="{{$ctrl.praca.funcionamento_h_domingo_abre}}" max="24" aria-label="blue" id="blue-slider" class="md-primary">
           </md-slider>
           <div flex="20" layout layout-align="center center">
             {{$ctrl.praca.funcionamento_h_domingo_abre}}h às {{$ctrl.praca.funcionamento_h_domingo_fecha}}h
