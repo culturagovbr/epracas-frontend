@@ -47,7 +47,7 @@ const GrupoGestorContainer = {
           <md-icon>group</md-icon>
           <h1 flex>Grupo Gestor</h1>
         </div>
-        <div ng-if="!$ctrl.praca.grupo_gestor">
+        <div ng-if="$ctrl.praca.grupo_gestor.length='0'">
           <p>Os dados sobre o Grupo Gestor ainda não foram inseridos nesta Praça.</p>
         </div>
 
