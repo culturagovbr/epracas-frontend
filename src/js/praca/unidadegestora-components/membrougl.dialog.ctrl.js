@@ -1,9 +1,9 @@
 export default class MembroUglDialogController {
-  constructor($http, $mdDialog, $log, Toast, UnidadeGestora, praca) {
+  constructor($state, $mdDialog, $log, Toast, UnidadeGestora, praca) {
     "ngInject"
 
     angular.extend(this, {
-      $http,
+      $state,
       $mdDialog,
       $log,
       Toast,
@@ -27,6 +27,7 @@ export default class MembroUglDialogController {
         (response) => {
           this.$mdDialog.hide()
           this.Toast.showSuccessToast("Membro da UGL Adicionado")
+          this.$state.reload()
         }
       )
       .catch(

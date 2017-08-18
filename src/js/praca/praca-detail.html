@@ -83,11 +83,11 @@
             <md-tab label="Inicio" scroll="header"></md-tab>
             <md-tab label="Agenda" scroll="#container-agenda" offset="48"></md-tab>
             <md-tab label="Fotos" scroll="#container-imagens" offset="48"></md-tab>
-            <md-tab ng-if="$ctrl.praca.situacao == 'i'" label="Parceiros" scroll="#container-parceiros" offset="48"></md-tab>
-            <md-tab ng-if="$ctrl.praca.situacao == 'i'" label="Grupo Gestor" scroll="#container-grupogestor" offset="48"></md-tab>
-            <md-tab ng-if="$ctrl.praca.situacao != 'i'" label="Unidade Gestora Local" scroll="#container-unidade" offset="48"></md-tab>
+            <md-tab label="Parceiros" ng-if="$ctrl.praca.situacao == 'i'" scroll="#container-parceiros" offset="48"></md-tab>
+            <md-tab label="Grupo Gestor" ng-if="$ctrl.praca.situacao == 'i'" scroll="#container-grupogestor" offset="48"></md-tab>
+            <md-tab label="Unidade Gestora Local" ng-if="$ctrl.praca.situacao != 'i'" scroll="#container-unidade" offset="48"></md-tab>
             <md-tab label="Recursos Humanos" scroll="#container-rh" offset="48"></md-tab>
-            <md-tab label="Atores" scroll="#container-atores" offset="48"></md-tab>
+            <md-tab label="Atores" ng-if="$ctrl.praca.situacao == 'i'" scroll="#container-atores" offset="48"></md-tab>
             <md-tab label="Localização" scroll="#container-localizacao" offset="48"></md-tab>
           </md-tabs>
         </div>

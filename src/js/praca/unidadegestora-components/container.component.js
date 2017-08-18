@@ -37,12 +37,21 @@ class UnidadeGestoraController {
 const UnidadeGestoraContainer = {
   controller: UnidadeGestoraController,
   template: `
-    <div id="container-unidade" layout-padding layout-gt-xs="row">
+    <div id="container-unidade" layout-padding layout-gt-xs="column">
       <div flex class="info">
         <div class="layout-row title">
           <md-icon class="material-icons">location_city</md-icon>
           <h1 flex class="flex">Unidade Gestora Local</h1>
         </div>
+
+        <md-fab-speed-dial show-as-manager="true" class="md-fab-top-right" ng-click="$ctrl.showUGLDialog($ctrl.praca)" style="padding:0;">
+          <md-fab-trigger>
+            <md-button class="md-fab">
+              <md-icon class="material-icons">add</md-icon>
+            </md-button>
+          </md-fab-trigger>
+        </md-fab-speed-dial>
+
         <div ng-if="$ctrl.praca.unidade_gestora.length == '0'">
           <p>Os dados sobre a Unidade Gestora ainda não foram inseridos nesta Praça. </p>
         </div>
@@ -56,13 +65,6 @@ const UnidadeGestoraContainer = {
         </md-card>
       </div>
 
-      <md-fab-speed-dial show-as-manager="true" class="md-fab-top-right" ng-click="$ctrl.showUGLDialog($ctrl.praca)" style="padding:0;">
-        <md-fab-trigger>
-          <md-button class="md-fab">
-            <md-icon class="material-icons">add</md-icon>
-          </md-button>
-        </md-fab-trigger>
-      </md-fab-speed-dial>
     </div>
     `,
   bindings: {
