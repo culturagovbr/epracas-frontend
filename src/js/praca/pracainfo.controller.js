@@ -29,6 +29,17 @@ class PracaInfoCtrl {
     this.$mdDialog.cancel()
   }
 
+  applyEffect(strName) {
+      let elmContainer = $('#container-' + strName);
+      console.info(this)
+      // console.info(this.praca.praca.{'funcionamento_' + strName})
+      if (elmContainer.is(':visible')) {
+          elmContainer.fadeOut('slow')
+      } else {
+          elmContainer.fadeIn('slow')
+      }
+  }
+
   save(data) {
     this.isSaving = true
     if (angular.isUndefined(data.id_pub) || data.id_pub === null) {

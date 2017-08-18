@@ -1,193 +1,231 @@
 <md-dialog layout="column" aria-label="Editar Informações sobre a Praça">
-  <form name="PracaForm" ng-disabled="$ctrl.isSaving" ng-submit="$ctrl.save($ctrl.praca)">
-    <md-dialog-content>
+    <form name="PracaForm" ng-disabled="$ctrl.isSaving" ng-submit="$ctrl.save($ctrl.praca)">
+        <md-dialog-content>
 
-      <md-content md-theme="docs-dark" layout-padding>
-        <h2>Informações sobre a Praça</h2>
-        <md-input-container class="md-block" flex>
-          <label>Nome da Praça</label>
-          <input name="pracaNome" required ng-model="$ctrl.praca.nome">
-        </md-input-container>
-      </md-content>
+            <md-content md-theme="docs-dark" layout-padding>
+                <h2>Informações sobre a Praça</h2>
+                <md-input-container class="md-block" flex>
+                    <label>Nome da Praça</label>
+                    <input name="pracaNome" required ng-model="$ctrl.praca.nome">
+                </md-input-container>
+            </md-content>
 
-      <md-content layout-padding>
+            <md-content layout-padding>
 
-        <div layout-gt-xs="row">
-          <md-input-container flex-gt-xs=50>
-            <md-icon>assignment</md-icon>
-            <label>Numero do Contrato</label> 
-            <input ng-disabled="!$ctrl.isAdmin" name="pracaContrato" required type="number" ng-model="$ctrl.praca.contrato">
-          </md-input-container>
+                <div layout-gt-xs="row">
+                    <md-input-container flex-gt-xs=50>
+                        <md-icon>assignment</md-icon>
+                        <label>Numero do Contrato</label>
+                        <input ng-disabled="!$ctrl.isAdmin" name="pracaContrato" required type="number"
+                               ng-model="$ctrl.praca.contrato">
+                    </md-input-container>
 
-          <md-input-container ng-disabled="!$ctrl.isAdmin" flex-gt-xs=50>
-            <md-icon>attach_money</md-icon>
-            <label>Valor do Repasse</label> 
-            <input ng-disabled="!$ctrl.isAdmin" name="pracaRepasse" type="number" ng-model="$ctrl.praca.repasse">
-          </md-input-container>
-        </div>
+                    <md-input-container ng-disabled="!$ctrl.isAdmin" flex-gt-xs=50>
+                        <md-icon>attach_money</md-icon>
+                        <label>Valor do Repasse</label>
+                        <input ng-disabled="!$ctrl.isAdmin" name="pracaRepasse" type="number"
+                               ng-model="$ctrl.praca.repasse">
+                    </md-input-container>
+                </div>
 
-        <div layout-gt-xs="row">
+                <div layout-gt-xs="row">
 
-          <md-input-container flex-gt-xs="50">
-            <md-icon>format_paint</md-icon>
-            <label>Situação da Obra</label>
-            <md-icon></md-icon>
-            <md-select name="pracaSituacao" required ng-model="$ctrl.praca.situacao">
-              <md-option ng-repeat="situacao in $ctrl.listaSituacao" value="{{situacao.value}}">
-                {{situacao.display_name}}
-              </md-option>
-            </md-select>
-          </md-input-container>
+                    <md-input-container flex-gt-xs="50">
+                        <md-icon>format_paint</md-icon>
+                        <label>Situação da Obra</label>
+                        <md-icon></md-icon>
+                        <md-select name="pracaSituacao" required ng-model="$ctrl.praca.situacao">
+                            <md-option ng-repeat="situacao in $ctrl.listaSituacao" value="{{situacao.value}}">
+                                {{situacao.display_name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
 
-          <md-input-container flex-gt-xs="50">
-            <md-icon>account_balance</md-icon>
-            <label>Modelo de Praça</label>
-            <md-icon></md-icon>
-            <md-select ng-disabled="!$ctrl.isAdmin" name="pracaModelo" required ng-model="$ctrl.praca.modelo">
-              <md-option ng-repeat="modelo in $ctrl.listaModelo" value="{{modelo.value}}">
-                {{modelo.display_name}}
-              </md-option>
-            </md-select>
-          </md-input-container>
-        </div>
+                    <md-input-container flex-gt-xs="50">
+                        <md-icon>account_balance</md-icon>
+                        <label>Modelo de Praça</label>
+                        <md-icon></md-icon>
+                        <md-select ng-disabled="!$ctrl.isAdmin" name="pracaModelo" required
+                                   ng-model="$ctrl.praca.modelo">
+                            <md-option ng-repeat="modelo in $ctrl.listaModelo" value="{{modelo.value}}">
+                                {{modelo.display_name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
 
-        <md-input-container class="md-block" flex ng-if="$ctrl.praca.situacao == 'i'">
-          <label>Data de Inauguração</label>
-          <md-datepicker ng-model="$ctrl.praca.data_inauguracao"></md-datepicker>
-        </md-input-container>
+                <md-input-container class="md-block" flex ng-if="$ctrl.praca.situacao == 'i'">
+                    <label>Data de Inauguração</label>
+                    <md-datepicker ng-model="$ctrl.praca.data_inauguracao"></md-datepicker>
+                </md-input-container>
 
-      <div>
-        <md-input-container class="md-block" flex>
-          <md-icon>subject</md-icon>
-          <label>Texto de Apresentação da Praça</label>
-          <textarea rows="5" name="pracaBio" ng-model="$ctrl.praca.bio"></textarea>
-        </md-input-container>
-      </div>
+                <div>
+                    <md-input-container class="md-block" flex>
+                        <md-icon>subject</md-icon>
+                        <label>Texto de Apresentação da Praça</label>
+                        <textarea rows="5" name="pracaBio" ng-model="$ctrl.praca.bio"></textarea>
+                    </md-input-container>
+                </div>
 
-      <div layout-gt-xs="row">
-        <md-input-container flex-gt-xs=50>
-          <md-icon>phone</md-icon>
-          <label>Telefone</label>
-          <input name="pracaTelefone1" ng-model="$ctrl.praca.telefone1" mask="(99) 9?9999-9999" clean="true">
-        </md-input-container>
-        <md-input-container flex-gt-xs=50>
-          <md-icon>email</md-icon>
-          <label>E-Mail</label>
-          <input name="pracaEMail1" type="email" ng-model="$ctrl.praca.email1">
-        </md-input-container>
-      </div>
+                <div layout-gt-xs="row">
+                    <md-input-container flex-gt-xs=50>
+                        <md-icon>phone</md-icon>
+                        <label>Telefone</label>
+                        <input name="pracaTelefone1" ng-model="$ctrl.praca.telefone1" mask="(99) 9?9999-9999"
+                               clean="true">
+                    </md-input-container>
+                    <md-input-container flex-gt-xs=50>
+                        <md-icon>email</md-icon>
+                        <label>E-Mail</label>
+                        <input name="pracaEMail1" type="email" ng-model="$ctrl.praca.email1">
+                    </md-input-container>
+                </div>
 
-      <div layout-gt-xs="row">
+                <div layout-gt-xs="row">
 
-        <md-input-container flex>
-          <md-icon>public</md-icon>
-          <label>Pagina nas redes sociais</label>
-          <input name="pracaPagina" type="url" ng-model="$ctrl.pagina.praca">
-        </md-input-container>
+                    <md-input-container flex>
+                        <md-icon>public</md-icon>
+                        <label>Pagina nas redes sociais</label>
+                        <input name="pracaPagina" type="url" ng-model="$ctrl.pagina.praca">
+                    </md-input-container>
 
-      </div>
+                </div>
 
-      <div layout-gt-xs="row" layout-padding>
+                <div layout-gt-xs="row" layout-padding>
 
-        <md-input-container class="md-block" flex>
-          <label>Logradouro</label>
-          <textarea rows="5" name="pracaLogradouro" ng-model="$ctrl.praca.logradouro"></textarea>
-        </md-input-container>
+                    <md-input-container class="md-block" flex>
+                        <label>Logradouro</label>
+                        <textarea rows="5" name="pracaLogradouro" ng-model="$ctrl.praca.logradouro"></textarea>
+                    </md-input-container>
 
-        <div layout-gt-xs="column">
+                    <div layout-gt-xs="column">
 
-          <md-input-container flex-gt-xs="30">
-            <label>CEP</label>
-            <input name="pracaCep" ng-model="$ctrl.praca.cep" mask="99.999-999" clean="true">
-          </md-input-container>
+                        <md-input-container flex-gt-xs="30">
+                            <label>CEP</label>
+                            <input name="pracaCep" ng-model="$ctrl.praca.cep" mask="99.999-999" clean="true">
+                        </md-input-container>
 
-          <md-input-container flex-gt-xs="30">
-            <label>Bairro</label>
-            <input name="pracaBairro" ng-model="$ctrl.praca.bairro">
-          </md-input-container>
-        </div>
+                        <md-input-container flex-gt-xs="30">
+                            <label>Bairro</label>
+                            <input name="pracaBairro" ng-model="$ctrl.praca.bairro">
+                        </md-input-container>
+                    </div>
 
-      </div>
+                </div>
 
-      <md-input-container>
-        <label>Região</label>
-        <md-select name="pracaRegiao" required ng-model="$ctrl.praca.regiao">
-          <md-option ng-repeat="regiao in $ctrl.listaRegiao" value="{{regiao.value}}">
-            {{regiao.display_name}}
-          </md-option>
-        </md-select>
-      </md-input-container>
+                <md-input-container>
+                    <label>Região</label>
+                    <md-select name="pracaRegiao" required ng-model="$ctrl.praca.regiao">
+                        <md-option ng-repeat="regiao in $ctrl.listaRegiao" value="{{regiao.value}}">
+                            {{regiao.display_name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
 
-      <md-input-container>
-        <label>UF</label>
-        <md-select name="pracaUf" required ng-model="$ctrl.praca.uf">
-          <md-option ng-repeat="uf in $ctrl.listaUf" value="{{uf.value}}">
-            {{uf.display_name}}
-          </md-option>
-        </md-select>
-      </md-input-container>
+                <md-input-container>
+                    <label>UF</label>
+                    <md-select name="pracaUf" required ng-model="$ctrl.praca.uf">
+                        <md-option ng-repeat="uf in $ctrl.listaUf" value="{{uf.value}}">
+                            {{uf.display_name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
 
-      <md-input-container>
-        <label>Municipio</label>
-        <input name="pracaMunicipio" required ng-model="$ctrl.praca.municipio">
-      </md-input-container>
-        <h4>
-          Horários de funcionamento <span ng-attr-style="border: 1px solid #333; background: rgb({{color.red}},{{color.green}},{{color.blue}})">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        </h4>
-        <div layout>
-          <div flex="30" layout layout-align="center center">
-            <span class="md-body-1">Segunda - Sexta</span>
-          </div>
-          <md-slider flex min="0" max="$ctrl.praca.funcionamento_h_uteis_fecha" ng-model="{{$ctrl.praca.funcionamento_h_uteis_abre}}" aria-label="red" id="red-slider" class>
-          </md-slider>
-          &nbsp;&nbsp;
-          <md-slider flex min="$ctrl.praca.funcionamento_h_uteis_abre" max="24" ng-model="{{$ctrl.praca.funcionamento_h_uteis_fecha}}" aria-label="red" id="red-slider" class>
-          </md-slider>
-          <div flex="20" layout layout-align="center center">
-            {{$ctrl.praca.funcionamento_h_uteis_abre}}h às {{$ctrl.praca.funcionamento_h_uteis_fecha}}h
-          </div>
-        </div>
-        <div layout>
-          <div flex="20" layout layout-align="center center">
-            <span class="md-body-1">Sábado</span>
-          </div>
-          <md-slider flex ng-model="$ctrl.praca.funcionamento_h_sabado_abre" min="0" max="{{$ctrl.praca.funcionamento_h_sabado_fecha}}" aria-label="green" id="green-slider" class="md-accent">
-          </md-slider>
-          &nbsp;&nbsp;
-          <md-slider flex ng-model="$ctrl.praca.funcionamento_h_sabado_fecha" min="{{$ctrl.praca.funcionamento_h_sabado_abre}}" max="24" aria-label="green" id="green-slider" class="md-accent">
-          </md-slider>
-          <div flex="20" layout layout-align="center center">
-            {{$ctrl.praca.funcionamento_h_sabado_abre}}h às {{$ctrl.praca.funcionamento_h_sabado_fecha}}h
-          </div>
-        </div>
-        <div layout>
-          <div flex="20" layout layout-align="center center">
-            <span class="md-body-1">Domingo</span>
-          </div>
-          <md-slider flex ng-model="$ctrl.praca.funcionamento_h_domingo_abre" step="1" min="0" max="{{$ctrl.praca.funcionamento_h_domingo_fecha}}" aria-label="blue" id="blue-slider" class="md-primary">
-          </md-slider>
-          &nbsp;&nbsp;
-          <md-slider flex ng-model="$ctrl.praca.funcionamento_h_domingo_fecha" step="1" min="{{$ctrl.praca.funcionamento_h_domingo_abre}}" max="24" aria-label="blue" id="blue-slider" class="md-primary">
-          </md-slider>
-          <div flex="20" layout layout-align="center center">
-            {{$ctrl.praca.funcionamento_h_domingo_abre}}h às {{$ctrl.praca.funcionamento_h_domingo_fecha}}h
-          </div>
-        </div>
-
-    </md-content>
-
-
-
-
-  </md-dialog-content>
-
-  <md-dialog-actions>
-    <md-button ng-click="$ctrl.cancel()">
-      Cancelar
-    </md-button>
-    <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="PracaForm.$invalid">
-      Enviar
-    </md-button>
-  </md-dialog-actions>
-</form>
+                <md-input-container>
+                    <label>Municipio</label>
+                    <input name="pracaMunicipio" required ng-model="$ctrl.praca.municipio">
+                </md-input-container>
+                <h4>
+                    Horários de funcionamento <span
+                        ng-attr-style="border: 1px solid #333; background: rgb({{color.red}},{{color.green}},{{color.blue}})">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                </h4>
+                <div layout>
+                    <md-input-container class="md-block" flex-gt-sm="30">
+                        <md-switch class="md-primary" name="special" ng-model="$ctrl.praca.funcionamento_uteis" ng-click="$ctrl.applyEffect('uteis')">
+                            Segunda - Sexta
+                        </md-switch>
+                    </md-input-container>
+                    <div id="container-uteis" layout style="display: none;">
+                        <md-input-container class="md-block" flex-gt-sm="50">
+                            <md-icon class="material-icons" role="img" aria-label="schedule">schedule</md-icon>
+                            <label>Abre</label>
+                            <input name="social" ng-model="$ctrl.praca.funcionamento_h_uteis_abre"
+                                   pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}" mask="29:69"/>
+                            <div class="hint" ng-if="!$ctrl.praca.funcionamento_h_uteis_abre">00:00</div>
+                        </md-input-container>
+                        <div layout="row" layout-align="center center" style="margin: 20px;">
+                            <div>-</div>
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm="50">
+                            <md-icon class="material-icons" role="img" aria-label="schedule">schedule</md-icon>
+                            <label>Fecha</label>
+                            <input name="social" ng-model="$ctrl.praca.funcionamento_h_uteis_fecha"
+                                   pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}" mask="29:69"/>
+                            <div class="hint" ng-if="!$ctrl.praca.funcionamento_h_uteis_fecha">00:00</div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout>
+                    <md-input-container class="md-block" flex-gt-sm="30">
+                        <md-switch class="md-primary" name="special" ng-model="$ctrl.praca.funcionamento_sabado" ng-click="$ctrl.applyEffect('sabado')">
+                            Sábado
+                        </md-switch>
+                    </md-input-container>
+                    <div id="container-sabado" layout style="display: none;">
+                        <md-input-container class="md-block" flex-gt-sm="50">
+                            <md-icon class="material-icons" role="img" aria-label="schedule">schedule</md-icon>
+                            <label>Abre</label>
+                            <input name="social" ng-model="$ctrl.praca.funcionamento_h_sabado_abre"
+                                   pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}" mask="29:69"/>
+                            <div class="hint" ng-if="!$ctrl.praca.funcionamento_h_sabado_abre">00:00</div>
+                        </md-input-container>
+                        <div layout="row" layout-align="center center" style="margin: 20px;">
+                            <div>-</div>
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm="50">
+                            <md-icon class="material-icons" role="img" aria-label="schedule">schedule</md-icon>
+                            <label>Fecha</label>
+                            <input name="social" ng-model="$ctrl.praca.funcionamento_h_sabado_fecha"
+                                   pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}" mask="29:69"/>
+                            <div class="hint" ng-if="!$ctrl.praca.funcionamento_h_sabado_fecha">00:00</div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout>
+                    <md-input-container class="md-block" flex-gt-sm="30">
+                        <md-switch class="md-primary" name="special" ng-model="$ctrl.praca.funcionamento_domingo" ng-click="$ctrl.applyEffect('domingo')">
+                            Domingo
+                        </md-switch>
+                    </md-input-container>
+                    <div id="container-domingo" layout style="display: none;">
+                        <md-input-container class="md-block" flex-gt-sm="50">
+                            <md-icon class="material-icons" role="img" aria-label="schedule">schedule</md-icon>
+                            <label>Abre</label>
+                            <input name="social" ng-model="$ctrl.praca.funcionamento_h_domingo_abre"
+                                   pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}" mask="29:69"/>
+                            <div class="hint" ng-if="!$ctrl.praca.funcionamento_h_domingo_abre">00:00</div>
+                        </md-input-container>
+                        <div layout="row" layout-align="center center" style="margin: 20px;">
+                            <div>-</div>
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm="50">
+                            <md-icon class="material-icons" role="img" aria-label="schedule">schedule</md-icon>
+                            <label>Fecha</label>
+                            <input name="social" ng-model="$ctrl.praca.funcionamento_h_domingo_fecha"
+                                   pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}" mask="29:69"/>
+                            <div class="hint" ng-if="!$ctrl.praca.funcionamento_h_domingo_fecha">00:00</div>
+                        </md-input-container>
+                    </div>
+                </div>
+            </md-content>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <md-button ng-click="$ctrl.cancel()">
+                Cancelar
+            </md-button>
+            <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="PracaForm.$invalid">
+                Enviar
+            </md-button>
+        </md-dialog-actions>
+    </form>
 </md-dialog>
