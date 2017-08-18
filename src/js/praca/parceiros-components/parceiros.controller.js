@@ -1,9 +1,9 @@
 class ParceirosCtrl {
-  constructor($scope, $mdDialog, $http, $log, Upload, AppConstants, Toast, ErrorCatcher, praca) {
+  constructor($state, $mdDialog, $http, $log, Upload, AppConstants, Toast, ErrorCatcher, praca) {
     "ngInject"
 
     angular.extend(this, {
-      $scope,
+      $state,
       $mdDialog,
       $http,
       $log,
@@ -86,7 +86,7 @@ class ParceirosCtrl {
         () => {
           this.$mdDialog.hide()
           this.Toast.showSuccessToast("Parceiro Cadastrado com Sucesso!")
-          this.$scope.reload()
+          this.$state.reload()
         }
       )
       .catch(
