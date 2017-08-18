@@ -101,7 +101,11 @@ class DashboardVinculoDialogCtrl {
     .then(
         () => {
           this.$mdDialog.cancel()
-          this.Toast.showSuccessToast("Pedido aprovado. O gestor já se encontra com permissões sobre a Praça")
+          if(dados.aprovado){
+            this.Toast.showSuccessToast("Pedido aprovado. O gestor já se encontra com permissões sobre a Praça.");
+          } else {
+            this.Toast.showSuccessToast("Pedido reprovado. O gestor não receberá permissões sobre a Praça.");
+          }
         }
     )
     .catch((err) => {
