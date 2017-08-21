@@ -39,8 +39,13 @@
 
         <div>
           <md-input-container class="md-block">
-            <label>Endereço</label>
+            <md-icon>my_location</md-icon>
+            <label>CEP</label>
+            <input mask="99999-999" required ng-model="$ctrl.ator.cep">
+          </md-input-container>
+          <md-input-container class="md-block">
             <md-icon>subject</md-icon>
+            <label>Endereço</label>
             <textarea rows="5" name="enderecoAtor" required ng-model="$ctrl.ator.endereco"></textarea>
           </md-input-container>
         </div>
