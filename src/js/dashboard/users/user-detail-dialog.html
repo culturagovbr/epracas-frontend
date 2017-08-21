@@ -19,6 +19,17 @@
           <input name="emailField" type="email" ng-model="$ctrl.user.email" flex>
         </md-input-container>
       </md-content>
+      <md-content ng-show="($ctrl.gestores | filter: { email: $ctrl.user.email }).length" layout-padding>
+        <md-list class="md-dense" flex>
+          <md-subheader>Praças Vinculadas</md-subheader>
+          <md-list-item class="md-2-line" ng-repeat="gestor in $ctrl.gestores | filter: { email: $ctrl.user.email }">
+            <div class="md-list-item-text">
+              <h3>{{gestor.praca.nome}}</h3>
+              <p>{{gestor.praca.municipio}}/{{gestor.praca.uf | uppercase}}</p>
+            </div>
+          </md-list-item>
+        </md-list>
+      </md-content>
     </md-dialog-content>
     <md-dialog-actions>
       <md-button class="md-raised md-primary" ng-click="$ctrl.cancel()">
