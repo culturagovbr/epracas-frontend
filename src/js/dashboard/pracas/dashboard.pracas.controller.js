@@ -54,6 +54,16 @@ class DashboardPracasCtrl {
       .then(values => (this.pracasFiltered = values))
       .then(() => (this.loadingPracas = false));
 
+      this.filtroRepasses = {
+        '1000000.00': 'R$1.000.000,00',
+        '1500000.00': 'R$1.500.000,00',
+        '2000000.00': 'R$2.000.000,00',
+        '2500000.00': 'R$2.500.000,00',
+        '3000000.00': 'R$3.000.000,00',
+        '3500000.00': 'R$3.500.000,00',
+        '4000000.00': 'R$4.000.000,00'
+      };
+
       // Filtrando json conforme o formulario.
       $scope.$watch('form',
           () => {
@@ -82,10 +92,8 @@ class DashboardPracasCtrl {
                       if (intDateTrated > intDateTratedEnd) booReturn = false;
 
                       // Filtrando os registros por range de valor.
-                      if (value.repasse == null && ($scope.form.repasse_start != null || $scope.form.repasse_end != null)) booReturn = false;
-                      let intValueStart = ($scope.form.repasse_start)? $scope.form.repasse_start : '',
-                          intValueEnd = ($scope.form.repasse_end)? $scope.form.repasse_end : '';
-                      if (parseInt(intValueStart) > parseInt(value.repasse)) booReturn = false;
+                      if (value.repasse == null && ($scope.form.repasse_end != null)) booReturn = false;
+                      let intValueEnd = ($scope.form.repasse_end)? $scope.form.repasse_end : '';
                       if (parseInt(intValueEnd) < parseInt(value.repasse)) booReturn = false;
                       return booReturn;
                   });
