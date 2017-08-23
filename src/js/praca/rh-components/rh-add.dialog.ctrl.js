@@ -12,6 +12,7 @@ export default class RhAddDialogController {
     })
 
     this.isSaving = false
+    this.formacoes = false
 
     this.listaSexo = [
       { value: "f", display_name: "Feminino" },
@@ -62,6 +63,11 @@ export default class RhAddDialogController {
         // this.listaVinculo = data.vinculo.choices
         this.listaLocalTrabalho = data.local_trabalho.child.choices
       })
+  }
+
+  showFormacao() {
+    var escolaridades = ["esi", "esc", "esp", "mes", "doc"];
+    this.formacoes = escolaridades.indexOf(this.rh.escolaridade) > -1;
   }
 
   cancel() { this.$mdDialog.cancel() }

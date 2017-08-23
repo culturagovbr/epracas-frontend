@@ -35,17 +35,17 @@
         <md-input-container class="md-icon-float md-block">
           <md-icon>school</md-icon>
           <label>Escolaridade</label>
-          <md-select name="escolaridadeRh" required ng-model="$ctrl.rh.escolaridade">
+          <md-select name="escolaridadeRh" required ng-model="$ctrl.rh.escolaridade" ng-change="$ctrl.showFormacao()">
             <md-option ng-repeat="escolaridade in $ctrl.listaEscolaridade" value="{{escolaridade.value}}">
               {{escolaridade.display_name}}
             </md-option>
           </md-select>
         </md-input-container>
 
-        <md-input-container class="md-icon-float md-block">
+        <md-input-container class="md-icon-float md-block" ng-if="$ctrl.formacoes">
           <md-icon>domain</md-icon>
           <label>Formação</label>
-          <md-select name="formacaoRh" required ng-model="$ctrl.rh.formacao">
+          <md-select name="formacaoRh" ng-model="$ctrl.rh.formacao">
             <md-option ng-repeat="formacao in $ctrl.listaFormacao" value="{{formacao.value}}">
               {{formacao.display_name}}
             </md-option>
