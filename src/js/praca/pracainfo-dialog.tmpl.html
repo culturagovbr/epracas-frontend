@@ -141,17 +141,17 @@
                 </h4>
                 <div layout>
                     <md-input-container class="md-block" flex-gt-sm="30">
-                        <md-switch class="md-primary" name="special" ng-model="$ctrl.praca.funcionamento_uteis" ng-click="$ctrl.applyEffect('uteis')">
+                        <md-switch class="md-primary" name="special" ng-model="$ctrl.praca.funciona_dia_util" ng-click="$ctrl.applyEffect('uteis')">
                             Segunda - Sexta
                         </md-switch>
                     </md-input-container>
-                    <div id="container-uteis" layout style="display: none;">
+                    <div id="container-uteis" layout ng-if="$ctrl.praca.funciona_dia_util">
                         <md-input-container class="md-block" flex-gt-sm="50">
                             <md-icon class="material-icons" role="img" aria-label="schedule">schedule</md-icon>
                             <label>Abre</label>
-                            <input name="social" ng-model="$ctrl.praca.funcionamento_h_uteis_abre"
+                            <input name="social" ng-model="$ctrl.praca.hora_abertura_dia_util"
                                    pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}" mask="29:69"/>
-                            <div class="hint" ng-if="!$ctrl.praca.funcionamento_h_uteis_abre">00:00</div>
+                            <div class="hint" ng-if="!$ctrl.praca.hora_abertura_dia_util">00:00</div>
                         </md-input-container>
                         <div layout="row" layout-align="center center" style="margin: 20px;">
                             <div>-</div>
@@ -159,25 +159,25 @@
                         <md-input-container class="md-block" flex-gt-sm="50">
                             <md-icon class="material-icons" role="img" aria-label="schedule">schedule</md-icon>
                             <label>Fecha</label>
-                            <input name="social" ng-model="$ctrl.praca.funcionamento_h_uteis_fecha"
+                            <input name="social" ng-model="$ctrl.praca.hora_fechamento_dia_util"
                                    pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}" mask="29:69"/>
-                            <div class="hint" ng-if="!$ctrl.praca.funcionamento_h_uteis_fecha">00:00</div>
+                            <div class="hint" ng-if="!$ctrl.praca.hora_fechamento_dia_util">00:00</div>
                         </md-input-container>
                     </div>
                 </div>
                 <div layout>
                     <md-input-container class="md-block" flex-gt-sm="30">
-                        <md-switch class="md-primary" name="special" ng-model="$ctrl.praca.funcionamento_sabado" ng-click="$ctrl.applyEffect('sabado')">
+                        <md-switch class="md-primary" name="special" ng-model="$ctrl.praca.funciona_sabado" ng-click="$ctrl.applyEffect('sabado')">
                             Sábado
                         </md-switch>
                     </md-input-container>
-                    <div id="container-sabado" layout style="display: none;">
+                    <div id="container-sabado" layout ng-if="$ctrl.praca.funciona_sabado">
                         <md-input-container class="md-block" flex-gt-sm="50">
                             <md-icon class="material-icons" role="img" aria-label="schedule">schedule</md-icon>
                             <label>Abre</label>
-                            <input name="social" ng-model="$ctrl.praca.funcionamento_h_sabado_abre"
+                            <input name="social" ng-model="$ctrl.praca.hora_abertura_sabado"
                                    pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}" mask="29:69"/>
-                            <div class="hint" ng-if="!$ctrl.praca.funcionamento_h_sabado_abre">00:00</div>
+                            <div class="hint" ng-if="!$ctrl.praca.hora_abertura_sabado">00:00</div>
                         </md-input-container>
                         <div layout="row" layout-align="center center" style="margin: 20px;">
                             <div>-</div>
@@ -185,25 +185,25 @@
                         <md-input-container class="md-block" flex-gt-sm="50">
                             <md-icon class="material-icons" role="img" aria-label="schedule">schedule</md-icon>
                             <label>Fecha</label>
-                            <input name="social" ng-model="$ctrl.praca.funcionamento_h_sabado_fecha"
+                            <input name="social" ng-model="$ctrl.praca.hora_fechamento_sabado"
                                    pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}" mask="29:69"/>
-                            <div class="hint" ng-if="!$ctrl.praca.funcionamento_h_sabado_fecha">00:00</div>
+                            <div class="hint" ng-if="!$ctrl.praca.hora_fechamento_sabado">00:00</div>
                         </md-input-container>
                     </div>
                 </div>
                 <div layout>
                     <md-input-container class="md-block" flex-gt-sm="30">
-                        <md-switch class="md-primary" name="special" ng-model="$ctrl.praca.funcionamento_domingo" ng-click="$ctrl.applyEffect('domingo')">
+                        <md-switch class="md-primary" name="special" ng-model="$ctrl.praca.funciona_domingo" ng-click="$ctrl.applyEffect('domingo')">
                             Domingo
                         </md-switch>
                     </md-input-container>
-                    <div id="container-domingo" layout style="display: none;">
+                    <div id="container-domingo" layout ng-if="$ctrl.praca.funciona_domingo">
                         <md-input-container class="md-block" flex-gt-sm="50">
                             <md-icon class="material-icons" role="img" aria-label="schedule">schedule</md-icon>
                             <label>Abre</label>
-                            <input name="social" ng-model="$ctrl.praca.funcionamento_h_domingo_abre"
+                            <input name="social" ng-model="$ctrl.praca.hora_abertura_domingo"
                                    pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}" mask="29:69"/>
-                            <div class="hint" ng-if="!$ctrl.praca.funcionamento_h_domingo_abre">00:00</div>
+                            <div class="hint" ng-if="!$ctrl.praca.hora_abertura_domingo">00:00</div>
                         </md-input-container>
                         <div layout="row" layout-align="center center" style="margin: 20px;">
                             <div>-</div>
@@ -211,9 +211,9 @@
                         <md-input-container class="md-block" flex-gt-sm="50">
                             <md-icon class="material-icons" role="img" aria-label="schedule">schedule</md-icon>
                             <label>Fecha</label>
-                            <input name="social" ng-model="$ctrl.praca.funcionamento_h_domingo_fecha"
+                            <input name="social" ng-model="$ctrl.praca.hora_fechamento_domingo"
                                    pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}" mask="29:69"/>
-                            <div class="hint" ng-if="!$ctrl.praca.funcionamento_h_domingo_fecha">00:00</div>
+                            <div class="hint" ng-if="!$ctrl.praca.hora_fechamento_domingo">00:00</div>
                         </md-input-container>
                     </div>
                 </div>

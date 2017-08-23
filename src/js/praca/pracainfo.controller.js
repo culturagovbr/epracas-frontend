@@ -59,7 +59,12 @@ class PracaInfoCtrl {
         )
     } else {
       let praca_data = {}
-      let fields = ["id_pub", "situacao", "modelo", "nome", "data_inauguracao", "bio", "telefone1", "telefone2", "fax", "email1", "email2", "pagina", "logradouro", "cep", "bairro", "regiao", "uf", "municipio"]
+      let fields = ["id_pub", "situacao", "modelo", "nome", "data_inauguracao",
+          "bio", "telefone1", "telefone2", "fax", "email1", "email2", "pagina",
+          "logradouro", "cep", "bairro", "regiao", "uf", "municipio", "funciona_dia_util",
+          "hora_abertura_dia_util", "hora_fechamento_dia_util", "funciona_sabado",
+          "hora_abertura_sabado", "hora_fechamento_sabado", "funciona_domingo",
+          "hora_abertura_domingo", "hora_fechamento_domingo"]
 
       if (this.isAdmin) {
         fields.push("repasse", "modelo", "contrato", "lat", "long")
