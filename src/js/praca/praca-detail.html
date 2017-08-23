@@ -158,18 +158,20 @@
 
   <!-- Localização -->
   <div id="container-localizacao" layout-gt-xs="row" class="localizacao">
-    <div flex-gt-xs="30" layout-padding class="info" md-whiteframe="3">
+    <div flex-gt-xs="40" layout-padding class="info" md-whiteframe="3">
       <div class="layout-row title">
         <md-icon>place</md-icon>
         <h1 flex>Localização</h1>
       </div>
       <p>{{$ctrl.praca.logradouro}}</p>
       <p>{{$ctrl.praca.municipio}} | {{$ctrl.praca.uf | uppercase}}
-      <p>Aberto todos os dias de 8h às 22h.</p>
-      <p class="no-print">Mais informações</p>
+      <p>Horários de funcionamento:</p>
+      <p ng-if="$ctrl.praca.funciona_dia_util">Segunda a Sexta das {{ $ctrl.praca.hora_abertura_dia_util | date: 'HH:mm' }} às {{ $ctrl.praca.hora_fechamento_dia_util }}</p>
+      <p ng-if="$ctrl.praca.funciona_sabado">Sábado das {{ $ctrl.praca.hora_abertura_sabado }} às {{ $ctrl.praca.hora_fechamento_sabado }}</p>
+      <p ng-if="$ctrl.praca.funciona_domingo">Domingo das {{ $ctrl.praca.hora_abertura_domingo }} às {{ $ctrl.praca.hora_fechamento_domingo }}</p>
     </div>
     <div id="map" flex md-whiteframe="3" class="no-print">
-      <leaflet style="z-index: -1" id="mapPane" width="100%" height="300px" lf-center="geoLoc.center"
+      <leaflet style="z-index: -1" id="mapPane" width="100%" height="100%" lf-center="geoLoc.center"
         defaults="geoLoc.defaults" markers="geoLoc.markers"></leaflet>
     </div>
   </div>
