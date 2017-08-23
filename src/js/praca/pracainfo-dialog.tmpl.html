@@ -23,7 +23,7 @@
                     <md-input-container ng-disabled="!$ctrl.isAdmin" flex-gt-xs=50>
                         <md-icon>attach_money</md-icon>
                         <label>Valor do Repasse</label>
-                        <input ng-disabled="!$ctrl.isAdmin" name="pracaRepasse" type="number"
+                        <input ng-disabled="!$ctrl.isAdmin" name="pracaRepasse" type="currency"
                                ng-model="$ctrl.praca.repasse">
                     </md-input-container>
                 </div>
@@ -86,7 +86,7 @@
                     <md-input-container flex>
                         <md-icon>public</md-icon>
                         <label>Pagina nas redes sociais</label>
-                        <input name="pracaPagina" type="url" ng-model="$ctrl.pagina.praca">
+                        <input name="pracaPagina" type="url" ng-model="$ctrl.praca.pagina">
                     </md-input-container>
 
                 </div>
