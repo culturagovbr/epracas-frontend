@@ -1,3 +1,5 @@
+import moment from "moment"
+
 class PracaInfoCtrl {
   constructor($mdDialog, $log, User, Praca, ErrorCatcher, Toast, praca) {
     "ngInject"
@@ -42,6 +44,11 @@ class PracaInfoCtrl {
 
   save(data) {
     this.isSaving = true
+    if(data.data_inauguracao) {
+      console.log("Indefinido");
+      data.data_inauguracao = moment(data.data_inauguracao).format("YYYY-MM-DD");
+    }
+
     if (angular.isUndefined(data.id_pub) || data.id_pub === null) {
       this.Praca.new(data)
         .then(
