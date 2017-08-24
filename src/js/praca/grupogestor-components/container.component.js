@@ -8,6 +8,18 @@ class GrupoGestorController {
     })
   }
 
+  $onInit() {
+    if (
+      (angular.isUndefined(this.praca.grupo_gestor)) ||
+      (this.praca.grupo_gestor === null) ||
+      (this.praca.grupo_gestor.length === 0)
+    ) {
+      this.ggEmpty = true
+    } else {
+      this.ggEmpty = false
+    }
+  }
+
   showGrupoGestorDialog(praca) {
     const grupogestor = praca.grupo_gestor
     this.$mdDialog.show({
@@ -30,7 +42,7 @@ class GrupoGestorController {
   }
 
   showGestorDialog(praca) {
-    if (angular.isUndefined(praca.grupo_gestor) || praca.grupo_gestor === null) {
+    if (this.ggEmpty) {
       this.showGrupoGestorDialog(praca)
     } else {
       this.showMembroGestorDialog(praca, praca.grupo_gestor)
@@ -47,7 +59,7 @@ const GrupoGestorContainer = {
           <md-icon>group</md-icon>
           <h1 flex>Grupo Gestor</h1>
         </div>
-        <div ng-if="$ctrl.praca.grupo_gestor.length='0'">
+        <div ng-show="$ctrl.ggEmpty">
           <p>Os dados sobre o Grupo Gestor ainda não foram inseridos nesta Praça.</p>
         </div>
 
@@ -72,6 +84,7 @@ const GrupoGestorContainer = {
   bindings: {
     praca: "<",
     grupo_gestor: "<",
+    ggEmpty: "<",
     situacao: "<",
   },
 }
