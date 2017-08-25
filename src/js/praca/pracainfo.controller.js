@@ -33,8 +33,6 @@ class PracaInfoCtrl {
 
   applyEffect(strName) {
       let elmContainer = $('#container-' + strName);
-      console.info(this)
-      // console.info(this.praca.praca.{'funcionamento_' + strName})
       if (elmContainer.is(':visible')) {
           elmContainer.fadeOut('slow')
       } else {
@@ -45,7 +43,6 @@ class PracaInfoCtrl {
   save(data) {
     this.isSaving = true
     if(data.data_inauguracao) {
-      console.log("Indefinido");
       data.data_inauguracao = moment(data.data_inauguracao).format("YYYY-MM-DD");
     }
 
