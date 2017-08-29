@@ -22,7 +22,6 @@ class DashBoardCtrl {
                     elmMenu.find('.material-icon').removeClass('hamburger').addClass('arrow');
                 }
             });
-
             $document.on('scroll', () => {
                 if ($window.scrollY >= 33) {
                     $('.dynamic .menu').css('top', 0);
