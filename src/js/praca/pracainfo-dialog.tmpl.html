@@ -141,11 +141,11 @@
                 </h4>
                 <div layout>
                     <md-input-container class="md-block" flex-gt-sm="30">
-                        <md-switch class="md-primary" name="special" ng-model="$ctrl.praca.funciona_dia_util" ng-click="$ctrl.applyEffect('uteis')">
+                        <md-switch class="md-primary" name="special" ng-model="$ctrl.praca.funciona_dia_util" ng-click="$ctrl.applyEffect($ctrl.praca)">
                             Segunda - Sexta
                         </md-switch>
                     </md-input-container>
-                    <div id="container-uteis" layout ng-if="$ctrl.praca.funciona_dia_util">
+                    <div id="container-util" layout class="animated fadeIn">
                         <md-input-container class="md-block" flex-gt-sm="50">
                             <md-icon class="material-icons" role="img" aria-label="schedule">schedule</md-icon>
                             <label>Abre</label>
@@ -167,11 +167,11 @@
                 </div>
                 <div layout>
                     <md-input-container class="md-block" flex-gt-sm="30">
-                        <md-switch class="md-primary" name="special" ng-model="$ctrl.praca.funciona_sabado" ng-click="$ctrl.applyEffect('sabado')">
+                        <md-switch class="md-primary" name="special" ng-model="$ctrl.praca.funciona_sabado" ng-click="$ctrl.applyEffect($ctrl.praca)">
                             Sábado
                         </md-switch>
                     </md-input-container>
-                    <div id="container-sabado" layout ng-if="$ctrl.praca.funciona_sabado">
+                    <div id="container-sabado" layout>
                         <md-input-container class="md-block" flex-gt-sm="50">
                             <md-icon class="material-icons" role="img" aria-label="schedule">schedule</md-icon>
                             <label>Abre</label>
@@ -193,11 +193,11 @@
                 </div>
                 <div layout>
                     <md-input-container class="md-block" flex-gt-sm="30">
-                        <md-switch class="md-primary" name="special" ng-model="$ctrl.praca.funciona_domingo" ng-click="$ctrl.applyEffect('domingo')">
+                        <md-switch class="md-primary" name="special" ng-model="$ctrl.praca.funciona_domingo" ng-click="$ctrl.applyEffect($ctrl.praca)">
                             Domingo
                         </md-switch>
                     </md-input-container>
-                    <div id="container-domingo" layout ng-if="$ctrl.praca.funciona_domingo">
+                    <div id="container-domingo" layout>
                         <md-input-container class="md-block" flex-gt-sm="50">
                             <md-icon class="material-icons" role="img" aria-label="schedule">schedule</md-icon>
                             <label>Abre</label>

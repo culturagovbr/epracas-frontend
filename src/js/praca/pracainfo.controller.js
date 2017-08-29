@@ -12,17 +12,24 @@ class PracaInfoCtrl {
       ErrorCatcher,
       Toast,
       praca,
-    })
+    });
 
-    this.isAdmin = this.User.IsAdmin()
+    this.praca.funciona_util = (typeof this.praca.funciona_util == 'undefined')? false : this.praca.funciona_util;
+    this.praca.funciona_sabado = (typeof this.praca.funciona_sabado == 'undefined')? false : this.praca.funciona_sabado;
+    this.praca.funciona_domingo = (typeof this.praca.funciona_domingo == 'undefined')? false : this.praca.funciona_domingo;
+      $(document).ready(() => {
+          this.applyEffect(this.praca);
+      });
+
+    this.isAdmin = this.User.IsAdmin();
 
     this.Praca.options(praca)
       .then((data) => {
-        this.listaUf = data.uf.choices
-        this.listaRegiao = data.regiao.choices
-        this.listaModelo = data.modelo.choices
-        this.listaSituacao = data.situacao.choices
-      })
+        this.listaUf = data.uf.choices;
+        this.listaRegiao = data.regiao.choices;
+        this.listaModelo = data.modelo.choices;
+        this.listaSituacao = data.situacao.choices;
+      });
 
     this.isSaving = false
   }
@@ -31,14 +38,28 @@ class PracaInfoCtrl {
     this.$mdDialog.cancel()
   }
 
-  applyEffect(strName) {
-      let elmContainer = $('#container-' + strName);
-      if (elmContainer.is(':visible')) {
-          elmContainer.fadeOut('slow')
-      } else {
-          elmContainer.fadeIn('slow')
-      }
-  }
+    applyEffect(praca) {
+        let elmContainerUtil = $('#container-util'),
+            elmContainerSabado = $('#container-sabado'),
+            elmContainerDomingo = $('#container-domingo');
+        setTimeout(function(){
+            if (!praca.funciona_dia_util) {
+                elmContainerUtil.fadeOut('slow');
+            } else {
+                elmContainerUtil.fadeIn('slow')
+            }
+            if (!praca.funciona_sabado) {
+                elmContainerSabado.fadeOut('slow');
+            } else {
+                elmContainerSabado.fadeIn('slow')
+            }
+            if (!praca.funciona_domingo) {
+                elmContainerDomingo.fadeOut('slow');
+            } else {
+                elmContainerDomingo.fadeIn('slow')
+            }
+        }, 200);
+    }
 
   save(data) {
     this.isSaving = true

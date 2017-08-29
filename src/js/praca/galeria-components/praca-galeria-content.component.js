@@ -1,9 +1,10 @@
 class PracaGaleriaContentController {
-  constructor($attrs, Praca, $scope, $stateParams, $document, $mdMedia, $mdMenu, $mdDialog, Toast, $log) {
+  constructor($attrs, Praca, $scope, $stateParams, $document, $mdMedia, $mdMenu, $mdDialog, Toast, $log, $filter) {
     "ngInject";
       $scope.imagens = [];
       Praca.getImages($stateParams.pk).then(function(arrResult) {
-          $scope.imagens = arrResult;
+          // $scope.imagens = $filter('orderBy')(arrResult, 'titulo');
+          $scope.imagens = arrResult.reverse();
       });
 
       this.$mdMenu = $mdMenu;

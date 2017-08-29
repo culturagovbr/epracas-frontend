@@ -1,7 +1,7 @@
 import moment from "moment"
 
 class PracaDetailCtrl {
-  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, praca, $timeout) {
+  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, praca, $timeout, $filter) {
     "ngInject"
 
       angular.extend(this, {
@@ -16,13 +16,13 @@ class PracaDetailCtrl {
 
     Atividade.list(praca.id_pub)
       .then(atividades => atividades.map(atividade => {
-        if (!atividade.ocorrencia) return atividade
+        if (!atividade.ocorrencia) return atividade;
 
-        const formatString = "DD.MM.YYYY"
+        const formatString = "DD.MM.YYYY";
         atividade.data_inicio = moment(atividade.ocorrencia.start.slice(0, 10))
-        .format(formatString)
+        .format(formatString);
         atividade.data_encerramento = moment(atividade.ocorrencia.repeat_until)
-        .format(formatString)
+        .format(formatString);
 
         return atividade
       }))
@@ -118,23 +118,23 @@ class PracaDetailCtrl {
                 intPositionStart: intPositionStart - 96,
                 intPositionEnd: intPositionEnd - 1
               }
-        })
+        });
 
-        let intPosition = $window.scrollY
+        let intPosition = $window.scrollY;
           arrObjScrollContainers.each((intKey, objValue) => {
             if (intPosition >= objValue.intPositionStart && intPosition <= objValue.intPositionEnd && intKey != $scope.tabIntSelected) {
-              $scope.tabIntSelected = intKey
+              $scope.tabIntSelected = intKey;
               $scope.$apply()
             }
-          })
+          });
         if (intPosition >= intPracasPosition) {
           elmTabPracas.addClass("fixed")
         } else {
           elmTabPracas.removeClass("fixed")
         }
       })
-    })
-
+    });
+    praca.imagem = praca.imagem.reverse();
     $scope.arrPhotos = this.buildGridModel(praca.imagem);
   }
 

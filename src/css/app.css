@@ -1829,7 +1829,7 @@ md-select {
 	width: 338px;
 }
 
-/* Dynamic MENU  */
+/* Dynamic MENU - Start  */
 .menu-dashboard{
 	position: absolute;
 	z-index: 2;
@@ -1891,7 +1891,8 @@ md-select {
 	outline: none;
 	height: calc(100vh - 97px);
 }
-.dynamic .menu.extended {
+.dynamic .menu.extended , .menu2.extended {
+	transition: width 0.4s;
 	width: 320px;
 }
 .dynamic .col_2{
@@ -1928,6 +1929,39 @@ md-select {
 	text-shadow: none;
 	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
 	/*box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);*/
+}
+
+.dynamic .content .scroll {
+	transition: width 0.4s;
+	/*overflow-y: scroll;*/
+	overflow: auto;
+	/*height: 100%;*/
+	height: 85vh;
+	width: 63px;
+	/*height: 100vh;*/
+	/*box-sizing:border-box;*/
+	/*-moz-box-sizing:border-box;*/
+	line-height:26px;
+	padding: 0;
+	/*padding-left: 6px;*/
+	display: block;
+	text-align: left;
+}
+
+.dynamic .menu.extended .scroll {
+	transition: width 0.4s, background-color 0.5s;
+	/*overflow-y: scroll;*/
+	overflow: auto;
+	/*height: 100%;*/
+	height: 85vh;
+	width: 195px;
+	/*height: 100vh;*/
+	/*box-sizing:border-box;*/
+	/*-moz-box-sizing:border-box;*/
+	line-height:26px;
+	padding: 0;
+	/*padding-left: 6px;*/
+	display: block;
 }
 
 .dynamic .menu .content .row:hover {
@@ -2038,6 +2072,29 @@ section:active:before {
 	animation: materialResponse 0.4s ease;
 	z-index: 2;
 }
+
+.dynamic .menu .active {
+	color: #fff;
+	background-color: #EF6C00;
+	/*background-color: #E91E63;*/
+	/*background-color: #1A237E;*/
+	/*box-shadow: inset 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);*/
+	/*box-shadow: inset 0 1px 1px 1px rgba(0,0,0,.2);*/
+	/*box-shadow: inset 0px 0px 3px 1px rgba(0,0,0,.2);*/
+	/*z-index: 4;*/
+}
+
+.menu2 {
+	/*background-color: red;*/
+	width: 48px;
+	height: 1px;
+	float: left;
+	position: inherit;
+	/*transition: width 0.5s;*/
+	transition: width 0.4s;
+}
+/* Dynamic MENU - End  */
+
 /*.material-green { background: #4CAF50; }*/
 /*.material-amber { background: #FFC107; }*/
 /*.material-blue { background: #2196F3; }*/
@@ -2100,16 +2157,6 @@ footer {
 	padding-top: 8px !important;
 }
 
-.dynamic .menu .active {
-	color: #fff;
-	background-color: #EF6C00;
-	/*background-color: #E91E63;*/
-	/*background-color: #1A237E;*/
-	/*box-shadow: inset 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);*/
-	/*box-shadow: inset 0 1px 1px 1px rgba(0,0,0,.2);*/
-	/*box-shadow: inset 0px 0px 3px 1px rgba(0,0,0,.2);*/
-	/*z-index: 4;*/
-}
 
 #container-grupogestor {
 	position: relative;
