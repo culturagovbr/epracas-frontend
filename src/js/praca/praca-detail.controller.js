@@ -51,7 +51,7 @@ class PracaDetailCtrl {
     }
 
     if (praca.data_inauguracao) {
-      praca.data_inauguracao = moment(praca.data_inauguracao).format('L')
+      praca.data_inauguracao = moment(praca.data_inauguracao).format('YYYY-MM-DD')
     }
 
     const geoLoc = {

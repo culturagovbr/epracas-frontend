@@ -44,7 +44,7 @@
           <md-card-title-text>
             <span class="md-headline">{{ $ctrl.praca.nome }}</span>
             <span class="md-subhead"><strong>Situação: </strong>{{ $ctrl.praca.situacao_descricao }}</span>
-            <span class="md-subhead" ng-if="$ctrl.praca.situacao_descricao == 'Inaugurada'"><strong>Inaugurada em: </strong>{{ $ctrl.praca.data_inauguracao }}</span>
+            <span class="md-subhead" ng-if="$ctrl.praca.situacao_descricao == 'Inaugurada'"><strong>Inaugurada em: </strong>{{ $ctrl.praca.data_inauguracao | date: 'dd/MM/yyyy' }}</span>
             <span class="md-subhead"><strong>Contrato: </strong>{{ $ctrl.praca.contrato }}</span>
             <span class="md-subhead"><strong>Modelo: </strong>{{ $ctrl.praca.modelo_descricao }}</span>
             <span class="md-subhead" ng-if="$ctrl.praca.repasse"><strong>Repasse: </strong>{{ $ctrl.praca.repasse | currency: 'R$ ' }}</span>

@@ -330,7 +330,11 @@ class EventCtrl {
       this.eventData.ocorrencia.repeat_until = date
       this.Atividade.new(this.eventData)
       .then(
-          () => {
+          (response) => {
+            response.data_inicio = moment(response.ocorrencia.start.slice(0, 10)).format("DD.MM.YYYY")
+            response.data_encerramento = moment(response.ocorrencia.repeat_until).format("DD.MM.YYYY")
+            response.espacos = this._espacoAtividade.filter((espaco) => {return (response.espaco.indexOf(espaco.value) >= 0)})
+            this.praca.agenda.unshift(response)
             this.$mdDialog.hide()
             this.Toast.showSuccessToast("Evento adicionado.")
           }
