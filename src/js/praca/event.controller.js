@@ -31,6 +31,9 @@ class EventCtrl {
 
     this.eventData = {}
     this.selectedDays = {}
+    this.eventData.ocorrencia = {}
+    this.eventData.ocorrencia.start = new Date()
+    this.eventData.ocorrencia.repeat_until = new Date()
 
     this._areaAtividade = [
       {
@@ -314,7 +317,7 @@ class EventCtrl {
       this.Atividade.update(this.eventData.id_pub, this.eventData)
       .then(
           response => {
-            this.$mdDialog.hide(),
+            this.$mdDialog.hide()
             this.Toast.showSuccessToast("Alterações gravadas.")
           }
           )

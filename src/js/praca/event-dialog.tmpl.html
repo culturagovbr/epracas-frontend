@@ -85,7 +85,7 @@
         <div layout="row">
           <md-input-container class="md-block" flex>
             <label>Data de início</label>
-            <md-datepicker ng-required="true" ng-model="$ctrl.eventData.ocorrencia.start" ></md-datepicker>
+            <md-datepicker ng-required="true" ng-model="$ctrl.eventData.ocorrencia.start" md-open-on-focus></md-datepicker>
           </md-input-container>
           <md-input-container class="md-block" flex>
             <md-icon>schedule</md-icon>
@@ -97,7 +97,7 @@
           <md-input-container class="md-block" flex>
             <label>Data de encerramento</label>
             <md-datepicker ng-required="true"
-              ng-model="$ctrl.eventData.ocorrencia.repeat_until" style="width: 170px;"></md-datepicker>
+              ng-model="$ctrl.eventData.ocorrencia.repeat_until" md-open-on-focus></md-datepicker>
           </md-input-container>
           <md-input-container class="md-block" flex>
             <md-icon>schedule</md-icon>
