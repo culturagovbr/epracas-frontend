@@ -1,8 +1,9 @@
 import moment from "moment"
 
 class DashboardEventsCtrl {
-    constructor($log, Atividade, $stateParams) {
+    constructor($log, Atividade, $stateParams, $state) {
         "ngInject";
+        this._$state = $state;
 
         let intYear = (typeof $stateParams.year === 'undefined') ? moment().format('YYYY') : $stateParams.year,
             intMonth = (typeof $stateParams.month === 'undefined') ? parseInt(moment().format('MM')) : $stateParams.month;
@@ -46,11 +47,16 @@ class DashboardEventsCtrl {
                 }).catch($log.log('Erro na transformação de eventos'));
         };
 
+        this.navigateTo = (pk) => {
+            this._$state.go('app.atividade', {pk: pk});
+        };
+
         this.loadEvents();
     }
 
     returnEvent(event) {
         let newEvent = {
+            id_pub: event.id_pub,
             title: event.titulo,
             startsAt: new Date(event.ocorrencia.start),
             endsAt: new Date(event.ocorrencia.repeat_until)

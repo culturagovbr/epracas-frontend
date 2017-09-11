@@ -24,7 +24,7 @@
               view-date="$ctrl.config.viewDate"
               events="$ctrl.events"
               view-title="$ctrl.config.calendarTitle"
-              on-event-click="eventClicked(calendarEvent)"
+              on-event-click="$ctrl.navigateTo(calendarEvent.id_pub)"
               on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
               cell-is-open="true">
       </mwl-calendar>
