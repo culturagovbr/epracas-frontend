@@ -34,7 +34,7 @@
                         <md-icon>format_paint</md-icon>
                         <label>Situação da Obra</label>
                         <md-icon></md-icon>
-                        <md-select name="pracaSituacao" required ng-model="$ctrl.praca.situacao">
+                        <md-select ng-disabled="!$ctrl.isAdmin" name="pracaSituacao" required ng-model="$ctrl.praca.situacao">
                             <md-option ng-repeat="situacao in $ctrl.listaSituacao" value="{{situacao.value}}">
                                 {{situacao.display_name}}
                             </md-option>
@@ -56,7 +56,7 @@
 
                 <md-input-container class="md-block" flex ng-if="$ctrl.praca.situacao == 'i'">
                     <label>Data de Inauguração</label>
-                    <md-datepicker ng-model="$ctrl.praca.data_inauguracao"></md-datepicker>
+                    <md-datepicker ng-disabled="!$ctrl.isAdmin" ng-model="$ctrl.praca.data_inauguracao"></md-datepicker>
                 </md-input-container>
 
                 <div>
@@ -115,7 +115,7 @@
 
                 <md-input-container>
                     <label>Região</label>
-                    <md-select name="pracaRegiao" required ng-model="$ctrl.praca.regiao">
+                    <md-select ng-disabled="!$ctrl.isAdmin" name="pracaRegiao" required ng-model="$ctrl.praca.regiao">
                         <md-option ng-repeat="regiao in $ctrl.listaRegiao" value="{{regiao.value}}">
                             {{regiao.display_name}}
                         </md-option>
@@ -124,7 +124,7 @@
 
                 <md-input-container>
                     <label>UF</label>
-                    <md-select name="pracaUf" required ng-model="$ctrl.praca.uf">
+                    <md-select ng-disabled="!$ctrl.isAdmin" name="pracaUf" required ng-model="$ctrl.praca.uf">
                         <md-option ng-repeat="uf in $ctrl.listaUf" value="{{uf.value}}">
                             {{uf.display_name}}
                         </md-option>
