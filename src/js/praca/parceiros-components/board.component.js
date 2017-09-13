@@ -16,6 +16,16 @@ class ParceirosBoardController {
       fullscreen: true,
     })
   }
+
+  showListDialog(praca) {
+    this.$mdDialog.show({
+      controller: "ParceirosListDialogCtrl",
+      controllerAs: "$ctrl",
+      templateUrl: "praca/parceiros-components/parceiros-list.dialog.tmpl.html",
+      locals: { praca },
+      fullscreen: true,
+    })
+  }
 }
 
 const ParceirosBoardElement = {
@@ -25,7 +35,7 @@ const ParceirosBoardElement = {
       <div flex layout-padding class="info">
         <div class="layout-row title">
           <md-icon>people</md-icon>
-          <h1 flex>Parceiros da Praça</h1>
+          <h1 flex><a href="#" ng-click="$ctrl.showListDialog($ctrl.praca)">Parceiros da Praça</a></h1>
         </div>
         <md-fab-speed-dial show-as-manager="true" class="md-fab-top-right" ng-click="$ctrl.showAddDialog($ctrl.praca)" style="padding:0;">
           <md-fab-trigger>

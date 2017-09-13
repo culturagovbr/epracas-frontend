@@ -74,10 +74,10 @@
             </md-switch>
           </div>
           <div>
-            <md-input-container flex ng-show="$ctrl.parceiro.rec_financeiro">
+            <md-input-container flex ng-show="$ctrl.parceiro.rec_financeiro || $ctrl.parceiro.recursos_financeiros">
               <md-icon>attach_money</md-icon>
               <label>Qual o valor?</label>
-              <input type="number" min="0" name="tempoParceiro" ng-model="$ctrl.parceiro.recursos_financeiros">
+              <input type="currency" name="recursoFinanceiro" ng-model="$ctrl.parceiro.recursos_financeiros">
             </md-input-container>
           </div>
         </div>

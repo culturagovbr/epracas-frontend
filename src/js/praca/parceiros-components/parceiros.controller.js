@@ -64,9 +64,6 @@ class ParceirosCtrl {
         display_name: "serviços",
       },
     ]
-
-    this.parceiro = {}
-    this.parceiro.praca = praca.id_pub
   }
 
   cancel() {
@@ -75,25 +72,46 @@ class ParceirosCtrl {
 
   save(praca_id_pub, data) {
     const caller = this.ErrorCatcher.callerName()
+    delete data.imagem
 
-    if (data.imagem) { data.imagem = this.Upload.dataUrltoBlob(data.imagem) }
-    this.Upload.upload({
-      url: `${this.AppConstants.api}/pracas/${praca_id_pub}/parceiros/`,
-      method: "POST",
-      data: data,
-    })
-      .then(
-        () => {
-          this.$mdDialog.hide()
-          this.Toast.showSuccessToast("Parceiro Cadastrado com Sucesso!")
-          this.$state.reload()
-        }
-      )
-      .catch(
-        (err) => {
-          this.ErrorCatcher.error(caller, err)
-        this.$log.error(`saveParceiros: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
-        })
+    if (data.imgFile) { data.imagem = this.Upload.dataUrltoBlob(data.imgFile) }
+    if(data.id_pub){
+      this.Upload.upload({
+        url: `${this.AppConstants.api}/pracas/${praca_id_pub}/parceiros/${data.id_pub}/`,
+        method: "PATCH",
+        data: data,
+      })
+        .then(
+          () => {
+            this.$mdDialog.hide()
+            this.Toast.showSuccessToast("Parceiro Cadastrado com Sucesso!")
+            this.$state.reload()
+          }
+        )
+        .catch(
+          (err) => {
+            this.ErrorCatcher.error(caller, err)
+          this.$log.error(`saveParceiros: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
+          })
+    } else {
+      this.Upload.upload({
+        url: `${this.AppConstants.api}/pracas/${praca_id_pub}/parceiros/`,
+        method: "POST",
+        data: data,
+      })
+        .then(
+          () => {
+            this.$mdDialog.hide()
+            this.Toast.showSuccessToast("Parceiro Cadastrado com Sucesso!")
+            this.$state.reload()
+          }
+        )
+        .catch(
+          (err) => {
+            this.ErrorCatcher.error(caller, err)
+          this.$log.error(`saveParceiros: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
+          })
+    }
   }
 
   ImgDialog() {
@@ -103,7 +121,7 @@ class ParceirosCtrl {
       templateUrl: "praca/parceiros-components/parceiros-img-upload.dialog.tmpl.html",
       multiple: true,
     })
-    .then(data => (this.parceiro.imagem = data))
+    .then(data => (this.parceiro.imgFile = data))
   }
 }
 

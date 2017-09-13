@@ -29,6 +29,9 @@ pracaModule.controller("UploadImgCtrl", UploadImgCtrl);
 import ParceirosCtrl from "./parceiros-components/parceiros.controller";
 pracaModule.controller("ParceirosCtrl", ParceirosCtrl);
 
+import ParceirosListDialogCtrl from "./parceiros-components/parceiros-list.dialog.ctrl"
+pracaModule.controller("ParceirosListDialogCtrl", ParceirosListDialogCtrl)
+
 import ParceirosBoardElement from "./parceiros-components/board.component"
 pracaModule.component("pracaParceirosBoard", ParceirosBoardElement)
 
