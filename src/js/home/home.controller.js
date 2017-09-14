@@ -3,6 +3,9 @@ class HomeCtrl {
         "ngInject";
 
         $scope.$mdMedia = $mdMedia;
+        // $scope.$mdMenu = $mdMenu;
+        $scope.$state = $state;
+        var originatorEv;
 
         this.appName = AppConstants.appName;
         this._Praca = Praca;
@@ -28,6 +31,11 @@ class HomeCtrl {
 
             $('.tooltipped').tooltip({delay: 50});
         });
+
+        this.openMenu = function($mdMenu, ev) {
+            originatorEv = ev;
+            $mdMenu.open(ev);
+        };
 
         $scope.scroll = (elmTab, intPracasPosition) => {
             let arrElmScrollContainers = $('md-tab'),

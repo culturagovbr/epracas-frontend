@@ -20,38 +20,90 @@
     <video id="bgvid" playsinline autoplay muted loop>
       <source src="/assets/CEUS.mp4" type="video/mp4">
     </video>
-    <div id="home-search" class="animated fadeIn" layout-align="center center" layout-margin layout-gt-xs="row"
-      flex>
-      <md-icon>search</md-icon>
-      <md-autocomplete
-        placeholder="Procure por uma cidade ou estado (UF)"
-        md-selected-item="$ctrl.selectedItem"
-        md-selected-item-change="$ctrl.selectedItemChange(item)"
-        md-search-text="$ctrl.searchText"
-        md-items="item in $ctrl.getMatches($ctrl.searchText)"
-        md-item-text="item.municipio"
-        flex
-        flex-gt-xs="60"
-        class="md-whiteframe-6dp"
-        md-menu-class="autocomplete-epracas-template"
-        ng-model-options="{debounce: 550}"
+    <div layout="row" flex>
+      <div flex="90" id="home-search" class="animated fadeIn" layout-align="center center" layout-margin layout-gt-xs="row"
+           flex>
+        <md-icon class="search">search</md-icon>
+        <md-autocomplete
+                placeholder="Procure por uma cidade ou estado (UF)"
+                md-selected-item="$ctrl.selectedItem"
+                md-selected-item-change="$ctrl.selectedItemChange(item)"
+                md-search-text="$ctrl.searchText"
+                md-items="item in $ctrl.getMatches($ctrl.searchText)"
+                md-item-text="item.municipio"
+                flex
+                flex-gt-xs="60"
+                class="md-whiteframe-6dp"
+                md-menu-class="autocomplete-epracas-template"
+                ng-model-options="{debounce: 550}"
         >
-        <md-item-template>
+          <md-item-template>
           <span class="item-title">
             <span>{{item.nome}}</span>
           </span>
-          <span class="item-metadata">
+            <span class="item-metadata">
             <span>
               <strong>{{item.municipio}}</strong> - {{item.uf | uppercase}}
             </span>
             <span>Modelo: {{item.modelo_descricao}}</span>
             <span>Situação: {{item.situacao_descricao}}</span>
           </span>
-        </md-item-template>
-        <md-not-found>
-          Nenhuma praça encontrada
-        </md-not-found>
-      </md-autocomplete>
+          </md-item-template>
+          <md-not-found>
+            Nenhuma praça encontrada
+          </md-not-found>
+        </md-autocomplete>
+          <md-menu>
+            <md-button aria-label="Open phone interactions menu" class="md-fab animated flip" ng-click="$ctrl.openMenu($mdMenu, $event)">
+              <md-icon>more_horiz</md-icon>
+            </md-button>
+            <md-menu-content width="4">
+              <md-menu-item>
+                <md-button ng-click="$ctrl._$state.go('app.pracas')">
+                  <md-icon>zoom_in</md-icon>
+                  Pesquisa avançada
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button disabled="disabled" ng-click="ctrl.checkVoicemail()">
+                  <md-icon>date_range</md-icon>
+                  Pesquisar evento
+                </md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+      </div>
+      <!--<div flex="10" class="animated fadeIn" layout-align="center center" layout-margin layout-gt-xs="row"-->
+           <!--flex>-->
+        <!--<md-menu>-->
+          <!--<md-button aria-label="Open phone interactions menu" class="md-fab" ng-click="ctrl.openMenu($mdMenu, $event)">-->
+            <!--<md-icon>arrow_drop_down</md-icon>-->
+          <!--</md-button>-->
+          <!--<md-menu-content width="4">-->
+            <!--<md-menu-item>-->
+              <!--<md-button ng-click="ctrl.redial($event)">-->
+                <!--&lt;!&ndash;<md-icon md-svg-icon="call:dialpad" md-menu-align-target></md-icon>&ndash;&gt;-->
+                <!--Redial-->
+              <!--</md-button>-->
+            <!--</md-menu-item>-->
+            <!--<md-menu-item>-->
+              <!--<md-button disabled="disabled" ng-click="ctrl.checkVoicemail()">-->
+                <!--&lt;!&ndash;<md-icon md-svg-icon="call:voicemail"></md-icon>&ndash;&gt;-->
+                <!--Check voicemail-->
+              <!--</md-button>-->
+            <!--</md-menu-item>-->
+            <!--<md-menu-divider></md-menu-divider>-->
+            <!--<md-menu-item>-->
+              <!--<md-button ng-click="ctrl.toggleNotifications()">-->
+                <!--&lt;!&ndash;<md-icon md-svg-icon="social:notifications-{{ctrl.notificationsEnabled ? 'off' : 'on'}}"></md-icon>&ndash;&gt;-->
+                <!--&lt;!&ndash;{{ctrl.notificationsEnabled ? 'Disable' : 'Enable' }} notifications&ndash;&gt;-->
+              <!--</md-button>-->
+            <!--</md-menu-item>-->
+          <!--</md-menu-content>-->
+        <!--</md-menu>-->
+        <!--&lt;!&ndash;<md-button class="md-raised">Pesquisa avançada</md-button>&ndash;&gt;-->
+        <!--&lt;!&ndash;<md-button class="md-raised">Button</md-button>&ndash;&gt;-->
+      <!--</div>-->
     </div>
     <div class="block white-text content animated fadeInUp" flex>
       <h1>O que é o E-Praças?</h1>

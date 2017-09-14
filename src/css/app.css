@@ -94,7 +94,7 @@ div.main-master md-toolbar {
 	/*height: 30vh;*/
 }
 
-#home-search md-icon{
+#home-search md-icon.search{
 	font-size: 48px;
 	height: 48px;
 	width: 48px;
@@ -2449,7 +2449,7 @@ rh-detail .funcao {
 		position: relative;
 	}
 
-	#home-search md-icon{
+	#home-search md-icon.search{
 		position: absolute;
 		left: 14px;
 		top: 14px;
@@ -2491,7 +2491,7 @@ rh-detail .funcao {
 		position: static;
 	}
 
-	#home-search md-icon{
+	#home-search md-icon.search{
 		position: relative;
 	}
 }
