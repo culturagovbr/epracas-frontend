@@ -1,8 +1,11 @@
+import moment from "moment"
+
 export default class RhAddDialogController {
-  constructor($mdDialog, $log, Toast, RecursoHumano, praca, rh) {
+  constructor($state, $mdDialog, $log, Toast, RecursoHumano, praca, rh) {
     "ngInject"
 
     angular.extend(this, {
+      $state,
       $mdDialog,
       $log,
       Toast,
@@ -74,12 +77,14 @@ export default class RhAddDialogController {
 
   save(praca, rh) {
     this.isSaving = true
+    rh.data_entrada = moment(rh.data_entrada).format("YYYY-MM-DD");
 
     this.RecursoHumano.save(praca, rh)
       .then(
         (response) => {
           this.$mdDialog.hide()
           this.Toast.showSuccessToast("Recurso Humano Adicionado")
+          this.$state.reload()
         }
       )
       .catch(
