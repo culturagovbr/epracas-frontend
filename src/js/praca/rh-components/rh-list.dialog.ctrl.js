@@ -85,30 +85,4 @@ export default class RhListDialogController {
       fullscreen: true,
     })
   }
-
-  rhDelDialog(praca, rh) {
-    const caller = this.ErrorCatcher.callerName()
-
-    this.$mdDialog.show(
-      this.$mdDialog.confirm()
-      .title("Excluir vinculo de R.H.")
-      .textContent("Ao excluir uma informação, você subtrai ela do sistema e impede que ela seja processada para qualquer tipo de estatistica. Tem certeza que deseja excluir esta informação?")
-      .ariaLabel("Excluir vinculo de R.H.")
-      .ok("Sim, excluir o vinculo")
-      .cancel("Não, não excluir o vinculo"))
-      .then(() => {
-        const data = angular.copy(rh)
-        angular.extend(data, { excluir: true })
-        this.RecursoHumano.delete(praca, data)
-          .then(() => {
-            this.rhs = this.rhs.filter(res => res !== rh)
-            this.Toast.showSuccessToast("Vinculo excluido com sucesso")
-            this.$state.reload()
-          })
-          .catch((err) => {
-            this.Toast.showRejectedToast("Erro ao excluir vinculo")
-            this.ErrorCatcher.error(caller, err)
-          })
-      })
-  }
 }
