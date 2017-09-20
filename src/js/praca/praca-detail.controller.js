@@ -1,7 +1,7 @@
 import moment from "moment"
 
 class PracaDetailCtrl {
-  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, praca, $timeout, $filter) {
+  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, praca, $timeout, $filter, $state) {
     "ngInject"
 
       angular.extend(this, {
@@ -136,6 +136,64 @@ class PracaDetailCtrl {
     });
     praca.imagem = praca.imagem.reverse();
     $scope.arrPhotos = this.buildGridModel(praca.imagem);
+
+
+
+    // Ao clicar em alguma tecla do teclado, verifica se existe imagem aberta, e conforme as setas do teclado vai trocando de imagem.
+    document.onkeydown = (e) => {
+      e = e || window.event;
+      if (e.keyCode == '37') { // left arrow
+        this.imgChange('prev');
+      } else if (e.keyCode == '39') { // right
+        this.imgChange('next');
+      }
+    };
+
+    // Funcao de trocar as imagens que estao no zoom.
+    this.imgChange = (strDirection) => {
+      let elmActive = $('.materialboxed.active'),
+          elmPrev = elmActive.closest('md-grid-tile').prev(),
+          elmNext = elmActive.closest('md-grid-tile').next();
+      if (elmActive.length > 0) {
+        if (strDirection == 'prev') { // left arrow
+          elmActive.click();
+          setTimeout(() => {
+            elmPrev.find('img').click();
+          }, 250);
+          if (elmPrev.length == 0) {
+            $('.container-arrow').fadeOut('slow');
+          }
+        } else { // right
+          elmActive.click();
+          setTimeout(() => {
+            elmNext.find('img').click();
+          }, 250);
+
+          if (elmNext.length == 0) {
+            $('.container-arrow').fadeOut('slow');
+          }
+        }
+      } else {
+        $('.container-arrow').fadeOut('slow');
+      }
+    };
+
+    // Funcionalidades de alterar o zoom das imagens com as setas da tela.
+    $('body').on('click touchend', '.material-placeholder img', () => {
+      console.info('aaaa')
+      let elmActive = $('.materialboxed.active');
+      if (elmActive.length > 0) {
+        $('.container-arrow').fadeIn('slow');
+      } else {
+        $('.container-arrow').fadeOut('slow');
+      }
+    });
+    // Como nao foi possivel pegar o evento click ao retirar a imagem do zoom, foi feito dessa forma ate encontrar uma solucao melhor.
+    let intervel = setInterval(() => {
+      console.info($state.current.name)
+      if ($('#materialbox-overlay').length == 0) $('.container-arrow').fadeOut('slow'); // Verificando se existe imagem em zoom, caso exista esconde os botoes de seta.
+      if ( $state.current.name != 'app.praca') clearInterval(intervel); // Retirando o setIntervel se estiver em outra tela.
+    }, 1000);
   }
 
   /**

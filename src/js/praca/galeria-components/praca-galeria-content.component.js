@@ -118,7 +118,6 @@ class PracaGaleriaContentController {
 
       // Funcionalidades de alterar o zoom das imagens com as setas da tela.
       $('body').on('click touchend', '.material-placeholder img', () => {
-          console.info('aaaa')
           let elmActive = $('.materialboxed.active');
           if (elmActive.length > 0) {
               $('.container-arrow').fadeIn('slow');

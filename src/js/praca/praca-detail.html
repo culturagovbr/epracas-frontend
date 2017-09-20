@@ -1,4 +1,10 @@
 <div layout="column" class="limite" id="praca">
+
+  <div class="container-arrow" style="display: none; position: fixed; z-index: 1001;" >
+    <a ng-click="$ctrl.imgChange('prev')" style="position: fixed; top: 50%; left: 5%;z-index: 1001;" class="btn-floating btn-large waves-effect waves-light orange accent-4"><i class="material-icons">keyboard_arrow_left</i></a>
+    <a ng-click="$ctrl.imgChange('next')" style="position: fixed; top: 50%; right: 5%;z-index: 1001;" class="btn-floating btn-large waves-effect waves-light orange accent-4"><i class="material-icons">keyboard_arrow_right</i></a>
+  </div>
+
   <div flex id="praca_header" class="no-print">
     <img ng-src="{{ $ctrl.praca.header_img }}" style="width: 100%"/>
     <md-fab-speed-dial
