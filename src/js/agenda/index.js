@@ -14,4 +14,7 @@ agendaModule.controller('AgendaCtrl', AgendaCtrl);
 import EventoCtrl from './evento.controller';
 agendaModule.controller('EventoCtrl', EventoCtrl);
 
+import EventosCtrl from './evento.controller';
+agendaModule.controller('EventosCtrl', EventosCtrl);
+
 export default agendaModule;

@@ -31,6 +31,13 @@ function AgendaConfig($stateProvider) {
 					);
 				}
 			}
+		})
+		.state('app.eventos', {
+			// url: "/eventos/{year}/{month}",
+			url: "/eventos",
+			controller: "DashboardEventsCtrl",
+			controllerAs: "$ctrl",
+			templateUrl: "dashboard/events.tmpl.html",
 		});
 }
 

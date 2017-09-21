@@ -9,9 +9,8 @@
       <md-content class=" layout-column color-transition">
         <md-tabs md-selected="tabIntSelected" md-dynamic-height md-border-bottom class="center-align container">
           <md-tab label="Procurar Praças" scroll="header" class=""></md-tab>
-          <md-tab label="Praças CEUs" scroll="#2"></md-tab>
-          <md-tab label="Praças CEUs Próximas" scroll="#3" offset="48"></md-tab>
-          <md-tab label="Mapa das Praças CEUs" scroll="#4" offset="48"></md-tab>
+          <md-tab label="Praças CEUs Próximas" scroll="#2" offset="48"></md-tab>
+          <md-tab label="Mapa das Praças CEUs" scroll="#3" offset="48"></md-tab>
         </md-tabs>
       </md-content>
     </div>
@@ -64,7 +63,7 @@
                 </md-button>
               </md-menu-item>
               <md-menu-item>
-                <md-button disabled="disabled" ng-click="ctrl.checkVoicemail()">
+                <md-button ng-click="$ctrl._$state.go('app.eventos')">
                   <md-icon>date_range</md-icon>
                   Pesquisar evento
                 </md-button>
@@ -109,23 +108,16 @@
       <h2>O ePraças é um sistema de transparência e divulgação das Praças CEUs a todos os cidadãos. Aqui é possível acessar as atividades e os contatos de cada Praça CEU inaugurada e conferir o estágio de implementação das que estão em obras. Os dados do sistema permitirão a avaliação e melhoria contínua da gestão das Praças CEUs, fornecendo indicadores (relatórios e estatísticas) sobre o funcionamento de cada equipamento. O sistema é também uma ferramenta de apoio ao planejamento pelos Grupos Gestores e comunicação entre as Praças CEUs, fortalecendo a Rede de Gestores e Comunidades em todo o País.</h2>
     </div>
     <div class="quadro-btns block white-text animated fadeIn" layout="row" layout-xs="column" layout-align="center center" flex layout-margin ng-hide="$mdMedia('sm')">
-      <a class="blue waves-effect waves-light btn-large  yellow-text tooltipped" flex-gt-xs="33" flex="100" scroll="#2" data-position="top" data-tooltip="Ir para as Praças CEUs">
+      <a href="http://ceus.cultura.gov.br" target="_blank" class="blue waves-effect waves-light btn-large  yellow-text tooltipped" flex-gt-xs="33" flex="100" data-position="top" data-tooltip="Ir para as Praças CEUs">
         <i class="material-icons middle">explore</i>Praças CEUs</a>
-      <a class="yellow waves-effect waves-light btn-large green-text text-darken-4 tooltipped" flex-gt-xs="33" flex="100" scroll="#3" data-position="top" data-tooltip="Ir para praças próximas à você">
+      <a class="yellow waves-effect waves-light btn-large green-text text-darken-4 tooltipped" flex-gt-xs="33" flex="100" scroll="#2" data-position="top" data-tooltip="Ir para praças próximas à você">
         <i class="material-icons middle">near_me</i>Praças CEUs Próximas</a>
-      <a class="green waves-effect waves-light btn-large blue-text text-darken-4 tooltipped" flex-gt-xs="33" flex="100" scroll="#4" data-position="top" data-tooltip="Ir para todas as praças do brasil">
+      <a class="green waves-effect waves-light btn-large blue-text text-darken-4 tooltipped" flex-gt-xs="33" flex="100" scroll="#3" data-position="top" data-tooltip="Ir para todas as praças do brasil">
         <i class="material-icons middle">map</i>Mapa das Praças CEUs</a>
     </div>
   </div>
-<div id="2" scroll-color="blue" class="block transparent blue" layout="column" layout-align="center center">
-  <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
-    <h1>Conheça as Praças CEUs</h1>
-    <md-icon layout-align="center center"> explore</md-icon>
-    <h3>Entenda o que são e como funcionam os Centros de Artes e Esportes Unificados</h3>
-  </div>
-</div>
 <a ui-sref="app.geoloc">
-  <div id="3" scroll-color="yellow darken-1" class="block transparent yellow lighten-1" layout="column"
+  <div id="2" scroll-color="yellow darken-1" class="block transparent yellow lighten-1" layout="column"
     layout-align="center center">
     <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
       <h1>Praças próximas a mim</h1>
@@ -136,7 +128,7 @@
 </a>
 <a target="_blank"
   href="http://mapas.cultura.gov.br/busca/##(global:(enabled:(space:!t),filterEntity:space),space:(filters:(type:!('132'))))">
-  <div id="4" scroll-color="green" class="block transparent green lighten-1 hoverable" layout="column"
+  <div id="3" scroll-color="green" class="block transparent green lighten-1 hoverable" layout="column"
     layout-align="center center">
     <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
       <h1>Todas as praças no Mapa</h1>
