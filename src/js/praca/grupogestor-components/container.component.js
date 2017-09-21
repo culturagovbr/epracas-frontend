@@ -41,6 +41,16 @@ class GrupoGestorController {
     })
   }
 
+  showMembroGestorListDialog(praca) {
+    this.$mdDialog.show({
+      controller: "MembroGestorListDialogController",
+      controllerAs: "$ctrl",
+      templateUrl: "praca/grupogestor-components/membrogestor-list.dialog.tmpl.html",
+      locals: { praca },
+      fullscreen: true,
+    })
+  }
+
   showGestorDialog(praca) {
     if (this.ggEmpty) {
       this.showGrupoGestorDialog(praca)
@@ -57,7 +67,7 @@ const GrupoGestorContainer = {
       <div flex layout-padding class="info">
         <div class="layout-row title">
           <md-icon>group</md-icon>
-          <h1 flex>Grupo Gestor</h1>
+          <h1 flex><a href="#" ng-disable="!$ctrl.praca.grupo_gestor.membros" ng-click="$ctrl.showMembroGestorListDialog($ctrl.praca)"> Grupo Gestor</a></h1>
         </div>
         <div ng-show="$ctrl.ggEmpty">
           <p>Os dados sobre o Grupo Gestor ainda não foram inseridos nesta Praça.</p>

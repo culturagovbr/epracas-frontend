@@ -12,6 +12,21 @@ class GrupoGestor {
     })
   }
 
+  list_membrogestor(praca, grupogestor) {
+    const caller = this.ErrorCatcher.callerName()
+
+    return this.$http({
+      url: `${this.AppConstants.pracaEndPoint}${praca.id_pub}/grupogestor/${grupogestor.id_pub}/membrogestor`,
+      method: "GET",
+    })
+    .catch(
+      (err) => {
+        this.ErrorCatcher.error(caller, err)
+        return this.$q.reject()
+      }
+    )
+  }
+
   save_grupogestor(praca, grupogestor) {
     const caller = this.ErrorCatcher.callerName()
 
@@ -119,9 +134,12 @@ class GrupoGestor {
   delete_membrogestor(praca, grupogestor, membrogestor) {
     const caller = this.ErrorCatcher.callerName()
 
+    membrogestor.data_desligamento = moment(membrogestor.data_desligamento).format("YYYY-MM-DD")
+
     return this.$http({
-      url: `${this.AppConstants.pracaEndPoint}${praca}/grupogestor/${grupogestor}/membrogestor/${membrogestor}/`,
+      url: `${this.AppConstants.pracaEndPoint}${praca.id_pub}/grupogestor/${grupogestor.id_pub}/membrogestor/${membrogestor.id_pub}/`,
       method: "DELETE",
+      data: membrogestor,
     })
     .catch(
       (err) => {

@@ -1,0 +1,35 @@
+<md-dialog layout="column" flex="60" aria-label="Lista de Membros Gestores">
+    <md-dialog-content>
+        <md-content md-theme="docs-dark" layout-padding>
+            <div layout="row" layout-align="space-between center">
+                <h2>Lista de Membros Gestores</h2>
+            </div>
+        </md-content>
+
+        <md-content>
+            <md-card ng-repeat="membro in $ctrl.membrosgestores">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{ membro.nome }}</span>
+                    </md-card-title-text>
+                </md-card-title>
+
+                <md-card-content layout="row" layout-align="space-between">
+                    <div>
+                        <p>{{ membro.origem_descricao }}</p>
+                    </div>
+                    <div show-as-manager="true">
+                        <md-card-actions layout="column">
+                            <md-button aria-label="Editar Membro Gestor" ng-click="$ctrl.membroGestorEditDialog($ctrl.praca, membro)">
+                                <md-icon>create</md-icon>
+                            </md-button>
+                            <md-button aria-label="Excluir Membro Gestor" ng-click="$ctrl.membroGestorEndDialog($ctrl.praca, membro)">
+                                <md-icon>cancel</md-icon>
+                            </md-button>
+                        </md-card-actions>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </md-content>
+    </md-dialog-content>
+</md-dialog>

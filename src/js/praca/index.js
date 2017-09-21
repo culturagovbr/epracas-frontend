@@ -53,6 +53,9 @@ pracaModule.controller("GrupoGestorDialogController", GrupoGestorDialogControlle
 import MembroGestorDialogController from "./grupogestor-components/membrogestor.dialog.ctrl"
 pracaModule.controller("MembroGestorDialogController", MembroGestorDialogController)
 
+import MembroGestorListDialogController from "./grupogestor-components/membrogestor-list.dialog.ctrl"
+pracaModule.controller("MembroGestorListDialogController", MembroGestorListDialogController)
+
 import PracaGaleriaContent from "./galeria-components/praca-galeria-content.component"
 pracaModule.component("pracaGaleriaContent", PracaGaleriaContent)
 
