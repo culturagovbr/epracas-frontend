@@ -86,9 +86,12 @@ class PracaListCtrl {
         // $scope.form.repasse_start_treated = $scope.form.repasse_start;
         // $scope.form.repasse_end_treated = $scope.form.repasse_end;
         this.pracasFiltered = this.$filter("filter")(this.pracas, {
+          regiao : $scope.form.regiao,
+        }, true);
+
+        this.pracasFiltered = this.$filter("filter")(this.pracasFiltered, {
           municipio : $scope.form.municipio,
           uf : $scope.form.uf,
-          regiao : $scope.form.regiao,
           contrato : $scope.form.contrato,
           modelo : $scope.form.modelo,
           situacao : $scope.form.situacao,
