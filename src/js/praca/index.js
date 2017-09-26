@@ -68,6 +68,9 @@ pracaModule.component("pracaUnidadegestora", UnidadeGestoraContainer)
 import MembroUglDialogController from "./unidadegestora-components/membrougl.dialog.ctrl"
 pracaModule.controller("MembroUglDialogController", MembroUglDialogController)
 
+import MembroUglListDialogController from "./unidadegestora-components/membrougl-list.dialog.ctrl"
+pracaModule.controller("MembroUglListDialogController", MembroUglListDialogController)
+
 import GaleriaEditDialogCtrl from "./galeria-edit.dialog.ctrl.js"
 pracaModule.controller("GaleriaEditDialogCtrl", GaleriaEditDialogCtrl)
 

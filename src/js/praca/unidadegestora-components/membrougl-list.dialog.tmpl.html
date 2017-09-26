@@ -1,0 +1,42 @@
+<md-dialog layout="column" flex="60" aria-label="Lista de Membros da Unidade Gestora Local">
+    <md-dialog-content>
+  
+      <md-content md-theme="docs-dark" layout-padding>
+        <div layout="row" layout-align="space-between center">
+          <h2>Lista de Membros da Unidade Gestora Local</h2>
+        </div>
+      </md-content>
+  
+      <md-content>
+        <md-card ng-repeat="gestor in $ctrl.unidade_gestora">
+  
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{ gestor.nome }}</span>
+              <span class="md-subhead">{{ gestor.tipo_descricao }}</span>
+            </md-card-title-text>
+          </md-card-title>
+  
+          <md-card-content layout="row" layout-align="space-between">
+            <div>
+              <p>Email: {{ gestor.email }}</p>
+              <p>Telefone: {{ gestor.telefone }}</p>
+            </div>
+            <div show-as-manager="true">
+              <md-card-actions layout="column">
+                <md-button aria-label="Editar Gestor" ng-click="$ctrl.uglEditDialog($ctrl.praca, gestor)">
+                  <md-icon>create</md-icon>
+                </md-button>
+                <md-button aria-label="Excluir Gestor" ng-click="$ctrl.uglDelDialog($ctrl.praca, gestor)">
+                  <md-icon>cancel</md-icon>
+                </md-button>
+              </md-card-actions>
+            </div>
+          </md-card-content>
+  
+        </md-card>
+      </md-content>
+  
+    </md-dialog-content>
+  </md-dialog>
+  

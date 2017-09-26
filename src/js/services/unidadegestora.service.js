@@ -25,6 +25,21 @@ class UnidadeGestora {
       )
   }
 
+  list(praca) {
+    const caller = this.ErrorCatcher.callerName()
+
+    return this.$http({
+      url: `${this.AppConstants.pracaEndPoint}${praca.id_pub}/unidadegestora/`,
+      method: "GET"
+    })
+    .catch(
+      (err) => {
+        this.ErrorCatcher.error(caller, err)
+        return this.$q.reject()
+      }
+    )
+  }
+
   save(praca, membro) {
     const caller = this.ErrorCatcher.callerName()
 

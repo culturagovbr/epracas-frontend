@@ -32,6 +32,16 @@ class UnidadeGestoraController {
     })
   }
 
+  showListDialog(praca) {
+    this.$mdDialog.show({
+      controller: "MembroUglListDialogController",
+      controllerAs: "$ctrl",
+      templateUrl: "praca/unidadegestora-components/membrougl-list.dialog.tmpl.html",
+      locals: { praca },
+      fullscreen: true,
+    })
+  }
+
 }
 
 const UnidadeGestoraContainer = {
@@ -41,7 +51,7 @@ const UnidadeGestoraContainer = {
       <div flex class="info">
         <div class="layout-row title">
           <md-icon class="material-icons">location_city</md-icon>
-          <h1 flex class="flex">Unidade Gestora Local</h1>
+          <h1 flex class="flex"><a href="#" ng-disable="!$ctrl.unidade_gestora" ng-click="$ctrl.showListDialog($ctrl.praca)">Unidade Gestora Local</a></h1>
         </div>
 
         <md-fab-speed-dial show-as-manager="true" class="md-fab-top-right" ng-click="$ctrl.showUGLDialog($ctrl.praca)" style="padding:0;">
