@@ -87,7 +87,13 @@ class PracaListCtrl {
         // $scope.form.repasse_end_treated = $scope.form.repasse_end;
         this.pracasFiltered = this.$filter("filter")(this.pracas, {
           regiao : $scope.form.regiao,
-        }, true);
+        }, (actual, expected) => {
+          if(expected){
+            return angular.equals(actual, expected)
+          }else{
+            return true
+          }
+        });
 
         this.pracasFiltered = this.$filter("filter")(this.pracasFiltered, {
           municipio : $scope.form.municipio,
