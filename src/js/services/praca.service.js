@@ -234,7 +234,13 @@ export default class Praca {
         method: "OPTIONS",
       })
         .then(response => response.data)
-        .then(data => data.actions.PUT)
+        .then(data => {
+          if(data.actions.PUT) {
+            return data.actions.PUT
+          } else {
+            return data.selections
+          }
+        })
         .catch(
           (err) => {
             this.ErrorCatcher.error(caller, err)
@@ -247,7 +253,13 @@ export default class Praca {
       method: "OPTIONS",
     })
       .then(response => response.data)
-      .then(data => data.actions.POST)
+      .then(data => {
+        if(data.actions) {
+          return data.actions.POST
+        } else {
+          return data.selections
+        }
+      })
       .catch(
         (err) => {
           this.ErrorCatcher.error(caller, err)
