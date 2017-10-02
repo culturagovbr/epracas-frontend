@@ -59,7 +59,7 @@ const GestorDetailElement = {
       </md-card-title>
       <md-card-content>
         <p>Início da gestão em: {{$ctrl.gestor.data_inicio_gestao | date:'dd/MM/yyyy' }}</p>
-        <p>Situação da praça: {{$ctrl.gestor.praca.situacao}}</p>
+        <p>Situação da praça: {{$ctrl.gestor.praca.situacao_descricao}}</p>
       </md-card-content>
       <md-card-actions layout="row" layout-align="end center">
         <md-button class="md-icon-button" aria-label="Share" ng-click="$ctrl.delete($event, $ctrl.gestor.url)">
