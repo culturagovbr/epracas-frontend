@@ -16,13 +16,14 @@ class AppHeaderCtrl {
           $scope.userMenu.dashboard = { id: "dashboard",
               name: "Dashboard do Gestor MinC",
               icon: "dashboard",
-              app: "app.dashboard",
+              to: "app.dashboard",
             };
         if(currentUser.praca_manager)
           $scope.userMenu.praca = { id: "praca",
               name: "Minha Praça",
               icon: "domain",
-              // app: `app.praca, {pk: ${currentUser.praca}}`,
+              to: "app.praca",
+              params:  {pk: currentUser.praca_manager}
             };
       }
     }

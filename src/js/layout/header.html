@@ -35,7 +35,7 @@
           </md-list-item>
           <md-menu-content width="5">
             <md-menu-item ng-repeat="item in userMenu">
-              <md-button ng-click="$state.go(item.app)">
+              <md-button ng-click="$state.go(item.to, item.params)">
                 <md-icon>{{item.icon}}</md-icon>
                 {{item.name}}
               </md-button>
