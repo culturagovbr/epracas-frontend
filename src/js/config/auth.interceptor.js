@@ -13,8 +13,7 @@ function authInterceptor(JWT, AppConstants, $injector, $q) {
     responseError(rejection) {
       if (rejection.status === 401) {
         JWT.destroy();
-        const stateService = $injector.get("$state");
-        stateService.go("app.home");
+        return $injector.get('oauthService').initImplicitFlow();
       }
 
       return $q.reject(rejection);
