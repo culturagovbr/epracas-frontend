@@ -30,6 +30,7 @@
           <md-card-title>
             <md-card-title-text>
               <p>{{$ctrl.objData.descricao}}</p>
+              <h2><a href="pracas/{{$ctrl.objData.praca.id_pub}}">{{ $ctrl.objData.praca.nome }}.</a></h2>
             </md-card-title-text>
           </md-card-title>
         </md-card>
@@ -68,7 +69,7 @@
         </md-subheader>
         <md-list-item ng-repeat="obj in $ctrl.objData.territorios" class="md-2-line">
           <div class="md-list-item-text" layout="column" ng-class="md-offset">
-            <h4>{{obj.display_name}}</h4>
+            <h4>{{$ctrl.objData.praca.logradouro}}</h4>
           </div>
         </md-list-item>
       </md-list>

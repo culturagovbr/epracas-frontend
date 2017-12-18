@@ -1,7 +1,8 @@
 import moment from "moment"
+import { get } from "selenium-webdriver/http";
 
 class PracaAtividadeCtrl {
-  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, $timeout, objData) {
+  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, $timeout, Praca, objData) {
     "ngInject";
     angular.extend(this, {$scope});
 
@@ -18,6 +19,8 @@ class PracaAtividadeCtrl {
     objData.ocorrencia.repeat_until = moment(objData.ocorrencia.repeat_until).format("DD/MM/YYYY");
     objData.ocorrencia.start = moment(objData.ocorrencia.start).format("DD/MM/YYYY");
     this.objData = objData;
+        
+    Praca.get(this.objData.praca).then((response) => {this.objData.praca = response})
   }
 }
 
