@@ -1,5 +1,4 @@
 import moment from "moment"
-import { get } from "selenium-webdriver/http";
 
 class PracaAtividadeCtrl {
   constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, $timeout, Praca, objData) {
