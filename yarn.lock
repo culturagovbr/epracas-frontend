@@ -3961,10 +3961,6 @@ macaddress@^0.2.8:
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/macaddress/-/macaddress-0.2.8.tgz#5904dc537c39ec6dbefeae902327135fa8511f12"
 
-"magnifier@git+https://github.com/Yurickh/Magnifier.js.git":
-  version "1.0.0"
-  resolved "git+https://github.com/Yurickh/Magnifier.js.git#11c9baf0394ca33f057e709e1002b373f3e6e429"
-
 make-error-cause@^1.1.1:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/make-error-cause/-/make-error-cause-1.2.2.tgz#df0388fcd0b37816dff0a5fb8108939777dcbc9d"
