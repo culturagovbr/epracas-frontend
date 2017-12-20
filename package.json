@@ -18,7 +18,6 @@
     "date-fns": "^1.27.2",
     "gulp-bro": "^0.3.1",
     "leaflet": "^1.0.2",
-    "magnifier": "git+https://github.com/Yurickh/Magnifier.js.git",
     "marked": "^0.3.5",
     "material-steppers": "^1.0.3",
     "moment": "^2.15.2",
