@@ -11,9 +11,9 @@ Este é o repositório da Interface Web do sistema. O repositório da API pode s
 ## Configurando o ambiente de desenvolvimento
 As dependencias estão listadas em [package.json](package.json), e podem ser gerenciadas pelo npm ou Yarn. O repositório também possui um arquivo [yarn.lock](yarn.lock) que auxilia o controle de versões pelo Yarn. Você também precisa executar uma instancia do backend, local ou remoto, para poder usar a interface plenamente. E ainda, um servidor de identificação OpenID Connect(como o [Login Cidadão](http://github.com/redelivre/login-cidadao))
 
-1. [Ambiente de desenvolvimento local com o yarn ja configurado.](#ambiente-de-desenvolvimento-local)
-2. [Ambiente de desenvolvimento local com container Docker.](#ambiente-local-com-contaienr-docker)
-3. [Configurando as variáveis de ambiente](#configurando-as-variaveis-de-ambiente)
+1. [Ambiente de desenvolvimento local com o yarn ja configurado.](#1.-ambiente-de-desenvolvimento-local)
+2. [Ambiente de desenvolvimento local com container Docker.](#2.-ambiente-local-com-contaienr-docker)
+3. [Configurando as variáveis de ambiente](#3.-configurando-as-variaveis-de-ambiente)
 
 ### 1. Ambiente de desenvolvimento local com yarn configurado.
 O frontend do e-Praças é desenvolvido utilizando Angular 1.5 com EcmaScript6(2015). O Gulp ajuda no processo de servir e gerar um build do projeto pronto a ser enviado ao servidor de produção.
