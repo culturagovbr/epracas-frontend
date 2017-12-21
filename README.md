@@ -40,12 +40,12 @@ gulp
 
 ### Ambiente local com contaienr Docker.
 
-#### 1 Instalação do docker.
+#### 1. Instalação do docker.
 Instale o docker escolhendo a instalação conforme o seu OS (Sistema Operacional).
 
 [Docker Installation](https://docs.docker.com/engine/installation/) 
     
-#### 2 Rodar o container docker.
+#### 2. Rodar o container docker.
 Execute o container apartir de uma imagem pública do MinC.
 
     docker run -it -v /var/www:/var/www -p 4000:4000 --name epracas-frontend culturagovbr/web-node-ubuntu
@@ -69,7 +69,7 @@ Entendendo os comandos:
 
 Para saber mais comandos do docker acesse: [https://docs.docker.com/engine/reference/run/](#https://docs.docker.com/engine/reference/run/)
 
-#### 3 Baixar o código e preparar para rodar o ambiente.
+#### 3. Baixar o código e preparar para rodar o ambiente.
 
 Acessar a pasta "/var/www", baixar o código.
 
@@ -77,7 +77,7 @@ Acessar a pasta "/var/www", baixar o código.
     git clone https://github.com/culturagovbr/epracas-frontend.git
 
 
-#### 4 Instalando depedências com o npm.
+#### 4. Instalando depedências com o npm.
 
 Entra na pasta:
     
@@ -87,20 +87,18 @@ Instala a depedências:
 
     npm install
 
-#### 5 Criando arquivo de configuração. 
+#### 5. Criando arquivo de configuração. 
 Copie o arquivo app.yml.dist para app.yml e edite com suas configurações:
 
     cp app.yml.dist app.yml
         
-#### 6 Rodando o servidor.
+#### 6. Rodando o servidor.
 
     gulp
 ou para rodar setando as variaveis de ambiente.
 
     NODE_ENV=production gulp
     
-[Para saber as variáveis de ambiente utilizadas, acesse aqui ](#configurando-as-variaveis-de-ambiente)
-
 ### Configurando as variáveis de ambiente.
 Alguns elementos da aplicação podem ser configurados através de variáveis de ambiente para alterar caracteristicas de acordo com o ambiente utilizado. Lembre-se de configurar corretamente o arquivo para garantir o bom funcionamento tanto do ambiente de desenvolvimento quanto o de produção.
 
