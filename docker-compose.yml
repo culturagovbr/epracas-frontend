@@ -1,0 +1,10 @@
+version: '2'
+services:
+  epracas_frontend:
+    volumes:
+     - ./:/source
+    container_name: epracas_frontend 
+    build: .
+    ports:
+      - "4000:4000"
+
