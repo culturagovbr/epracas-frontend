@@ -12,7 +12,7 @@ Este é o repositório da Interface Web do sistema. O repositório da API pode s
 As dependencias estão listadas em [package.json](package.json), e podem ser gerenciadas pelo npm ou Yarn. O repositório também possui um arquivo [yarn.lock](yarn.lock) que auxilia o controle de versões pelo Yarn. Você também precisa executar uma instancia do backend, local ou remoto, para poder usar a interface plenamente. E ainda, um servidor de identificação OpenID Connect(como o [Login Cidadão](http://github.com/redelivre/login-cidadao))
 
 - [Ambiente de desenvolvimento local com o yarn configurado.](#ambiente-de-desenvolvimento-local-com-yarn-configurado)
-- [Ambiente de desenvolvimento local com container Docker.](#ambiente-local-com-contaienr-docker)
+- [Ambiente de desenvolvimento local com container Docker.](#ambiente-de-desenvolvimento-local-com-container-docker)
 - [Configurando as variáveis de ambiente.](#configurando-as-variáveis-de-ambiente)
 
 ### Ambiente de desenvolvimento local com yarn configurado.
@@ -38,7 +38,7 @@ E por fim, execute o Gulp para subir o ambiente de desenvolvimento:
 gulp
 ```
 
-### Ambiente local com contaienr Docker.
+### Ambiente de desenvolvimento local com container Docker.
 
 #### 1. Instalação do docker.
 Instale o docker escolhendo a instalação conforme o seu OS (Sistema Operacional).
