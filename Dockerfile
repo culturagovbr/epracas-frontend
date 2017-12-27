@@ -10,4 +10,5 @@ RUN apt update \
   && npm install -g yarn \
   && npm uninstall phantomjs \
   && npm install phantomjs -g \
-  && npm install gulp -g
+  && npm install gulp -g \
+  && yarn install --no-optional

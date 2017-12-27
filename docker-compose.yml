@@ -8,6 +8,6 @@ services:
     ports:
       - "4000:4000"
       - "4001:4001"
-    command: bash -c "yarn install --no-optional && gulp"
+    command:  "gulp"
 
 
