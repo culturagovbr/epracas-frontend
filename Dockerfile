@@ -1,14 +1,14 @@
-FROM culturagovbr/web-node-ubuntu:latest 
+FROM node:latest 
 
 WORKDIR /source
 
-
 RUN apt update \
-  && npm cache clean -f \
-  && npm install -g n \
+  && npm install  n -g \
   && n stable \
-  && npm install -g yarn \
-  && npm uninstall phantomjs \
-  && npm install phantomjs -g \
-  && npm install gulp -g \
-  && yarn install --no-optional
+  && npm install  yarn -g \
+  && npm uninstall phantomjs-prebuilt -g \
+  && npm install phantomjs-prebuilt \
+  && yarn global add phantomjs-prebuilt \
+  && yarn install \
+  && npm install gulp -g 
+
