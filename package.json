@@ -9,7 +9,7 @@
     "angular-animate": "^1.5.8",
     "angular-aria": "^1.5.8",
     "angular-base64": "^2.0.5",
-    "angular-bootstrap-calendar": "^0.28.0",
+    "angular-bootstrap-calendar": "^0.28.4",
     "angular-material": "^1.1.4",
     "angular-messages": "^1.5.8",
     "angular-oidc-2": "^1.0.4",
@@ -26,7 +26,8 @@
     "ng-mask": "^3.1.1",
     "raven-js": "^3.16.0",
     "ui-cropper": "^1.0.3",
-    "ui-leaflet": "^2.0.0"
+    "ui-leaflet": "^2.0.0",
+    "yarn": "^1.3.2"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
