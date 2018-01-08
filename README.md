@@ -77,7 +77,7 @@ Acessar a pasta "/var/www", baixar o código.
     git clone https://github.com/culturagovbr/epracas-frontend.git
 
 
-#### 4. Instalando depedências com o npm.
+#### 4. Instalando depedências com o yarn.
 
 Entra na pasta:
     
@@ -85,7 +85,7 @@ Entra na pasta:
     
 Instala a depedências:
 
-    npm install
+    yarn install
 
 #### 5. Criando arquivo de configuração. 
 Copie o arquivo app.yml.dist para app.yml e edite com suas configurações:
