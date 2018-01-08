@@ -1,16 +1,20 @@
 import moment from "moment"
+import { basename } from "path";
 
 class DashboardEventsCtrl {
-    constructor($log, Atividade, $stateParams, $state) {
+    constructor($log, Praca, Atividade, $stateParams, $state) {
         "ngInject";
+
         this._$state = $state;
 
         let intYear = (typeof $stateParams.year === 'undefined') ? moment().format('YYYY') : $stateParams.year,
-            intMonth = (typeof $stateParams.month === 'undefined') ? parseInt(moment().format('MM')) : $stateParams.month;
+            intMonth = (typeof $stateParams.month === 'undefined') ? parseInt(moment().format('MM')) : $stateParams.month,
+            uf = (typeof $stateParams.uf === 'undefined') ? null : $stateParams.uf;
 
         this.objForm = {
             intYear: intYear,
-            intMonth: intMonth
+            intMonth: intMonth,
+            uf: uf
         };
 
         // Montando os meses para o formulario.
@@ -31,6 +35,15 @@ class DashboardEventsCtrl {
             viewDate: dateCalendar,
         };
 
+        this.listaUf = [];
+        Praca.options().then((data) => {
+            angular.forEach(data.uf.choices, (uf)=>{
+                this.listaUf.push(uf);
+            });
+            // this.listaUf.push(data.uf.choices);
+        });
+
+        this.arrUf = [];
         this.events = [];
         this.loadEvents = () => {
             dateCalendar = new Date(this.objForm.intYear + '-' + this.objForm.intMonth + '-' + '01 12:00:00'); // Firefox nao e tao flexivel quanto o chrome, por isso foi colocado as horas.
@@ -38,23 +51,28 @@ class DashboardEventsCtrl {
                 calendarView: 'month',
                 viewDate: dateCalendar,
             };
+
             this.events = [];
             Atividade.list(null, this.objForm.intMonth, this.objForm.intYear)
             // .then(events => events.map(this.returnEvent(a)))
                 .then(apiReturn => apiReturn.map(this.returnEvent))
                 .then(mappedEvents => {
-                    mappedEvents.forEach(event => this.events.push(event));
+                    mappedEvents.forEach(event => {
+                        this.events.push(event);
+                        if (this.arrUf.indexOf(event.uf.toLowerCase()) < 0) {
+                            this.arrUf.push(event.uf.toLowerCase());
+                        }
+                           this.arrUf = this.arrUf.sort();
+                    });
                     setTimeout(function(){
                         $('div.cal-month-day:not(.cal-day-today)').removeClass('cal-day-event');
                         $('small.cal-events-num:not(.ng-hide)').closest('div.cal-month-day:not(.cal-day-today)').addClass('cal-day-event');
                     }, 500);
                 }).catch($log.log('Erro na transformação de eventos'));
         };
-
         this.navigateTo = (pk) => {
             this._$state.go('app.atividade', {pk: pk});
         };
-
         this.loadEvents();
     }
 
@@ -63,10 +81,13 @@ class DashboardEventsCtrl {
             id_pub: event.id_pub,
             title: event.titulo,
             startsAt: new Date(event.ocorrencia.start),
-            endsAt: new Date(event.ocorrencia.repeat_until)
+            endsAt: new Date(event.ocorrencia.repeat_until),
+            uf: event.praca_detail.uf,
+            municipio: event.praca_detail.municipio
         };
         return newEvent;
     }
+
 }
 
 export default DashboardEventsCtrl;

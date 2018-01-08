@@ -16,6 +16,19 @@
       </md-select>
     </md-input-container>
   </div>
+
+  <div layout-gt-sm="row" class="container">
+    <md-input-container class="md-block" flex-gt-sm>
+      <label>Estado</label>
+      <md-select ng-model="$ctrl.objForm.uf" ng-change="$ctrl.loadEvents()">
+        <md-option ng-repeat="data in $ctrl.arrUf" value="{{data}}">
+          {{data}}
+        </md-option>
+      </md-select>
+    </md-input-container>
+  </div>
+
+
   <div layout-gt-sm="row" class="container">
     <div style="width: 100vw; margin: auto;" class="animated {{$ctrl.strAnimate}}">
       <mwl-calendar
