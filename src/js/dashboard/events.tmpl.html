@@ -21,8 +21,7 @@
     <md-input-container class="md-block" flex-gt-sm>
       <label>Estado</label>
       <md-select ng-model="$ctrl.objForm.uf" ng-change="$ctrl.loadEvents()">
-          <md-option ng-selected="data in $ctrl.arrUf" value=null>Todos</md-option>
-        <md-option ng-repeat="data in $ctrl.arrUf" value="{{data.uf}}">
+        <md-option ng-repeat="data in $ctrl.arrUf" value="{{data.value}}">
           {{data.display_name}}
         </md-option>
       </md-select>
