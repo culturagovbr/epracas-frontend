@@ -35,14 +35,6 @@ class DashboardEventsCtrl {
             viewDate: dateCalendar,
         };
 
-        this.listaUf = [];
-        Praca.options().then((data) => {
-            angular.forEach(data.uf.choices, (uf)=>{
-                this.listaUf.push(uf);
-            });
-            // this.listaUf.push(data.uf.choices);
-        });
-
         this.arrUf = [];
         this.events = [];
         this.loadEvents = () => {
@@ -51,10 +43,9 @@ class DashboardEventsCtrl {
                 calendarView: 'month',
                 viewDate: dateCalendar,
             };
-
+            this.arrUf = [];
             this.events = [];
             Atividade.list(null, this.objForm.intMonth, this.objForm.intYear)
-            // .then(events => events.map(this.returnEvent(a)))
                 .then(apiReturn => apiReturn.map(this.returnEvent))
                 .then(mappedEvents => {
                     mappedEvents.forEach(event => {
@@ -68,7 +59,19 @@ class DashboardEventsCtrl {
                         $('div.cal-month-day:not(.cal-day-today)').removeClass('cal-day-event');
                         $('small.cal-events-num:not(.ng-hide)').closest('div.cal-month-day:not(.cal-day-today)').addClass('cal-day-event');
                     }, 500);
-                }).catch($log.log('Erro na transformação de eventos'));
+               
+                    Praca.options().then((data) => {
+                        angular.forEach(data.uf.choices, (uf)=>{
+                            if(this.arrUf.indexOf(uf.value) in this.arrUf){
+                            this.arrUf.splice(this.arrUf.indexOf(uf.value),1, uf);
+                        }
+                        });
+                    });
+                    this.arrUf = this.arrUf.sort();
+
+                }
+            
+            ).catch($log.log('Erro na transformação de eventos'));
         };
         this.navigateTo = (pk) => {
             this._$state.go('app.atividade', {pk: pk});
