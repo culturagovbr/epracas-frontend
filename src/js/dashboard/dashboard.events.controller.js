@@ -33,7 +33,7 @@ class DashboardEventsCtrl {
 
         this.events = [];
         this.loadEvents = () => {
-            dateCalendar = new Date(this.objForm.intMonth + '-' + '01' + '-' + this.objForm.intYear);
+            dateCalendar = new Date(this.objForm.intYear + '-' + this.objForm.intMonth + '-' + '01 12:00:00'); // Firefox nao e tao flexivel quanto o chrome, por isso foi colocado as horas.
             this.config = {
                 calendarView: 'month',
                 viewDate: dateCalendar,
@@ -44,6 +44,10 @@ class DashboardEventsCtrl {
                 .then(apiReturn => apiReturn.map(this.returnEvent))
                 .then(mappedEvents => {
                     mappedEvents.forEach(event => this.events.push(event));
+                    setTimeout(function(){
+                        $('div.cal-month-day:not(.cal-day-today)').removeClass('cal-day-event');
+                        $('small.cal-events-num:not(.ng-hide)').closest('div.cal-month-day:not(.cal-day-today)').addClass('cal-day-event');
+                    }, 500);
                 }).catch($log.log('Erro na transformação de eventos'));
         };
 

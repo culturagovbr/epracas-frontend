@@ -1,7 +1,7 @@
 import moment from "moment"
 
 class PracaDetailCtrl {
-  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, praca, $timeout, $filter, $state) {
+  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, praca, $timeout, $filter, $state, Praca) {
     "ngInject"
 
       angular.extend(this, {
@@ -12,18 +12,24 @@ class PracaDetailCtrl {
         currentUser: User.current,
         praca,
       });
-
+    this.ramo_atividade = [];
+    Praca.options().then((data) => {
+        this.ramo_atividade = data.parceiros.child.children.ramo_atividade.choices;
+        praca.parceiros.map(objData => {
+          objData.ramo_atividade_name = this.ramo_atividade.filter((objValue) => {return (objData.ramo_atividade == objValue.value)})[0].display_name;
+          return objData;
+        });
+      console.info(praca.parceiros)
+    });
 
     Atividade.list(praca.id_pub)
       .then(atividades => atividades.map(atividade => {
         if (!atividade.ocorrencia) return atividade;
-
         const formatString = "DD.MM.YYYY";
         atividade.data_inicio = moment(atividade.ocorrencia.start.slice(0, 10))
         .format(formatString);
         atividade.data_encerramento = moment(atividade.ocorrencia.repeat_until)
         .format(formatString);
-
         return atividade
       }))
     .then((atividades) => {
@@ -36,7 +42,7 @@ class PracaDetailCtrl {
               }
           );
           return objData;
-      })
+      });
 
       // console.log(atividades)
       praca.agenda = atividades

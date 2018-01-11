@@ -2644,3 +2644,8 @@ rh-detail .funcao {
 .quadro-btns > a {
     text-transform: inherit;
 }
+
+/*class para calendario customizado*/
+.cal-day-event {
+	background-color: rgba(255, 135, 0, 0.2);
+}
