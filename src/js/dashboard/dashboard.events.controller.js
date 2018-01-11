@@ -13,12 +13,14 @@ class DashboardEventsCtrl {
 
         let intYear = (typeof $stateParams.year === 'undefined') ? moment().format('YYYY') : $stateParams.year,
             intMonth = (typeof $stateParams.month === 'undefined') ? parseInt(moment().format('MM')) : $stateParams.month,
-            uf = (typeof $stateParams.uf === 'undefined') ? this.arrUf.indexOf(0) : $stateParams.uf;
-
+            uf = (typeof $stateParams.uf === 'undefined') ? this.arrUf.indexOf(0) : $stateParams.uf,
+            municipio = (typeof $stateParams.municipio === 'undefined') ? null : $stateParams.municipio;
+            
         this.objForm = {
             intYear: intYear,
             intMonth: intMonth,
-            uf: uf
+            uf: uf,
+            municipio: municipio
         };
 
         // Montando os meses para o formulario.
@@ -56,9 +58,9 @@ class DashboardEventsCtrl {
                 this.arrUf = [];
                 this.arrUf.unshift({ value: -1, display_name: "Todos" });
             }
-
+            this.arrMunicipio = [];
             this.events = [];
-            Atividade.list(null, this.objForm.intMonth, this.objForm.intYear, this.objForm.uf)
+            Atividade.list(null, this.objForm.intMonth, this.objForm.intYear)
                 .then(apiReturn => apiReturn.map(this.returnEvent))
                 .then(mappedEvents => {
 
@@ -67,10 +69,16 @@ class DashboardEventsCtrl {
                             this.events.push(event);
                         } else if (this.objForm.uf != -1) {
                             if (event.uf.toUpperCase() == this.objForm.uf.toUpperCase()) {
-                                this.events.push(event);
+                                this.events.push(event);  
+                            }
+                            if(event.uf.toUpperCase() == this.objForm.uf.toUpperCase()){
+                                if(this.arrMunicipio.indexOf(event.municipio)<0 ){
+                                    this.arrMunicipio.push(event.municipio);
+                                }
                             }
                         }
-
+                        
+                        
                         if (this.objForm.uf == -1) {
                             if (this.arrUf.indexOf(event.uf.toLowerCase()) < 0) {
                                 this.arrUf.push(event.uf.toLowerCase());
@@ -101,6 +109,7 @@ class DashboardEventsCtrl {
                     this.arrUf = this.arrUf.sort();
 
                 }).catch($log.log('Erro na transformação de eventos'));
+                console.log(this.arrMunicipio);
         };
         this.navigateTo = (pk) => {
             this._$state.go('app.atividade', { pk: pk });

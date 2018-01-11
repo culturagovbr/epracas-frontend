@@ -26,6 +26,15 @@
         </md-option>
       </md-select>
     </md-input-container>
+    <md-input-container class="md-block" flex-gt-sm>
+      
+      <label>Município</label>
+      <md-select ng-model="$ctrl.objForm.municipio" ng-change="$ctrl.loadEvents()">
+        <md-option ng-repeat="data in $ctrl.arrMunicipio" value="{{data}}">
+          {{data}}
+        </md-option>
+      </md-select>
+    </md-input-container>
   </div>
 
 
