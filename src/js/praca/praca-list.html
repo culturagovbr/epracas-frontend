@@ -101,7 +101,9 @@
             </md-card-content>
             <md-card-actions layout="row" layout-align="end center">
               <md-button class="md-icon-button" ng-click="$state.go('app.praca', {pk: praca.id_pub})">
-                <md-icon class="material-icons">send</md-icon>
+				  <md-tooltip md-direction="top">Acessar essa praça</md-tooltip>
+                <md-icon class="material-icons">redo</md-icon>
+                <!--<md-icon class="material-icons">forward</md-icon>-->
               </md-button>
             </md-card-actions>
           </md-card>
@@ -109,8 +111,4 @@
       </div>
 		</md-list>
 	</md-content>
-
-
-
-
 </div>
