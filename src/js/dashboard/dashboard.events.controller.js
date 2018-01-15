@@ -9,20 +9,19 @@ class DashboardEventsCtrl {
 
         //montando seletor de Estados(uf)
         this.arrUf = [];
-        this.arrUf.unshift({ value: -1, display_name: "Todos" });
+        this.arrMunicipio = [];
 
         let intYear = (typeof $stateParams.year === 'undefined') ? moment().format('YYYY') : $stateParams.year,
-            intMonth = (typeof $stateParams.month === 'undefined') ? parseInt(moment().format('MM')) : $stateParams.month,
-            uf = (typeof $stateParams.uf === 'undefined') ? this.arrUf.indexOf(0) : $stateParams.uf,
-            municipio = (typeof $stateParams.municipio === 'undefined') ? null : $stateParams.municipio;
-            
+            intMonth = (typeof $stateParams.month === 'undefined') ? parseInt(moment().format('MM')) : $stateParams.month;
         this.objForm = {
             intYear: intYear,
             intMonth: intMonth,
-            uf: uf,
-            municipio: municipio
+            uf: (typeof $stateParams.uf === 'undefined') ? '0' : $stateParams.uf,
+            municipio: (typeof $stateParams.municipio === 'undefined') ? '0' : $stateParams.municipio
         };
 
+        console.info($stateParams.uf + ' ' + this.objForm.uf);
+        console.info($stateParams.municipio + ' ' + this.objForm.municipio);
         // Montando os meses para o formulario.
         this.arrMonth = moment.months().map((data, intIndex) => {
             return { id: intIndex + 1, name: data };
@@ -45,8 +44,6 @@ class DashboardEventsCtrl {
         this.events = [];
         this.loadEvents = () => {
 
-            this.arrUf = this.arrUf.sort();
-
             dateCalendar = new Date(this.objForm.intYear + '-' + this.objForm.intMonth + '-' + '01 12:00:00'); // Firefox nao e tao flexivel quanto o chrome, por isso foi colocado as horas.
             this.config = {
                 calendarView: 'month',
@@ -54,38 +51,45 @@ class DashboardEventsCtrl {
             };
 
             //Resetando filtro evitando duplicidade de UF/estados
-            if (this.objForm.uf == -1) {
+            if (this.objForm.uf == '0') {
                 this.arrUf = [];
-                this.arrUf.unshift({ value: -1, display_name: "Todos" });
+                this.arrMunicipio = [];
             }
-            this.arrMunicipio = [];
+            //Resetando filtro evitando sobrecarga de municipios
+            if (this.objForm.uf != this.arrMunicipio.indexOf(this.objForm.uf)) {
+                this.arrMunicipio = [];
+            }
+
             this.events = [];
+
             Atividade.list(null, this.objForm.intMonth, this.objForm.intYear)
                 .then(apiReturn => apiReturn.map(this.returnEvent))
                 .then(mappedEvents => {
 
-                    mappedEvents.forEach(event => {
-                        if (this.objForm.uf == -1) {
-                            this.events.push(event);
-                        } else if (this.objForm.uf != -1) {
-                            if (event.uf.toUpperCase() == this.objForm.uf.toUpperCase()) {
-                                this.events.push(event);  
-                            }
-                            if(event.uf.toUpperCase() == this.objForm.uf.toUpperCase()){
-                                if(this.arrMunicipio.indexOf(event.municipio)<0 ){
-                                    this.arrMunicipio.push(event.municipio);
-                                }
+                    if (this.arrMunicipio.length > 1 && this.objForm.uf != this.arrMunicipio[1].uf) {
+                        this.arrMunicipio = [];
+                    }
+
+                    this.events = mappedEvents;
+
+                    this.events = this.events.filter((obj) => {
+                        let booResult = false;
+                        if (obj.uf.toUpperCase() == this.objForm.uf.toUpperCase() || this.objForm.uf === '0') {
+                            booResult = true;
+                            let objMunicipio = {
+                                value: obj.municipio.toLowerCase().replace(/(\b\w)/gi, function (m) { return m.toUpperCase(); }),
+                                uf: obj.uf
+                            };
+                            let booMunicipio = false;
+                            this.arrMunicipio.forEach((objValue) => { if (objValue.value === objMunicipio.value) booMunicipio = true; });
+                            if (booMunicipio === false) {
+                                this.arrMunicipio.push(objMunicipio);
                             }
                         }
-                        
-                        
-                        if (this.objForm.uf == -1) {
-                            if (this.arrUf.indexOf(event.uf.toLowerCase()) < 0) {
-                                this.arrUf.push(event.uf.toLowerCase());
-                            }
-                        }
-                        this.arrUf = this.arrUf.sort();
+                        if (this.arrUf.indexOf(obj.uf.toLowerCase()) < 0) this.arrUf.push(obj.uf.toLowerCase());
+                        return booResult;
                     });
+
                     setTimeout(function () {
                         $('div.cal-month-day:not(.cal-day-today)').removeClass('cal-day-event');
                         $('small.cal-events-num:not(.ng-hide)').closest('div.cal-month-day:not(.cal-day-today)').addClass('cal-day-event');
@@ -106,10 +110,27 @@ class DashboardEventsCtrl {
                         });
                     });
 
+                    this.dtoEvent = [];
+
+                    if (this.objForm.municipio != '0') {
+                        angular.forEach(this.events, ev => {
+                            if (this.objForm.municipio.toUpperCase() == ev.municipio.toUpperCase()) {
+                                this.dtoEvent.push(ev);
+                            }
+                        });
+                    }
+
+                    if (this.dtoEvent.length > 0) {
+                        this.events = [];
+                        this.events = this.dtoEvent;
+                    }
+
                     this.arrUf = this.arrUf.sort();
 
                 }).catch($log.log('Erro na transformação de eventos'));
-                console.log(this.arrMunicipio);
+
+            console.info($stateParams.uf + ' ' + this.objForm.uf);
+            console.info($stateParams.municipio + ' ' + this.objForm.municipio);
         };
         this.navigateTo = (pk) => {
             this._$state.go('app.atividade', { pk: pk });

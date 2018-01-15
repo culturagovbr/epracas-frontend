@@ -1,56 +1,51 @@
-  <div layout-gt-sm="row" class="container">
-    <md-input-container class="md-block" flex-gt-sm>
-      <label>Mês</label>
-      <md-select ng-model="$ctrl.objForm.intMonth" ng-change="$ctrl.loadEvents()">
-        <md-option ng-repeat="data in $ctrl.arrMonth" value="{{data.id}}">
-          {{data.name}}
-        </md-option>
-      </md-select>
-    </md-input-container>
-    <md-input-container class="md-block" flex-gt-sm>
-      <label>Ano</label>
-      <md-select ng-model="$ctrl.objForm.intYear" ng-change="$ctrl.loadEvents()">
-        <md-option ng-repeat="data in $ctrl.arrYear" value="{{data.id}}">
-          {{data.name}}
-        </md-option>
-      </md-select>
-    </md-input-container>
-  </div>
+<div layout-gt-sm="row" class="container">
+  <md-input-container class="md-block" flex-gt-sm>
+    <label>Mês</label>
+    <md-select ng-model="$ctrl.objForm.intMonth" ng-change="$ctrl.loadEvents()">
+      <md-option ng-repeat="data in $ctrl.arrMonth" value="{{data.id}}">
+        {{data.name}}
+      </md-option>
+    </md-select>
+  </md-input-container>
+  <md-input-container class="md-block" flex-gt-sm>
+    <label>Ano</label>
+    <md-select ng-model="$ctrl.objForm.intYear" ng-change="$ctrl.loadEvents()">
+      <md-option ng-repeat="data in $ctrl.arrYear" value="{{data.id}}">
+        {{data.name}}
+      </md-option>
+    </md-select>
+  </md-input-container>
+  <md-input-container class="md-block" flex-gt-sm>
+    <label>Estado</label>
+    <md-select ng-model="$ctrl.objForm.uf" ng-change="$ctrl.loadEvents()">
+      <md-option value="0">Todos</md-option>
+      <md-option ng-repeat="data in $ctrl.arrUf" value="{{data.value}}">
+        {{data.display_name}}
+      </md-option>
+    </md-select>
+  </md-input-container>
+</div>
 
-  <div layout-gt-sm="row" class="container">
-    <md-input-container class="md-block" flex-gt-sm>
-      <label>Estado</label>
-      <md-select ng-model="$ctrl.objForm.uf" ng-change="$ctrl.loadEvents()">
-        <md-option ng-repeat="data in $ctrl.arrUf" value="{{data.value}}">
-          {{data.display_name}}
-        </md-option>
-      </md-select>
-    </md-input-container>
-    <md-input-container class="md-block" flex-gt-sm>
-      
-      <label>Município</label>
-      <md-select ng-model="$ctrl.objForm.municipio" ng-change="$ctrl.loadEvents()">
-        <md-option ng-repeat="data in $ctrl.arrMunicipio" value="{{data}}">
-          {{data}}
-        </md-option>
-      </md-select>
-    </md-input-container>
-  </div>
+<div layout-gt-sm="row" class="container">
+  <md-input-container class="md-block" flex-gt-sm ng-show="$ctrl.objForm.uf != '0'">
+    <label>Município</label>
+    <md-select ng-model="$ctrl.objForm.municipio" ng-change="$ctrl.loadEvents()">
+      <md-option value="0">Todos</md-option>
+      <md-option ng-repeat="data in $ctrl.arrMunicipio" value="{{data.value}}">
+        {{data.value}}
+      </md-option>
+    </md-select>
+  </md-input-container>
+</div>
 
 
-  <div layout-gt-sm="row" class="container">
-    <div style="width: 100vw; margin: auto;" class="animated {{$ctrl.strAnimate}}">
-      <mwl-calendar
-              style="width: 100%"
-              view="$ctrl.config.calendarView"
-              view-date="$ctrl.config.viewDate"
-              events="$ctrl.events"
-              view-title="$ctrl.config.calendarTitle"
-              on-view-change-click="false"
-              on-event-click="$ctrl.navigateTo(calendarEvent.id_pub)"
-              on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-              cell-is-open="true">
-      </mwl-calendar>
-    </div>
+<div layout-gt-sm="row" class="container">
+  <div style="width: 100vw; margin: auto;" class="animated {{$ctrl.strAnimate}}">
+    <mwl-calendar style="width: 100%" view="$ctrl.config.calendarView" view-date="$ctrl.config.viewDate" events="$ctrl.events"
+      view-title="$ctrl.config.calendarTitle" on-view-change-click="false" on-event-click="$ctrl.navigateTo(calendarEvent.id_pub)"
+      on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd" cell-is-open="true">
+    </mwl-calendar>
   </div>
-<br /> <br />
+</div>
+<br />
+<br />
