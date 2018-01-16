@@ -20,8 +20,6 @@ class DashboardEventsCtrl {
             municipio: (typeof $stateParams.municipio === 'undefined') ? '0' : $stateParams.municipio
         };
 
-        console.info($stateParams.uf + ' ' + this.objForm.uf);
-        console.info($stateParams.municipio + ' ' + this.objForm.municipio);
         // Montando os meses para o formulario.
         this.arrMonth = moment.months().map((data, intIndex) => {
             return { id: intIndex + 1, name: data };
@@ -66,12 +64,7 @@ class DashboardEventsCtrl {
                 .then(apiReturn => apiReturn.map(this.returnEvent))
                 .then(mappedEvents => {
 
-                    if (this.arrMunicipio.length > 1 && this.objForm.uf != this.arrMunicipio[1].uf) {
-                        this.arrMunicipio = [];
-                    }
-
                     this.events = mappedEvents;
-
                     this.events = this.events.filter((obj) => {
                         let booResult = false;
                         if (obj.uf.toUpperCase() == this.objForm.uf.toUpperCase() || this.objForm.uf === '0') {
@@ -97,16 +90,9 @@ class DashboardEventsCtrl {
 
                     Praca.options().then((data) => {
                         angular.forEach(data.uf.choices, (uf) => {
-                            var i = 0;
-
-                            if (this.arrUf.indexOf(uf.display_name) in this.arrUf) {
-                                i = 1;
-                            }
-                            if (i != 1) {
-                                if (this.arrUf.indexOf(uf.value) in this.arrUf) {
+                                if (this.arrUf.indexOf(uf.display_name) in this.arrUf !== -1 && this.arrUf.indexOf(uf.value) in this.arrUf) {
                                     this.arrUf.splice(this.arrUf.indexOf(uf.value), 1, uf);
-                                }
-                            }
+                                }    
                         });
                     });
 
@@ -128,13 +114,11 @@ class DashboardEventsCtrl {
                     this.arrUf = this.arrUf.sort();
 
                 }).catch($log.log('Erro na transformação de eventos'));
-
-            console.info($stateParams.uf + ' ' + this.objForm.uf);
-            console.info($stateParams.municipio + ' ' + this.objForm.municipio);
         };
         this.navigateTo = (pk) => {
             this._$state.go('app.atividade', { pk: pk });
         };
+
         this.loadEvents();
     }
 
