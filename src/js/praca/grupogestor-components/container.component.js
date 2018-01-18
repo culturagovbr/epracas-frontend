@@ -6,6 +6,9 @@ class GrupoGestorController {
       $mdDialog,
       $log,
     })
+
+    console.info(this.praca.grupo_gestor);
+
   }
 
   $onInit() {
@@ -21,6 +24,7 @@ class GrupoGestorController {
   }
 
   showGrupoGestorDialog(praca) {
+    console.log('a ');
     const grupogestor = praca.grupo_gestor
     this.$mdDialog.show({
       controller: "GrupoGestorDialogController",
@@ -32,6 +36,7 @@ class GrupoGestorController {
   }
 
   showMembroGestorDialog(praca) {
+    alert('a ');
     this.$mdDialog.show({
       controller: "MembroGestorDialogController",
       controllerAs: "$ctrl",
@@ -42,6 +47,7 @@ class GrupoGestorController {
   }
 
   showMembroGestorListDialog(praca) {
+    console.info('b ');
     this.$mdDialog.show({
       controller: "MembroGestorListDialogController",
       controllerAs: "$ctrl",
@@ -52,6 +58,7 @@ class GrupoGestorController {
   }
 
   showGestorDialog(praca) {
+    console.info('c ');
     if (this.ggEmpty) {
       this.showGrupoGestorDialog(praca)
     } else {
@@ -72,7 +79,23 @@ const GrupoGestorContainer = {
         <div ng-show="$ctrl.ggEmpty">
           <p>Os dados sobre o Grupo Gestor ainda não foram inseridos nesta Praça.</p>
         </div>
-
+        <div layout-wrap layout-margin class="layout-row">
+          <md-card layout-padding>
+          <span class="epr-name"><md-icon type="link">description</md-icon> Documentos</span>
+            <span>
+            <!--https://epracas.cultura.gov.br-->
+                <a flex href="{{$ctrl.praca.grupo_gestor.documento_constituicao}}">
+                  <span class="epr-subname"> Constituição 
+                  </span>
+                </a> 
+                &nbsp;&nbsp;
+                <a flex href="{{$ctrl.praca.grupo_gestor.estatuto}}">
+                  <span class="epr-subname">Estatuto</span>
+                </a>
+            </span>
+          </md-card>
+        </div>
+        
         <div layout-wrap layout-margin layout="row">
           <md-card ng-repeat="membro in $ctrl.praca.grupo_gestor.membros" layout-padding flex="18">
             <div ng-show="membro.imagem" class="epr-avatar" style="background-image: url('{{ membro.imagem }}')"></div>
@@ -97,6 +120,7 @@ const GrupoGestorContainer = {
     ggEmpty: "<",
     situacao: "<",
   },
+
 }
 
 export default GrupoGestorContainer
