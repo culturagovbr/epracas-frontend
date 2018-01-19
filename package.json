@@ -57,7 +57,6 @@
     "gulp-util": "^3.0.7",
     "konfig": "^0.2.1",
     "merge-stream": "^1.0.0",
-    "phantomjs": "^2.1.7",
     "preprocessify": "^1.0.1",
     "protractor": "^4.0.4",
     "vinyl-source-stream": "^1.1.0"
