@@ -4,32 +4,65 @@
             <div layout="row" layout-align="space-between center">
                 <h2>Lista de Membros Gestores</h2>
             </div>
+            <a class="waves-effect waves-light btn" ng-click="$ctrl.expandAll()">
+                    <i class="material-icons left">fullscreen</i>Abrir Todos</a>
+                <a class="waves-effect waves-light btn" ng-click="$ctrl.collapseAll()">
+                    <i class="material-icons left">fullscreen_exit</i>Fechar Todos</a>
         </md-content>
-
         <md-content>
-            <md-card ng-repeat="membro in $ctrl.membrosgestores">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">{{ membro.nome }}</span>
-                    </md-card-title-text>
-                </md-card-title>
-
-                <md-card-content layout="row" layout-align="space-between">
-                    <div>
-                        <p>{{ membro.origem_descricao }}</p>
-                    </div>
-                    <div show-as-manager="true">
-                        <md-card-actions layout="column">
-                            <md-button aria-label="Editar Membro Gestor" ng-click="$ctrl.membroGestorEditDialog($ctrl.praca, membro)">
-                                <md-icon>create</md-icon>
-                            </md-button>
-                            <md-button aria-label="Excluir Membro Gestor" ng-click="$ctrl.membroGestorEndDialog($ctrl.praca, membro)">
-                                <md-icon>cancel</md-icon>
-                            </md-button>
-                        </md-card-actions>
-                    </div>
-                </md-card-content>
-            </md-card>
+                <md-card>
+  
+                    <ul class="collapsible popout" data-collapsible="expandable">
+                        <li ng-repeat="data in $ctrl.gruposgestores">
+                            <div class="collapsible-header">
+                                <i class="mdi-navigation-chevron-right"></i>
+                                <a name="987" /> <p ng-show="{{data.data_finalizacao == null}}">{{data.data_instituicao | date:'dd/MM/yyyy'}}</p>
+                                <p ng-show="{{data.data_finalizacao !=null}}"> {{data.data_instituicao | date:'dd/MM/yyyy'}} à {{data.data_finalizacao | date:'dd/MM/yyyy'}}</p>
+                            </div>
+                            <div class="collapsible-body">
+                                <md-list ng-show="{{data.documento_constituicao != null && data.estatuto != null}}" flex>
+                                    <md-subheader class="md-no-sticky"><h3>Documentos</h3></md-subheader>
+                                    <md-list-item class="md-3-line" ng-click="null">
+                                            <div class="md-list-item-text" layout="column">
+                                                <h4>Constituição</h4>
+                                            </div>
+                                            <md-button class="md-secondary md-icon-button" aria-label="Download" target="_blank" href="{{data.documento_constituicao}}">
+                                                <md-icon>insert_drive_file</md-icon>
+                                            </md-button>
+                                            <md-divider ></md-divider>
+                                        </md-list-item>
+                                        <md-list-item class="md-3-line" ng-click="null">
+                                            <div class="md-list-item-text" layout="column">
+                                                <h4>Estatuto</h4>
+                                            </div>
+                                            <md-button class="md-secondary md-icon-button" aria-label="Download" target="_blank" href="{{data.estatuto}}">
+                                                <md-icon>insert_drive_file</md-icon>
+                                            </md-button>
+                                            <md-divider ></md-divider>
+                                        </md-list-item>
+                                    
+                                </md-list>
+                                <md-list flex>
+                                    <md-subheader class="md-no-sticky"><h3>Gestores</h3></md-subheader>
+                                    <md-list-item class="md-3-line" ng-repeat="membro in data.membros" ng-click="null">
+                                        <div class="md-list-item-text" layout="column">
+                                            <h3>{{ membro.nome }}</h3>
+                                            <p>{{ membro.origem_descricao }}</p>
+                                        </div>
+                                        <md-button show-as-manager="true" class="md-secondary md-icon-button" aria-label="Editar Membro Gestor" ng-click="$ctrl.membroGestorEditDialog($ctrl.praca, membro)">
+                                            <md-icon>create</md-icon>
+                                        </md-button>
+                                        <md-button show-as-manager="true" class="md-secondary md-icon-button" aria-label="Excluir Membro Gestor" ng-click="$ctrl.membroGestorEndDialog($ctrl.praca, membro)">
+                                            <md-icon>cancel</md-icon>
+                                        </md-button>
+                                        <md-divider ></md-divider>
+                                    </md-list-item>
+                                    <md-divider ></md-divider>
+                                </md-list>
+                            </div>
+                        </li>
+                    </ul>
+                </md-card>
         </md-content>
     </md-dialog-content>
 </md-dialog>

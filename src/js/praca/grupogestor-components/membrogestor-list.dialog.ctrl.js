@@ -16,8 +16,33 @@ export default class MembroGestorListDialogController {
         .then((res) => {
             this.membrosgestores = res.data
         })
+
+        GrupoGestor.list_gruposGestores(this.praca, this.praca.grupo_gestor)
+        .then((res) => {
+            this.gruposgestores = res.data      
+            console.info(this.gruposgestores);
+        })
+
+
+        $(document).ready(() => {
+            $(".collapsible").collapsible({accordion: true});
+        });
+
     }
 
+     expandAll(){
+        $(".collapsible-header").addClass("active");
+        $(".collapsible").collapsible({accordion: false});
+      }
+      
+      collapseAll(){
+        $(".collapsible-header").removeClass(function(){
+          return "active";
+        });
+        $(".collapsible").collapsible({accordion: true});
+        $(".collapsible").collapsible({accordion: false});
+      }
+    
     membroGestorEditDialog(praca, membrogestor) {
         this.$mdDialog.show({
           controller: "MembroGestorDialogController",
@@ -29,7 +54,7 @@ export default class MembroGestorListDialogController {
           multiple: true,
         })
     }
-    
+
     membroGestorEndDialog(praca, membrogestor) {
         const caller = this.ErrorCatcher.callerName()
 
