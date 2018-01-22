@@ -72,7 +72,7 @@ const GrupoGestorContainer = {
         <div ng-show="$ctrl.ggEmpty">
           <p>Os dados sobre o Grupo Gestor ainda não foram inseridos nesta Praça.</p>
         </div>
-
+        
         <div layout-wrap layout-margin layout="row">
           <md-card ng-repeat="membro in $ctrl.praca.grupo_gestor.membros" layout-padding flex="18">
             <div ng-show="membro.imagem" class="epr-avatar" style="background-image: url('{{ membro.imagem }}')"></div>
