@@ -16,9 +16,14 @@
                 </md-card-title> -->
 
                 <md-cart-content layout="row" layout-align="space-between">
-                    <div>
-                        <p>Nome: {{ parceiro.nome }}</p>
-                        <p>Email: {{ parceiro.email }}</p>
+                    <div style="margin: 5px;">
+                        <p><b>Nome:</b> {{ parceiro.nome }}</p>
+                        <p ng-if="parceiro.contato"><b>Nome do contato:</b> {{ parceiro.contato }}</p>
+                        <p ng-if="parceiro.telefone"><b>Telefone:</b> {{ parceiro.telefone }}</p>
+                        <p ng-if="parceiro.email"><b>Email:</b> {{ parceiro.email }}</p>
+                        <p ng-if="parceiro.endereco"><b>Endereço:</b> {{ parceiro.endereco }}</p>
+                        <p ng-if="parceiro.tempo_parceria"><b>Tempo previsto para parceria (em dias):</b> {{ parceiro.tempo_parceria }}</p>
+                        <p ng-if="parceiro.recursos_financeiros"><b>Valor do recruso financeiro:</b> R$ {{ parceiro.recursos_financeiros }}</p>
                     </div>
                     <div show-as-manager="true">
                         <md-card-actions layout="column">
