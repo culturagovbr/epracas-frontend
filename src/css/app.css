@@ -2651,8 +2651,10 @@ rh-detail .funcao {
 /*}*/
 
 mwl-calendar .cal-month-day .cal-events-num {
-	margin-left: 7px;
-	margin-top: 78px;
+	/*margin-left: 7px;*/
+    position: absolute;
+    left: 0;
+    bottom: 10px;
 }
 
 a.pull-left.event {
