@@ -2646,6 +2646,15 @@ rh-detail .funcao {
 }
 
 /*class para calendario customizado*/
-.cal-day-event {
-	background-color: rgba(255, 135, 0, 0.2);
+/*.cal-day-event {*/
+	/*background-color: rgba(255, 135, 0, 0.2);*/
+/*}*/
+
+mwl-calendar .cal-month-day .cal-events-num {
+	margin-left: 7px;
+	margin-top: 78px;
+}
+
+a.pull-left.event {
+	display: none;
 }
