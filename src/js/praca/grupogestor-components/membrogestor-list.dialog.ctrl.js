@@ -19,8 +19,7 @@ export default class MembroGestorListDialogController {
 
         GrupoGestor.list_gruposGestores(this.praca, this.praca.grupo_gestor)
         .then((res) => {
-            this.gruposgestores = res.data      
-            console.info(this.gruposgestores);
+            this.gruposgestores = res.data
         })
 
 
