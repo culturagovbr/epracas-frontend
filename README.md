@@ -48,14 +48,14 @@ Instale o docker escolhendo a instalação conforme o seu OS (Sistema Operaciona
 #### 2. Rodar o container docker.
 Execute o container apartir de uma imagem pública do MinC.
 
-    docker run -it -v /var/www:/var/www -p 4000:4000 --name epracas-frontend culturagovbr/web-node-ubuntu
+    docker run -it -v /var/www:/var/www -p 4000:4000 --name epracas-front culturagovbr/epracas-front
 
 Este comando faz as seguites tarefas:
 - Baixa uma imagem pública do minc para o front do e-praças;
 - Coloca pra rodar a imagem baixada;
 - Compartilha a pasta "/var/www" com o container para poder editar os arquivos de fora do container;
 - Compartilha a porta "4000" (porta padrao do gulp) para fora do container;
-- Coloca o nome do container de epracas-frontend;
+- Coloca o nome do container de epracas-front;
 - Entra no container.
 
 Entendendo os comandos:
