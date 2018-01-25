@@ -63,7 +63,7 @@ class DashboardEventsCtrl {
             Atividade.list(null, this.objForm.intMonth, this.objForm.intYear)
                 .then(apiReturn => apiReturn.map(this.returnEvent))
                 .then(mappedEvents => {
-
+                    this.arrUf = [];
                     this.events = mappedEvents;
                     this.events = this.events.filter((obj) => {
                         let booResult = false;
