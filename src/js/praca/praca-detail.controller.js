@@ -186,7 +186,7 @@ class PracaDetailCtrl {
 
     // Funcionalidades de alterar o zoom das imagens com as setas da tela.
     $('body').on('click touchend', '.material-placeholder img', () => {
-      console.info('aaaa')
+     // console.info('aaaa')
       let elmActive = $('.materialboxed.active');
       if (elmActive.length > 0) {
         $('.container-arrow').fadeIn('slow');
@@ -196,7 +196,7 @@ class PracaDetailCtrl {
     });
     // Como nao foi possivel pegar o evento click ao retirar a imagem do zoom, foi feito dessa forma ate encontrar uma solucao melhor.
     let intervel = setInterval(() => {
-      console.info($state.current.name)
+     // console.info($state.current.name)
       if ($('#materialbox-overlay').length == 0) $('.container-arrow').fadeOut('slow'); // Verificando se existe imagem em zoom, caso exista esconde os botoes de seta.
       if ( $state.current.name != 'app.praca') clearInterval(intervel); // Retirando o setIntervel se estiver em outra tela.
     }, 1000);
