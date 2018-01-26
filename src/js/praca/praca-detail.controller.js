@@ -19,7 +19,6 @@ class PracaDetailCtrl {
           objData.ramo_atividade_name = this.ramo_atividade.filter((objValue) => {return (objData.ramo_atividade == objValue.value)})[0].display_name;
           return objData;
         });
-      console.info(praca.parceiros)
     });
 
     Atividade.list(praca.id_pub)

@@ -70,9 +70,15 @@ div.main-master{
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
-	background: transparent;
+	/*background: transparent;*/
 	width: 100%;
+}
 
+body {
+	/*background: #adadad;*/
+	/*background: #dadada;*/
+	/*background-color: rgb(194, 194, 194);*/
+	background-color: rgb(230, 230, 230);
 }
 
 div.main-master md-toolbar {
@@ -144,7 +150,7 @@ div.main-master md-toolbar {
 }
 
 #praca .nome md-card{
-	background-color: rgb(224, 224, 224);
+	background-color: rgb(194, 194, 194);
 }
 
 #praca .nome md-card img{
@@ -2659,4 +2665,8 @@ mwl-calendar .cal-month-day .cal-events-num {
 
 a.pull-left.event {
 	display: none;
+}
+
+.md-button.md-default-theme.md-primary, .md-button.md-primary {
+	color: rgb(255, 168, 7);
 }

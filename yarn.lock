@@ -151,9 +151,9 @@ angular-bootstrap-calendar@^0.28.4:
     angular-ui-bootstrap ">=0.14.0"
     interactjs "^1.2.0"
 
-angular-material@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/angular-material/-/angular-material-1.1.4.tgz#27de35646f54ccd320080af0c708e1b438af87f6"
+angular-material@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/angular-material/-/angular-material-1.1.6.tgz#ec8c55423f4da2eb06c91f44af3cf50f867fbe59"
 
 angular-messages@^1.5.8:
   version "1.5.8"

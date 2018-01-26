@@ -1,107 +1,122 @@
 <md-dialog layout="column" aria-label="Adicionar um parceiro da Praça">
   <form name="ParceiroForm" ng-submit="$ctrl.save($ctrl.praca.id_pub, $ctrl.parceiro)">
     <md-dialog-content>
-
-      <md-content md-theme="docs-dark" layout-padding>
-
-        <h2>Adicione um parceiro da Praça</h2>
-        <p>Parceiro é um agente da sociedade civil que possui uma ligação muito forte com a Praça e sua comunidade ao entorno. Eles podem disponibilizar seu trabalho em cursos e oficinas...</p>
-      </md-content>
-      <md-content layout="column" layout-padding>
-
-        <md-input-container class="md-icon-float md-block">
-          <md-icon>business</md-icon>
-          <label>Nome do(a) Parceiro</label>
-          <input name="nomeParceiro" required ng-model="$ctrl.parceiro.nome">
-        </md-input-container>
-
-        <div>
-          <md-input-container class="md-block">
-            <label>Endereço</label>
-            <md-icon>subject</md-icon>
-            <textarea rows="5" name="parceiroLogradouro" required ng-model="$ctrl.parceiro.endereco"></textarea>
-          </md-input-container>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2><b ng-show="!$ctrl.booDisabled">Adicione um parceiro da praça</b><b ng-show="$ctrl.booDisabled">Parceiro da praça</b></h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="$ctrl.cancel()">
+                    <md-icon >close</md-icon>
+                </md-button>
+            </div>
+            <div class="md-toolbar-tools" style="font-size: 15px;font-weight: inherit;">
+                Parceiro é um agente da sociedade civil que possui uma ligação muito forte com a Praça e sua comunidade ao entorno. Eles podem disponibilizar seu trabalho em cursos e oficinas.
+            </div>
+        </md-toolbar>
+        <!--<md-subheader ng-show="$ctrl.parceiro.imagem">Pré visualização</md-subheader>-->
+        <div style="text-align: center; margin: 15px;height: 200px;">
+            <!--<img flex="70" ng-show="$ctrl.parceiro.imagem" ng-src="{{$ctrl.parceiro.imagem}}" alt=""/>-->
+            <div ng-show="$ctrl.parceiro.imagem" class="epr-avatar" style="background-image: url('{{$ctrl.parceiro.imagem}}');height: 200px;width: 200px;" ></div>
+            <div ng-show="!$ctrl.parceiro.imagem" class="epr-avatar" style="background-image: url('https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y');height: 200px;width: 200px;" ></div>
+            <a ng-if="!$ctrl.booDisabled" style="position: relative;bottom: 40px;left: 57px;width: 50px;height: 50px;" ng-click="$ctrl.ImgDialog()" class="btn-floating btn-large waves-effect waves-light orange darken-2">
+                <i ng-show="$ctrl.parceiro.imagem" class="material-icons" style="line-height: 49px;">edit</i>
+                <i ng-show="!$ctrl.parceiro.imagem" class="material-icons" style="line-height: 49px;">add</i>
+            </a>
         </div>
-
-        <md-input-container class="md-icon-float md-block">
-          <md-icon>person</md-icon>
-          <label>Nome do Contato</label>
-          <input name="contatoParceiro" ng-model="$ctrl.parceiro.contato">
-        </md-input-container>
-
-        <div layout="row">
-          <md-input-container class="md-inline" flex>
-            <md-icon>phone</md-icon>
-            <label>Telefone</label>
-            <input mask="(99)99999-9999" clean="true" name="telefoneParceiro" ng-model="$ctrl.parceiro.telefone">
-          </md-input-container>
-
-          <md-input-container class="md-inline" flex>
-            <md-icon>email</md-icon>
-            <label>Email</label>
-            <input type="email" name="emailParceiro" ng-model="$ctrl.parceiro.email">
-          </md-input-container>
-        </div>
-
-        <md-input-container class="md-block">
-          <md-icon>work</md-icon>
-          <label>Ramo de Atividade do Parceiro</label>
-          <md-select ng-model="$ctrl.parceiro.ramo_atividade">
-            <md-option ng-repeat="atividade in $ctrl._listaAtividades" value="{{atividade.value}}">
-              {{atividade.display_name}}
-            </md-option>
-          </md-select>
-        </md-input-container>
-
-        <div>
-          <md-input-container class="md-block">
-            <label>Quais ações estamos realizando juntos?</label>
-            <md-icon>link</md-icon>
-            <textarea rows="5" name="parceiroAcoes" ng-model="$ctrl.parceiro.acoes"></textarea>
-          </md-input-container>
-        </div>
-
-        <md-input-container flex="50">
-          <md-icon>history</md-icon>
-          <label>Tempo previsto para a parceria (em dias)</label>
-          <input type="number" min="0" name="tempoParceiro" ng-model="$ctrl.parceiro.tempo_parceria">
-        </md-input-container>
-
-        <div layout-align="start center" layout="row">
-          <div flex="30">
-            <md-switch ng-model="$ctrl.parceiro.rec_financeiro" name="recfinanceiroParceiro">
-              A parceria envolve recursos financeiros?
-            </md-switch>
+      <md-content layout-padding>
+          <div class="row">
+              <div class="col s6">
+                  <md-input-container class="md-icon-float md-block" flex>
+                      <md-icon>business</md-icon>
+                      <label>Nome do(a) Parceiro</label>
+                      <input name="nomeParceiro" required ng-model="$ctrl.parceiro.nome" ng-disabled="$ctrl.booDisabled">
+                  </md-input-container>
+              </div>
+              <div class="col s6">
+                  <md-input-container class="md-icon-float md-block" flex>
+                      <md-icon>person</md-icon>
+                      <label>Nome do Contato</label>
+                      <input name="contatoParceiro" ng-model="$ctrl.parceiro.contato" ng-disabled="$ctrl.booDisabled">
+                  </md-input-container>
+              </div>
           </div>
-          <div>
-            <md-input-container flex ng-show="$ctrl.parceiro.rec_financeiro || $ctrl.parceiro.recursos_financeiros">
-              <md-icon>attach_money</md-icon>
-              <label>Qual o valor?</label>
-              <input type="currency" name="recursoFinanceiro" ng-model="$ctrl.parceiro.recursos_financeiros">
-            </md-input-container>
+          <div class="row">
+              <div class="col s6">
+                  <md-input-container class="md-icon-float md-block" flex>
+                      <md-icon>phone</md-icon>
+                      <label>Telefone</label>
+                      <input mask="(99)99999-9999" clean="true" name="telefoneParceiro" ng-model="$ctrl.parceiro.telefone" ng-disabled="$ctrl.booDisabled">
+                  </md-input-container>
+              </div>
+              <div class="col s6">
+                  <md-input-container class="md-icon-float md-block" flex>
+                      <md-icon>email</md-icon>
+                      <label>Email</label>
+                      <input type="email" name="emailParceiro" ng-model="$ctrl.parceiro.email" ng-disabled="$ctrl.booDisabled">
+                  </md-input-container>
+              </div>
           </div>
-        </div>
+          <div class="row">
+              <div class="col s6">
+                  <md-input-container class="md-icon-float md-block" flex>
+                      <label>Endereço</label>
+                      <md-icon>subject</md-icon>
+                      <textarea name="parceiroLogradouro" required ng-model="$ctrl.parceiro.endereco" ng-disabled="$ctrl.booDisabled"></textarea>
+                  </md-input-container>
+              </div>
+              <div class="col s6">
+                  <md-input-container class="md-icon-float md-block" flex>
+                      <label>Quais ações estamos realizando juntos?</label>
+                      <md-icon>link</md-icon>
+                      <textarea name="parceiroAcoes" ng-model="$ctrl.parceiro.acoes" ng-disabled="$ctrl.booDisabled"></textarea>
+                  </md-input-container>
+              </div>
+          </div>
 
-        <md-subheader ng-show="$ctrl.parceiro.imagem">Pré visualização</md-subheader>
-        <div>
-          <img flex="70" ng-show="$ctrl.parceiro.imagem" ng-src="{{$ctrl.parceiro.imagem}}" alt=""/>
-        </div>
+          <div class="row">
+              <div class="col s6">
+                  <md-input-container class="md-icon-float md-block" flex>
+                      <md-icon>work</md-icon>
+                      <label>Ramo de Atividade do Parceiro</label>
+                      <md-select ng-model="$ctrl.parceiro.ramo_atividade" ng-disabled="$ctrl.booDisabled">
+                          <md-option ng-repeat="atividade in $ctrl._listaAtividades" value="{{atividade.value}}" ng-disabled="$ctrl.booDisabled">
+                              {{atividade.display_name}}
+                          </md-option>
+                      </md-select>
+                  </md-input-container>
+              </div>
+              <div class="col s6">
+                  <md-input-container class="md-icon-float md-block" flex>
+                      <md-icon>history</md-icon>
+                      <label>Tempo previsto para a parceria (em dias)</label>
+                      <input type="number" min="0" name="tempoParceiro" ng-model="$ctrl.parceiro.tempo_parceria" ng-disabled="$ctrl.booDisabled">
+                  </md-input-container>
+              </div>
+          </div>
 
-        <md-button ng-click="$ctrl.ImgDialog()">
-          Anexe uma imagem do Parceiro
-        </md-button>
-
+          <div class="row">
+              <div class="col s6">
+                  <md-switch ng-model="$ctrl.parceiro.rec_financeiro" name="recfinanceiroParceiro" ng-disabled="$ctrl.booDisabled">
+                      A parceria envolve recursos financeiros?
+                  </md-switch>
+              </div>
+              <div class="col s6">
+                  <md-input-container flex ng-show="$ctrl.parceiro.rec_financeiro">
+                      <md-icon>attach_money</md-icon>
+                      <label>Qual o valor?</label>
+                      <input type="currency" name="recursoFinanceiro" ng-model="$ctrl.parceiro.recursos_financeiros" ng-disabled="$ctrl.booDisabled">
+                  </md-input-container>
+              </div>
+          </div>
+        <!--<md-button ng-click="$ctrl.ImgDialog()">-->
+          <!--Anexe uma imagem do Parceiro-->
+        <!--</md-button>-->
     </md-content>
   </md-dialog-content>
-
   <md-dialog-actions>
-    <md-button ng-click="$ctrl.cancel()">
-      Cancelar
-    </md-button>
-    <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="ParceiroForm.$invalid">
-      Enviar
-    </md-button>
+      <button ng-if="!$ctrl.booDisabled" type="button" ng-click="$ctrl.cancel()" class="btn waves-effect waves-orange transparent orange-text">Cancelar</button>
+      <button ng-if="!$ctrl.booDisabled" class="btn waves-effect waves-light orange darken-2" type="submit">Salvar</button>
+      <button ng-if="$ctrl.booDisabled" type="button" ng-click="$ctrl.cancel()" class="btn waves-effect waves-light orange darken-2">Fechar</button>
   </md-dialog-actions>
-
 </form>
 </md-dialog>
