@@ -115,7 +115,7 @@
   </md-dialog-content>
   <md-dialog-actions>
       <button ng-if="!$ctrl.booDisabled" type="button" ng-click="$ctrl.cancel()" class="btn waves-effect waves-orange transparent orange-text">Cancelar</button>
-      <button ng-if="!$ctrl.booDisabled" class="btn waves-effect waves-light orange darken-2" type="submit">Salvar</button>
+      <button ng-if="!$ctrl.booDisabled" class="btn waves-effect waves-light orange darken-2" type="submit" ng-disabled="ParceiroForm.$invalid">Salvar</button>
       <button ng-if="$ctrl.booDisabled" type="button" ng-click="$ctrl.cancel()" class="btn waves-effect waves-light orange darken-2">Fechar</button>
   </md-dialog-actions>
 </form>

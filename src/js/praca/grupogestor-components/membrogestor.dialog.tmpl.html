@@ -1,15 +1,14 @@
 <md-dialog layout="column" aria-label="Adicionar um parceiro da Praça">
   <form name="MembroGestorForm" ng-submit="$ctrl.save($ctrl.praca, $ctrl.membrogestor)">
     <md-dialog-content>
-
-      <md-content md-theme="docs-dark" layout-padding>
-
-        <div layout="row" layout-align="space-between center">
-        <h2>Adicione um Membro Gestor da Praça</h2>
-        <md-menu>
-          <md-button layout-align="end start" class="md-icon-button" ng-click="$mdMenu.open($event)">
-            <md-icon>menu</md-icon>
-          </md-button>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2><b>Adicione um membro gestor da praça</b></h2>
+          <span flex></span>
+          <md-menu>
+            <md-button layout-align="end start" class="md-icon-button" ng-click="$mdMenu.open($event)">
+              <md-icon>menu</md-icon>
+            </md-button>
             <md-menu-content width="4">
               <md-menu-item>
                 <md-button ng-click="$ctrl.showFinalizaGrupoGestorDialog($ctrl.praca, $ctrl.grupogestor)">
@@ -18,10 +17,12 @@
                 </md-button>
               </md-menu-item>
             </md-menu-content>
-        </md-menu>
+          </md-menu>
         </div>
-        <p>Adicione um novo Membro Gestor para o atual Grupo Gestor. Para opções relacionadas ao Grupo Gestor, utilize o menu ao lado.</p>
-      </md-content>
+        <div class="md-toolbar-tools" style="font-size: 15px;font-weight: inherit;">
+          Adicione um novo membro gestor para o atual grupo gestor. Para opções relacionadas ao gupo gestor, utilize o menu ao lado.
+        </div>
+      </md-toolbar>
       <md-content layout="column" layout-padding>
 
         <md-input-container class="md-icon-float md-block">
@@ -56,13 +57,8 @@
     </md-dialog-content>
 
     <md-dialog-actions>
-      <md-button ng-click="$ctrl.cancel()">
-        Cancelar
-      </md-button>
-      <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="MembroGestorForm.$invalid">
-        Enviar
-      </md-button>
+      <button ng-if="!$ctrl.booDisabled" type="button" ng-click="$ctrl.$mdDialog.cancel()" class="btn waves-effect waves-orange transparent orange-text">Cancelar</button>
+      <button ng-if="!$ctrl.booDisabled" ng-disabled="MembroGestorForm.$invalid" class="btn waves-effect waves-light orange darken-2" type="submit">Salvar</button>
     </md-dialog-actions>
-
   </form>
 </md-dialog>
