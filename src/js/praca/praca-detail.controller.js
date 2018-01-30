@@ -105,14 +105,18 @@ class PracaDetailCtrl {
     // Pegando o evento scroll da tela para deixar as abas dinamicas conforme o scroll.
     // angular.element(document).ready(function(){
     $document.ready(function () {
+        $('.parallax').parallax();
       $(".materialboxed").materialbox()
       let elmTabPracas = $(".tab-pracas"),
-      intPracasPosition = elmTabPracas.offset().top
+      intPracasPosition = elmTabPracas.offset().top,
+          elmLink = elmTabPracas.find('a').closest('div');
+
 
     setTimeout(()=>{
       $(document).scrollTop(0)
         intPracasPosition = elmTabPracas.offset().top
     }, 20)
+      let booFixed = false;
       $document.on("scroll", () => {
         let arrElmScrollContainers = $("md-tab"),
         arrObjScrollContainers = arrElmScrollContainers.map((intKey, elm) => {
@@ -132,10 +136,26 @@ class PracaDetailCtrl {
               $scope.$apply()
             }
           });
+
+        // elmLink.removeClass("animated");
         if (intPosition >= intPracasPosition) {
-          elmTabPracas.addClass("fixed")
+          elmTabPracas.addClass("fixed");
+          if (!booFixed) {
+            booFixed = true;
+            elmLink.show();
+            elmLink.animateCss("fadeInUp", () => {
+              elmLink.removeClass("animated fadeInUp");
+            });
+          }
         } else {
-          elmTabPracas.removeClass("fixed")
+          elmTabPracas.removeClass("fixed");
+          if (booFixed) {
+            booFixed = false;
+            elmLink.animateCss("fadeOutDown", () => {
+              elmLink.hide();
+              elmLink.removeClass("animated fadeOutDown");
+            });
+          }
         }
       })
     });

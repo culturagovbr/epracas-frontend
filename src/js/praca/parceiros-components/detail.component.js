@@ -89,13 +89,15 @@ class ParceirosDetailController {
 const ParceirosDetailElement = {
   controller: ParceirosDetailController,
   template: `
-    <md-card layout-padding ng-click="$ctrl.dialogVisualize($event, $ctrl.praca, $ctrl.parceiro)" style="cursor: pointer; min-width: 250px;">
-      <div ng-show="$ctrl.parceiro.imagem" class="epr-avatar" style="background-image: url('{{$ctrl.parceiro.imagem}}')"></div>
-      <div ng-show="!$ctrl.parceiro.imagem" class="epr-avatar" style="background-image: url('https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y')"></div>
-      <span class="epr-name">{{ $ctrl.parceiro.nome }}</span>
-      <span class="epr-subname">
-        <p>{{$ctrl.parceiro.ramo_atividade_name}}</p>
-      </span>
+    <md-card class="hoverable" ng-click="$ctrl.dialogVisualize($event, $ctrl.praca, $ctrl.parceiro)" style="cursor: pointer; min-width: 250px;">
+      <div layout="column" layout-padding layout-align="center center" style="padding: 20px;">
+        <div ng-show="$ctrl.parceiro.imagem" class="epr-avatar" style="background-image: url('{{$ctrl.parceiro.imagem}}')"></div>
+        <div ng-show="!$ctrl.parceiro.imagem" class="epr-avatar" style="background-image: url('https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y')"></div>
+        <span flex class="epr-name">{{ $ctrl.parceiro.nome }}</span>
+        <span flex class="epr-subname">
+          <p>{{$ctrl.parceiro.ramo_atividade_name}}</p>
+        </span>
+      </div>
       <md-card-actions layout="row" layout-align="center center" show-as-manager="true">
         <button ng-click="$ctrl.dialogDelete($event, $ctrl.praca, $ctrl.parceiro)" class="btn waves-effect waves-red transparent orange-text" type="submit" name="action">Excluir
           <!--<i class="material-icons left">delete</i>-->

@@ -41,9 +41,9 @@ const ParceirosBoardElement = {
           <md-icon>people</md-icon>
           <h1 flex>Parceiros da Praça</h1>
         </div>
-        <md-fab-speed-dial show-as-manager="true" class="md-fab-top-right" ng-click="$ctrl.showAddDialog($event, $ctrl.praca)" style="padding:0;">
+        <md-fab-speed-dial show-as-manager="true" class="md-fab-top-right " ng-click="$ctrl.showAddDialog($event, $ctrl.praca)" style="padding:0;">
           <md-fab-trigger>
-            <md-button class="md-fab">
+            <md-button class="md-fab hoverable">
               <md-icon class="material-icons">add</md-icon>
             </md-button>
           </md-fab-trigger>

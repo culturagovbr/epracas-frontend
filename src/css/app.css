@@ -78,7 +78,9 @@ body {
 	/*background: #adadad;*/
 	/*background: #dadada;*/
 	/*background-color: rgb(194, 194, 194);*/
-	background-color: rgb(230, 230, 230);
+	/*background-color: rgb(230, 230, 230);*/
+    background: linear-gradient(to top right, #b6b6b6 20%, #fff 100%);
+    background-attachment: fixed;
 }
 
 div.main-master md-toolbar {
@@ -474,7 +476,11 @@ md-content#pracas {
 }
 
 .color-transition {
-	transition: background-color 0.7s;
+	/*transition: background-color 0.7s, background 0.7s;*/
+    -webkit-transition: background 0.7s , background 0.7s ease-out;
+    -moz-transition: background 0.7s, background 0.7s ease-out;
+    -o-transition: background 0.7s, background 0.7s ease-out;
+    transition: background-color 0.7s, background 0.7s ease-out;
 }
 
 .transparent.white {
@@ -548,7 +554,17 @@ md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolb
 	/*background-color: rgb(63,81,181);*/
 	/*color: rgba(255,255,255,0.87);*/
 	/*background-color: rgba(0, 0, 0, 0.23);*/
-	/* background-color: rgba(0, 0, 0, 0.6); */
+	 /*background-color: rgba(0, 0, 0, 0.6);*/
+
+    -webkit-transition: background 1s ease-out;
+    -moz-transition: background 1s ease-out;
+    -o-transition: background 1s ease-out;
+    transition: background 1s ease-out;
+
+    background: -webkit-linear-gradient(141deg, #0874ff 0%, #00aeff 51%, #0093ff 75%);
+    background: -moz-linear-gradient(141deg, #0874ff 0%, #00aeff 51%, #0093ff 75%);
+    background: -o-linear-gradient(141deg, #0874ff 0%, #00aeff 51%, #0093ff 75%);
+    background: linear-gradient(141deg, #0874ff 0%, #00aeff 51%, #0093ff 75%);
 }
 
 i.material-icons.middle{
@@ -559,6 +575,15 @@ i.material-icons.middle{
 }
 
 /*TELA PRACAS DETALHADA*/
+
+.tab-pracas {
+	background: linear-gradient(29deg, #0874ff 0%, #00aeff 51%, #0093ff 75%);
+	box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);
+	transition: box-shadow .3s ease-out 0.1ms
+}
+.tab-pracas.fixed {
+	box-shadow: 0 5px 10px 0px rgba(0,0,0,.2),0 21px 33px 3px rgba(0,0,0,.14),0 8px 40px 7px rgba(0,0,0,.12);
+}
 
 .tab-pracas.fixed {
 	z-index: 99;
@@ -608,7 +633,8 @@ figure {
 .gridListdemoDynamicTiles .s32 {
 	font-size: 48px;
 }
-
+/*md-toolbar-tools _md layout-align-space-between-center layout-row _md-toolbar-transitions*/
+/*md-toolbar-tools _md layout-align-space-between-center layout-row _md-toolbar-transitions*/
 .gridListdemoDynamicTiles md-icon.fa {
 	display: block;
 	padding-left: 0;
@@ -2669,4 +2695,12 @@ a.pull-left.event {
 
 .md-button.md-default-theme.md-primary, .md-button.md-primary {
 	color: rgb(255, 168, 7);
+}
+
+.title {
+	border-bottom: solid 1px #606060CC;
+	color: rgba(0,0,0,0.54);
+}
+.title a {
+	color: rgba(0,0,0,0.54);
 }
