@@ -9,3 +9,7 @@ dist/*
 app.yml
 
 media/**
+
+package-lock.json
+
+.idea/*

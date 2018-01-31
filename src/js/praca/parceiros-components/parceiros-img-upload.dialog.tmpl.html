@@ -1,14 +1,24 @@
 <md-dialog aria-label="Selecione uma imagem para o Parceiro" flex="80">
 	<md-dialog-content style="height: 80vh">
-		<md-content md-theme="docs-dark" layout-padding>
-			<h2>Selecione uma imagem para o Parceiro</h2>
-			<p>Você pode recortar uma imagem e pré-visualizar o resultado antes de alterar.</p>
-			</md-content>
-			<md-progress-linear
-				ng-show="progress >= 0"
-				md-mode="determinate"
-				value={{progress}}>
-			</md-progress-linear>
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2><b>Selecione uma imagem para o Parceiro</b></h2>
+				<span flex></span>
+				<md-button class="md-icon-button" ng-click="$ctrl.$mdDialog.cancel()">
+					<md-icon >close</md-icon>
+				</md-button>
+			</div>
+			<div class="md-toolbar-tools" style="font-size: 15px;font-weight: inherit;">
+				Você pode recortar uma imagem e pré-visualizar o resultado antes de alterar.
+			</div>
+			<div>
+				<md-progress-linear
+						ng-show="progress >= 0"
+						md-mode="determinate"
+						value={{progress}}>
+				</md-progress-linear>
+			</div>
+		</md-toolbar>
 		<md-input-container class="md-block" flex-gt-sm layout-padding>
 			<md-button
 				class="md-raised"
@@ -44,12 +54,8 @@
 
 		</md-input-container>
 	</md-dialog-content>
-  <md-dialog-actions layout="row">
-    <md-button ng-click="$ctrl.cancel()">
-      Cancelar
-    </md-button>
-    <md-button class="md-no-focus md-raised md-primary" ng-disabled="!$ctrl.imagem" ng-click="$ctrl.hide(croppedDataUrl)">
-      Enviar
-    </md-button>
-  </md-dialog-actions>
+	<md-dialog-actions>
+		<button type="button" ng-click="$ctrl.$mdDialog.cancel()" class="btn waves-effect waves-orange transparent orange-text">Cancelar</button>
+		<button  class="btn waves-effect waves-light orange darken-2" ng-disabled="!$ctrl.imagem" ng-click="$ctrl.hide(croppedDataUrl)">Salvar</button>
+	</md-dialog-actions>
 </md-dialog>

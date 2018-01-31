@@ -1,7 +1,7 @@
 import moment from "moment"
 
 class PracaDetailCtrl {
-  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, praca, $timeout, $filter, $state) {
+  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, praca, $timeout, $filter, $state, Praca) {
     "ngInject"
 
       angular.extend(this, {
@@ -12,18 +12,23 @@ class PracaDetailCtrl {
         currentUser: User.current,
         praca,
       });
-
+    this.ramo_atividade = [];
+    Praca.options().then((data) => {
+        this.ramo_atividade = data.parceiros.child.children.ramo_atividade.choices;
+        praca.parceiros.map(objData => {
+          objData.ramo_atividade_name = this.ramo_atividade.filter((objValue) => {return (objData.ramo_atividade == objValue.value)})[0].display_name;
+          return objData;
+        });
+    });
 
     Atividade.list(praca.id_pub)
       .then(atividades => atividades.map(atividade => {
         if (!atividade.ocorrencia) return atividade;
-
         const formatString = "DD.MM.YYYY";
         atividade.data_inicio = moment(atividade.ocorrencia.start.slice(0, 10))
         .format(formatString);
         atividade.data_encerramento = moment(atividade.ocorrencia.repeat_until)
         .format(formatString);
-
         return atividade
       }))
     .then((atividades) => {
@@ -36,7 +41,7 @@ class PracaDetailCtrl {
               }
           );
           return objData;
-      })
+      });
 
       // console.log(atividades)
       praca.agenda = atividades
@@ -100,14 +105,18 @@ class PracaDetailCtrl {
     // Pegando o evento scroll da tela para deixar as abas dinamicas conforme o scroll.
     // angular.element(document).ready(function(){
     $document.ready(function () {
+        $('.parallax').parallax();
       $(".materialboxed").materialbox()
       let elmTabPracas = $(".tab-pracas"),
-      intPracasPosition = elmTabPracas.offset().top
+      intPracasPosition = elmTabPracas.offset().top,
+          elmLink = elmTabPracas.find('a').closest('div');
+
 
     setTimeout(()=>{
       $(document).scrollTop(0)
         intPracasPosition = elmTabPracas.offset().top
     }, 20)
+      let booFixed = false;
       $document.on("scroll", () => {
         let arrElmScrollContainers = $("md-tab"),
         arrObjScrollContainers = arrElmScrollContainers.map((intKey, elm) => {
@@ -127,10 +136,26 @@ class PracaDetailCtrl {
               $scope.$apply()
             }
           });
+
+        // elmLink.removeClass("animated");
         if (intPosition >= intPracasPosition) {
-          elmTabPracas.addClass("fixed")
+          elmTabPracas.addClass("fixed");
+          if (!booFixed) {
+            booFixed = true;
+            elmLink.show();
+            elmLink.animateCss("fadeInUp", () => {
+              elmLink.removeClass("animated fadeInUp");
+            });
+          }
         } else {
-          elmTabPracas.removeClass("fixed")
+          elmTabPracas.removeClass("fixed");
+          if (booFixed) {
+            booFixed = false;
+            elmLink.animateCss("fadeOutDown", () => {
+              elmLink.hide();
+              elmLink.removeClass("animated fadeOutDown");
+            });
+          }
         }
       })
     });

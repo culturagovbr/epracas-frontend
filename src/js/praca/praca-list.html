@@ -81,29 +81,26 @@
 </div>
 <div layout="column" class="limite limite animated fadeIn">
 	<md-content>
-		<md-list flex>
-			<div class="row">
-				<md-list-item role="list" class="col s12 m6 l4" ng-repeat="praca in $ctrl.pracasFiltered">
-					<md-card class="no-margin-right no-margin-left" style="min-height: 375px;">
-						<img ng-src="{{praca.header_img ? praca.header_img : '/assets/header.jpg' }}" class="md-card-image">
-						<md-card-title>
-							<md-card-title-text>
-								<span class="md-headline">{{ praca.municipio}}</span>
-								<span class="md-subhead">{{praca.municipio}} - {{praca.uf | uppercase}}</span>
-							</md-card-title-text>
-						</md-card-title>
-						<md-card-content>
-							<p>Situação: {{praca.situacao_descricao}}</p>
-							<p>Modelo: {{praca.modelo_descricao}}</p>
-						</md-card-content>
-						<md-card-actions layout="row" layout-align="end center">
-							<md-button class="md-icon-button" ng-click="$state.go('app.praca', {pk: praca.id_pub})">
-								<md-icon class="material-icons">send</md-icon>
-							</md-button>
-						</md-card-actions>
-					</md-card>
-				</md-list-item>
-			</div>
+		<md-list flex>	
+      <div class="row">
+        <md-list-item role="list"
+  				class="col s12 m6 l4"
+  				ng-repeat="praca in $ctrl.pracasFiltered">
+          <md-card class="hoverable no-margin-right no-margin-left" ng-click="$state.go('app.praca', {pk: praca.id_pub})" style="cursor: pointer; min-height: 375px;">
+            <img ng-src="{{praca.header_img ? praca.header_img : '/assets/header.jpg' }}" class="md-card-image">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">{{ praca.municipio}}</span>
+                <span class="md-subhead">{{praca.municipio}} - {{praca.uf | uppercase}}</span>
+              </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+              <p>Situação: {{praca.situacao_descricao}}</p>
+              <p>Modelo: {{praca.modelo_descricao}}</p>
+            </md-card-content>
+          </md-card>
+  			</md-list-item>
+      </div>
 		</md-list>
 	</md-content>
 

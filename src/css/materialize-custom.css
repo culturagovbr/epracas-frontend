@@ -38,3 +38,19 @@ nav {
 #wrapper-footer-brasil {
     padding-top: 8px;
 }
+
+md-tab-item span, md-prev-button md-icon, md-next-button md-icon{
+    color: #FFF;
+}
+
+/*--------------- Um pouco do Fluent Design ----------------------*/
+.blue-gradient {
+    background: linear-gradient(141deg, #0874ff 0%, #00aeff 51%, #0093ff 75%);
+}
+
+md-card.md-default-theme, md-card {
+    color: rgba(0,0,0,0.87);
+    border-radius: 2px;
+    background: linear-gradient(to bottom left, rgba(255, 255, 255, 0.85), rgba(227, 227, 227, 0.83));
+    background-color: #FFFFFFE6;
+}

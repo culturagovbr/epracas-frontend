@@ -51,6 +51,7 @@ export default class MembroGestorDialogController {
       templateUrl: "praca/grupogestor-components/finaliza-grupogestor.dialog.tmpl.html",
       locals: { praca, grupogestor },
       fullscreen: true,
+      clickOutsideToClose:true,
     })
   }
 

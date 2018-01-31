@@ -104,6 +104,8 @@ export default class User {
                   }
                 },
                 (err) => {
+                  console.info(`${this._AppConstants.apiUserInfo}${this.current.sub}/`);
+                  console.info(`${this._AppConstants.apiUserInfo}${this.current.sub}/`);
                   this._$http({
                     url: `${this._AppConstants.apiUserInfo}${this.current.sub}/`,
                     method: "POST",
@@ -113,7 +115,11 @@ export default class User {
                       res => this.current = res.data
                     )
                     .catch(
-                      err => this._$log.error(`setUserInfo() Error on POST: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
+                      // err =>
+                      () => {
+                        window.location.reload(false); // Solucao temporaria de tela em branco, forçando recarregar a pagina automaticamente.
+                        // this._$log.error(`setUserInfo() Error on POST: ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
+                      }
                     )
                 }
               )
