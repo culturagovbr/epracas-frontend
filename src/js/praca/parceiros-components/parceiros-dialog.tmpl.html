@@ -104,7 +104,7 @@
                   <md-input-container flex ng-show="$ctrl.parceiro.rec_financeiro">
                       <md-icon>attach_money</md-icon>
                       <label>Qual o valor?</label>
-                      <input type="currency" name="recursoFinanceiro" ng-model="$ctrl.parceiro.recursos_financeiros" ng-disabled="$ctrl.booDisabled">
+                      <input name="recursoFinanceiro" ng-model="$ctrl.parceiro.recursos_financeiros" ng-disabled="$ctrl.booDisabled" ui-money-mask/>
                   </md-input-container>
               </div>
           </div>

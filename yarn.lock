@@ -151,6 +151,10 @@ angular-bootstrap-calendar@^0.28.4:
     angular-ui-bootstrap ">=0.14.0"
     interactjs "^1.2.0"
 
+angular-locale-pt-br@^1.3.16:
+  version "1.3.16"
+  resolved "https://registry.yarnpkg.com/angular-locale-pt-br/-/angular-locale-pt-br-1.3.16.tgz#9c4b43571832f6e1d23b075cb60ca2af295c1fb5"
+
 angular-material@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/angular-material/-/angular-material-1.1.6.tgz#ec8c55423f4da2eb06c91f44af3cf50f867fbe59"
@@ -158,6 +162,10 @@ angular-material@^1.1.6:
 angular-messages@^1.5.8:
   version "1.5.8"
   resolved "https://registry.yarnpkg.com/angular-messages/-/angular-messages-1.5.8.tgz#1f91d1e7f3f4f2e5ab5adefee2c9a7196b1a34cf"
+
+angular-money-mask@^1.0.3:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/angular-money-mask/-/angular-money-mask-1.0.0.tgz#dc5706609e28023e595302ad2eb7f11cca5bd961"
 
 angular-oidc-2@^1.0.4:
   version "1.0.4"
