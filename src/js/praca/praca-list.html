@@ -1,5 +1,8 @@
-<div id="pracas" layout="row" layout-sm="column" class="limite animated fadeIn" style="transition: all 0.4s; height: 3em;margin-top: 9px;" ng-hide="$ctrl.loadingPracas">
-	<md-button id="btn-search" style="transition: width 0.4s; width: 100%;margin: 6px 4px;" class="md-accent md-raised" ng-click="$ctrl.toggleFilter()"><md-icon>search</md-icon></md-button>
+<div id="pracas" layout="row" layout-sm="column" class="limite animated fadeIn" style="transition: all 0.4s; height: 3em;margin-top: 9px;"
+ ng-hide="$ctrl.loadingPracas">
+	<md-button id="btn-search" style="transition: width 0.4s; width: 100%;margin: 6px 4px;" class="md-accent md-raised" ng-click="$ctrl.toggleFilter()">
+		<md-icon>search</md-icon>
+	</md-button>
 	<div id="container-search" style="display: none;transition: width 0.4s;width: 100%;">
 		<div class="row">
 			<div class="col s12 m3 l4">
@@ -19,8 +22,7 @@
 			<div class="col s12 m4 l4">
 				<md-input-container class="md-block" flex>
 					<md-select ng-model="form.regiao" placeholder="Filtre pela região">
-						<md-option ng-repeat="regiao in $ctrl.listaRegiao"
-							value="{{ regiao.value }}">
+						<md-option ng-repeat="regiao in $ctrl.listaRegiao" value="{{ regiao.value }}">
 							{{ regiao.display_name }}
 						</md-option>
 					</md-select>
@@ -35,8 +37,7 @@
 			<div class="col s12 m4 l4">
 				<md-input-container class="md-block" flex>
 					<md-select ng-model="form.modelo" placeholder="Filtre pelo modelo">
-						<md-option ng-repeat="modelo in $ctrl.listaModelo"
-							value="{{ modelo.value }}">
+						<md-option ng-repeat="modelo in $ctrl.listaModelo" value="{{ modelo.value }}">
 							{{ modelo.display_name }}
 						</md-option>
 					</md-select>
@@ -46,8 +47,7 @@
 			<div class="col s12 m3 l4">
 				<md-input-container class="md-block" flex>
 					<md-select ng-model="form.situacao" placeholder="Filtre pela situação">
-						<md-option ng-repeat="situacao in $ctrl.listaSituacao"
-							value="{{ situacao.value }}">
+						<md-option ng-repeat="situacao in $ctrl.listaSituacao" value="{{ situacao.value }}">
 							{{ situacao.display_name }}
 						</md-option>
 					</md-select>
@@ -67,13 +67,12 @@
 			<div class="col s12 m3 l4">
 				<md-input-container class="md-block">
 					<md-select ng-model="form.repasse_end" placeholder="Filtre pelo valor de repasse">
-							<md-option value="5000000.00">
-								---
-							</md-option>
-							<md-option ng-repeat="(valor, repasse) in $ctrl.repasses"
-								value="{{ valor }}">
-								Até {{ repasse }}
-							</md-option>
+						<md-option value="5000000.00">
+							---
+						</md-option>
+						<md-option ng-repeat="(valor, repasse) in $ctrl.repasses" value="{{ valor }}">
+							Até {{ repasse }}
+						</md-option>
 					</md-select>
 				</md-input-container>
 			</div>
@@ -87,7 +86,7 @@
         <md-list-item role="list"
   				class="col s12 m6 l4"
   				ng-repeat="praca in $ctrl.pracasFiltered">
-          <md-card class="no-margin-right no-margin-left" style="min-height: 375px;">
+          <md-card class="hoverable no-margin-right no-margin-left" ng-click="$state.go('app.praca', {pk: praca.id_pub})" style="cursor: pointer; min-height: 375px;">
             <img ng-src="{{praca.header_img ? praca.header_img : '/assets/header.jpg' }}" class="md-card-image">
             <md-card-title>
               <md-card-title-text>
@@ -99,16 +98,13 @@
               <p>Situação: {{praca.situacao_descricao}}</p>
               <p>Modelo: {{praca.modelo_descricao}}</p>
             </md-card-content>
-            <md-card-actions layout="row" layout-align="end center">
-              <md-button class="md-icon-button" ng-click="$state.go('app.praca', {pk: praca.id_pub})">
-				  <md-tooltip md-direction="top">Acessar essa praça</md-tooltip>
-                <md-icon class="material-icons">redo</md-icon>
-                <!--<md-icon class="material-icons">forward</md-icon>-->
-              </md-button>
-            </md-card-actions>
           </md-card>
   			</md-list-item>
       </div>
 		</md-list>
 	</md-content>
+
+
+
+
 </div>

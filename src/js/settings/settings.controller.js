@@ -20,7 +20,7 @@ class SettingsCtrl {
 		this.isSubmitting = true;
 		this._User.update(this.formData).then(
 			(user) => {
-				console.log('success!');
+		//		console.log('success!');
 				this.isSubmitting = false;
 			},
 			(err) => {

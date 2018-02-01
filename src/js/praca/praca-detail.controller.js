@@ -19,7 +19,6 @@ class PracaDetailCtrl {
           objData.ramo_atividade_name = this.ramo_atividade.filter((objValue) => {return (objData.ramo_atividade == objValue.value)})[0].display_name;
           return objData;
         });
-      console.info(praca.parceiros)
     });
 
     Atividade.list(praca.id_pub)
@@ -106,14 +105,18 @@ class PracaDetailCtrl {
     // Pegando o evento scroll da tela para deixar as abas dinamicas conforme o scroll.
     // angular.element(document).ready(function(){
     $document.ready(function () {
+        $('.parallax').parallax();
       $(".materialboxed").materialbox()
       let elmTabPracas = $(".tab-pracas"),
-      intPracasPosition = elmTabPracas.offset().top
+      intPracasPosition = elmTabPracas.offset().top,
+          elmLink = elmTabPracas.find('a').closest('div');
+
 
     setTimeout(()=>{
       $(document).scrollTop(0)
         intPracasPosition = elmTabPracas.offset().top
     }, 20)
+      let booFixed = false;
       $document.on("scroll", () => {
         let arrElmScrollContainers = $("md-tab"),
         arrObjScrollContainers = arrElmScrollContainers.map((intKey, elm) => {
@@ -133,10 +136,26 @@ class PracaDetailCtrl {
               $scope.$apply()
             }
           });
+
+        // elmLink.removeClass("animated");
         if (intPosition >= intPracasPosition) {
-          elmTabPracas.addClass("fixed")
+          elmTabPracas.addClass("fixed");
+          if (!booFixed) {
+            booFixed = true;
+            elmLink.show();
+            elmLink.animateCss("fadeInUp", () => {
+              elmLink.removeClass("animated fadeInUp");
+            });
+          }
         } else {
-          elmTabPracas.removeClass("fixed")
+          elmTabPracas.removeClass("fixed");
+          if (booFixed) {
+            booFixed = false;
+            elmLink.animateCss("fadeOutDown", () => {
+              elmLink.hide();
+              elmLink.removeClass("animated fadeOutDown");
+            });
+          }
         }
       })
     });
@@ -186,7 +205,7 @@ class PracaDetailCtrl {
 
     // Funcionalidades de alterar o zoom das imagens com as setas da tela.
     $('body').on('click touchend', '.material-placeholder img', () => {
-      console.info('aaaa')
+     // console.info('aaaa')
       let elmActive = $('.materialboxed.active');
       if (elmActive.length > 0) {
         $('.container-arrow').fadeIn('slow');
@@ -196,7 +215,7 @@ class PracaDetailCtrl {
     });
     // Como nao foi possivel pegar o evento click ao retirar a imagem do zoom, foi feito dessa forma ate encontrar uma solucao melhor.
     let intervel = setInterval(() => {
-      console.info($state.current.name)
+     // console.info($state.current.name)
       if ($('#materialbox-overlay').length == 0) $('.container-arrow').fadeOut('slow'); // Verificando se existe imagem em zoom, caso exista esconde os botoes de seta.
       if ( $state.current.name != 'app.praca') clearInterval(intervel); // Retirando o setIntervel se estiver em outra tela.
     }, 1000);

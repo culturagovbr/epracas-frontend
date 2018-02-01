@@ -27,6 +27,22 @@ class GrupoGestor {
     )
   }
 
+  list_gruposGestores(praca, grupogestor) {
+    const caller = this.ErrorCatcher.callerName()
+
+    return this.$http({
+      url: `${this.AppConstants.pracaEndPoint}${praca.id_pub}/grupogestor/`,
+      method: "GET",
+    })
+    .catch(
+      (err) => {
+        this.ErrorCatcher.error(caller, err)
+        return this.$q.reject()
+      }
+    )
+  }
+
+
   save_grupogestor(praca, grupogestor) {
     const caller = this.ErrorCatcher.callerName()
 

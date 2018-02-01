@@ -52,8 +52,8 @@ class GeolocCtrl {
     const fronteira = pontos.getBounds();
     leafletData.getMap('geoLocationMap').then(
         map => {
-          console.log(pontos);
-          console.log(fronteira);
+        //  console.log(pontos);
+        //  console.log(fronteira);
           // pontos.addTo(map);
           // map.fitBounds(pontos.getBounds())
           map.fitBounds([

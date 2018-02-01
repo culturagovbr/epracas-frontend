@@ -1,5 +1,5 @@
 class ParceirosCtrl {
-  constructor($state, $mdDialog, $http, $log, Upload, AppConstants, Toast, ErrorCatcher, praca) {
+  constructor($state, $mdDialog, $http, $log, Upload, AppConstants, Toast, ErrorCatcher, praca, parceiro, booDisabled) {
     "ngInject"
 
     angular.extend(this, {
@@ -12,7 +12,12 @@ class ParceirosCtrl {
       Toast,
       ErrorCatcher,
       praca,
-    })
+      parceiro,
+      booDisabled,
+    });
+
+    // this.strDisabled = (booDisabled)? '' : 'disabled="disabled"';
+    parceiro.rec_financeiro = (parceiro.recursos_financeiros)? true : false;
 
     this._listaAtividades = [
       {

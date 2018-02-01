@@ -15,7 +15,7 @@
           <div layout="row" layout-align="start stretch">
 
             <div flex="50" layout-margin>
-              <zoomable-image ng-if="$ctrl.vincFiles.cpf.tipo!='pdf'" class="high-ground" src={{$ctrl.vincFiles.cpf.arquivo}} ng-show="$ctrl.vincFiles.cpf"></zoomable-image>
+              <img ng-if="$ctrl.vincFiles.cpf.tipo!='pdf'" style="width: 100%;" class="high-ground" src={{$ctrl.vincFiles.cpf.arquivo}} ng-show="$ctrl.vincFiles.cpf"></img>
               <a ng-if="$ctrl.vincFiles.cpf.tipo=='pdf'" href={{$ctrl.vincFiles.cpf.arquivo}} target="_blank">Clique aqui para baixar o arquivo PDF enviado pelo proponente.</a>
             </div>
 
@@ -45,7 +45,7 @@
           <div layout="row" layout-align="start stretch">
 
             <div flex="50" layout-margin>
-              <zoomable-image ng-if="$ctrl.vincFiles.comp.tipo!='pdf'" class="high-ground" src={{$ctrl.vincFiles.comp.arquivo}} ng-show="$ctrl.vincFiles.comp"></zoomable-image>
+              <img ng-if="$ctrl.vincFiles.comp.tipo!='pdf'" style="width: 100%;" class="high-ground" src={{$ctrl.vincFiles.comp.arquivo}} ng-show="$ctrl.vincFiles.comp"></img>
               <a ng-if="$ctrl.vincFiles.comp.tipo=='pdf'" href={{$ctrl.vincFiles.comp.arquivo}} target="_blank">Clique aqui para baixar o arquivo PDF enviado pelo proponente.</a>
             </div>
 
