@@ -43,7 +43,6 @@ class PracaDetailCtrl {
           return objData;
       });
 
-      // console.log(atividades)
       praca.agenda = atividades
     })
 
@@ -276,7 +275,7 @@ class PracaDetailCtrl {
     if (user.is_staff === true) {
       return true
     } else if ((angular.isDefined(praca.gestor) && praca.gestor !== null)) {
-      return user.id_pub === praca.gestor.user_id_pub
+      return user.id_pub == praca.gestor.user_id_pub
     } else {
       return false
     }
@@ -284,7 +283,6 @@ class PracaDetailCtrl {
 
   buildMenu(currentUser) {
     const userMenu = {}
-
     if (!this.permissionIsManagerOrAdmin(this.currentUser, this.praca)) {
       userMenu.vinculo = {
         id: "vinculo",
