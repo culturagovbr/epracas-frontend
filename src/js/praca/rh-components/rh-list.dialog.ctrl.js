@@ -51,13 +51,16 @@ export default class RhListDialogController {
       }],
       controllerAs: "$ctrl",
       template: `
-        <md-dialog layout="column" flex="50" aria-label="Adiciona um Recurso Humano à Praça">
+      <md-dialog layout="column" flex="50" aria-label="Adiciona um Recurso Humano à Praça">
           <form name="RhEndForm" ng-submit="$ctrl.finalizaVinculo($ctrl.praca, $ctrl.rh)">
             <md-dialog-content>
 
               <md-content md-theme="docs-dark" layout-padding>
-                <div layout="row" layout-align="space-between center">
-                  <h2>Adicione um Recurso Humano à Praça</h2>
+              <md-button style="float: right;" class="md-icon-button" ng-click="$ctrl.cancel()">
+              <md-icon >close</md-icon>
+          </md-button>  
+              <div layout="row" layout-align="space-between center">
+                  <h2>Remover um Recurso Humano da Praça</h2>
                 </div>
               </md-content>
 
