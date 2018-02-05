@@ -79,7 +79,7 @@ body {
 	/*background: #dadada;*/
 	/*background-color: rgb(194, 194, 194);*/
 	/*background-color: rgb(230, 230, 230);*/
-    background: linear-gradient(to top right, #b6b6b6 20%, #fff 100%);
+    background: linear-gradient(to top right, #e3e3e3 20%, #fff 100%);
     background-attachment: fixed;
 }
 
@@ -2556,7 +2556,7 @@ rh-detail .funcao {
 	[class^='layout-padding']{
 		padding: 0!important;
 		width: 100%;
-		max-width: none !important;   
+		max-width: none !important;
 	}
 
 	.print-only{
@@ -2699,10 +2699,10 @@ a.pull-left.event {
 
 .title {
 	border-bottom: solid 1px #606060CC;
-	color: rgba(0,0,0,0.54);
+	color: #000000c4;
 }
-.title a {
-	color: rgba(0,0,0,0.54);
+.title a , .title md-icon {
+	color: #000000c4;
 }
 
 md-dialog-actions button {
