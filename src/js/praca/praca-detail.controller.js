@@ -1,7 +1,7 @@
 import moment from "moment"
 
 class PracaDetailCtrl {
-  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, praca, $timeout, $filter, $state, Praca) {
+  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, praca, $timeout, $filter, $state, Praca, Atores) {
     "ngInject"
 
       angular.extend(this, {
@@ -14,11 +14,39 @@ class PracaDetailCtrl {
       });
     this.ramo_atividade = [];
     Praca.options().then((data) => {
-        this.ramo_atividade = data.parceiros.child.children.ramo_atividade.choices;
-        praca.parceiros.map(objData => {
-          objData.ramo_atividade_name = this.ramo_atividade.filter((objValue) => {return (objData.ramo_atividade == objValue.value)})[0].display_name;
+      this.ramo_atividade = data.parceiros.child.children.ramo_atividade.choices;
+      praca.parceiros.map(objData => {
+        objData.ramo_atividade_name = this.ramo_atividade.filter((objValue) => {return (objData.ramo_atividade == objValue.value)})[0].display_name;
+        objData.id = objData.id_pub;
+        objData.image = objData.imagem;
+        objData.title = objData.nome;
+        objData.subtitle = objData.ramo_atividade_name;
+        return objData;
+      });
+
+      praca.grupo_gestor.membros.map(objData => {
+        objData.id = objData.id_pub;
+        objData.title = objData.nome;
+        objData.subtitle = objData.origem_descricao;
+        return objData;
+      });
+
+      praca.rh.map(objData => {
+        objData.id = objData.id_pub;
+        objData.title = objData.nome;
+        objData.subtitle = objData.funcao;
+        return objData;
+      });
+
+      Atores.list(praca).then(res => {
+        praca.atores = res.data
+        praca.atores.map(objData => {
+          objData.id = objData.id_pub;
+          objData.title = objData.nome;
+          objData.image = objData.imagem;
           return objData;
         });
+      })
     });
 
     Atividade.list(praca.id_pub)

@@ -1,4 +1,6 @@
-class GrupoGestorController {
+import angular from "angular"
+
+class Controller {
   constructor($mdDialog, $log) {
     "ngInject"
 
@@ -6,6 +8,11 @@ class GrupoGestorController {
       $mdDialog,
       $log,
     })
+
+    this.urlDelete = "membroGestor"
+    this.urlDialog = "praca/grupogestor-components/membrogestor.dialog.tmpl.html"
+    this.strController = "MembroGestorDialogController"
+    this.booImg = false
   }
 
   $onInit() {
@@ -28,19 +35,19 @@ class GrupoGestorController {
       templateUrl: "praca/grupogestor-components/grupogestor.dialog.tmpl.html",
       locals: { praca, grupogestor },
       fullscreen: true,
-      clickOutsideToClose:true,
+      clickOutsideToClose: true,
       targetEvent: event,
     })
   }
 
-  showMembroGestorDialog(event,praca) {
+  showMembroGestorDialog(event, praca) {
     this.$mdDialog.show({
       controller: "MembroGestorDialogController",
       controllerAs: "$ctrl",
       templateUrl: "praca/grupogestor-components/membrogestor.dialog.tmpl.html",
       locals: { praca },
       fullscreen: true,
-      clickOutsideToClose:true,
+      clickOutsideToClose: true,
       targetEvent: event,
     })
   }
@@ -61,13 +68,29 @@ class GrupoGestorController {
     if (this.ggEmpty) {
       this.showGrupoGestorDialog(event, praca)
     } else {
-      this.showMembroGestorDialog(event,praca, praca.grupo_gestor)
+      this.showMembroGestorDialog(event, praca, praca.grupo_gestor)
     }
+  }
+
+  dialogForm(event, strCtrl, strUrl, praca) {
+    const objValue = {}
+    const booDisabled = false
+    event.stopPropagation()
+    this.$mdDialog.show({
+      controller: strCtrl,
+      templateUrl: strUrl,
+      controllerAs: "$ctrl",
+      locals: { praca, objValue, booDisabled },
+      bindToController: true,
+      clickOutsideToClose: true,
+      targetEvent: event,
+      fullscreen: true,
+    })
   }
 }
 
-const GrupoGestorContainer = {
-  controller: GrupoGestorController,
+const GrupoGestor = {
+  controller: Controller,
   template: `
     <div id="container-grupogestor" layout-padding layout-gt-xs="row">
       <div flex layout-padding class="info">
@@ -79,13 +102,11 @@ const GrupoGestorContainer = {
           <p>Os dados sobre o Grupo Gestor ainda não foram inseridos nesta Praça.</p>
         </div>
         <div layout-wrap layout-margin layout="row">
-          <md-card class="hoverable" ng-repeat="membro in $ctrl.praca.grupo_gestor.membros" layout-padding flex="18">
-            <div ng-show="membro.imagem" class="epr-avatar" style="background-image: url('{{ membro.imagem }}')"></div>
-            <span class="epr-name">{{ membro.nome }}</span>
-            <span class="epr-subname">{{ membro.origem_descricao }}</span>
-          </md-card>
+          <ep-praca-card ng-repeat="objValue in $ctrl.praca.grupo_gestor.membros" praca="$ctrl.praca"
+          boo-img="$ctrl.booImg" str-controller="$ctrl.strController" obj-value="objValue" 
+          url-dialog="$ctrl.urlDialog" mix-delete="$ctrl.urlDelete"></ep-praca-card>
         </div>
-      <md-fab-speed-dial show-as-manager="true" class="md-fab-top-right" ng-click="$ctrl.showGestorDialog($event, $ctrl.praca)">
+      <md-fab-speed-dial show-as-manager="true" class="md-fab-top-right" ng-click="$ctrl.dialogForm($event, $ctrl.strController, $ctrl.urlDialog, $ctrl.praca)">
         <md-fab-trigger>
           <md-button class="md-fab">
             <md-icon>add</md-icon>
@@ -103,4 +124,4 @@ const GrupoGestorContainer = {
   },
 }
 
-export default GrupoGestorContainer
+export default GrupoGestor

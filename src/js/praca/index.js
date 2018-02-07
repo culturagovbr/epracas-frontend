@@ -1,107 +1,60 @@
-import angular from "angular";
-
-const pracaModule = angular.module("app.praca", []);
-
-import PracaConfig from "./praca.config";
-pracaModule.config(PracaConfig);
-
-import PracaListCtrl from "./praca-list.controller";
-pracaModule.controller("PracaListCtrl", PracaListCtrl);
-
-import PracaDetailCtrl from "./praca-detail.controller";
-pracaModule.controller("PracaDetailCtrl", PracaDetailCtrl);
-
-import ChangeHeaderImgCtrl from "./header.controller";
-pracaModule.controller("ChangeHeaderImgCtrl", ChangeHeaderImgCtrl);
-
-import VinculacaoCtrl from "./vinculacao.controller";
-pracaModule.controller("VinculacaoCtrl", VinculacaoCtrl);
-
-import EventCtrl from "./event.controller";
-pracaModule.controller("EventCtrl", EventCtrl);
-
-import PracaInfoCtrl from "./pracainfo.controller";
-pracaModule.controller("PracaInfoCtrl", PracaInfoCtrl);
-
-import UploadImgCtrl from "./galeria-upload.controller";
-pracaModule.controller("UploadImgCtrl", UploadImgCtrl);
-
-import ParceirosCtrl from "./parceiros-components/parceiros.controller";
-pracaModule.controller("ParceirosCtrl", ParceirosCtrl);
-
-import ParceirosListDialogCtrl from "./parceiros-components/parceiros-list.dialog.ctrl"
-pracaModule.controller("ParceirosListDialogCtrl", ParceirosListDialogCtrl)
-
-import ParceirosBoardElement from "./parceiros-components/board.component"
-pracaModule.component("pracaParceirosBoard", ParceirosBoardElement)
-
-import ParceirosListElement from "./parceiros-components/list.component"
-pracaModule.component("pracaParceirosList", ParceirosListElement)
-
-import ParceirosDetailElement from "./parceiros-components/detail.component"
-pracaModule.component("pracaParceirosDetail", ParceirosDetailElement)
-
-import ParceiroImgController from "./parceiros-components/parceiros-img-upload.dialog.ctrl.js"
-pracaModule.controller("ParceiroImgController", ParceiroImgController)
-
-import GrupoGestorContainer from "./grupogestor-components/container.component"
-pracaModule.component("pracaGrupogestor", GrupoGestorContainer)
-
+import angular from "angular"
+import PracaConfig from "./praca.config"
+import PracaListCtrl from "./praca-list.controller"
+import PracaDetailCtrl from "./praca-detail.controller"
+import ChangeHeaderImgCtrl from "./header.controller"
+import VinculacaoCtrl from "./vinculacao.controller"
+import EventCtrl from "./event.controller"
+import PracaInfoCtrl from "./pracainfo.controller"
+import UploadImgCtrl from "./galeria-upload.controller"
+import ParceirosCtrl from "./parceiros-components/parceiros.controller"
+import Parceiros from "./parceiros-components/parceiros.component"
+import ParceiroImgController from "./parceiros-components/parceiros-img-upload.dialog.ctrl"
+import GrupoGestor from "./grupogestor-components/grupogestor.component"
 import GrupoGestorDialogController from "./grupogestor-components/grupogestor.dialog.ctrl"
-pracaModule.controller("GrupoGestorDialogController", GrupoGestorDialogController)
-
 import MembroGestorDialogController from "./grupogestor-components/membrogestor.dialog.ctrl"
-pracaModule.controller("MembroGestorDialogController", MembroGestorDialogController)
-
 import MembroGestorListDialogController from "./grupogestor-components/membrogestor-list.dialog.ctrl"
-pracaModule.controller("MembroGestorListDialogController", MembroGestorListDialogController)
-
-import PracaGaleriaContent from "./galeria-components/praca-galeria-content.component"
-pracaModule.component("pracaGaleriaContent", PracaGaleriaContent)
-
 import PracaGaleriaCtrl from "./praca-galeria.controller"
-pracaModule.controller("PracaGaleriaCtrl", PracaGaleriaCtrl)
-
+import PracaGaleriaContent from "./galeria-components/praca-galeria-content.component"
 import UnidadeGestoraContainer from "./unidadegestora-components/container.component"
-pracaModule.component("pracaUnidadegestora", UnidadeGestoraContainer)
-
 import MembroUglDialogController from "./unidadegestora-components/membrougl.dialog.ctrl"
-pracaModule.controller("MembroUglDialogController", MembroUglDialogController)
-
 import MembroUglListDialogController from "./unidadegestora-components/membrougl-list.dialog.ctrl"
-pracaModule.controller("MembroUglListDialogController", MembroUglListDialogController)
-
-import GaleriaEditDialogCtrl from "./galeria-edit.dialog.ctrl.js"
-pracaModule.controller("GaleriaEditDialogCtrl", GaleriaEditDialogCtrl)
-
-import PracaAtividadeCtrl from "./praca-atividade.ctrl.js"
-pracaModule.controller("PracaAtividadeCtrl", PracaAtividadeCtrl)
-
-import RecursosHumanosList from "./rh-components/list.component"
-pracaModule.component("pracaRh", RecursosHumanosList)
-
-import RecursosHumanosDetail from "./rh-components/detail.component"
-pracaModule.component("rhDetail", RecursosHumanosDetail)
-
-import RhAddDialogController from "./rh-components/rh-add.dialog.ctrl"
-pracaModule.controller("RhAddDialogController", RhAddDialogController)
-
-import RhListDialogController from "./rh-components/rh-list.dialog.ctrl"
-pracaModule.controller("RhListDialogController", RhListDialogController)
-
-import AtoresBoardElement from "./atores-components/board.component"
-pracaModule.component("pracaAtores", AtoresBoardElement)
-
-import AtoresListElement from "./atores-components/list.component"
-pracaModule.component("pracaAtoresList", AtoresListElement)
-
-import AtoresDetailElement from "./atores-components/detail.component"
-pracaModule.component("pracaAtoresDetail", AtoresDetailElement)
-
+import GaleriaEditDialogCtrl from "./galeria-edit.dialog.ctrl"
+import PracaAtividadeCtrl from "./praca-atividade.ctrl"
+import RecursosHumanos from "./rh-components/recursos-humanos.component"
+import RhDialogController from "./rh-components/rh.dialog.ctrl"
+import Atores from "./atores-components/atores.component"
 import AtoresCtrl from "./atores-components/atores.controller"
+import PracaCardComponent from "./praca-card.component"
+
+const pracaModule = angular.module("app.praca", [])
+
+pracaModule.config(PracaConfig)
+pracaModule.controller("PracaListCtrl", PracaListCtrl)
+pracaModule.controller("PracaDetailCtrl", PracaDetailCtrl)
+pracaModule.controller("ChangeHeaderImgCtrl", ChangeHeaderImgCtrl)
+pracaModule.controller("VinculacaoCtrl", VinculacaoCtrl)
+pracaModule.controller("EventCtrl", EventCtrl)
+pracaModule.controller("PracaInfoCtrl", PracaInfoCtrl)
+pracaModule.controller("UploadImgCtrl", UploadImgCtrl)
+pracaModule.controller("ParceirosCtrl", ParceirosCtrl)
+pracaModule.component("pracaParceiros", Parceiros)
+pracaModule.controller("ParceiroImgController", ParceiroImgController)
+pracaModule.component("pracaGrupogestor", GrupoGestor)
+pracaModule.controller("GrupoGestorDialogController", GrupoGestorDialogController)
+pracaModule.controller("MembroGestorDialogController", MembroGestorDialogController)
+pracaModule.controller("MembroGestorListDialogController", MembroGestorListDialogController)
+pracaModule.component("pracaGaleriaContent", PracaGaleriaContent)
+pracaModule.controller("PracaGaleriaCtrl", PracaGaleriaCtrl)
+pracaModule.component("pracaUnidadegestora", UnidadeGestoraContainer)
+pracaModule.controller("MembroUglDialogController", MembroUglDialogController)
+pracaModule.controller("MembroUglListDialogController", MembroUglListDialogController)
+pracaModule.controller("GaleriaEditDialogCtrl", GaleriaEditDialogCtrl)
+pracaModule.controller("PracaAtividadeCtrl", PracaAtividadeCtrl)
+pracaModule.component("pracaRh", RecursosHumanos)
+pracaModule.controller("RhDialogController", RhDialogController)
+pracaModule.component("pracaAtores", Atores)
 pracaModule.controller("AtoresCtrl", AtoresCtrl)
+pracaModule.component("epPracaCard", PracaCardComponent)
 
-import AtoresListDialogController from "./atores-components/atores-list.dialog.ctrl"
-pracaModule.controller("AtoresListDialogController", AtoresListDialogController)
-
-export default pracaModule;
+export default pracaModule

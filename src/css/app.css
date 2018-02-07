@@ -2708,3 +2708,11 @@ a.pull-left.event {
 md-dialog-actions button {
 	margin-left: 10px;
 }
+
+md-card-actions button {
+	margin: 5px;
+}
+
+ep-praca-card {
+	margin: 0 !important;
+}

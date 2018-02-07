@@ -1,112 +1,97 @@
 <md-dialog layout="column" flex="50" aria-label="Adiciona um Recurso Humano à Praça">
   <form name="RhAddForm" ng-submit="$ctrl.save($ctrl.praca, $ctrl.rh)">
     <md-dialog-content>
-
-      <md-content md-theme="docs-dark" layout-padding>
-
-        <div layout="row" layout-align="space-between center">
-          <h2>Adicione um Recurso Humano à Praça</h2>
-        </div>
-      </md-content>
+      <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h2>
+              <b>Recurso Humano</b>
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="$ctrl.$mdDialog.cancel()">
+              <md-icon>close</md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
       <md-content layout="column" layout-padding>
-
         <md-input-container class="md-icon-float md-block">
           <md-icon>person</md-icon>
           <label>Nome Completo</label>
-          <input name="nomeRh" required ng-model="$ctrl.rh.nome">
+          <input name="nomeRh" required ng-model="$ctrl.rh.nome" ng-disabled="$ctrl.booDisabled">
         </md-input-container>
-
         <md-input-container class="md-icon-float md-block">
           <md-icon></md-icon>
           <label>Sexo</label>
-          <md-select name="sexoRh" required ng-model="$ctrl.rh.sexo">
+          <md-select name="sexoRh" required ng-model="$ctrl.rh.sexo" ng-disabled="$ctrl.booDisabled">
             <md-option ng-repeat="sexo in $ctrl.listaSexo" value="{{sexo.value}}">
               {{sexo.display_name}}
             </md-option>
           </md-select>
         </md-input-container>
-
         <md-input-container class="md-icon-float md-block">
           <md-icon>assignment_ind</md-icon>
           <label>Identidade</label>
-          <input name="idRh" ng-model="$ctrl.rh.identidade">
+          <input name="idRh" ng-model="$ctrl.rh.identidade" ng-disabled="$ctrl.booDisabled">
         </md-input-container>
-
         <md-input-container class="md-icon-float md-block">
           <md-icon>school</md-icon>
           <label>Escolaridade</label>
-          <md-select name="escolaridadeRh" required ng-model="$ctrl.rh.escolaridade" ng-change="$ctrl.showFormacao()">
+          <md-select name="escolaridadeRh" required ng-model="$ctrl.rh.escolaridade" ng-change="$ctrl.showFormacao()" ng-disabled="$ctrl.booDisabled">
             <md-option ng-repeat="escolaridade in $ctrl.listaEscolaridade" value="{{escolaridade.value}}">
               {{escolaridade.display_name}}
             </md-option>
           </md-select>
         </md-input-container>
-
         <md-input-container class="md-icon-float md-block" ng-if="$ctrl.formacoes">
           <md-icon>domain</md-icon>
           <label>Formação</label>
-          <md-select name="formacaoRh" ng-model="$ctrl.rh.formacao">
+          <md-select name="formacaoRh" ng-model="$ctrl.rh.formacao" ng-disabled="$ctrl.booDisabled">
             <md-option ng-repeat="formacao in $ctrl.listaFormacao" value="{{formacao.value}}">
               {{formacao.display_name}}
             </md-option>
           </md-select>
         </md-input-container>
-
         <md-input-container class="md-icon-float md-block">
           <md-icon>link</md-icon>
           <label>Tipo de Vinculo</label>
-          <md-select name="vinculoRh" required ng-model="$ctrl.rh.vinculo">
+          <md-select name="vinculoRh" required ng-model="$ctrl.rh.vinculo" ng-disabled="$ctrl.booDisabled">
             <md-option ng-repeat="vinculo in $ctrl.listaVinculo" value="{{vinculo.value}}">
               {{vinculo.display_name}}
             </md-option>
           </md-select>
         </md-input-container>
-
         <md-input-container class="md-icon-float md-block">
           <md-icon>work</md-icon>
           <label>Função</label>
-          <input name="funcaoRh" required ng-model="$ctrl.rh.funcao">
+          <input name="funcaoRh" required ng-model="$ctrl.rh.funcao" ng-disabled="$ctrl.booDisabled">
         </md-input-container>
-
         <md-input-container class="md-icon-float md-block">
           <md-icon>access_alarm</md-icon>
           <label>Carga Horária(horas/semana)</label>
-          <input type="number" min=0 name="cargahorariaRh" required ng-model="$ctrl.rh.carga_horaria">
+          <input type="number" min=0 name="cargahorariaRh" required ng-model="$ctrl.rh.carga_horaria" ng-disabled="$ctrl.booDisabled">
         </md-input-container>
-
         <md-input-container class="md-icon-float md-block">
           <md-icon>attach_money</md-icon>
           <label>Remuneração</label>
-          <input name="remuneracaoRh" required ng-model="$ctrl.rh.remuneracao">
+          <input name="remuneracaoRh" required ng-model="$ctrl.rh.remuneracao" ng-disabled="$ctrl.booDisabled">
         </md-input-container>
-
         <md-input-container class="md-icon-float md-block">
           <md-icon>my_location</md-icon>
           <label>Local de Trabalho</label>
-          <md-select name="localtrabalhoRh" required multiple ng-model="$ctrl.rh.local_trabalho">
+          <md-select name="localtrabalhoRh" required multiple ng-model="$ctrl.rh.local_trabalho" ng-disabled="$ctrl.booDisabled">
             <md-option ng-repeat="local in $ctrl.listaLocalTrabalho" value="{{local.value}}">
               {{local.display_name}}
             </md-option>
           </md-select>
         </md-input-container>
-
-
         <md-input-container class="md-block" flex>
           <label>Data de admissão</label>
-          <md-datepicker name="dataentradaRh" ng-required="true" ng-model="$ctrl.rh.data_entrada"></md-datepicker>
+          <md-datepicker name="dataentradaRh" ng-required="true" ng-model="$ctrl.rh.data_entrada" ng-disabled="$ctrl.booDisabled"></md-datepicker>
         </md-input-container>
-
       </md-content>
     </md-dialog-content>
-
     <md-dialog-actions>
-      <md-button ng-click="$ctrl.cancel()">
-        Cancelar
-      </md-button>
-      <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="RhAddForm.$invalid">
-        Enviar
-      </md-button>
-    </md-dialog-actions>
-
+        <button type="button" ng-click="$ctrl.$mdDialog.cancel()" class="btn waves-effect {{$ctrl.booDisabled ? 'orange waves-light' : 'transparent waves-orange orange-text'}}  darken-2">{{$ctrl.booDisabled ? "Fechar" : "Cancelar"}}</button>
+        <button ng-if="!$ctrl.booDisabled" class="btn waves-effect waves-light orange darken-2" type="submit" ng-disabled="RhAddForm.$invalid">Salvar</button>
+      </md-dialog-actions>
   </form>
 </md-dialog>
