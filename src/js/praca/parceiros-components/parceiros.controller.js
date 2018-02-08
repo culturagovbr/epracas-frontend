@@ -2,7 +2,7 @@ import angular from "angular"
 
 class ParceirosCtrl {
   constructor($state, $mdDialog, $http, $log, Upload, AppConstants, Toast
-    , ErrorCatcher, praca, objValue, booDisabled) {
+    , ErrorCatcher, Praca, praca, objValue, booDisabled) {
     "ngInject"
 
     const parceiro = objValue
@@ -21,20 +21,8 @@ class ParceirosCtrl {
     })
 
     // this.strDisabled = (booDisabled)? '' : 'disabled="disabled"';
-    parceiro.rec_financeiro = (parceiro.recursos_financeiros !== 0 || parceiro.recursos_financeiros === "undefined")
-    this._listaAtividades = [{ value: 1, display_name: "agropecuária" },
-      { value: 2, display_name: "assistência social" },
-      { value: 3, display_name: "comércio" },
-      { value: 4, display_name: "comunicação" },
-      { value: 5, display_name: "cultura" },
-      { value: 6, display_name: "educação" },
-      { value: 7, display_name: "esporte" },
-      { value: 8, display_name: "indústria" },
-      { value: 9, display_name: "organização comunitária" },
-      { value: 10, display_name: "organização social" },
-      { value: 11, display_name: "saúde" },
-      { value: 12, display_name: "serviços" },
-    ]
+    parceiro.rec_financeiro = (typeof parceiro.recursos_financeiros !== "undefined" && parceiro.recursos_financeiros !== "0.00")
+    this._listaAtividades = Praca.getAllRamoAtividade()
   }
 
   cancel() {

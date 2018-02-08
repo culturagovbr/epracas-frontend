@@ -1,7 +1,10 @@
+import angular from "angular"
 import moment from "moment"
+import { log } from "util"
 
 class PracaDetailCtrl {
-  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, praca, $timeout, $filter, $state, Praca, Atores) {
+  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, praca, $timeout, 
+    $filter, $state, Praca, Atores) {
     "ngInject"
 
       angular.extend(this, {
@@ -11,64 +14,62 @@ class PracaDetailCtrl {
         $log,
         currentUser: User.current,
         praca,
-      });
-    this.ramo_atividade = [];
-    Praca.options().then((data) => {
-      this.ramo_atividade = data.parceiros.child.children.ramo_atividade.choices;
-      praca.parceiros.map(objData => {
-        objData.ramo_atividade_name = this.ramo_atividade.filter((objValue) => {return (objData.ramo_atividade == objValue.value)})[0].display_name;
-        objData.id = objData.id_pub;
-        objData.image = objData.imagem;
-        objData.title = objData.nome;
-        objData.subtitle = objData.ramo_atividade_name;
-        return objData;
-      });
+    })
 
-      praca.grupo_gestor.membros.map(objData => {
-        objData.id = objData.id_pub;
-        objData.title = objData.nome;
-        objData.subtitle = objData.origem_descricao;
-        return objData;
-      });
+    // @todo verificar futuramente para retirar este codifo fixo do back e do front, verificar em reuniao onde estão esses dados e quais sao os corretos.
+    this.ramo_atividade = Praca.getAllRamoAtividade()
+    
+    praca.parceiros.map((objData) => {
+      objData.ramo_atividade_name = this.ramo_atividade.filter(objValue => (objData.ramo_atividade === objValue.value))[0].display_name
+      objData.id = objData.id_pub
+      objData.image = objData.imagem
+      objData.title = objData.nome
+      objData.subtitle = objData.ramo_atividade_name
+      return objData
+    })
 
-      praca.rh.map(objData => {
-        objData.id = objData.id_pub;
-        objData.title = objData.nome;
-        objData.subtitle = objData.funcao;
-        return objData;
-      });
+    praca.grupo_gestor.membros.map((objData) => {
+      objData.id = objData.id_pub
+      objData.title = objData.nome
+      objData.subtitle = objData.origem_descricao
+      return objData
+    })
 
-      Atores.list(praca).then(res => {
-        praca.atores = res.data
-        praca.atores.map(objData => {
-          objData.id = objData.id_pub;
-          objData.title = objData.nome;
-          objData.image = objData.imagem;
-          return objData;
-        });
+    praca.rh.map((objData) => {
+      objData.id = objData.id_pub
+      objData.title = objData.nome
+      objData.subtitle = objData.funcao
+      return objData
+    })
+
+    Atores.list(praca).then((res) => {
+      praca.atores = res.data
+      praca.atores.map((objData) => {
+        objData.id = objData.id_pub
+        objData.title = objData.nome
+        objData.image = objData.imagem
+        return objData
       })
-    });
+    })
 
     Atividade.list(praca.id_pub)
-      .then(atividades => atividades.map(atividade => {
-        if (!atividade.ocorrencia) return atividade;
-        const formatString = "DD.MM.YYYY";
+      .then(atividades => atividades.map((atividade) => {
+        if (!atividade.ocorrencia) return atividade
+        const formatString = "DD.MM.YYYY"
         atividade.data_inicio = moment(atividade.ocorrencia.start.slice(0, 10))
-        .format(formatString);
+        .format(formatString)
         atividade.data_encerramento = moment(atividade.ocorrencia.repeat_until)
-        .format(formatString);
+        .format(formatString)
         return atividade
       }))
     .then((atividades) => {
-
-
       atividades = atividades.map((objData) => {
           Atividade.options().then(
               (data) => {
-                  objData.espacos = data.espaco.child.choices.filter((objValue) => {return (objData.espaco.indexOf(objValue.value) >= 0)});
+                  objData.espacos = data.espaco.child.choices.filter((objValue) => {return (objData.espaco.indexOf(objValue.value) >= 0)})
               }
           );
-          return objData;
+          return objData
       });
 
       praca.agenda = atividades

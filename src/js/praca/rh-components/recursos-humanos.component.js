@@ -45,7 +45,7 @@ const RecursosHumanos = {
           <p>Os dados sobre Recursos Humanos ainda não foram inseridos nesta Praça. </p>
         </div>
       </div>
-      <md-fab-speed-dial show-as-manager="true" class="md-fab-top-right" ng-click="$ctrl.dialogForm($event, $ctrl.strController, $ctrl.urlDialog, $ctrl.praca)" style="padding:0;">
+      <md-fab-speed-dial show-as-manager="true" pracaid="{{$ctrl.praca.id_pub}}" pracagestor="{{$ctrl.praca.gestor.user_id_pub}}" class="md-fab-top-right" ng-click="$ctrl.dialogForm($event, $ctrl.strController, $ctrl.urlDialog, $ctrl.praca)" style="padding:0;">
         <md-fab-trigger>
           <md-button class="md-fab">
             <md-icon class="material-icons">add</md-icon>

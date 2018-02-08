@@ -82,7 +82,7 @@
               <md-input-container class="md-icon-float md-block" flex>
                 <md-icon>work</md-icon>
                 <label>Ramo de Atividade do Parceiro</label>
-                <md-select ng-model="$ctrl.parceiro.ramo_atividade" ng-disabled="$ctrl.booDisabled">
+                <md-select required="required" ng-model="$ctrl.parceiro.ramo_atividade" ng-disabled="$ctrl.booDisabled">
                   <md-option ng-repeat="atividade in $ctrl._listaAtividades" value="{{atividade.value}}" ng-disabled="$ctrl.booDisabled">
                     {{atividade.display_name}}
                   </md-option>

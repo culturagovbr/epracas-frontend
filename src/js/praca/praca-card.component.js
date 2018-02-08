@@ -182,11 +182,11 @@ const CardComponent = {
       <span class="epr-name">{{$ctrl.objValue.title}}</span>
       <span class="epr-subname">{{$ctrl.objValue.subtitle}}</span>
     </div>
-    <md-card-actions layout="row" layout-align="center center" show-as-manager="true">
-    <button ng-if="$ctrl.mixDelete != 'rh' && $ctrl.mixDelete != 'membroGestor' " ng-click="$ctrl.dialogDelete($event, $ctrl.mixDelete, $ctrl.praca, $ctrl.objValue)" class="btn waves-effect waves-red transparent orange-text" type="submit" name="action">Excluir</button>
-    <button ng-if="$ctrl.mixDelete == 'membroGestor'" ng-click="$ctrl.membroGestorEndDialog($event, $ctrl.mixDelete, $ctrl.praca, $ctrl.objValue)" class="btn waves-effect waves-red transparent orange-text" type="submit" name="action">Excluir</button>
-    <button ng-if="$ctrl.mixDelete == 'rh'" ng-click="$ctrl.rhEndDialog($event, $ctrl.mixDelete, $ctrl.praca, $ctrl.objValue)" class="btn waves-effect waves-red transparent orange-text" type="submit" name="action">Excluir</button>
-    <button ng-click="$ctrl.dialogForm($event, $ctrl.strController, $ctrl.urlDialog, $ctrl.praca, $ctrl.objValue, false)" class="btn waves-effect waves-green transparent orange-text" type="submit" name="action">Editar</button>
+    <md-card-actions layout="row" layout-align="center center" show-as-manager="true" pracaid="{{$ctrl.praca.id_pub}}" pracagestor="{{$ctrl.praca.gestor.user_id_pub}}">
+      <button ng-if="$ctrl.mixDelete != 'rh' && $ctrl.mixDelete != 'membroGestor' " ng-click="$ctrl.dialogDelete($event, $ctrl.mixDelete, $ctrl.praca, $ctrl.objValue)" class="btn waves-effect waves-red transparent orange-text" type="submit" name="action">Excluir</button>
+      <button ng-if="$ctrl.mixDelete == 'membroGestor'" ng-click="$ctrl.membroGestorEndDialog($event, $ctrl.mixDelete, $ctrl.praca, $ctrl.objValue)" class="btn waves-effect waves-red transparent orange-text" type="submit" name="action">Excluir</button>
+      <button ng-if="$ctrl.mixDelete == 'rh'" ng-click="$ctrl.rhEndDialog($event, $ctrl.mixDelete, $ctrl.praca, $ctrl.objValue)" class="btn waves-effect waves-red transparent orange-text" type="submit" name="action">Excluir</button>
+      <button ng-click="$ctrl.dialogForm($event, $ctrl.strController, $ctrl.urlDialog, $ctrl.praca, $ctrl.objValue, false)" class="btn waves-effect waves-green transparent orange-text" type="submit" name="action">Editar</button>
     </md-card-actions>
   </md-card>
   `,
