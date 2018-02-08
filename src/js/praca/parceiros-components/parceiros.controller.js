@@ -21,8 +21,7 @@ class ParceirosCtrl {
     })
 
     // this.strDisabled = (booDisabled)? '' : 'disabled="disabled"';
-    parceiro.rec_financeiro = (parceiro.recursos_financeiros)
-
+    parceiro.rec_financeiro = (parceiro.recursos_financeiros !== 0 || parceiro.recursos_financeiros === "undefined")
     this._listaAtividades = [{ value: 1, display_name: "agropecuária" },
       { value: 2, display_name: "assistência social" },
       { value: 3, display_name: "comércio" },
@@ -45,6 +44,10 @@ class ParceirosCtrl {
   save(praca_id_pub, data) {
     const caller = this.ErrorCatcher.callerName()
     delete data.imagem
+
+    if (data.rec_financeiro === false) {
+      data.recursos_financeiros = 0
+    }
 
     if (data.imgFile) {
       data.imagem = this.Upload.dataUrltoBlob(data.imgFile)

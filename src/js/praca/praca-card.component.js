@@ -92,7 +92,7 @@ class Controller {
             <md-dialog layout="column" flex="50" aria-label="Encerra vínculo de um Gestor">
                 <form name="MembroGestorEndForm" ng-submit="$ctrl.finalizaGestao($event, $ctrl.praca, $ctrl.membrogestor)">
                     <md-dialog-content>
-                        <md-content md-theme="docs-dark" layout-padding>
+                        <md-cozltent md-theme="docs-dark" layout-padding>
                             <div layout="row" layout-align="space-between center">
                                 <h2>Remover um Gestor do Grupo</h2>
                             </div>

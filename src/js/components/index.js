@@ -9,8 +9,10 @@ import EventPreviewer from "./event-previewer"
 import leafletFlexFit from "./leaflet-fix.directive"
 import scroll from "./scroll.directive"
 import ShowAuthedManagers from "./show-authed-managers.directive"
+import "angular-locale-pt-br"
+import "angular-input-masks"
 
-const componentsModule = angular.module("app.components", [])
+const componentsModule = angular.module("app.components", ["ui.utils.masks"])
 
 componentsModule.component("listErrors", ListErrors)
 componentsModule.directive("showAuthed", ShowAuthed)

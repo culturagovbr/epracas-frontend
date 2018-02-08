@@ -71,7 +71,6 @@ class PracaDetailCtrl {
           return objData;
       });
 
-      // console.log(atividades)
       praca.agenda = atividades
     })
 
@@ -233,7 +232,6 @@ class PracaDetailCtrl {
 
     // Funcionalidades de alterar o zoom das imagens com as setas da tela.
     $('body').on('click touchend', '.material-placeholder img', () => {
-     // console.info('aaaa')
       let elmActive = $('.materialboxed.active');
       if (elmActive.length > 0) {
         $('.container-arrow').fadeIn('slow');
@@ -243,7 +241,6 @@ class PracaDetailCtrl {
     });
     // Como nao foi possivel pegar o evento click ao retirar a imagem do zoom, foi feito dessa forma ate encontrar uma solucao melhor.
     let intervel = setInterval(() => {
-     // console.info($state.current.name)
       if ($('#materialbox-overlay').length == 0) $('.container-arrow').fadeOut('slow'); // Verificando se existe imagem em zoom, caso exista esconde os botoes de seta.
       if ( $state.current.name != 'app.praca') clearInterval(intervel); // Retirando o setIntervel se estiver em outra tela.
     }, 1000);
@@ -304,7 +301,7 @@ class PracaDetailCtrl {
     if (user.is_staff === true) {
       return true
     } else if ((angular.isDefined(praca.gestor) && praca.gestor !== null)) {
-      return user.id_pub === praca.gestor.user_id_pub
+      return user.id_pub == praca.gestor.user_id_pub
     } else {
       return false
     }
