@@ -1,6 +1,9 @@
 import angular from "angular";
 
-let componentsModule = angular.module("app.components", []);
+import "angular-locale-pt-br";
+import "angular-input-masks";
+
+let componentsModule = angular.module("app.components", ['ui.utils.masks']);
 
 import ListErrors from "./list-errors.component";
 componentsModule.component("listErrors", ListErrors);

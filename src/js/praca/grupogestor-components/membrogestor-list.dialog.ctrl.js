@@ -51,9 +51,6 @@ export default class MembroGestorListDialogController {
     }
 
     membroGestorEndDialog(event, praca, membrogestor) {
-
-        console.info('membrogestor');
-        console.info(membrogestor);
         const caller = this.ErrorCatcher.callerName();
 
         this.$mdDialog.show({

@@ -74,7 +74,6 @@ class DashboardVinculoCtrl {
           .catch(err => this.Toast.showRejectedToast(`Problema ao excluir pedido ${err.status} - ${err.data}`))
           )
   }
-
 }
 
 export default DashboardVinculoCtrl

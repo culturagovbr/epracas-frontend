@@ -45,7 +45,7 @@
                   <md-input-container class="md-icon-float md-block" flex>
                       <md-icon>phone</md-icon>
                       <label>Telefone</label>
-                      <input mask="(99)99999-9999" clean="true" name="telefoneParceiro" ng-model="$ctrl.parceiro.telefone" ng-disabled="$ctrl.booDisabled">
+                      <input mask="(99)9?9999-9999" clean="true" name="telefoneParceiro" ng-model="$ctrl.parceiro.telefone" ng-disabled="$ctrl.booDisabled">
                   </md-input-container>
               </div>
               <div class="col s6">
@@ -104,13 +104,10 @@
                   <md-input-container flex ng-show="$ctrl.parceiro.rec_financeiro">
                       <md-icon>attach_money</md-icon>
                       <label>Qual o valor?</label>
-                      <input type="currency" name="recursoFinanceiro" ng-model="$ctrl.parceiro.recursos_financeiros" ng-disabled="$ctrl.booDisabled">
+                      <input name="recursoFinanceiro" ng-model="$ctrl.parceiro.recursos_financeiros" ng-disabled="$ctrl.booDisabled" ui-money-mask/>
                   </md-input-container>
               </div>
           </div>
-        <!--<md-button ng-click="$ctrl.ImgDialog()">-->
-          <!--Anexe uma imagem do Parceiro-->
-        <!--</md-button>-->
     </md-content>
   </md-dialog-content>
   <md-dialog-actions>

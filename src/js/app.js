@@ -7,7 +7,7 @@ import Angular from "raven-js/plugins/angular"
     .install()
 
 import angular from "angular";
-
+import "angular-locale-pt-br";
 import "angular-ui-router";
 import "angular-material";
 import "angular-animate";
