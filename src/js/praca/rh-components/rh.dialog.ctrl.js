@@ -15,6 +15,10 @@ export default class RhDialogController {
       praca,
       rh,
     })
+    
+    if (rh.carga_horaria) rh.carga_horaria = parseInt(rh.carga_horaria)
+    console.info(rh)
+    console.info(typeof rh.carga_horaria)
 
     this.isSaving = false
     this.formacoes = false

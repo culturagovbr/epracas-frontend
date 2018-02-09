@@ -4,7 +4,7 @@ import { log } from "util"
 
 class PracaDetailCtrl {
   constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, praca, $timeout, 
-    $filter, $state, Praca, Atores) {
+    $filter, $state, Praca, Atores, RecursoHumano) {
     "ngInject"
 
       angular.extend(this, {
@@ -28,6 +28,7 @@ class PracaDetailCtrl {
       return objData
     })
 
+    if (praca.grupo_gestor === null) praca.grupo_gestor = { membros: [] }
     praca.grupo_gestor.membros.map((objData) => {
       objData.id = objData.id_pub
       objData.title = objData.nome
@@ -35,11 +36,14 @@ class PracaDetailCtrl {
       return objData
     })
 
-    praca.rh.map((objData) => {
-      objData.id = objData.id_pub
-      objData.title = objData.nome
-      objData.subtitle = objData.funcao
-      return objData
+    RecursoHumano.list(praca).then((res) => {
+      praca.rh = res.data
+      praca.rh.map((objData) => {
+        objData.id = objData.id_pub
+        objData.title = objData.nome
+        objData.image = objData.imagem
+        return objData
+      })
     })
 
     Atores.list(praca).then((res) => {

@@ -79,7 +79,7 @@
                 <strong>Contrato: </strong>{{ $ctrl.praca.contrato }}</span>
               <span class="md-subhead">
                 <strong>Modelo: </strong>{{ $ctrl.praca.modelo_descricao }}</span>
-              <span class="md-subhead" ng-if="$ctrl.praca.repasse" ui-money-mask>
+              <span class="md-subhead" ng-if="$ctrl.praca.repasse" > <!-- ui-money-mask -->
                 <strong>Repasse: </strong>{{ $ctrl.praca.repasse | currency: 'R$ ' }}</span>
               <span class="md-subhead" ng-if="$ctrl.praca.email1">Email: {{ $ctrl.praca.email1 }}</span>
               <span class="md-subhead" ng-if="$ctrl.praca.telefone1">Telefone: {{ $ctrl.praca.telefone1 }}</span>

@@ -5,7 +5,6 @@ class ParceirosCtrl {
     , ErrorCatcher, Praca, praca, objValue, booDisabled) {
     "ngInject"
 
-    const parceiro = objValue
     angular.extend(this, {
       $state,
       $mdDialog,
@@ -16,12 +15,13 @@ class ParceirosCtrl {
       Toast,
       ErrorCatcher,
       praca,
-      parceiro,
+      objValue,
       booDisabled,
     })
 
     // this.strDisabled = (booDisabled)? '' : 'disabled="disabled"';
-    parceiro.rec_financeiro = (typeof parceiro.recursos_financeiros !== "undefined" && parceiro.recursos_financeiros !== "0.00")
+    objValue.rec_financeiro = (typeof objValue.recursos_financeiros !== "undefined" && objValue.recursos_financeiros !== "0.00")
+    if (objValue.ramo_atividade) objValue.ramo_atividade = objValue.ramo_atividade.toString()
     this._listaAtividades = Praca.getAllRamoAtividade()
   }
 

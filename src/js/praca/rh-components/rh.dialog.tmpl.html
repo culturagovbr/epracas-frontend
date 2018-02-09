@@ -30,7 +30,7 @@
         <md-input-container class="md-icon-float md-block" show-as-manager="true" pracaid="{{$ctrl.praca.id_pub}}" pracagestor="{{$ctrl.praca.gestor.user_id_pub}}">
           <md-icon>assignment_ind</md-icon>
           <label>Identidade</label>
-          <input name="idRh" ng-model="$ctrl.rh.identidade" ng-disabled="$ctrl.booDisabled">
+          <input name="idRh" ng-model="$ctrl.rh.identificacao" ng-disabled="$ctrl.booDisabled">
         </md-input-container>
         <md-input-container class="md-icon-float md-block">
           <md-icon>school</md-icon>
@@ -72,7 +72,7 @@
         <md-input-container class="md-icon-float md-block" show-as-manager="true" pracaid="{{$ctrl.praca.id_pub}}" pracagestor="{{$ctrl.praca.gestor.user_id_pub}}">
           <md-icon>attach_money</md-icon>
           <label>Remuneração</label>
-          <input name="remuneracaoRh" required ng-model="$ctrl.rh.remuneracao" ng-disabled="$ctrl.booDisabled">
+          <input name="remuneracaoRh" required ng-model="$ctrl.rh.remuneracao" ng-disabled="$ctrl.booDisabled" ui-money-mask>
         </md-input-container>
         <md-input-container class="md-icon-float md-block">
           <md-icon>my_location</md-icon>
