@@ -79,7 +79,7 @@ body {
 	/*background: #dadada;*/
 	/*background-color: rgb(194, 194, 194);*/
 	/*background-color: rgb(230, 230, 230);*/
-    background: linear-gradient(to top right, #e3e3e3 20%, #fff 100%);
+    background: linear-gradient(to top right, #cecece 20%, #fff 100%);
     background-attachment: fixed;
 }
 
@@ -152,7 +152,8 @@ div.main-master md-toolbar {
 }
 
 #praca .nome md-card{
-	background-color: rgb(194, 194, 194);
+	/* background-color: rgb(194, 194, 194); */
+	background: linear-gradient(to top right, #4e4e4e 20%, #848484 100%);
 }
 
 #praca .nome md-card img{
@@ -2693,16 +2694,16 @@ a.pull-left.event {
 	display: none;
 }
 
-.md-button.md-default-theme.md-primary, .md-button.md-primary {
-	color: rgb(255, 168, 7);
-}
-
 .title {
 	border-bottom: solid 1px #606060CC;
-	color: #000000c4;
+	color: rgba(0, 0, 0, 0.769) !important;
 }
-.title a , .title md-icon {
-	color: #000000c4;
+.title a , .title md-icon, .title h1 {
+	color: rgba(0, 0,0, 0.769) !important;
+}
+
+.md-button.md-default-theme.md-primary, .md-button.md-primary {
+	color: rgb(255, 168, 7);
 }
 
 md-dialog-actions button {

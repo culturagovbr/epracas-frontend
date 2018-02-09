@@ -89,26 +89,31 @@ class Controller {
         }],
         controllerAs: "$ctrl",
         template: `
-            <md-dialog layout="column" flex="50" aria-label="Encerra vínculo de um Gestor">
+            <md-dialog layout="column" flex="50">
                 <form name="MembroGestorEndForm" ng-submit="$ctrl.finalizaGestao($event, $ctrl.praca, $ctrl.membrogestor)">
-                    <md-dialog-content>
-                        <md-cozltent md-theme="docs-dark" layout-padding>
-                            <div layout="row" layout-align="space-between center">
-                                <h2>Remover um Gestor do Grupo</h2>
-                            </div>
-                        </md-content>
-                        
-                        <md-content layout="column" layout-padding>
-                            <md-input-container class="md-block" flex>
-                                <label>Data de desligamento</label>
-                                <md-datepicker name="dataSaidaGrupo" ng-required="true" ng-model="$ctrl.membrogestor.data_desligamento"  md-placeholder="Selecione uma data"></md-datepicker>
-                            </md-input-container>
-                        </md-content>
-                    </md-dialog-content>
-                    <md-dialog-actions>
-                      <button type="button" ng-click="$ctrl.cancel()" class="btn waves-effect waves-orange transparent orange-text">Cancelar</button>
-                      <button class="btn waves-effect waves-light orange darken-2" type="submit" ng-disabled="MembroGestorEndForm.$invalid">Salvar</button>
-                    </md-dialog-actions>
+                  <md-dialog-content>
+                    <md-toolbar>
+                      <div class="md-toolbar-tools">
+                      <h2>
+                          <b>Tem certeza que deseja encerrar o vínculo com este gestor do grupo?</b>
+                      </h2>
+                      <span flex></span>
+                          <md-button class="md-icon-button" ng-click="$ctrl.$mdDialog.cancel()">
+                              <md-icon>close</md-icon>
+                          </md-button>
+                      </div>
+                    </md-toolbar>
+                    <md-content layout="column" layout-padding>
+                        <md-input-container class="md-block" flex>
+                            <label>Data de encerramento</label>
+                            <md-datepicker name="dataSaidaGrupo" ng-required="true" ng-model="$ctrl.membrogestor.data_desligamento"  md-placeholder="Selecione uma data"></md-datepicker>
+                        </md-input-container>
+                    </md-content>
+                  </md-dialog-content>
+                  <md-dialog-actions>
+                    <button type="button" ng-click="$ctrl.cancel()" class="btn waves-effect waves-orange transparent orange-text">Cancelar</button>
+                    <button class="btn waves-effect waves-light orange darken-2" type="submit" ng-disabled="MembroGestorEndForm.$invalid">Encerrar</button>
+                  </md-dialog-actions>
                 </form>
             </md-dialog>`,
         bindToController: true,
@@ -128,7 +133,7 @@ class Controller {
           angular.extend(rh, this.rh)
           RecursoHumano.delete(praca, rh)
             .then(() => {
-              Toast.showSuccessToast("Vinculo finalizado com sucesso")
+              Toast.showSuccessToast("Vínculo finalizado com sucesso")
               $mdDialog.cancel()
               $state.reload()
             })
@@ -140,28 +145,29 @@ class Controller {
       }],
       controllerAs: "$ctrl",
       template: `
-        <md-dialog layout="column" flex="50" aria-label="Adiciona um Recurso Humano à Praça">
-          <form name="RhEndForm" ng-submit="$ctrl.finalizaVinculo($ctrl.praca, $ctrl.rh)">
-            <md-dialog-content>
-              <md-content md-theme="docs-dark" layout-padding>
-                <div layout="row" layout-align="space-between center">
-                  <h2>Remover recurso humano à Praça</h2>
-                </div>
-              </md-content>
+        <md-dialog layout="column" flex="50">
+          <md-toolbar>
+            <div class="md-toolbar-tools">
+            <h2>
+                <b>Tem certeza que deseja encerrar o vínculo?</b>
+            </h2>
+            <span flex></span>
+                <md-button class="md-icon-button" ng-click="$ctrl.$mdDialog.cancel()">
+                    <md-icon>close</md-icon>
+                </md-button>
+            </div>
+          </md-toolbar>
+          <form name="RhEndForm" ng-submit="$ctrl.finalizaVínculo($ctrl.praca, $ctrl.rh)">
               <md-content layout="column" layout-padding>
                 <md-input-container class="md-block" flex>
-                  <label>Data de encerramento de vinculo</label>
+                  <label>Data de encerramento</label>
                   <md-datepicker name="datasaidaRh" ng-required="true" ng-model="$ctrl.rh.data_saida"></md-datepicker>
                 </md-input-container>
               </md-content>
             </md-dialog-content>
             <md-dialog-actions>
-              <md-button ng-click="$ctrl.cancel()">
-                Cancelar
-              </md-button>
-              <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="RhEndForm.$invalid">
-                Enviar
-              </md-button>
+              <button type="button" ng-click="$ctrl.cancel()" class="btn waves-effect waves-orange transparent orange-text">Cancelar</button>
+              <button class="btn waves-effect waves-light orange darken-2" type="submit" ng-disabled="RhEndForm.$invalid">Encerrar</button>
             </md-dialog-actions>
           </form>
         </md-dialog>
@@ -184,8 +190,8 @@ const CardComponent = {
     </div>
     <md-card-actions layout="row" layout-align="center center" show-as-manager="true" pracaid="{{$ctrl.praca.id_pub}}" pracagestor="{{$ctrl.praca.gestor.user_id_pub}}">
       <button ng-if="$ctrl.mixDelete != 'rh' && $ctrl.mixDelete != 'membroGestor' " ng-click="$ctrl.dialogDelete($event, $ctrl.mixDelete, $ctrl.praca, $ctrl.objValue)" class="btn waves-effect waves-red transparent orange-text" type="submit" name="action">Excluir</button>
-      <button ng-if="$ctrl.mixDelete == 'membroGestor'" ng-click="$ctrl.membroGestorEndDialog($event, $ctrl.mixDelete, $ctrl.praca, $ctrl.objValue)" class="btn waves-effect waves-red transparent orange-text" type="submit" name="action">Excluir</button>
-      <button ng-if="$ctrl.mixDelete == 'rh'" ng-click="$ctrl.rhEndDialog($event, $ctrl.mixDelete, $ctrl.praca, $ctrl.objValue)" class="btn waves-effect waves-red transparent orange-text" type="submit" name="action">Excluir</button>
+      <button ng-if="$ctrl.mixDelete == 'membroGestor'" ng-click="$ctrl.membroGestorEndDialog($event, $ctrl.praca, $ctrl.objValue)" class="btn waves-effect waves-red transparent orange-text" type="submit" name="action">Excluir</button>
+      <button ng-if="$ctrl.mixDelete == 'rh'" ng-click="$ctrl.rhEndDialog($event, $ctrl.praca, $ctrl.objValue)" class="btn waves-effect waves-red transparent orange-text" type="submit" name="action">Excluir</button>
       <button ng-click="$ctrl.dialogForm($event, $ctrl.strController, $ctrl.urlDialog, $ctrl.praca, $ctrl.objValue, false)" class="btn waves-effect waves-green transparent orange-text" type="submit" name="action">Editar</button>
     </md-card-actions>
   </md-card>
