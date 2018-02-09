@@ -1,215 +1,194 @@
 <!-- TabBar Secções -->
 <div class="animated fadeIn">
-    <div class="parallax-container" style="max-height: 400px;box-shadow: inset 0 2px 18px #0009;">
-        <div class="parallax">
-            <img ng-src="{{ $ctrl.praca.header_img }}"/>
-        </div>
-        <div flex id="praca_header" class="no-print limite">
-            <!--<img ng-src="{{ $ctrl.praca.header_img }}" style="width: 100%;height: 100%;"/>-->
-            <md-fab-speed-dial
-                    show-authed="true"
-                    md-direction="down"
-                    id="praca-speed-dial"
-                    class="md-scale md-fab-top-right">
-                <md-fab-trigger>
-                    <md-button
-                            aria-label="menu"
-                            class="md-fab md-warn">
-                        <md-tooltip
-                                md-direction="top"
-                                md-visible="tooltipVisible">
-                            Menu
-                        </md-tooltip>
-                        <md-icon>menu</md-icon>
-                    </md-button>
-                </md-fab-trigger>
-                <md-fab-actions>
-                    <div ng-repeat="item in $ctrl.userMenu">
-                        <md-button
-                                aria-label="{{ item.name }}"
-                                class="md-fab md-raised md-mini"
-                                ng-click="$ctrl.showDialog($event, item.dialog)">
-                            <md-tooltip md-direction="left"
-                                        md-visible="tooltipVisible"
-                                        md-autohide="false">
-                                {{ item.name }}
-                            </md-tooltip>
-                            <md-icon aria-label="{{ item.name }}">{{item.icon}}</md-icon>
-                        </md-button>
-                    </div>
-                </md-fab-actions>
-            </md-fab-speed-dial>
-        </div>
+  <div class="parallax-container" style="max-height: 400px;box-shadow: inset 0 2px 18px #0009;">
+    <div class="parallax">
+      <img ng-src="{{ $ctrl.praca.header_img }}" />
     </div>
-    <div style="height: 48px;">
-        <div class="tab-pracas no-print blue darken-2">
-            <md-content class=" " layout-gt-xs="row">
-                <div flex="30" class="center home-link" style="align-items: center;display: block;position: absolute;left: 6%;">
-                    <div  style="display: none;" class="animated fadeInUp">
-                        <a hide-md href="/" class="white-text" style="font-size: 20px;font-weight: 400; line-height: 48px;">e-praças</a>
-                    </div>
-                </div>
-                <!--<div class="" flex="80" flex-sm="100">-->
-                <div class="" flex="100">
-                    <md-tabs md-selected="tabIntSelected" md-dynamic-height md-border-bottom md-center-tabs="true">
-                        <md-tab label="Inicio" scroll="header"></md-tab>
-                        <md-tab label="Agenda" scroll="#container-agenda" offset="48"></md-tab>
-                        <md-tab label="Fotos" scroll="#container-imagens" offset="48"></md-tab>
-                        <md-tab label="Parceiros" ng-if="$ctrl.praca.situacao == 'i'" scroll="#container-parceiros"
-                                offset="48"></md-tab>
-                        <md-tab label="Grupo Gestor" ng-if="$ctrl.praca.situacao == 'i'"
-                                scroll="#container-grupogestor" offset="48"></md-tab>
-                        <md-tahtopb label="Unidade Gestora Local" ng-if="$ctrl.praca.situacao != 'i'"
-                                    scroll="#container-unidade" offset="48"></md-tahtopb>
-                        <md-tab label="Recursos Humanos" scroll="#container-rh" offset="48"></md-tab>
-                        <md-tab label="Atores" ng-if="$ctrl.praca.situacao == 'i'" scroll="#container-atores"
-                                offset="48"></md-tab>
-                        <md-tab label="Localização" scroll="#container-localizacao" offset="48"></md-tab>
-                    </md-tabs>
-                </div>
-            </md-content>
-        </div>
+    <div flex id="praca_header" class="no-print limite">
+      <!--<img ng-src="{{ $ctrl.praca.header_img }}" style="width: 100%;height: 100%;"/>-->
+      <md-fab-speed-dial show-authed="true" md-direction="down" id="praca-speed-dial" class="md-scale md-fab-top-right">
+        <md-fab-trigger>
+          <md-button aria-label="menu" class="md-fab md-warn">
+            <md-tooltip md-direction="top" md-visible="tooltipVisible">
+              Menu
+            </md-tooltip>
+            <md-icon>menu</md-icon>
+          </md-button>
+        </md-fab-trigger>
+        <md-fab-actions>
+          <div ng-repeat="item in $ctrl.userMenu">
+            <md-button aria-label="{{ item.name }}" class="md-fab md-raised md-mini" ng-click="$ctrl.showDialog($event, item.dialog)">
+              <md-tooltip md-direction="left" md-visible="tooltipVisible" md-autohide="false">
+                {{ item.name }}
+              </md-tooltip>
+              <md-icon aria-label="{{ item.name }}">{{item.icon}}</md-icon>
+            </md-button>
+          </div>
+        </md-fab-actions>
+      </md-fab-speed-dial>
     </div>
-    <div layout="column" class="limite" id="praca">
-        <div class="container-arrow" style="display: none; position: fixed; z-index: 1001;">
-            <a ng-click="$ctrl.imgChange('prev')" style="position: fixed; top: 50%; left: 5%;z-index: 1001;"
-               class="btn-floating btn-large waves-effect waves-light orange accent-4"><i class="material-icons">keyboard_arrow_left</i></a>
-            <a ng-click="$ctrl.imgChange('next')" style="position: fixed; top: 50%; right: 5%;z-index: 1001;"
-               class="btn-floating btn-large waves-effect waves-light orange accent-4"><i class="material-icons">keyboard_arrow_right</i></a>
+  </div>
+  <div style="height: 48px;">
+    <div class="tab-pracas no-print blue darken-2">
+      <md-content class=" " layout-gt-xs="row">
+        <div flex="30" class="center home-link" style="align-items: center;display: block;position: absolute;left: 6%;">
+          <div style="display: none;" class="animated fadeInUp">
+            <a hide-md href="/" class="white-text" style="font-size: 20px;font-weight: 400; line-height: 48px;">e-praças</a>
+          </div>
         </div>
-
-        <!-- Info&Bio -->
-        <div id="container-info" layout-gt-xs="row" style="margin-top: 8px;">
-            <div flex-gt-xs="35" class="nome">
-                <!--<md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 white-text" style="margin-left:0px;border-radius:0;background: linear-gradient(to top right, #05152d 20%, #021d47 90%);">-->
-                <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 white-text"
-                         style="margin-left:0px;border-radius:0;background: #00235c99;">
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">{{ $ctrl.praca.nome }}</span>
-                            <span class="md-subhead"><strong>Situação: </strong>{{ $ctrl.praca.situacao_descricao }}</span>
-                            <span class="md-subhead" ng-if="$ctrl.praca.situacao_descricao == 'Inaugurada'"><strong>Inaugurada em: </strong>{{ $ctrl.praca.data_inauguracao | date: 'dd/MM/yyyy' }}</span>
-                            <span class="md-subhead"><strong>Contrato: </strong>{{ $ctrl.praca.contrato }}</span>
-                            <span class="md-subhead"><strong>Modelo: </strong>{{ $ctrl.praca.modelo_descricao }}</span>
-                            <span class="md-subhead" ng-if="$ctrl.praca.repasse"><strong>Repasse: </strong>{{ $ctrl.praca.repasse | currency: 'R$ ' }}</span>
-                            <span class="md-subhead" ng-if="$ctrl.praca.email1">Email: {{ $ctrl.praca.email1 }}</span>
-                            <span class="md-subhead"
-                                  ng-if="$ctrl.praca.telefone1">Telefone: {{ $ctrl.praca.telefone1 }}</span>
-                            <span class="md-subhead" ng-if="$ctrl.praca.pagina">Página: {{ $ctrl.praca.pagina }}</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                    <md-card-header ng-if="$ctrl.praca.gestor">
-                        <md-card-avatar class="no-print">
-                            <img ng-src="$ctrl.praca.gestor.profile_picture_url" class="md-avatar">
-                        </md-card-avatar>
-                        <md-card-header-text>
-                            <span class="print-only">Gestor da praça: </span>
-                            <span class="md-title">{{ $ctrl.praca.gestor.nome }}</span>
-                            <span class="md-subhead no-print">Gestor da praça</span>
-                        </md-card-header-text>
-                    </md-card-header>
-                </md-card>
-            </div>
-            <div flex-gt-xs="65" class="bio">
-                <md-card md-theme="default" md-theme-watch="" class="_md  margin-right-0"
-                         style="border-radius:0; background: #fff9 !important;">
-                    <md-card-title>
-                        <md-card-title-text>
-                            <p>{{ $ctrl.praca.bio }}</p>
-                        </md-card-title-text>
-                    </md-card-title>
-                </md-card>
-            </div>
+        <!--<div class="" flex="80" flex-sm="100">-->
+        <div class="" flex="100">
+          <md-tabs md-selected="tabIntSelected" md-dynamic-height md-border-bottom md-center-tabs="true">
+            <md-tab label="Inicio" scroll="header"></md-tab>
+            <md-tab label="Agenda" scroll="#container-agenda" offset="48"></md-tab>
+            <md-tab label="Fotos" scroll="#container-imagens" offset="48"></md-tab>
+            <md-tab label="Parceiros" ng-if="$ctrl.praca.situacao == 'i'" scroll="#container-parceiros" offset="48"></md-tab>
+            <md-tab label="Grupo Gestor" ng-if="$ctrl.praca.situacao == 'i'" scroll="#container-grupogestor" offset="48"></md-tab>
+            <md-tahtopb label="Unidade Gestora Local" ng-if="$ctrl.praca.situacao != 'i'" scroll="#container-unidade" offset="48"></md-tahtopb>
+            <md-tab label="Recursos Humanos" scroll="#container-rh" offset="48"></md-tab>
+            <md-tab label="Atores" ng-if="$ctrl.praca.situacao == 'i'" scroll="#container-atores" offset="48"></md-tab>
+            <md-tab label="Localização" scroll="#container-localizacao" offset="48"></md-tab>
+          </md-tabs>
         </div>
+      </md-content>
+    </div>
+  </div>
+  <div layout="column" class="limite" id="praca">
+    <div class="container-arrow" style="display: none; position: fixed; z-index: 1001;">
+      <a ng-click="$ctrl.imgChange('prev')" style="position: fixed; top: 50%; left: 5%;z-index: 1001;" class="btn-floating btn-large waves-effect waves-light orange accent-4">
+        <i class="material-icons">keyboard_arrow_left</i>
+      </a>
+      <a ng-click="$ctrl.imgChange('next')" style="position: fixed; top: 50%; right: 5%;z-index: 1001;" class="btn-floating btn-large waves-effect waves-light orange accent-4">
+        <i class="material-icons">keyboard_arrow_right</i>
+      </a>
+    </div>
 
-        <!-- Agenda -->
-        <div id="container-agenda" layout-padding class="agenda no-print" layout-align="start center">
-            <div class="layout-row title">
-                <md-icon>insert_invitation</md-icon>
-                <h1 flex>Agenda</h1>
-            </div>
-            <div class="activities-log" layout-gt-xs="row">
-                <div class="event-list">
-                    <event-previewer ng-repeat="event in $ctrl.praca.agenda
+    <!-- Info&Bio -->
+    <div id="container-info" layout-gt-xs="row" style="margin-top: 8px;">
+      <div flex-gt-xs="35" class="nome">
+        <!--<md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 white-text" style="margin-left:0px;border-radius:0;background: linear-gradient(to top right, #05152d 20%, #021d47 90%);">-->
+        <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 white-text" style="margin-left:0px;border-radius:0;background: #00235c99;">
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{ $ctrl.praca.nome }}</span>
+              <span class="md-subhead">
+                <strong>Situação: </strong>{{ $ctrl.praca.situacao_descricao }}</span>
+              <span class="md-subhead" ng-if="$ctrl.praca.situacao_descricao == 'Inaugurada'">
+                <strong>Inaugurada em: </strong>{{ $ctrl.praca.data_inauguracao | date: 'dd/MM/yyyy' }}</span>
+              <span class="md-subhead">
+                <strong>Contrato: </strong>{{ $ctrl.praca.contrato }}</span>
+              <span class="md-subhead">
+                <strong>Modelo: </strong>{{ $ctrl.praca.modelo_descricao }}</span>
+              <span class="md-subhead" ng-if="$ctrl.praca.repasse" ui-money-mask>
+                <strong>Repasse: </strong>{{ $ctrl.praca.repasse | currency: 'R$ ' }}</span>
+              <span class="md-subhead" ng-if="$ctrl.praca.email1">Email: {{ $ctrl.praca.email1 }}</span>
+              <span class="md-subhead" ng-if="$ctrl.praca.telefone1">Telefone: {{ $ctrl.praca.telefone1 }}</span>
+              <span class="md-subhead" ng-if="$ctrl.praca.pagina">Página: {{ $ctrl.praca.pagina }}</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-header ng-if="$ctrl.praca.gestor">
+            <md-card-avatar class="no-print">
+              <img ng-src="$ctrl.praca.gestor.profile_picture_url" class="md-avatar">
+            </md-card-avatar>
+            <md-card-header-text>
+              <span class="print-only">Gestor da praça: </span>
+              <span class="md-title">{{ $ctrl.praca.gestor.nome }}</span>
+              <span class="md-subhead no-print">Gestor da praça</span>
+            </md-card-header-text>
+          </md-card-header>
+        </md-card>
+      </div>
+      <div flex-gt-xs="65" class="bio">
+        <md-card md-theme="default" md-theme-watch="" class="_md  margin-right-0" style="border-radius:0; background: #fff9 !important;">
+          <md-card-title>
+            <md-card-title-text>
+              <p>{{ $ctrl.praca.bio }}</p>
+            </md-card-title-text>
+          </md-card-title>
+        </md-card>
+      </div>
+    </div>
+
+    <!-- Agenda -->
+    <div id="container-agenda" layout-padding class="agenda no-print" layout-align="start center">
+      <div class="layout-row title">
+        <md-icon>insert_invitation</md-icon>
+        <h1 flex>Agenda</h1>
+      </div>
+      <div class="activities-log" layout-gt-xs="row">
+        <div class="event-list">
+          <event-previewer ng-repeat="event in $ctrl.praca.agenda
           | filter: { data_inicio: $ctrl.parseDate($ctrl.myDate) }
           | orderBy: 'event.data_inicio'
-          | limitTo: 4"
-                                     event="event">
-                    </event-previewer>
-                </div>
-
-                <div flex class="calendar">
-                    <md-calendar ng-click="$ctrl.dateSet = true" ng-model="$ctrl.myDate"></md-calendar>
-                </div>
-            </div>
+          | limitTo: 4" event="event">
+          </event-previewer>
         </div>
 
-        <!-- Imagens -->
-        <div id="container-imagens" layout-gt-xs="row" class="no-print" flex>
-            <div flex layout-padding class="info gridListdemoDynamicTiles">
-                <div class="layout-row title">
-                    <md-icon>photo_camera</md-icon>
-                    <h1 flex><a ui-sref="app.galeria({pk: $ctrl.praca.id_pub})">Fotos</a></h1>
-                </div>
-                <md-grid-list
-                        md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6"
-                        md-row-height-gt-md="1:1" md-row-height="4:3"
-                        md-gutter="8px" md-gutter-gt-sm="4px">
-                    <md-grid-tile md-whiteframe="2" ng-repeat="objPhoto in arrPhotos"
-                                  md-rowspan="{{objPhoto.span.row}}"
-                                  md-colspan="{{objPhoto.span.col}}"
-                                  md-colspan-sm="1"
-                                  md-colspan-xs="1"
-                                  ng-class="objPhoto.background">
-                        <img width="135%" class="materialboxed" data-caption="{{objPhoto.description}}"
-                             ng-src="{{objPhoto.url}}">
-                        <md-grid-tile-footer><h3>{{objPhoto.title}}</h3></md-grid-tile-footer>
-                    </md-grid-tile>
-                </md-grid-list>
-            </div>
+        <div flex class="calendar">
+          <md-calendar ng-click="$ctrl.dateSet = true" ng-model="$ctrl.myDate"></md-calendar>
         </div>
-
-        <!-- Parceiros -->
-        <praca-parceiros-board praca="$ctrl.praca" parceiros="$ctrl.praca.parceiros"></praca-parceiros-board>
-
-        <!-- GrupoGestor -->
-        <praca-grupogestor ng-if="$ctrl.praca.situacao == 'i'" praca="$ctrl.praca" situacao="$ctrl.praca.situacao"
-                           grupo_gestor="$ctrl.praca.grupo_gestor"></praca-grupogestor>
-
-        <!-- UnidadeGestoraLocal -->
-        <praca-unidadegestora ng-if="$ctrl.praca.situacao != 'i'" praca="$ctrl.praca" situacao="$ctrl.praca.situacao"
-                              unidade_gestora="$ctrl.praca.unidade_gestora"></praca-unidadegestora>
-
-        <!-- Recursos Humanos -->
-        <praca-rh praca="$ctrl.praca" rhs="$ctrl.praca.rh"></praca-rh>
-
-        <!-- Atores -->
-        <praca-atores praca="$ctrl.praca" atores="$ctrl.praca.atores"></praca-atores>
-
-        <!-- Localização -->
-        <div id="container-localizacao" layout-gt-xs="row" class="localizacao white">
-            <div flex-gt-xs="40" layout-padding class="info" md-whiteframe="3">
-                <div class="layout-row title">
-                    <md-icon>place</md-icon>
-                    <h1 flex>Localização</h1>
-                </div>
-                <p>{{$ctrl.praca.logradouro}}</p>
-                <p>{{$ctrl.praca.municipio}} | {{$ctrl.praca.uf | uppercase}}
-                <p>Horários de funcionamento:</p>
-                <p ng-if="$ctrl.praca.funciona_dia_util">Segunda a Sexta das {{ $ctrl.praca.hora_abertura_dia_util |
-                    date: 'HH:mm' }} às {{ $ctrl.praca.hora_fechamento_dia_util }}</p>
-                <p ng-if="$ctrl.praca.funciona_sabado">Sábado das {{ $ctrl.praca.hora_abertura_sabado }} às {{
-                    $ctrl.praca.hora_fechamento_sabado }}</p>
-                <p ng-if="$ctrl.praca.funciona_domingo">Domingo das {{ $ctrl.praca.hora_abertura_domingo }} às {{
-                    $ctrl.praca.hora_fechamento_domingo }}</p>
-            </div>
-            <div id="map" flex md-whiteframe="3" class="no-print">
-                <leaflet style="z-index: -1" id="mapPane" width="100%" height="100%" lf-center="geoLoc.center"
-                         defaults="geoLoc.defaults" markers="geoLoc.markers"></leaflet>
-            </div>
-        </div>
+      </div>
     </div>
-    <md-tahtopb label="Unidade Gestora Local" ng-if="$ctrl.praca.situacao != 'i'" scroll="#container-unidade"
-                offset="48"></md-tahtopb>
+
+    <!-- Imagens -->
+    <div id="container-imagens" layout-gt-xs="row" class="no-print" flex>
+      <div flex layout-padding class="info gridListdemoDynamicTiles">
+        <div class="layout-row title">
+          <md-icon>photo_camera</md-icon>
+          <h1 flex>
+            <a ui-sref="app.galeria({pk: $ctrl.praca.id_pub})">Fotos</a>
+          </h1>
+        </div>
+        <md-grid-list md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="4:3" md-gutter="8px"
+          md-gutter-gt-sm="4px">
+          <md-grid-tile md-whiteframe="2" ng-repeat="objPhoto in arrPhotos" md-rowspan="{{objPhoto.span.row}}" md-colspan="{{objPhoto.span.col}}"
+            md-colspan-sm="1" md-colspan-xs="1" ng-class="objPhoto.background">
+            <img width="135%" class="materialboxed" data-caption="{{objPhoto.description}}" ng-src="{{objPhoto.url}}">
+            <md-grid-tile-footer>
+              <h3>{{objPhoto.title}}</h3>
+            </md-grid-tile-footer>
+          </md-grid-tile>
+        </md-grid-list>
+      </div>
+    </div>
+
+    <!-- Parceiros -->
+    <praca-parceiros praca="$ctrl.praca" parceiros="$ctrl.praca.parceiros"></praca-parceiros>
+
+    <!-- GrupoGestor -->
+    <praca-grupogestor ng-if="$ctrl.praca.situacao == 'i'" praca="$ctrl.praca" situacao="$ctrl.praca.situacao" grupo_gestor="$ctrl.praca.grupo_gestor"></praca-grupogestor>
+
+    <!-- UnidadeGestoraLocal -->
+    <praca-unidadegestora ng-if="$ctrl.praca.situacao != 'i'" praca="$ctrl.praca" situacao="$ctrl.praca.situacao" unidade_gestora="$ctrl.praca.unidade_gestora"></praca-unidadegestora>
+
+    <!-- Recursos Humanos -->
+    <praca-rh praca="$ctrl.praca" rhs="$ctrl.praca.rh"></praca-rh>
+
+    <!-- Atores -->
+    <praca-atores praca="$ctrl.praca" atores="$ctrl.praca.atores"></praca-atores>
+
+    <!-- Localização -->
+    <div id="container-localizacao" layout-gt-xs="row" class="localizacao white">
+      <div flex-gt-xs="40" layout-padding class="info" md-whiteframe="3">
+        <div class="layout-row title">
+          <md-icon>place</md-icon>
+          <h1 flex>Localização</h1>
+        </div>
+        <p>{{$ctrl.praca.logradouro}}</p>
+        <p>{{$ctrl.praca.municipio}} | {{$ctrl.praca.uf | uppercase}}
+          <p>Horários de funcionamento:</p>
+          <p ng-if="$ctrl.praca.funciona_dia_util">Segunda a Sexta das {{ $ctrl.praca.hora_abertura_dia_util | date: 'HH:mm' }} às {{ $ctrl.praca.hora_fechamento_dia_util
+            }}
+          </p>
+          <p ng-if="$ctrl.praca.funciona_sabado">Sábado das {{ $ctrl.praca.hora_abertura_sabado }} às {{ $ctrl.praca.hora_fechamento_sabado }}</p>
+          <p ng-if="$ctrl.praca.funciona_domingo">Domingo das {{ $ctrl.praca.hora_abertura_domingo }} às {{ $ctrl.praca.hora_fechamento_domingo }}</p>
+      </div>
+      <div id="map" flex md-whiteframe="3" class="no-print">
+        <leaflet style="z-index: -1" id="mapPane" width="100%" height="100%" lf-center="geoLoc.center" defaults="geoLoc.defaults"
+          markers="geoLoc.markers"></leaflet>
+      </div>
+    </div>
+  </div>
+  <md-tahtopb label="Unidade Gestora Local" ng-if="$ctrl.praca.situacao != 'i'" scroll="#container-unidade" offset="48"></md-tahtopb>
 
 </div>
