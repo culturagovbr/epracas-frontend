@@ -40,7 +40,7 @@ class GestorDetailController {
 const GestorDetailElement = {
   controller: GestorDetailController,
   template: `
-    <md-card>
+    <md-card class="hoverable" style="cursor: auto;">
       <img ng-src="{{$ctrl.gestor.praca.header_img ? 'https://epracas.cultura.gov.br' + $ctrl.gestor.praca.header_img : '/assets/header.jpg' }}" class="md-card-image" alt="Washed Out">
       <md-card-header>
         <md-card-avatar>

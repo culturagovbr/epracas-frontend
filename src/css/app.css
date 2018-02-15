@@ -2409,7 +2409,7 @@ gestor-detail md-card .md-subhead{
 }
 
 .card-vinculacao .praca {
-	background-color: #e0e0e0;
+	border-top: solid 1px #e0e0e0;
 }
 
 .card-vinculacao md-card-title {
