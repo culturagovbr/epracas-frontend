@@ -14,11 +14,10 @@ function ShowAuthedManagers(User, Praca) {
     restrict: "A",
     link(scope, element, attrs) {
       scope.User = User
-      scope.Praca = Praca
-
+      scope.Praca = { id_pub: attrs.pracaid, gestor: { user_id_pub: attrs.pracagestor } }
       scope.$watch("User.current", (user) => {
         // If user detected
-        if (user && permissionIsManagerOrAdmin(user, Praca)) {
+        if (user && permissionIsManagerOrAdmin(user, scope.Praca)) {
           if (attrs.showAsManager === "true") {
             element.css({ display: "inherit" })
           } else {

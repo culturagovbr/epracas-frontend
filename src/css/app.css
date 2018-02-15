@@ -79,7 +79,7 @@ body {
 	/*background: #dadada;*/
 	/*background-color: rgb(194, 194, 194);*/
 	/*background-color: rgb(230, 230, 230);*/
-    background: linear-gradient(to top right, #b6b6b6 20%, #fff 100%);
+    background: linear-gradient(to top right, #cecece 20%, #fff 100%);
     background-attachment: fixed;
 }
 
@@ -152,7 +152,8 @@ div.main-master md-toolbar {
 }
 
 #praca .nome md-card{
-	background-color: rgb(194, 194, 194);
+	/* background-color: rgb(194, 194, 194); */
+	background: linear-gradient(to top right, #4e4e4e 20%, #848484 100%);
 }
 
 #praca .nome md-card img{
@@ -2408,7 +2409,7 @@ gestor-detail md-card .md-subhead{
 }
 
 .card-vinculacao .praca {
-	background-color: #e0e0e0;
+	border-top: solid 1px #e0e0e0;
 }
 
 .card-vinculacao md-card-title {
@@ -2556,7 +2557,7 @@ rh-detail .funcao {
 	[class^='layout-padding']{
 		padding: 0!important;
 		width: 100%;
-		max-width: none !important;   
+		max-width: none !important;
 	}
 
 	.print-only{
@@ -2693,18 +2694,26 @@ a.pull-left.event {
 	display: none;
 }
 
+.title {
+	border-bottom: solid 1px #606060CC;
+	color: rgba(0, 0, 0, 0.769) !important;
+}
+.title a , .title md-icon, .title h1 {
+	color: rgba(0, 0,0, 0.769) !important;
+}
+
 .md-button.md-default-theme.md-primary, .md-button.md-primary {
 	color: rgb(255, 168, 7);
 }
 
-.title {
-	border-bottom: solid 1px #606060CC;
-	color: rgba(0,0,0,0.54);
-}
-.title a {
-	color: rgba(0,0,0,0.54);
-}
-
 md-dialog-actions button {
 	margin-left: 10px;
+}
+
+md-card-actions button {
+	margin: 5px;
+}
+
+ep-praca-card {
+	margin: 0 !important;
 }
