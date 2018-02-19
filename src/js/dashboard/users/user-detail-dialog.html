@@ -2,16 +2,16 @@
   <form name="UserDetailForm">
 
     <md-dialog-content>
-      <md-content md-theme="docs-dark" layout-padding>
+      <md-toolbar layout-padding>
         <div layout="row" layout-align="left center">
           <div class="epr-avatar" style="background-image: url('{{$ctrl.user.profile_picture_url}}'); margin: 1vh">
           </div>
           <div>
             <h2>{{$ctrl.user.full_name}}</h2>
-            <h3>CPF: {{$ctrl.user.cpf}}</h3>
+            <h3>CPF: {{$ctrl.user.cpf}}</h3>    
           </div>
         </div>
-      </md-content>
+      </md-toolbar>
       <md-content layout-padding>
         <md-input-container class="md-block">
           <md-icon>email</md-icon>
@@ -32,7 +32,7 @@
       </md-content>
     </md-dialog-content>
     <md-dialog-actions>
-      <md-button class="md-raised md-primary" ng-click="$ctrl.cancel()">
+      <md-button class="btn waves-effect waves-light orange darken-2" ng-click="$ctrl.cancel()">
         Fechar
       </md-button>
     </md-dialog-actions>

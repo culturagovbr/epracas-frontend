@@ -51,7 +51,7 @@ const PracaCard = {
   controller: PracaCardController,
   template: `
     <md-list-item id="praca-card"
-      class="praca-container"
+      class="praca-container hoverable"
       layout-align="space-between"
       style="background-image: url({{::$ctrl.praca.header_img}})"
       ng-click="$ctrl.navigateTo('app.praca', {pk: $ctrl.praca.id_pub})">

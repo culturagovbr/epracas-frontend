@@ -1,4 +1,4 @@
-import angular from 'angular';
+import angular from "angular"
 
 // Create the module where our functionality can attach to
 let homeModule = angular.module('app.home', []);

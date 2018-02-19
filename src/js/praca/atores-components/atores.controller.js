@@ -1,7 +1,10 @@
+import angular from "angular"
+
 class AtoresCtrl {
-  constructor($state, $mdDialog, $log, Upload, Atores, Toast, ErrorCatcher, praca, ator) {
+  constructor($state, $mdDialog, $log, Upload, Atores, Toast, ErrorCatcher, praca, objValue) {
     "ngInject"
 
+    const ator = objValue
     angular.extend(this, {
       $state,
       $mdDialog,
@@ -19,12 +22,26 @@ class AtoresCtrl {
       .then((data) => {
         this.listaArea = data.area.choices
         this.listaDescricao = data.descricao.choices
-      })
+            })
   }
 
-  cancel() {
-    this.$mdDialog.cancel()
-  }
+  // save(praca, rh) {
+  //   this.isSaving = true
+
+  //   this.RecursoHumano.save(praca, rh)
+  //     .then(
+  //       (response) => {
+  //         this.$mdDialog.hide()
+  //         this.Toast.showSuccessToast("Recurso Humano Adicionado")
+  //       }
+  //     )
+  //     .catch(
+  //       (err) => {
+  //         this.$log.error(`Erro ao salvar Recurso Humano${angular.toJson(err.status)}, ${angular.toJson(err.data)}`)
+  //         this.Toast.showRejectedToast("Erro ao adicionar Rh")
+  //       }
+  //     )
+  // }
 
   save(praca, ator) {
     const caller = this.ErrorCatcher.callerName()

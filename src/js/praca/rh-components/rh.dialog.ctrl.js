@@ -1,9 +1,11 @@
+import angular from "angular"
 import moment from "moment"
 
-export default class RhAddDialogController {
-  constructor($state, $mdDialog, $log, Toast, RecursoHumano, praca, rh) {
+export default class RhDialogController {
+  constructor($state, $mdDialog, $log, Toast, RecursoHumano, praca, objValue) {
     "ngInject"
 
+    const rh = objValue
     angular.extend(this, {
       $state,
       $mdDialog,
@@ -13,6 +15,10 @@ export default class RhAddDialogController {
       praca,
       rh,
     })
+    
+    if (rh.carga_horaria) rh.carga_horaria = parseInt(rh.carga_horaria)
+    console.info(rh)
+    console.info(typeof rh.carga_horaria)
 
     this.isSaving = false
     this.formacoes = false
@@ -72,8 +78,6 @@ export default class RhAddDialogController {
     var escolaridades = ["esi", "esc", "esp", "mes", "doc"];
     this.formacoes = escolaridades.indexOf(this.rh.escolaridade) > -1;
   }
-
-  cancel() { this.$mdDialog.cancel() }
 
   save(praca, rh) {
     this.isSaving = true

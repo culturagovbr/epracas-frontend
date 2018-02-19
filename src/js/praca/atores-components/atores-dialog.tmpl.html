@@ -1,94 +1,85 @@
 <md-dialog layout="column" aria-label="Adicionar um ator da Praça">
   <form name="AtorForm" ng-disable="$ctrl.isSaving" ng-submit="$ctrl.save($ctrl.praca, $ctrl.ator)">
     <md-dialog-content>
-
-      <md-content md-theme="docs-dark" layout-padding>
-
-        <h2>Adicione um ator da Praça</h2>
-        <p></p>
-      </md-content>
+      <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h2>
+              <b>Ator</b>
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="$ctrl.$mdDialog.cancel()">
+              <md-icon>close</md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
       <md-content layout="column" layout-padding>
-
         <md-input-container class="md-icon-float md-block">
           <md-icon>business</md-icon>
           <label>Nome do Ator</label>
-          <input name="nomeAtor" required ng-model="$ctrl.ator.nome">
+          <input name="nomeAtor" required ng-model="$ctrl.ator.nome" ng-disabled="$ctrl.booDisabled">
         </md-input-container>
-
         <div layout="row">
           <md-input-container class="md-block">
             <md-icon>work</md-icon>
             <label>Área de Atuação</label>
-            <md-select ng-model="$ctrl.ator.area">
+            <md-select ng-model="$ctrl.ator.area" ng-disabled="$ctrl.booDisabled">
               <md-option ng-repeat="area in $ctrl.listaArea" value="{{area.value}}">
                 {{area.display_name}}
               </md-option>
             </md-select>
           </md-input-container>
-
           <md-input-container class="md-block">
             <md-icon>work</md-icon>
             <label>Descrição da Atividade do ator</label>
-            <md-select ng-model="$ctrl.ator.descricao">
-              <md-option ng-repeat="descricao in $ctrl.listaDescricao" value="{{descricao.value}}">
+            <md-select ng-model="$ctrl.ator.descricao" ng-disabled="$ctrl.booDisabled">
+              <md-option ng-repeat="descricao in $ctrl.listaDescricao | orderBy: 'display_name'" value="{{descricao.value}}">
                 {{descricao.display_name}}
               </md-option>
             </md-select>
           </md-input-container>
         </div>
-
         <div>
           <md-input-container class="md-block">
             <md-icon>my_location</md-icon>
             <label>CEP</label>
-            <input mask="99999-999" required ng-model="$ctrl.ator.cep">
+            <input mask="99999-999" required ng-model="$ctrl.ator.cep" ng-disabled="$ctrl.booDisabled">
           </md-input-container>
           <md-input-container class="md-block">
             <md-icon>subject</md-icon>
             <label>Endereço</label>
-            <textarea rows="5" name="enderecoAtor" required ng-model="$ctrl.ator.endereco"></textarea>
+            <textarea name="enderecoAtor" required ng-model="$ctrl.ator.endereco" ng-disabled="$ctrl.booDisabled"></textarea>
           </md-input-container>
         </div>
-
         <!-- <md-input-container class="md-icon-float md-block"> -->
         <!--   <md-icon>person</md-icon> -->
         <!--   <label>Nome do Contato</label> -->
         <!--   <input name="contatoParceiro" ng-model="$ctrl.parceiro.contato"> -->
         <!-- </md-input-container> -->
-
         <div layout="row">
           <md-input-container class="md-inline" flex>
             <md-icon>phone</md-icon>
             <label>Telefone 1</label>
-            <input mask="(99)99999-9999" clean="true" name="telefoneAtor" ng-model="$ctrl.ator.telefone1">
+            <input mask="(99)99999-9999" clean="true" name="telefoneAtor" ng-model="$ctrl.ator.telefone1" ng-disabled="$ctrl.booDisabled">
           </md-input-container>
 
           <md-input-container class="md-inline" flex>
             <md-icon>phone</md-icon>
             <label>Telefone 2</label>
-            <input mask="(99)99999-9999" clean="true" name="telefoneAtor" ng-model="$ctrl.ator.telefone2">
+            <input mask="(99)99999-9999" clean="true" name="telefoneAtor" ng-model="$ctrl.ator.telefone2" ng-disabled="$ctrl.booDisabled">
           </md-input-container>
         </div>
-
         <div>
           <md-input-container class="md-block" flex>
             <md-icon>email</md-icon>
             <label>Email</label>
-            <input type="email" name="emailAtor" ng-model="$ctrl.ator.email">
+            <input type="email" name="emailAtor" ng-model="$ctrl.ator.email" ng-disabled="$ctrl.booDisabled">
           </md-input-container>
         </div>
-
-    </md-content>
-  </md-dialog-content>
-
-  <md-dialog-actions>
-    <md-button ng-click="$ctrl.cancel()">
-      Cancelar
-    </md-button>
-    <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="AtorForm.$invalid">
-      Enviar
-    </md-button>
-  </md-dialog-actions>
-
-</form>
+      </md-content>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <button type="button" ng-click="$ctrl.$mdDialog.cancel()" class="btn waves-effect {{$ctrl.booDisabled ? 'orange waves-light' : 'transparent waves-orange orange-text'}}  darken-2">{{$ctrl.booDisabled ? "Fechar" : "Cancelar"}}</button>
+      <button ng-if="!$ctrl.booDisabled" class="btn waves-effect waves-light orange darken-2" type="submit" ng-disabled="AtorForm.$invalid">Salvar</button>
+    </md-dialog-actions>
+  </form>
 </md-dialog>

@@ -51,6 +51,8 @@ md-tab-item span, md-prev-button md-icon, md-next-button md-icon{
 md-card.md-default-theme, md-card {
     color: rgba(0,0,0,0.87);
     border-radius: 2px;
-    background: linear-gradient(to bottom left, rgba(255, 255, 255, 0.85), rgba(227, 227, 227, 0.83));
-    background-color: #FFFFFFE6;
+    /*background: linear-gradient(to bottom left, rgba(255, 255, 255, 0.85), rgba(227, 227, 227, 0.83));*/
+    /*background: linear-gradient(to bottom left,hsl(0, 0%, 100%),hsl(0, 0%, 94.9%));*/
+    /*background-color: #FFFFFFE6;*/
+    background-color: #FFFFFF;
 }

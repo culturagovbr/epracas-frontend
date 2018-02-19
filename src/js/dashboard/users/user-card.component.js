@@ -118,7 +118,7 @@ class UserCardController {
 const UserCardElement = {
   controller: UserCardController,
   template: `
-        <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme user-card-item">
+        <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme user-card-item hoverable" style="cursor: auto;">
           <md-card-title>
             <md-card-title-text>
               <span class="md-headline">{{$ctrl.user.full_name}}</span>
