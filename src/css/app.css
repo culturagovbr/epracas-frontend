@@ -2695,7 +2695,7 @@ a.pull-left.event {
 }
 
 .title {
-	border-bottom: solid 1px #606060CC;
+	border-bottom: solid 1px #606060;
 	color: rgba(0, 0, 0, 0.769) !important;
 }
 .title a , .title md-icon, .title h1 {

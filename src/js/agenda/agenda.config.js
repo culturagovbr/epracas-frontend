@@ -34,7 +34,7 @@ function AgendaConfig($stateProvider) {
 		})
 		.state('app.eventos', {
 			// url: "/eventos/{year}/{month}",
-			url: "/eventos",
+			url: "/eventos/{pk}",
 			controller: "DashboardEventsCtrl",
 			controllerAs: "$ctrl",
 			templateUrl: "dashboard/events.tmpl.html",
