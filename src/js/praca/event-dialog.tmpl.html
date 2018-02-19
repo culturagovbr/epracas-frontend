@@ -13,12 +13,12 @@
           </div>
         </md-toolbar>
       <div layout-padding>
-          <div layout="row">
-              <md-input-container class="md-block" flex>
-                <label>Titulo da atividade</label>
-                <input name="eventName" ng-required="true" ng-model="$ctrl.eventData.titulo" md-autofocus />
-              </md-input-container>
-            </div>
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+            <label>Titulo da atividade</label>
+            <input name="eventName" ng-required="true" ng-model="$ctrl.eventData.titulo" md-autofocus />
+          </md-input-container>
+        </div>
         <div layout="row">
           <md-input-container class="md-block" flex>
             <md-icon>work</md-icon>
@@ -76,6 +76,7 @@
             <md-icon>people_outline</md-icon>
             <label>Atividade Destinada à Publico ou Grupo Específico (caso se aplique)</label>
             <md-select ng-model="$ctrl.eventData.publico">
+              <md-option>Não se aplica</md-option>
               <md-option ng-repeat="publico in $ctrl._publicoAtividade" value="{{publico.value}}">
                 {{publico.display_name}}
               </md-option>

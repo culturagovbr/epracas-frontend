@@ -113,16 +113,20 @@
     <div id="container-agenda" layout-padding class="agenda no-print" layout-align="start center">
       <div class="layout-row title">
         <md-icon>insert_invitation</md-icon>
-        <h1 flex>Agenda</h1>
+        <h1 flex><a ui-sref="app.eventos({pk: $ctrl.praca.id_pub})">Agenda</a></h1>
       </div>
       <div class="activities-log" layout-gt-xs="row">
-        <div class="event-list">
-          <event-previewer ng-repeat="event in $ctrl.praca.agenda
-          | filter: { data_inicio: $ctrl.parseDate($ctrl.myDate) }
-          | orderBy: 'event.data_inicio'
-          | limitTo: 4" event="event">
-          </event-previewer>
-        </div>
+        <!-- <div class="row">
+          <md-card> -->
+            <div class="event-list">
+              <event-previewer ng-repeat="event in $ctrl.praca.agenda
+              | filter: { data_inicio: $ctrl.parseDate($ctrl.myDate) }
+              | orderBy: 'event.data_inicio'
+              | limitTo: 4" event="event">
+              </event-previewer>
+            </div>
+          <!-- </md-card>
+        </div> -->
 
         <div flex class="calendar">
           <md-calendar ng-click="$ctrl.dateSet = true" ng-model="$ctrl.myDate"></md-calendar>
