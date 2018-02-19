@@ -32,7 +32,7 @@
             <md-icon>work</md-icon>
             <label>Descrição da Atividade do ator</label>
             <md-select ng-model="$ctrl.ator.descricao" ng-disabled="$ctrl.booDisabled">
-              <md-option ng-repeat="descricao in $ctrl.listaDescricao" value="{{descricao.value}}">
+              <md-option ng-repeat="descricao in $ctrl.listaDescricao | orderBy: 'display_name'" value="{{descricao.value}}">
                 {{descricao.display_name}}
               </md-option>
             </md-select>

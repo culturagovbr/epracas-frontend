@@ -1,16 +1,24 @@
 <md-dialog layout="column" aria-label="Cadastro de Atividade da Praça" flex-gt-sm="60">
   <form name="EventForm" ng-disabled="$ctrl.isSaving" ng-submit="$ctrl.save($ctrl.eventData)">
     <md-dialog-content>
-      <md-content md-theme="docs-dark" layout-padding>
-        <h2>Adicionar Atividade</h2>
-        <div layout="row">
-          <md-input-container class="md-block" flex>
-            <label>Titulo da atividade</label>
-            <input name="eventName" ng-required="true" ng-model="$ctrl.eventData.titulo" md-autofocus />
-          </md-input-container>
-        </div>
-      </md-content>
+      <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h2>
+              <b>Adicionar Atividade</b>
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="$ctrl.$mdDialog.cancel()">
+              <md-icon>close</md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
       <div layout-padding>
+          <div layout="row">
+              <md-input-container class="md-block" flex>
+                <label>Titulo da atividade</label>
+                <input name="eventName" ng-required="true" ng-model="$ctrl.eventData.titulo" md-autofocus />
+              </md-input-container>
+            </div>
         <div layout="row">
           <md-input-container class="md-block" flex>
             <md-icon>work</md-icon>
@@ -155,7 +163,7 @@
         <md-button ng-click="$ctrl.cancel()">
           Cancelar
         </md-button>
-        <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="EventForm.$invalid">
+        <md-button class="btn waves-effect waves-light orange darken-2" type="submit" ng-disabled="EventForm.$invalid">
           Enviar
         </md-button>
       </md-dialog-actions>
