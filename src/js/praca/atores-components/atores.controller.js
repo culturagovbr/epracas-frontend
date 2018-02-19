@@ -22,7 +22,7 @@ class AtoresCtrl {
       .then((data) => {
         this.listaArea = data.area.choices
         this.listaDescricao = data.descricao.choices
-      })
+            })
   }
 
   // save(praca, rh) {
