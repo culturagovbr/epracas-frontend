@@ -51,6 +51,20 @@ md-tab-item span, md-prev-button md-icon, md-next-button md-icon{
 md-card.md-default-theme, md-card {
     color: rgba(0,0,0,0.87);
     border-radius: 2px;
-    background: linear-gradient(to bottom left, rgba(255, 255, 255, 0.85), rgba(227, 227, 227, 0.83));
-    background-color: #FFFFFFE6;
+    /*background: linear-gradient(to bottom left, rgba(255, 255, 255, 0.85), rgba(227, 227, 227, 0.83));*/
+    /*background: linear-gradient(to bottom left,hsl(0, 0%, 100%),hsl(0, 0%, 94.9%));*/
+    /*background-color: #FFFFFFE6;*/
+    background-color: #FFFFFF;
+}
+
+md-select.md-default-theme[disabled] .md-select-icon, md-select[disabled] .md-select-icon, md-select.md-default-theme[disabled] .md-select-value, md-select[disabled] .md-select-value, md-select.md-default-theme[disabled] .md-select-value.md-select-placeholder, md-select[disabled] .md-select-value.md-select-placeholder {
+    color: rgba(0,0,0,0.60);
+}
+input:not([type]):disabled, input:not([type])[readonly="readonly"], input[type=text]:disabled, input[type=text][readonly="readonly"], input[type=password]:disabled, input[type=password][readonly="readonly"], input[type=email]:disabled, input[type=email][readonly="readonly"], input[type=url]:disabled, input[type=url][readonly="readonly"], input[type=time]:disabled, input[type=time][readonly="readonly"], input[type=date]:disabled, input[type=date][readonly="readonly"], input[type=datetime]:disabled, input[type=datetime][readonly="readonly"], input[type=datetime-local]:disabled, input[type=datetime-local][readonly="readonly"], input[type=tel]:disabled, input[type=tel][readonly="readonly"], input[type=number]:disabled, input[type=number][readonly="readonly"], input[type=search]:disabled, input[type=search][readonly="readonly"], textarea.materialize-textarea:disabled, textarea.materialize-textarea[readonly="readonly"] {
+color: rgba(0,0,0,0.60);
+border-bottom: 1px dotted rgba(0, 0, 0, 0.26);
+}
+
+[disabled] md-input-container.md-default-theme .md-input, [disabled] md-input-container .md-input, md-input-container.md-default-theme .md-input[disabled], md-input-container .md-input[disabled]{
+color: rgba(0,0,0,0.60);
 }

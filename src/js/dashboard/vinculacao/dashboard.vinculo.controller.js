@@ -20,7 +20,14 @@ class DashboardVinculoCtrl {
   }
 
   showUserInfo(user) {
-    this.$mdDialog.show({})
+    console.log(user);
+    this.$mdDialog.show({
+      controller: "UserDetailController",
+      controllerAs: "$ctrl",
+      templateUrl: "dashboard/users/user-detail-dialog.html",
+      parent: angular.element(this.$document.body),
+      locals: { user: user },
+    })
   }
 
   showPracaInfo(praca) {
