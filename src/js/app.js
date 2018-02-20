@@ -42,6 +42,7 @@ import "./praca";
 import "./distancia";
 import "./agenda";
 import "./dashboard";
+import "angular-locale-pt-br";
 
 
 // Create and bootstrap application

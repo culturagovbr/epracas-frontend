@@ -1,11 +1,16 @@
 <md-dialog arial-label="Upload de imagens da Praça">
   <md-dialog-content>
-    <md-content md-theme="docs-dark" layout-padding>
-      <h2>Upload de imagens da Praça</h2>
-      <p>Você pode enviar imagens relacionadas à Praça. São permitidos apenas arquivos de imagem e com tamanho máximo de 10MB.</p>
-    </md-content>
-    
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Upload de imagens da Praça</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="$ctrl.cancel()">
+                <md-icon>close</md-icon>
+              </md-button>
+        </div>
+      </md-toolbar>
     <div layout-padding>
+      <p>Você pode enviar imagens relacionadas à Praça. São permitidos apenas arquivos de imagem e com tamanho máximo de 10MB.</p>
       <md-button
         class="md-raised"
         ngf-select
@@ -63,7 +68,7 @@
     <md-button ng-click="$ctrl.cancel()">
       Cancelar
     </md-button>
-    <md-button class="md-no-focus md-raised md-primary" ng-disabled="!$ctrl.images" ng-click="$ctrl.uploadImg($ctrl.images, $event)">
+    <md-button class="btn waves-effect waves-light orange darken-2" ng-disabled="!$ctrl.images" ng-click="$ctrl.uploadImg($ctrl.images, $event)">
       Enviar Todas as Imagens
     </md-button>
   </md-dialog-actions>
