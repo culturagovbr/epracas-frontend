@@ -86,6 +86,7 @@ class DashboardEventsCtrl {
                     setTimeout(function () {
                         $('div.cal-month-day:not(.cal-day-today)').removeClass('cal-day-event');
                         $('small.cal-events-num:not(.ng-hide)').closest('div.cal-month-day:not(.cal-day-today)').addClass('cal-day-event');
+                        $("mwl-calendar .badge-important").append(" Evento(s)");
                     }, 500);
 
                     Praca.options().then((data) => {
@@ -114,13 +115,13 @@ class DashboardEventsCtrl {
                     this.arrUf = this.arrUf.sort();
 
                 }).catch($log.log('Erro na transformação de eventos'));
-        };
+            };
         this.navigateTo = (pk) => {
             this._$state.go('app.atividade', { pk: pk });
         };
 
         this.loadEvents();
-    }
+       }
 
     returnEvent(event) {
         let newEvent = {
