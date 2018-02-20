@@ -117,7 +117,7 @@ class Controller {
                 </form>
             </md-dialog>`,
         bindToController: true,
-        locals: {praca, membrogestor},
+        locals: { praca, membrogestor },
         multiple: true,
         clickOutsideToClose: true,
         targetEvent: event,
@@ -157,7 +157,7 @@ class Controller {
                 </md-button>
             </div>
           </md-toolbar>
-          <form name="RhEndForm" ng-submit="$ctrl.finalizaVínculo($ctrl.praca, $ctrl.rh)">
+          <form name="RhEndForm" ng-submit="$ctrl.finalizaVinculo($ctrl.praca, $ctrl.rh)">
               <md-content layout="column" layout-padding>
                 <md-input-container class="md-block" flex>
                   <label>Data de encerramento</label>
