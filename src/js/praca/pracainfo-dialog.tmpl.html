@@ -1,17 +1,22 @@
 <md-dialog layout="column" aria-label="Editar Informações sobre a Praça">
   <form name="PracaForm" ng-disabled="$ctrl.isSaving" ng-submit="$ctrl.save($ctrl.praca)">
     <md-dialog-content>
-      <md-content md-theme="docs-dark" layout-padding>
-        <md-button style="float: right;" class="md-icon-button" ng-click="$ctrl.cancel()">
-          <md-icon>close</md-icon>
-        </md-button>
-        <h2>Informações sobre a Praça</h2>
-        <md-input-container class="md-block" flex>
-          <label>Nome da Praça</label>
-          <input name="pracaNome" required ng-model="$ctrl.praca.nome">
-        </md-input-container>
-      </md-content>
+      <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h2>
+              <b>Informações sobre a Praça</b>
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="$ctrl.$mdDialog.cancel()">
+              <md-icon>close</md-icon>
+            </md-button>
+          </div>
+      </md-toolbar>
       <md-content layout-padding>
+        <md-input-container class="md-block" flex>
+            <label>Nome da Praça</label>
+            <input name="pracaNome" required ng-model="$ctrl.praca.nome">
+          </md-input-container>
         <div layout-gt-xs="row">
           <md-input-container flex-gt-xs=50>
             <md-icon>assignment</md-icon>
@@ -200,7 +205,7 @@
       <md-button ng-click="$ctrl.cancel()">
         Cancelar
       </md-button>
-      <md-button class="md-no-focus md-raised md-primary" type="submit" ng-disabled="PracaForm.$invalid">
+      <md-button class="btn waves-effect waves-light orange darken-2" type="submit" ng-disabled="PracaForm.$invalid">
         Enviar
       </md-button>
     </md-dialog-actions>
