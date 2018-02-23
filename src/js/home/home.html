@@ -1,7 +1,8 @@
 <style>
   md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
     /*background-color: rgba(0, 0, 0, 0.6) !important;*/
-    background: linear-gradient(141deg, #000000b3 0%, #0009 51%, #000000b3 75%);
+    /* background: linear-gradient(141deg, #000000b3 0%, #0009 51%, #000000b3 75%); */
+    background: rgba(0, 0, 0, 0.6);
   }
 </style>
 <div id="quadro-container">
@@ -24,7 +25,7 @@
       <div flex="90" id="home-search" class="animated fadeIn" layout-align="center center" layout-margin layout-gt-xs="row">
         <md-icon class="search">search</md-icon>
         <md-autocomplete
-                placeholder="Procure por uma cidade ou estado (UF)"
+                placeholder="Procure por uma cidade ou praça"
                 md-selected-item="$ctrl.selectedItem"
                 md-selected-item-change="$ctrl.selectedItemChange(item)"
                 md-search-text="$ctrl.searchText"
@@ -64,7 +65,7 @@
                 </md-button>
               </md-menu-item>
               <md-menu-item>
-                <md-button ng-click="$ctrl._$state.go('app.eventos')">
+                <md-button ng-click="$ctrl._$state.go('app.eventos', {pk: ''})">
                   <md-icon>date_range</md-icon>
                   Pesquisar evento
                 </md-button>
