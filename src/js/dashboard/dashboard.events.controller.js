@@ -95,7 +95,8 @@ class DashboardEventsCtrl {
           setTimeout(function () {
             $("div.cal-month-day:not(.cal-day-today)").removeClass("cal-day-event")
             $("small.cal-events-num:not(.ng-hide)").closest("div.cal-month-day:not(.cal-day-today)").addClass("cal-day-event")
-          }, 500)
+            $("mwl-calendar .badge-important").append(" Evento(s)");
+}, 500)
 
           Praca.options().then((data) => {
             angular.forEach(data.uf.choices, (uf) => {
