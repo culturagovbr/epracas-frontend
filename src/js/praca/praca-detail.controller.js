@@ -348,19 +348,19 @@ class PracaDetailCtrl {
         },
       }
 
-      userMenu.partner = {
-        id: "parceiro",
-        name: "Adicionar Parceiro",
-        icon: "people",
-        dialog: {
-          controller: "ParceirosCtrl",
-          controllerAs: "$ctrl",
-          templateUrl: "praca/parceiros-components/parceiros-dialog.tmpl.html",
-          parent: angular.element(this.$document.body),
-          locals: { praca: this.praca },
-          fullscreen: true,
-        },
-      }
+      // userMenu.partner = {
+      //   id: "parceiro",
+      //   name: "Adicionar Parceiro",
+      //   icon: "people",
+      //   dialog: {
+      //     controller: "ParceirosCtrl",
+      //     controllerAs: "$ctrl",
+      //     templateUrl: "praca/parceiros-components/parceiros-dialog.tmpl.html",
+      //     parent: angular.element(this.$document.body),
+      //     locals: { praca: this.praca },
+      //     fullscreen: true,
+      //   },
+      // }
 
       userMenu.profile = {
         id: "perfil",
