@@ -44,6 +44,12 @@ class GrupoGestor {
 
 
   save_grupogestor(praca, grupogestor) {
+
+    console.info('PRACA')
+    console.info(praca)
+    console.info("GRUPO")
+    console.info(grupogestor)
+
     const caller = this.ErrorCatcher.callerName()
 
     grupogestor.data_instituicao = moment(grupogestor.data_instituicao).format("YYYY-MM-DD")
@@ -52,6 +58,17 @@ class GrupoGestor {
       grupogestor.data_finalizacao = moment(grupogestor.data_finalizacao).format("YYYY-MM-DD")
       delete grupogestor.estatuto
       delete grupogestor.documento_constituicao
+      return this.$http({
+        url: `${this.AppConstants.pracaEndPoint}${praca}/grupogestor/${grupogestor.id_pub}/`,
+        method: "DELETE",
+        data: grupogestor,
+      })
+      .catch(
+        (err) => {
+          this.ErrorCatcher.error(caller, err)
+          return this.$q.reject()
+        }
+      )
     }
 
     if (grupogestor.id_pub) {

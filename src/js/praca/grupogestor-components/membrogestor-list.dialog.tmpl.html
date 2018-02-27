@@ -1,14 +1,6 @@
 <md-dialog layout="column" flex="60" aria-label="Lista de Membros Gestores">
     <md-dialog-content>
-        <!--<md-content md-theme="docs-dark" layout-padding>-->
-            <!--<div layout="row" layout-align="space-between center">-->
-                <!--<h2>Lista de Membros Gestores</h2>-->
-            <!--</div>-->
-            <!--<a class="waves-effect waves-light btn" ng-click="$ctrl.expandAll()">-->
-                <!--<i class="material-icons left">fullscreen</i>Abrir Todos</a>-->
-            <!--<a class="waves-effect waves-light btn" ng-click="$ctrl.collapseAll()">-->
-                <!--<i class="material-icons left">fullscreen_exit</i>Fechar Todos</a>-->
-        <!--</md-content>-->
+
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2><b ng-show="!$ctrl.booDisabled">Adicione um parceiro da praça</b><b ng-show="$ctrl.booDisabled">Parceiro da praça</b></h2>
@@ -17,14 +9,9 @@
                     <md-icon >close</md-icon>
                 </md-button>
             </div>
-            <!--<div class="md-toolbar-tools" style="font-size: 15px;font-weight: inherit;">-->
-                <!--<a class="waves-effect waves-light btn" ng-click="$ctrl.expandAll()">-->
-                    <!--<i class="material-icons left">fullscreen</i>Abrir Todos</a>-->
-                <!--<a class="waves-effect waves-light btn" ng-click="$ctrl.collapseAll()">-->
-                    <!--<i class="material-icons left">fullscreen_exit</i>Fechar Todos</a>-->
-            <!--</div>-->
+
         </md-toolbar>
-        <md-content>
+        <md-content ng-model="$ctrl.current.user">
             <ul class="collapsible popout" data-collapsible="expandable">
                 <li ng-repeat="data in $ctrl.gruposgestores">
                     <div class="collapsible-header">
@@ -37,27 +24,29 @@
                     <div class="collapsible-body">
                         <md-list ng-show="{{data.documento_constituicao != null && data.estatuto != null}}" flex>
                             <md-subheader class="md-no-sticky"><h3>Documentos</h3></md-subheader>
-                            <md-list-item class="md-3-line" ng-click="null">
-                                <div class="md-list-item-text" layout="column">
-                                    <h4>Constituição</h4>
-                                </div>
-                                <md-button class="md-secondary md-icon-button" aria-label="Download" target="_blank"
-                                           href="{{data.documento_constituicao}}">
-                                    <md-icon>insert_drive_file</md-icon>
-                                </md-button>
-                                <md-divider></md-divider>
-                            </md-list-item>
-                            <md-list-item class="md-3-line" ng-click="null">
-                                <div class="md-list-item-text" layout="column">
-                                    <h4>Estatuto</h4>
-                                </div>
-                                <md-button class="md-secondary md-icon-button" aria-label="Download" target="_blank"
-                                           href="{{data.estatuto}}">
-                                    <md-icon>insert_drive_file</md-icon>
-                                </md-button>
-                                <md-divider></md-divider>
-                            </md-list-item>
-
+                            <a class="md-3-line"  target="_blank" href="{{data.documento_constituicao}}">
+                                <md-list-item class="md-3-line" ng-click="null">
+                                    <div class="md-list-item-text" layout="column">
+                                        <h4>Constituição</h4>
+                                    </div>
+                                    <md-button class="md-secondary md-icon-button" aria-label="Download" >
+                                        <md-icon>insert_drive_file</md-icon>
+                                    </md-button>
+                                    <md-divider></md-divider>
+                                </md-list-item>
+                            </a>
+                            <a class="md-3-line"  target="_blank" href="{{data.estatuto}}">
+                                <md-list-item class="md-3-line" ng-click="null">
+                                    <div class="md-list-item-text" layout="column">
+                                        <h4>Estatuto</h4>
+                                    </div>
+                                    <md-button class="md-secondary md-icon-button" aria-label="Download" target="_blank"
+                                            href="{{data.estatuto}}">
+                                        <md-icon>insert_drive_file</md-icon>
+                                    </md-button>
+                                    <md-divider></md-divider>
+                                </md-list-item>
+                            </a>
                         </md-list>
                         <md-list flex>
                             <md-subheader class="md-no-sticky"><h3>Gestores</h3></md-subheader>
@@ -66,12 +55,12 @@
                                     <h3>{{ membro.nome }}</h3>
                                     <p>{{ membro.origem_descricao }}</p>
                                 </div>
-                                <md-button show-as-manager="true" class="md-secondary md-icon-button"
+                                <md-button show-as-manager="true" pracagestor="{{$ctrl.praca.gestor.user_id_pub}}" class="md-secondary md-icon-button"
                                            aria-label="Editar Membro Gestor"
                                            ng-click="$ctrl.membroGestorEditDialog($event, $ctrl.praca, membro)">
                                     <md-icon>create</md-icon>
                                 </md-button>
-                                <md-button show-as-manager="true" class="md-secondary md-icon-button"
+                                <md-button show-as-manager="true" pracagestor="{{$ctrl.praca.gestor.user_id_pub}}" class="md-secondary md-icon-button"
                                            aria-label="Excluir Membro Gestor"
                                            ng-click="$ctrl.membroGestorEndDialog($event, $ctrl.praca, membro)">
                                     <md-icon>cancel</md-icon>
