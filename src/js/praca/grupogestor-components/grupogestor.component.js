@@ -64,7 +64,7 @@ class Controller {
     })
   }
 
-  showGestorDialog(event, praca) {
+  showGestorDialog(event, strController, urlDialog, praca) {
     if (this.ggEmpty) {
       this.showGrupoGestorDialog(event, praca)
     } else {
@@ -106,7 +106,7 @@ const GrupoGestor = {
           boo-img="$ctrl.booImg" str-controller="$ctrl.strController" obj-value="objValue" 
           url-dialog="$ctrl.urlDialog" mix-delete="$ctrl.urlDelete"></ep-praca-card>
         </div>
-      <md-fab-speed-dial show-as-manager="true" pracaid="{{$ctrl.praca.id_pub}}" pracagestor="{{$ctrl.praca.gestor.user_id_pub}}" class="md-fab-top-right" ng-click="$ctrl.dialogForm($event, $ctrl.strController, $ctrl.urlDialog, $ctrl.praca)">
+      <md-fab-speed-dial show-as-manager="true" pracaid="{{$ctrl.praca.id_pub}}" pracagestor="{{$ctrl.praca.gestor.user_id_pub}}" class="md-fab-top-right" ng-click="$ctrl.showGestorDialog($event, $ctrl.strController, $ctrl.urlDialog, $ctrl.praca)">
         <md-fab-trigger>
           <md-button class="md-fab">
             <md-icon>add</md-icon>

@@ -28,13 +28,14 @@ class PracaDetailCtrl {
       return objData
     })
 
-    if (praca.grupo_gestor === null) praca.grupo_gestor = { membros: [] }
-    praca.grupo_gestor.membros.map((objData) => {
-      objData.id = objData.id_pub
-      objData.title = objData.nome
-      objData.subtitle = objData.origem_descricao
-      return objData
-    })
+    if (praca.grupo_gestor !== null) {
+      praca.grupo_gestor.membros.map((objData) => {
+        objData.id = objData.id_pub
+        objData.title = objData.nome
+        objData.subtitle = objData.origem_descricao
+        return objData
+      })
+    }
 
     RecursoHumano.list(praca).then((res) => {
       praca.rh = res.data
