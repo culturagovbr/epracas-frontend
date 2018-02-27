@@ -3,6 +3,7 @@
     font-weight: 500;
   }
 </style>
+<body>
 <div class="animated fadeIn">
   <div class="container" ng-cloak>
     <div id="container-info" layout-gt-xs="row">
@@ -54,7 +55,7 @@
         <md-subheader class="md-no-sticky grey white-text" ng-if="$ctrl.objData.faixa_etarias.length">
           <h3><b>
             <md-icon class="white-text">face</md-icon>
-            Faixa etária</b></h3>
+            Faixa etária ------- {{$ctrl.userMenu}}</b></h3>
         </md-subheader>
         <md-list-item ng-repeat="obj in $ctrl.objData.faixa_etarias" class="md-2-line">
           <md-divider></md-divider>
@@ -98,7 +99,30 @@
             <h4>{{obj.display_name}}</h4>
           </div>
         </md-list-item>
-      </md-list>
+        <md-list-item class="md-3-line">
+        <md-fab-speed-dial show-authed="true" md-direction="up" id="praca-speed-dial" class="md-fab md-fab-bottom-right">
+            <md-fab-trigger>
+              <md-button aria-label="menu" class="md-fab md-warn">
+                <md-tooltip md-direction="top" md-visible="tooltipVisible">
+                  Menu
+                </md-tooltip>
+                <md-icon>menu</md-icon>
+              </md-button>
+            </md-fab-trigger>
+            <md-fab-actions>
+              <div ng-repeat="item in $ctrl.userMenu">
+                <md-button aria-label="{{ item.name }}" class="md-fab md-raised md-mini" ng-click="$ctrl.showDialog($event, item.dialog)">
+                  <md-tooltip md-direction="left" md-visible="tooltipVisible" md-autohide="false">
+                    {{ item.name }}
+                  </md-tooltip>
+                  <md-icon aria-label="{{ item.name }}">{{item.icon}}</md-icon>
+                </md-button>
+              </div>
+            </md-fab-actions>
+          </md-fab-speed-dial>
+        </md-list-item>
+      </md-list>      
     </div>
   </md-content>
 </div>
+</body>

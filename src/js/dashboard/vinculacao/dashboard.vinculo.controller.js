@@ -20,7 +20,6 @@ class DashboardVinculoCtrl {
   }
 
   showUserInfo(user) {
-    console.log(user);
     this.$mdDialog.show({
       controller: "UserDetailController",
       controllerAs: "$ctrl",

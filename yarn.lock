@@ -151,6 +151,19 @@ angular-bootstrap-calendar@^0.28.4:
     angular-ui-bootstrap ">=0.14.0"
     interactjs "^1.2.0"
 
+angular-input-masks@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/angular-input-masks/-/angular-input-masks-4.1.0.tgz#72149b0434b4c819d14f5b922165a57a4d213a49"
+  dependencies:
+    br-validations "^0.3.1"
+    date-fns "^2.0.0-alpha.7"
+    moment "^2.8.4"
+    string-mask "^0.3.0"
+
+angular-locale-pt-br@^1.3.16:
+  version "1.3.16"
+  resolved "https://registry.yarnpkg.com/angular-locale-pt-br/-/angular-locale-pt-br-1.3.16.tgz#9c4b43571832f6e1d23b075cb60ca2af295c1fb5"
+
 angular-material@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/angular-material/-/angular-material-1.1.6.tgz#ec8c55423f4da2eb06c91f44af3cf50f867fbe59"
@@ -894,6 +907,10 @@ boom@2.x.x:
   resolved "https://registry.yarnpkg.com/boom/-/boom-2.10.1.tgz#39c8918ceff5799f83f9492a848f625add0c766f"
   dependencies:
     hoek "2.x.x"
+
+br-validations@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/br-validations/-/br-validations-0.3.1.tgz#4e45a4e074adaeea2b7e088bc0e37ade9b76364d"
 
 brace-expansion@^1.0.0:
   version "1.1.6"
@@ -1686,6 +1703,10 @@ dashdash@^1.12.0:
 date-fns@^1.27.2:
   version "1.28.3"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.28.3.tgz#145d87adc3f5a82c6bda668de97eee1132c97ea1"
+
+date-fns@^2.0.0-alpha.7:
+  version "2.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.7.tgz#245ad16f95764eababfb2c0a41fd5d033c20e57a"
 
 date-now@^0.1.4:
   version "0.1.4"
@@ -4092,6 +4113,10 @@ moment@^2.15.2:
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.16.0.tgz#f38f2c97c9889b0ee18fc6cc392e1e443ad2da8e"
 
+moment@^2.8.4:
+  version "2.20.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.20.1.tgz#d6eb1a46cbcc14a2b2f9434112c1ff8907f313fd"
+
 ms@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
@@ -5624,6 +5649,10 @@ stream-to-array@~1.0.0:
 strict-uri-encode@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-1.1.0.tgz#279b225df1d582b1f54e65addd4352e18faa0713"
+
+string-mask@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/string-mask/-/string-mask-0.3.0.tgz#9e7244b87bb2f6f9647e2ac98f96fa1a57c21198"
 
 string-width@^1.0.1, string-width@^1.0.2:
   version "1.0.2"
