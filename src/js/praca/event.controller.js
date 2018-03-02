@@ -310,10 +310,7 @@ class EventCtrl {
     if (this.eventData.id_pub) {
       this.eventData.praca = this.praca.id_pub
       const date = moment(this.eventData.ocorrencia.repeat_until).format("YYYY-MM-DD")
-      const day_plus = date.toString().split('-')
-      day_plus[2] = parseInt(day_plus[2],10)
-      day_plus[2] += 1
-      this.eventData.ocorrencia.repeat_until = moment(day_plus.join('-')).format("YYYY-MM-DD")
+      this.eventData.ocorrencia.repeat_until = moment(date).format("YYYY-MM-DD")
 
       this.eventData.evento = this.eventData.evento.display_name
 
