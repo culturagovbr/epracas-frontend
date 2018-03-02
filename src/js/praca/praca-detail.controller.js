@@ -45,6 +45,7 @@ class PracaDetailCtrl {
         objData.image = objData.imagem
         return objData
       })
+      praca.rh = praca.rh.filter(arrData => (arrData.data_saida == null))
     })
 
     Atores.list(praca).then((res) => {
