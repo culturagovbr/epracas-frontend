@@ -79,6 +79,37 @@ class PracaDetailCtrl {
       });
 
       praca.agenda = atividades
+
+      setTimeout(function () {
+        $(atividades).each((index, value) => {
+          const arrDate1 = value.data_inicio.split(".").reverse()
+          arrDate1[1] = arrDate1[1].replace("0", "")
+          const arrDate2 = value.data_encerramento.split(".").reverse()
+          arrDate2[1] = arrDate1[1].replace("0", "")
+          
+          const strId = '[id*="-month-' + arrDate1.join("-") + '"]'
+          const strId2 = '[id*="-month-' + arrDate2.join("-") + '"]'
+          $(strId + " .md-calendar-date-selection-indicator").css("background-color", "#ffdc88")
+          $(strId2 + " .md-calendar-date-selection-indicator").css("background-color", "#ffdc88")
+        })
+      }, 500)
+
+      $(".md-virtual-repeat-scroller, .md-virtual-repeat-scroller div:first").on("scroll", (event) => {
+        $(atividades).each((index, value) => {
+          // console.info(value.data_inicio.split(".").reverse().join("-"))
+          // console.info(value.data_encerramento.split(".").reverse().join("-"))
+          // console.info("#md-0-month-" + value.data_encerramento.split(".").reverse().join("-"))
+          const arrDate1 = value.data_inicio.split(".").reverse()
+          arrDate1[1] = arrDate1[1].replace("0", "")
+          const arrDate2 = value.data_encerramento.split(".").reverse()
+          arrDate2[1] = arrDate1[1].replace("0", "")
+
+          const strId = '[id*="-month-' + arrDate1.join("-") + '"]'
+          const strId2 = '[id*="-month-' + arrDate2.join("-") + '"]'
+          $(strId + " .md-calendar-date-selection-indicator").css("background-color", "#ffdc88")
+          $(strId2 + " .md-calendar-date-selection-indicator").css("background-color", "#ffdc88")
+        })
+      })
     })
 
     if (angular.isUndefined(praca.header_img) || praca.header_img === null ) {
