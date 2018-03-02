@@ -31,7 +31,7 @@ class PracaAtividadeCtrl {
     Praca.get(this.objData.praca).then((response) => {
       this.objData.praca = response
       this.praca = response
-      this.buildMenu(this.currentUser)
+      this.userMenu = this.buildMenu(this.currentUser)
     })
 }
   
@@ -56,8 +56,8 @@ class PracaAtividadeCtrl {
       console.info('Entrada')
       userMenu.event = {
         id: "evento",
-        name: "Adicionar Evento",
-        icon: "insert_invitation",
+        name: "Remover Evento",
+        icon: "delete",
         dialog: {
           controller: "EventCtrl",
           controllerAs: "$ctrl",
@@ -65,27 +65,17 @@ class PracaAtividadeCtrl {
          // parent: angular.element(this.$document.body),
           locals: { praca: this.praca },
           fullscreen: true,
-        },
-      }
-      console.info('1')
-      userMenu.partner = {
-        id: "parceiro",
-        name: "Adicionar Parceiro",
-        icon: "people",
-        dialog: {
-          controller: "ParceirosCtrl",
-          controllerAs: "$ctrl",
-          templateUrl: "praca/parceiros-components/parceiros-dialog.tmpl.html",
-         // parent: angular.element(this.$document.body),
-          locals: { praca: this.praca },
-          fullscreen: true,
-        },
+        }
       }
     }
       console.info('exit')
-      console.info(userMenu)
     return userMenu
   }
+  showDialog($event, dialog) {
+    dialog.targetEvent = $event
+    this.$mdDialog.show(dialog)
+  }
+
 }
 
 export default PracaAtividadeCtrl

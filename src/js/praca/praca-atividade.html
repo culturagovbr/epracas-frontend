@@ -55,7 +55,7 @@
         <md-subheader class="md-no-sticky grey white-text" ng-if="$ctrl.objData.faixa_etarias.length">
           <h3><b>
             <md-icon class="white-text">face</md-icon>
-            Faixa etária ------- {{$ctrl.userMenu}}</b></h3>
+            Faixa etária</b></h3>
         </md-subheader>
         <md-list-item ng-repeat="obj in $ctrl.objData.faixa_etarias" class="md-2-line">
           <md-divider></md-divider>
@@ -101,15 +101,7 @@
         </md-list-item>
         <md-list-item class="md-3-line">
         <md-fab-speed-dial show-authed="true" md-direction="up" id="praca-speed-dial" class="md-fab md-fab-bottom-right">
-            <md-fab-trigger>
-              <md-button aria-label="menu" class="md-fab md-warn">
-                <md-tooltip md-direction="top" md-visible="tooltipVisible">
-                  Menu
-                </md-tooltip>
-                <md-icon>menu</md-icon>
-              </md-button>
-            </md-fab-trigger>
-            <md-fab-actions>
+           <md-fab-actions>
               <div ng-repeat="item in $ctrl.userMenu">
                 <md-button aria-label="{{ item.name }}" class="md-fab md-raised md-mini" ng-click="$ctrl.showDialog($event, item.dialog)">
                   <md-tooltip md-direction="left" md-visible="tooltipVisible" md-autohide="false">
