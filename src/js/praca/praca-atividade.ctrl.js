@@ -14,12 +14,7 @@ class PracaAtividadeCtrl {
               objData.publicos = data.publico.choices.filter((objValue) => {return (objData.publico == objValue.value)});
           }
       );
-    const day_minus = objData.ocorrencia.repeat_until.toString().split('-')
-    day_minus[2] = parseInt(day_minus[2],10)
-    day_minus[2] -= 1
-    day_minus.join('-')
-
-    objData.ocorrencia.repeat_until = moment(day_minus.join('-')).format("DD/MM/YYYY");
+    objData.ocorrencia.repeat_until = moment(objData.ocorrencia.repeat_until).format("DD/MM/YYYY");
     objData.ocorrencia.start = moment(objData.ocorrencia.start).format("DD/MM/YYYY");
     this.objData = objData;
         

@@ -54,7 +54,7 @@ class DashboardEventsCtrl {
         calendarView: "month",
         viewDate: dateCalendar,
       }
-
+      
       // Resetando filtro evitando duplicidade de UF/estados
       if (this.objForm.uf === "0") {
         this.arrUf = []
@@ -90,6 +90,11 @@ class DashboardEventsCtrl {
             }
             if (this.arrUf.indexOf(obj.uf.toLowerCase()) < 0) this.arrUf.push(obj.uf.toLowerCase())
             return booResult
+          })
+
+          this.events.map(arrData => {
+            arrData.endsAt = moment(arrData.endsAt).add(1, 'days')
+            return arrData
           })
 
           setTimeout(function () {
