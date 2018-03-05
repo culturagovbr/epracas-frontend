@@ -14,7 +14,6 @@ class PracaAtividadeCtrl {
               objData.publicos = data.publico.choices.filter((objValue) => {return (objData.publico == objValue.value)});
           }
       );
-
     objData.ocorrencia.repeat_until = moment(objData.ocorrencia.repeat_until).format("DD/MM/YYYY");
     objData.ocorrencia.start = moment(objData.ocorrencia.start).format("DD/MM/YYYY");
     this.objData = objData;

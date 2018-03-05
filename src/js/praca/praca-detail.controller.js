@@ -28,13 +28,14 @@ class PracaDetailCtrl {
       return objData
     })
 
-    if (praca.grupo_gestor === null) praca.grupo_gestor = { membros: [] }
-    praca.grupo_gestor.membros.map((objData) => {
-      objData.id = objData.id_pub
-      objData.title = objData.nome
-      objData.subtitle = objData.origem_descricao
-      return objData
-    })
+    if (praca.grupo_gestor !== null) {
+      praca.grupo_gestor.membros.map((objData) => {
+        objData.id = objData.id_pub
+        objData.title = objData.nome
+        objData.subtitle = objData.origem_descricao
+        return objData
+      })
+    }
 
     RecursoHumano.list(praca).then((res) => {
       praca.rh = res.data
@@ -44,6 +45,7 @@ class PracaDetailCtrl {
         objData.image = objData.imagem
         return objData
       })
+      praca.rh = praca.rh.filter(arrData => (arrData.data_saida == null))
     })
 
     Atores.list(praca).then((res) => {
@@ -77,6 +79,37 @@ class PracaDetailCtrl {
       });
 
       praca.agenda = atividades
+
+      setTimeout(function () {
+        $(atividades).each((index, value) => {
+          const arrDate1 = value.data_inicio.split(".").reverse()
+          arrDate1[1] = arrDate1[1].replace("0", "")
+          const arrDate2 = value.data_encerramento.split(".").reverse()
+          arrDate2[1] = arrDate1[1].replace("0", "")
+          
+          const strId = '[id*="-month-' + arrDate1.join("-") + '"]'
+          const strId2 = '[id*="-month-' + arrDate2.join("-") + '"]'
+          $(strId + " .md-calendar-date-selection-indicator").css("background-color", "#ffdc88")
+          $(strId2 + " .md-calendar-date-selection-indicator").css("background-color", "#ffdc88")
+        })
+      }, 500)
+
+      $(".md-virtual-repeat-scroller, .md-virtual-repeat-scroller div:first").on("scroll", (event) => {
+        $(atividades).each((index, value) => {
+          // console.info(value.data_inicio.split(".").reverse().join("-"))
+          // console.info(value.data_encerramento.split(".").reverse().join("-"))
+          // console.info("#md-0-month-" + value.data_encerramento.split(".").reverse().join("-"))
+          const arrDate1 = value.data_inicio.split(".").reverse()
+          arrDate1[1] = arrDate1[1].replace("0", "")
+          const arrDate2 = value.data_encerramento.split(".").reverse()
+          arrDate2[1] = arrDate1[1].replace("0", "")
+
+          const strId = '[id*="-month-' + arrDate1.join("-") + '"]'
+          const strId2 = '[id*="-month-' + arrDate2.join("-") + '"]'
+          $(strId + " .md-calendar-date-selection-indicator").css("background-color", "#ffdc88")
+          $(strId2 + " .md-calendar-date-selection-indicator").css("background-color", "#ffdc88")
+        })
+      })
     })
 
     if (angular.isUndefined(praca.header_img) || praca.header_img === null ) {
@@ -348,19 +381,19 @@ class PracaDetailCtrl {
         },
       }
 
-      userMenu.partner = {
-        id: "parceiro",
-        name: "Adicionar Parceiro",
-        icon: "people",
-        dialog: {
-          controller: "ParceirosCtrl",
-          controllerAs: "$ctrl",
-          templateUrl: "praca/parceiros-components/parceiros-dialog.tmpl.html",
-          parent: angular.element(this.$document.body),
-          locals: { praca: this.praca },
-          fullscreen: true,
-        },
-      }
+      // userMenu.partner = {
+      //   id: "parceiro",
+      //   name: "Adicionar Parceiro",
+      //   icon: "people",
+      //   dialog: {
+      //     controller: "ParceirosCtrl",
+      //     controllerAs: "$ctrl",
+      //     templateUrl: "praca/parceiros-components/parceiros-dialog.tmpl.html",
+      //     parent: angular.element(this.$document.body),
+      //     locals: { praca: this.praca },
+      //     fullscreen: true,
+      //   },
+      // }
 
       userMenu.profile = {
         id: "perfil",
