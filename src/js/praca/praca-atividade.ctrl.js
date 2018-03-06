@@ -68,6 +68,7 @@ class PracaAtividadeCtrl {
           fullscreen: true,
         },
       }
+
       userMenu.edit = {
         id: "evento",
         name: "Editar Evento",
@@ -81,6 +82,7 @@ class PracaAtividadeCtrl {
           fullscreen: true,
         },
       }
+      
       userMenu.exclud = {
         id: "evento",
         name: "Excluir Evento",
@@ -97,6 +99,7 @@ class PracaAtividadeCtrl {
     }
     return userMenu
   }
+
 }
 
 export default PracaAtividadeCtrl
