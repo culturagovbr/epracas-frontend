@@ -7,6 +7,7 @@ class PracaAtividadeCtrl {
     
     angular.extend(this, {
       $scope,
+      $document,
       $mdDialog,
       $log,
       currentUser: User.current,
@@ -31,18 +32,13 @@ class PracaAtividadeCtrl {
     Praca.get(this.objData.praca).then((response) => {
       this.objData.praca = response
       this.praca = response
-      this.buildMenu(this.currentUser)
+      this.userMenu = this.buildMenu(this.currentUser)
     })
 }
   
-  showDialog($event, dialog) {
-    dialog.targetEvent = $event
-    this.$mdDialog.show(dialog)
-  }
-
   permissionIsManagerOrAdmin(user, praca){
     if (user.is_staff === true) {
-      return true
+     return true
     } else if ((angular.isDefined(praca.gestor) && praca.gestor !== null)) {
       return user.id_pub == praca.gestor.user_id_pub
     } else {
@@ -50,10 +46,15 @@ class PracaAtividadeCtrl {
     }
   }
 
+  showDialog($event, dialog) {
+    dialog.targetEvent = $event
+    this.$mdDialog.show(dialog)
+  }
+
   buildMenu(currentUser) {
     const userMenu = {}
-    if (this.permissionIsManagerOrAdmin(currentUser, this.praca)) {
-      console.info('Entrada')
+
+    if (this.permissionIsManagerOrAdmin(this.currentUser, this.praca)) {
       userMenu.event = {
         id: "evento",
         name: "Adicionar Evento",
@@ -62,28 +63,38 @@ class PracaAtividadeCtrl {
           controller: "EventCtrl",
           controllerAs: "$ctrl",
           templateUrl: "praca/event-dialog.tmpl.html",
-         // parent: angular.element(this.$document.body),
+          parent: angular.element(this.$document.body),
           locals: { praca: this.praca },
           fullscreen: true,
         },
       }
-      console.info('1')
-      userMenu.partner = {
-        id: "parceiro",
-        name: "Adicionar Parceiro",
-        icon: "people",
+      userMenu.edit = {
+        id: "evento",
+        name: "Editar Evento",
+        icon: "create",
         dialog: {
-          controller: "ParceirosCtrl",
+          controller: "EventCtrl",
           controllerAs: "$ctrl",
-          templateUrl: "praca/parceiros-components/parceiros-dialog.tmpl.html",
-         // parent: angular.element(this.$document.body),
+          templateUrl: "praca/event-dialog.tmpl.html",
+          parent: angular.element(this.$document.body),
+          locals: { praca: this.praca },
+          fullscreen: true,
+        },
+      }
+      userMenu.exclud = {
+        id: "evento",
+        name: "Excluir Evento",
+        icon: "clear",
+        dialog: {
+          controller: "EventCtrl",
+          controllerAs: "$ctrl",
+          templateUrl: "praca/event-dialog.tmpl.html",
+          parent: angular.element(this.$document.body),
           locals: { praca: this.praca },
           fullscreen: true,
         },
       }
     }
-      console.info('exit')
-      console.info(userMenu)
     return userMenu
   }
 }
