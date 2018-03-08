@@ -14,7 +14,7 @@ class PracaAtividadeCtrl {
     })
     
     this.praca = {}
-
+  
     Atividade.options().then(
           (data) => {
               objData.tipos = data.tipo.choices.filter((objValue) => {return (objData.tipo == objValue.value)});
@@ -34,7 +34,7 @@ class PracaAtividadeCtrl {
       this.praca = response
       this.userMenu = this.buildMenu(this.currentUser)
     })
-}
+  }
   
   permissionIsManagerOrAdmin(user, praca){
     if (user.is_staff === true) {
@@ -51,6 +51,47 @@ class PracaAtividadeCtrl {
     this.$mdDialog.show(dialog)
   }
 
+  dialogDelete(event, mixDelete, praca, objValue) {
+    //event.stopPropagation()
+    //const caller = this.ErrorCatcher.callerName()
+    this.$mdDialog.show(
+        this.$mdDialog.confirm()
+        .title("Você tem certeza?")
+        .textContent("Ao excluir, você não poderá reverter esta ação. Será preciso cadastrar novamente.")
+        .ariaLabel("Excluir")
+        .targetEvent(event)
+        .clickOutsideToClose(true)
+        .ok("Excluir")
+        .cancel("Cancelar"))
+      .then(() => {
+        if (typeof mixDelete === "string") {
+          this.$http({
+            url: mixDelete + objValue.id,
+            method: "DELETE",
+            data: objValue,
+          }).then(() => {
+            // this.parceiros = this.parceiros.filter((res) => res !== objValue)
+            this.Toast.showSuccessToast("Excluído com sucesso")
+            this.$state.reload()
+          }).catch((err) => {
+            this.Toast.showRejectedToast("Erro ao excluir")
+            this.ErrorCatcher.error(caller, err)
+          })
+        } else {
+          this.mixDelete.delete(praca, objValue)
+          .then(() => {
+            // this.atores = this.atores.filter(res => res !== objValue)
+            this.Toast.showSuccessToast("Excluido com sucesso")
+            this.$state.reload()
+          })
+          .catch((err) => {
+            this.Toast.showRejectedToast("Erro ao excluir ator")
+            this.ErrorCatcher.error(caller, err)
+          })
+        }
+      })
+  }
+
   buildMenu(currentUser) {
     const userMenu = {}
 
@@ -58,7 +99,7 @@ class PracaAtividadeCtrl {
       userMenu.event = {
         id: "evento",
         name: "Adicionar Evento",
-        icon: "insert_invitation",
+        icon: "add",
         dialog: {
           controller: "EventCtrl",
           controllerAs: "$ctrl",
@@ -79,22 +120,19 @@ class PracaAtividadeCtrl {
           templateUrl: "praca/event-dialog.tmpl.html",
           parent: angular.element(this.$document.body),
           locals: { praca: this.praca },
+          bindToController: true,
+          multiple: true,
+          clickOutsideToClose: true,
+          targetEvent: event,
           fullscreen: true,
         },
       }
-      
+
       userMenu.exclud = {
         id: "evento",
         name: "Excluir Evento",
-        icon: "clear",
-        dialog: {
-          controller: "EventCtrl",
-          controllerAs: "$ctrl",
-          templateUrl: "praca/event-dialog.tmpl.html",
-          parent: angular.element(this.$document.body),
-          locals: { praca: this.praca },
-          fullscreen: true,
-        },
+        icon: "delete",
+        dialog: this.dialogDelete(),
       }
     }
     return userMenu
