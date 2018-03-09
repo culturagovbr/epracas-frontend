@@ -2,15 +2,19 @@ import angular from "angular"
 import moment from "moment"
 
 class PracaAtividadeCtrl {
-  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, $timeout, Praca, objData){
+  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, $timeout, Praca, objData, AppConstants, ErrorCatcher, $http, Toast){
     "ngInject";
     
     angular.extend(this, {
+      $http,
       $scope,
       $document,
       $mdDialog,
       $log,
+      Toast,
       currentUser: User.current,
+      AppConstants,
+      ErrorCatcher,
     })
     
     this.praca = {}
@@ -51,9 +55,9 @@ class PracaAtividadeCtrl {
     this.$mdDialog.show(dialog)
   }
 
-  dialogDelete(event, mixDelete, praca, objValue) {
-    //event.stopPropagation()
-    //const caller = this.ErrorCatcher.callerName()
+  dialogDelete(event, objValue) {
+    event.stopPropagation()
+    const caller = this.ErrorCatcher.callerName()
     this.$mdDialog.show(
         this.$mdDialog.confirm()
         .title("Você tem certeza?")
@@ -63,33 +67,21 @@ class PracaAtividadeCtrl {
         .clickOutsideToClose(true)
         .ok("Excluir")
         .cancel("Cancelar"))
-      .then(() => {
-        if (typeof mixDelete === "string") {
-          this.$http({
-            url: mixDelete + objValue.id,
-            method: "DELETE",
-            data: objValue,
-          }).then(() => {
-            // this.parceiros = this.parceiros.filter((res) => res !== objValue)
-            this.Toast.showSuccessToast("Excluído com sucesso")
-            this.$state.reload()
-          }).catch((err) => {
-            this.Toast.showRejectedToast("Erro ao excluir")
-            this.ErrorCatcher.error(caller, err)
-          })
-        } else {
-          this.mixDelete.delete(praca, objValue)
-          .then(() => {
-            // this.atores = this.atores.filter(res => res !== objValue)
-            this.Toast.showSuccessToast("Excluido com sucesso")
-            this.$state.reload()
-          })
-          .catch((err) => {
-            this.Toast.showRejectedToast("Erro ao excluir ator")
-            this.ErrorCatcher.error(caller, err)
-          })
-        }
-      })
+        .then(() => {
+          if (typeof objValue.id_pub === "string") {
+            this.$http({
+              url: `${this.AppConstants.api}/atividades/` + objValue.id_pub,
+              method: "DELETE",
+              data: objValue,
+            }).then(() => {
+              //Fazer o redirect aqui
+              this.Toast.showSuccessToast("Excluído com sucesso")
+            }).catch((err) => {
+              this.Toast.showRejectedToast("Erro ao excluir")
+              this.ErrorCatcher.error(caller, err)
+            })
+          }
+        })
   }
 
   buildMenu(currentUser) {
@@ -126,13 +118,6 @@ class PracaAtividadeCtrl {
           targetEvent: event,
           fullscreen: true,
         },
-      }
-
-      userMenu.exclud = {
-        id: "evento",
-        name: "Excluir Evento",
-        icon: "delete",
-        dialog: this.dialogDelete(),
       }
     }
     return userMenu
