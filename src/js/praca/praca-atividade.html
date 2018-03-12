@@ -3,102 +3,151 @@
     font-weight: 500;
   }
 </style>
-<div class="animated fadeIn">
-  <div class="container" ng-cloak>
-    <div id="container-info" layout-gt-xs="row">
-      <div flex-gt-xs="35" class="nome">
-        <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-left-0">
-          <md-card-title>
-            <md-card-title-text>
-              <span class="md-headline">{{$ctrl.objData.titulo}}</span>
-              <span class="md-subhead"><strong>Esperado </strong>{{$ctrl.objData.publico_esperado}} pessoas</span>
-              <span class="md-subhead"><strong>Dia </strong>{{$ctrl.objData.ocorrencia.start}} à {{$ctrl.objData.ocorrencia.repeat_until}}</span>
-              <span class="md-subhead"><strong>Duração de </strong>{{$ctrl.objData.carga_horaria}} hora(s)</span>
-            </md-card-title-text>
-          </md-card-title>
-          <md-card-header ng-if="$ctrl.praca.gestor">
-            <md-card-header-text>
-              <span class="print-only">Gestor da praça: </span>
-              <span class="md-title">{{ $ctrl.praca.gestor.nome }}</span>
-              <span class="md-subhead no-print">Gestor da praça</span>
-            </md-card-header-text>
-          </md-card-header>
-        </md-card>
-      </div>
-      <div flex-gt-xs="65" class="bio">
-        <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-right-0">
-          <md-card-title>
-            <md-card-title-text>
-              <p>{{$ctrl.objData.descricao}}</p>
-              <h2><a href="pracas/{{$ctrl.objData.praca.id_pub}}">{{ $ctrl.objData.praca.nome }}.</a></h2>
-            </md-card-title-text>
-          </md-card-title>
-        </md-card>
+
+<body>
+  <div class="animated fadeIn">
+    <div class="container" ng-cloak>
+      <div id="container-info" layout-gt-xs="row">
+        <div flex-gt-xs="35" class="nome">
+          <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-left-0">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">{{$ctrl.objData.titulo}}</span>
+                <span class="md-subhead">
+                  <strong>Esperado </strong>{{$ctrl.objData.publico_esperado}} pessoas</span>
+                <span class="md-subhead">
+                  <strong>Dia </strong>{{$ctrl.objData.ocorrencia.start}} à {{$ctrl.objData.ocorrencia.repeat_until}}</span>
+                <span class="md-subhead">
+                  <strong>Duração de </strong>{{$ctrl.objData.carga_horaria}} hora(s)</span>
+              </md-card-title-text>
+            </md-card-title>
+            <md-card-header ng-if="$ctrl.praca.gestor">
+              <md-card-header-text>
+                <span class="print-only">Gestor da praça: </span>
+                <span class="md-title">{{ $ctrl.praca.gestor.nome }}</span>
+                <span class="md-subhead no-print">Gestor da praça</span>
+              </md-card-header-text>
+            </md-card-header>
+          </md-card>
+        </div>
+        <div flex-gt-xs="65" class="bio">
+          <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-right-0">
+            <md-card-title>
+              <md-card-title-text>
+                <p>{{$ctrl.objData.descricao}}</p>
+                <h2>
+                  <a href="pracas/{{$ctrl.objData.praca.id_pub}}">{{ $ctrl.objData.praca.nome }}.</a>
+                </h2>
+              </md-card-title-text>
+            </md-card-title>
+          </md-card>
+        </div>
       </div>
     </div>
+    <md-content class="container" ng-cloak layout-gt-sm="row" layout="column">
+      <div flex-gt-sm="50" flex-sm="100" flex>
+        <md-list flex>
+          <md-subheader class="md-no-sticky grey white-text grey white-text" ng-if="$ctrl.objData.tipos.length">
+            <h3>
+              <b>
+                <md-icon class="white-text">flag</md-icon>
+                Categoria</b>
+            </h3>
+          </md-subheader>
+          <md-list-item ng-repeat="obj in $ctrl.objData.tipos" class="md-2-line">
+            <!--<md-icon style="margin-top: 32px; margin-right: 23px;">date_range</md-icon>-->
+            <div class="md-list-item-text" layout="column" ng-class="md-offset">
+              <h4>{{obj.display_name}}</h4>
+            </div>
+          </md-list-item>
+          <md-subheader class="md-no-sticky grey white-text" ng-if="$ctrl.objData.faixa_etarias.length">
+            <h3>
+              <b>
+                <md-icon class="white-text">face</md-icon>
+                Faixa etária</b>
+            </h3>
+          </md-subheader>
+          <md-list-item ng-repeat="obj in $ctrl.objData.faixa_etarias" class="md-2-line">
+            <md-divider></md-divider>
+            <div class="md-list-item-text" layout="column" ng-class="md-offset">
+              <h4>{{obj.display_name}}</h4>
+            </div>
+          </md-list-item>
+          <md-subheader class="md-no-sticky grey white-text">
+            <h3>
+              <b>
+                <md-icon class="white-text">terrain</md-icon>
+                Local</b>
+            </h3>
+          </md-subheader>
+          <md-list-item ng-repeat="obj in $ctrl.objData.territorios" class="md-2-line">
+            <div class="md-list-item-text" layout="column" ng-class="md-offset">
+              <h4>{{ $ctrl.objData.praca.municipio }} - {{ $ctrl.objData.praca.uf }}</h4>
+              <h4>{{$ctrl.objData.praca.logradouro}}</h4>
+            </div>
+          </md-list-item>
+        </md-list>
+      </div>
+      <div flex-gt-sm="50" flex-sm="100" flex>
+        <md-list flex>
+          <md-subheader class="md-no-sticky grey white-text" ng-if="$ctrl.objData.publicos.length">
+            <h3>
+              <b>
+                <md-icon class="white-text">group</md-icon>
+                Atividade Destinada à Publico ou Grupo Específico</b>
+            </h3>
+          </md-subheader>
+          <md-list-item ng-repeat="obj in $ctrl.objData.publicos" class="md-2-line">
+            <div class="md-list-item-text" layout="column" ng-class="md-offset">
+              <h4>{{obj.display_name}}</h4>
+            </div>
+          </md-list-item>
+          <md-subheader class="md-no-sticky grey white-text" ng-if="$ctrl.objData.espacos.length">
+            <h3>
+              <b>
+                <md-icon class="white-text">location_city</md-icon>
+                Espaços</b>
+            </h3>
+          </md-subheader>
+          <md-list-item ng-repeat="obj in $ctrl.objData.espacos" class="md-2-line">
+            <md-divider></md-divider>
+            <div class="md-list-item-text" layout="column" ng-class="md-offset">
+              <h4>{{obj.display_name}}</h4>
+            </div>
+          </md-list-item>
+
+        </md-list>
+        <div show-as-manager="true" pracaid="{{$ctrl.objData.praca}}" pracagestor="{{$ctrl.objData.praca_detail.gestor.user_id_pub}}" class="md-list-item-text" layout="row" layout-align="center center" ng-class="md-offset">
+          <md-fab-speed-dial id="atividade-praca-speed-dial" md-direction="left" id="praca-speed-dial" class="md-scale md-fab-bottom-right">
+            <md-fab-trigger>
+              <md-button aria-label="menu" class="md-fab">
+                <md-tooltip md-direction="top" md-visible="tooltipVisible">
+                  Menu
+                </md-tooltip>
+                <md-icon>menu</md-icon>
+              </md-button>
+            </md-fab-trigger>
+            <md-fab-actions>
+              <div>
+              <div ng-repeat="item in $ctrl.userMenu">
+                <md-button aria-label="{{ item.name }}" md-direction="left" class="md-fab md-raised md-mini" ng-click="$ctrl.showDialog($event, item.dialog)">
+                  <md-tooltip md-direction="top" md-visible="tooltipVisible" md-autohide="false">
+                    {{ item.name }}
+                  </md-tooltip>
+                  <md-icon aria-label="{{ item.name }}">{{item.icon}}</md-icon>
+                </md-button>
+              </div>
+              <md-button aria-label="exclud" md-direction="left" class="md-fab md-raised md-mini" ng-click="$ctrl.dialogDelete($event, $ctrl.objData)">
+                  <md-tooltip md-direction="top" md-visible="tooltipVisible" md-autohide="false">
+                    Excluir
+                  </md-tooltip>
+                  <md-icon aria-label="exclud">delete</md-icon>
+                </md-button>
+            </div>
+            </md-fab-actions>
+          </md-fab-speed-dial>
+        </div>
+      </div>
+    </md-content>
   </div>
-  <md-content class="container" ng-cloak layout-gt-sm="row" layout="column">
-    <div flex-gt-sm="50" flex-sm="100" flex>
-      <md-list flex>
-        <md-subheader class="md-no-sticky grey white-text grey white-text" ng-if="$ctrl.objData.tipos.length">
-          <h3><b>
-            <md-icon class="white-text">flag</md-icon>
-            Categoria</b></h3>
-        </md-subheader>
-        <md-list-item ng-repeat="obj in $ctrl.objData.tipos" class="md-2-line">
-          <!--<md-icon style="margin-top: 32px; margin-right: 23px;">date_range</md-icon>-->
-          <div class="md-list-item-text" layout="column" ng-class="md-offset">
-            <h4>{{obj.display_name}}</h4>
-          </div>
-        </md-list-item>
-        <md-subheader class="md-no-sticky grey white-text" ng-if="$ctrl.objData.faixa_etarias.length">
-          <h3><b>
-            <md-icon class="white-text">face</md-icon>
-            Faixa etária</b></h3>
-        </md-subheader>
-        <md-list-item ng-repeat="obj in $ctrl.objData.faixa_etarias" class="md-2-line">
-          <md-divider></md-divider>
-          <div class="md-list-item-text" layout="column" ng-class="md-offset">
-            <h4>{{obj.display_name}}</h4>
-          </div>
-        </md-list-item>
-        <md-subheader class="md-no-sticky grey white-text">
-          <h3><b>
-            <md-icon class="white-text">terrain</md-icon>
-            Local</b></h3>
-        </md-subheader>
-        <md-list-item ng-repeat="obj in $ctrl.objData.territorios" class="md-2-line">
-          <div class="md-list-item-text" layout="column" ng-class="md-offset">
-            <h4>{{ $ctrl.objData.praca.municipio }} - {{ $ctrl.objData.praca.uf }}</h4>
-            <h4>{{$ctrl.objData.praca.logradouro}}</h4>
-          </div>
-        </md-list-item>
-      </md-list>
-    </div>
-    <div flex-gt-sm="50" flex-sm="100" flex>
-      <md-list flex>
-        <md-subheader class="md-no-sticky grey white-text" ng-if="$ctrl.objData.publicos.length">
-          <h3><b>
-            <md-icon class="white-text">group</md-icon>
-            Atividade Destinada à Publico ou Grupo Específico</b></h3>
-        </md-subheader>
-        <md-list-item ng-repeat="obj in $ctrl.objData.publicos" class="md-2-line">
-          <div class="md-list-item-text" layout="column" ng-class="md-offset">
-            <h4>{{obj.display_name}}</h4>
-          </div>
-        </md-list-item>
-        <md-subheader class="md-no-sticky grey white-text" ng-if="$ctrl.objData.espacos.length">
-          <h3><b>
-            <md-icon class="white-text">location_city</md-icon>
-            Espaços</b></h3>
-        </md-subheader>
-        <md-list-item ng-repeat="obj in $ctrl.objData.espacos" class="md-2-line">
-          <md-divider></md-divider>
-          <div class="md-list-item-text" layout="column" ng-class="md-offset">
-            <h4>{{obj.display_name}}</h4>
-          </div>
-        </md-list-item>
-      </md-list>
-    </div>
-  </md-content>
-</div>
+</body>
