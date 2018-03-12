@@ -117,8 +117,8 @@
           </md-list-item>
 
         </md-list>
-        <div class="md-list-item-text" layout="row" layout-align="center center" ng-class="md-offset">
-          <md-fab-speed-dial show-authed="true" id="atividade-praca-speed-dial" md-direction="left" id="praca-speed-dial" class="md-scale md-fab-bottom-right">
+        <div show-as-manager="true" pracaid="{{$ctrl.objData.praca}}" pracagestor="{{$ctrl.objData.praca_detail.gestor.user_id_pub}}" class="md-list-item-text" layout="row" layout-align="center center" ng-class="md-offset">
+          <md-fab-speed-dial id="atividade-praca-speed-dial" md-direction="left" id="praca-speed-dial" class="md-scale md-fab-bottom-right">
             <md-fab-trigger>
               <md-button aria-label="menu" class="md-fab">
                 <md-tooltip md-direction="top" md-visible="tooltipVisible">

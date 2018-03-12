@@ -2,7 +2,7 @@ import angular from "angular"
 import moment from "moment"
 
 class PracaAtividadeCtrl {
-  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, $timeout, Praca, objData, AppConstants, ErrorCatcher, $http, Toast){
+  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, $timeout, Praca, objData, AppConstants, ErrorCatcher, $http, Toast, $state){
     "ngInject";
     
     angular.extend(this, {
@@ -11,6 +11,7 @@ class PracaAtividadeCtrl {
       $document,
       $mdDialog,
       $log,
+      $state,
       Toast,
       currentUser: User.current,
       AppConstants,
@@ -56,9 +57,11 @@ class PracaAtividadeCtrl {
   }
 
   dialogDelete(event, objValue) {
+    
     event.stopPropagation()
     const caller = this.ErrorCatcher.callerName()
-    this.$mdDialog.show(
+    if (this.permissionIsManagerOrAdmin(this.currentUser, this.praca)) {
+      this.$mdDialog.show(
         this.$mdDialog.confirm()
         .title("Você tem certeza?")
         .textContent("Ao excluir, você não poderá reverter esta ação. Será preciso cadastrar novamente.")
@@ -74,33 +77,34 @@ class PracaAtividadeCtrl {
               method: "DELETE",
               data: objValue,
             }).then(() => {
-              //Fazer o redirect aqui
-              this.Toast.showSuccessToast("Excluído com sucesso")
+              this.$state.go('app.praca', { pk: this.objData.praca.id_pub })
+              this.Toast.showSuccessToast("Evento excluído com sucesso")
             }).catch((err) => {
               this.Toast.showRejectedToast("Erro ao excluir")
               this.ErrorCatcher.error(caller, err)
             })
           }
         })
+    }
   }
 
   buildMenu(currentUser) {
     const userMenu = {}
 
     if (this.permissionIsManagerOrAdmin(this.currentUser, this.praca)) {
-      userMenu.event = {
-        id: "evento",
-        name: "Adicionar Evento",
-        icon: "add",
-        dialog: {
-          controller: "EventCtrl",
-          controllerAs: "$ctrl",
-          templateUrl: "praca/event-dialog.tmpl.html",
-          parent: angular.element(this.$document.body),
-          locals: { praca: this.praca },
-          fullscreen: true,
-        },
-      }
+      // userMenu.event = {
+      //   id: "evento",
+      //   name: "Adicionar Evento",
+      //   icon: "add",
+      //   dialog: {
+      //     controller: "EventCtrl",
+      //     controllerAs: "$ctrl",
+      //     templateUrl: "praca/event-dialog.tmpl.html",
+      //     parent: angular.element(this.$document.body),
+      //     locals: { praca: this.praca },
+      //     fullscreen: true,
+      //   },
+      // }
 
       userMenu.edit = {
         id: "evento",
