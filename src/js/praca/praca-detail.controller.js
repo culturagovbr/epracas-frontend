@@ -14,7 +14,7 @@ class PracaDetailCtrl {
         $log,
         currentUser: User.current,
         praca,
-    })
+      })
 
     // @todo verificar futuramente para retirar este codifo fixo do back e do front, verificar em reuniao onde estão esses dados e quais sao os corretos.
     this.ramo_atividade = Praca.getAllRamoAtividade()
