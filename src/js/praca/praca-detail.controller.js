@@ -16,6 +16,21 @@ class PracaDetailCtrl {
         praca,
     })
 
+    /**
+     * Funcao responsavel por marcar o calendario do material-angular conforme as atividades da agenda desta praca.
+     * @name markDate
+     * @author Ruy Ferreira <ruyjfs@gmail.com>
+     * @param array arrAtividadeAllDate - Array onde o valor e a data.
+     */
+    this.markDate = (arrAtividadeAllDate) => {
+      arrAtividadeAllDate.forEach(value => {
+        const arrDate = value.date.split(".").reverse()
+        arrDate[1] = arrDate[1].replace("0", "") - 1 // Mes
+        arrDate[2] = arrDate[2][0].replace("0", "") + arrDate[2][1] // Dia
+        $('[id$="-month-' + arrDate.join("-") + '"]' + " .md-calendar-date-selection-indicator").css("background-color", value.color)
+      })
+    }
+
     // @todo verificar futuramente para retirar este codifo fixo do back e do front, verificar em reuniao onde estão esses dados e quais sao os corretos.
     this.ramo_atividade = Praca.getAllRamoAtividade()
     
@@ -79,40 +94,33 @@ class PracaDetailCtrl {
       });
 
       praca.agenda = atividades
+      // Tratando as datas para pegar o range entre elas.
+      let arrAtividadeAllDateStart = []
+      let arrAtividadeAllDate = []
+      let intLoop = 0
+      atividades.forEach((value) => {
+        const dateA = moment(value.data_inicio, "DD.MM.YYYY")
+        const dateB = moment(value.data_encerramento, "DD.MM.YYYY")
+        const intTotal = dateB.diff(dateA, "days")
+        arrAtividadeAllDateStart[intLoop] = { date: dateA.format("DD.MM.YYYY"), color: "#ffa634" }
+        for (let i = 0; i < intTotal; i++) {
+          const newDate = dateA.add(1, "days").format("DD.MM.YYYY")
+          intLoop++
+          arrAtividadeAllDate[intLoop] = { date: newDate, color: "#ffdc88" }
+        }
+        intLoop++
+        arrAtividadeAllDate[intLoop] = { date: dateB.format("DD.MM.YYYY"), color: "#ffdc88" }
+      })
 
-      setTimeout(function () {
-        $(atividades).each((index, value) => {
-          const arrDate1 = value.data_inicio.split(".").reverse()
-          arrDate1[1] = arrDate1[1].replace("0", "")
-          const arrDate2 = value.data_encerramento.split(".").reverse()
-          arrDate2[1] = arrDate1[1].replace("0", "")
-          
-          const strId = '[id*="-month-' + arrDate1.join("-") + '"]'
-          const strId2 = '[id*="-month-' + arrDate2.join("-") + '"]'
-          $(strId + " .md-calendar-date-selection-indicator").css("background-color", "#ffdc88")
-          $(strId2 + " .md-calendar-date-selection-indicator").css("background-color", "#ffdc88")
-        })
-      }, 500)
+      arrAtividadeAllDate = arrAtividadeAllDate.concat(arrAtividadeAllDateStart)
 
-      $(".md-virtual-repeat-scroller, .md-virtual-repeat-scroller div:first").on("scroll", (event) => {
-        $(atividades).each((index, value) => {
-          // console.info(value.data_inicio.split(".").reverse().join("-"))
-          // console.info(value.data_encerramento.split(".").reverse().join("-"))
-          // console.info("#md-0-month-" + value.data_encerramento.split(".").reverse().join("-"))
-          const arrDate1 = value.data_inicio.split(".").reverse()
-          arrDate1[1] = arrDate1[1].replace("0", "")
-          const arrDate2 = value.data_encerramento.split(".").reverse()
-          arrDate2[1] = arrDate1[1].replace("0", "")
-
-          const strId = '[id*="-month-' + arrDate1.join("-") + '"]'
-          const strId2 = '[id*="-month-' + arrDate2.join("-") + '"]'
-          $(strId + " .md-calendar-date-selection-indicator").css("background-color", "#ffdc88")
-          $(strId2 + " .md-calendar-date-selection-indicator").css("background-color", "#ffdc88")
-        })
+      setTimeout(() => this.markDate(arrAtividadeAllDate), 500) // Marcando as datas no calendario ao entrar na tela.
+      $(".md-virtual-repeat-scroller, .md-virtual-repeat-scroller div:first").on("scroll", () => {
+        setTimeout(() => this.markDate(arrAtividadeAllDate), 500) // Marcando as datas ao perceber o evento scroll no calendario.
       })
     })
 
-    if (angular.isUndefined(praca.header_img) || praca.header_img === null ) {
+    if (angular.isUndefined(praca.header_img) || praca.header_img === null) {
       praca.header_img = "/assets/header.jpg"
     }
 
