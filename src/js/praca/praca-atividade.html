@@ -128,22 +128,18 @@
               </md-button>
             </md-fab-trigger>
             <md-fab-actions>
-              <div>
-              <div ng-repeat="item in $ctrl.userMenu">
-                <md-button aria-label="{{ item.name }}" md-direction="left" class="md-fab md-raised md-mini" ng-click="$ctrl.showDialog($event, item.dialog)">
+                <md-button aria-label="editar" md-direction="left" class="md-fab md-raised md-mini" ng-click="$ctrl.editDialog($event, $ctrl.objData.praca, $ctrl.objData )">
                   <md-tooltip md-direction="top" md-visible="tooltipVisible" md-autohide="false">
-                    {{ item.name }}
+                    Editar
                   </md-tooltip>
-                  <md-icon aria-label="{{ item.name }}">{{item.icon}}</md-icon>
+                  <md-icon aria-label="editar">create</md-icon>
                 </md-button>
-              </div>
               <md-button aria-label="exclud" md-direction="left" class="md-fab md-raised md-mini" ng-click="$ctrl.dialogDelete($event, $ctrl.objData)">
                   <md-tooltip md-direction="top" md-visible="tooltipVisible" md-autohide="false">
                     Excluir
                   </md-tooltip>
                   <md-icon aria-label="exclud">delete</md-icon>
                 </md-button>
-            </div>
             </md-fab-actions>
           </md-fab-speed-dial>
         </div>

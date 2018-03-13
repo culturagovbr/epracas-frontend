@@ -28,8 +28,13 @@ class EventCtrl {
         this._publicoAtividade = data.publico.choices
         this._faixaEtariaAtividade = data.faixa_etaria.child.choices
       })
+    if (this.objValue) {
+      console.info(this.objValue)
+      this.eventData = this.objValue
+    } else {
+      this.eventData = {}
+    }
 
-    this.eventData = {}
     this.selectedDays = {}
     this.eventData.ocorrencia = {}
     this.eventData.ocorrencia.start = new Date()
@@ -311,43 +316,44 @@ class EventCtrl {
       this.eventData.praca = this.praca.id_pub
       const date = moment(this.eventData.ocorrencia.repeat_until).format("YYYY-MM-DD")
       this.eventData.ocorrencia.repeat_until = date
-
-      this.eventData.evento = this.eventData.evento.display_name
-
+      
+      //this.eventData.evento = this.eventData.evento.display_name
+      console.info('4')
       this.Atividade.update(this.eventData.id_pub, this.eventData)
-      .then(
+      console.info('5')
+        .then(
           response => {
             this.$mdDialog.hide()
             this.Toast.showSuccessToast("Alterações gravadas.")
           }
-          )
-      .catch(
+        )
+        .catch(
           err => {
             this.$log.log(`Error!!! ${err.status}`, err.data),
-            this.Toast.showRejectedToast(`Erro ao adicionar evento. ${err.data} `)
+              this.Toast.showRejectedToast(`Erro ao adicionar evento. ${err.data} `)
           }
-          )
+        )
     } else {
       this.eventData.praca = this.praca.id_pub
       const date = moment(this.eventData.ocorrencia.repeat_until).format("YYYY-MM-DD")
       this.eventData.ocorrencia.repeat_until = date
       this.Atividade.new(this.eventData)
-      .then(
+        .then(
           (response) => {
             response.data_inicio = moment(response.ocorrencia.start.slice(0, 10)).format("DD.MM.YYYY")
             response.data_encerramento = moment(response.ocorrencia.repeat_until).format("DD.MM.YYYY")
-            response.espacos = this._espacoAtividade.filter((espaco) => {return (response.espaco.indexOf(espaco.value) >= 0)})
+            response.espacos = this._espacoAtividade.filter((espaco) => { return (response.espaco.indexOf(espaco.value) >= 0) })
             this.praca.agenda.unshift(response)
             this.$mdDialog.hide()
             this.Toast.showSuccessToast("Evento adicionado.")
           }
-      )
-      .catch(
+        )
+        .catch(
           (err) => {
             this.$log.log(`Error!!! ${angular.toJson(err.status)} - ${angular.toJson(err.data)}`)
             this.Toast.showRejectedToast(`Erro ao adicionar evento. ${err.data}`)
           }
-          )
+        )
     }
   }
 
