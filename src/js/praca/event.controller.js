@@ -318,13 +318,12 @@ class EventCtrl {
       this.eventData.ocorrencia.repeat_until = date
       
       //this.eventData.evento = this.eventData.evento.display_name
-      console.info('4')
       this.Atividade.update(this.eventData.id_pub, this.eventData)
-      console.info('5')
         .then(
           response => {
             this.$mdDialog.hide()
             this.Toast.showSuccessToast("Alterações gravadas.")
+            this.$state.reload()
           }
         )
         .catch(

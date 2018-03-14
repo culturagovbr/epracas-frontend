@@ -65,7 +65,6 @@ class Atividade {
   // Atualiza um evento
   update(id_pub, data) {
     const caller = this.ErrorCatcher.callerName()
-
     return this.$http({
       url: `${this.AtividadeEndPoint}${id_pub}/`,
       method: "PATCH",

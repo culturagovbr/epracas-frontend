@@ -30,7 +30,11 @@ export default class GrupoGestorDialogController {
       .then(
         (response) => {
           this.$mdDialog.hide()
-          this.Toast.showSuccessToast("Grupo Gestor Adicionado")
+          if (data.data_finalizacao != null) {
+            this.Toast.showSuccessToast("Grupo Gestor Encerrado")
+          } else {
+            this.Toast.showSuccessToast("Grupo Gestor Adicionado")
+          }
           this.$state.reload()
         }
       )

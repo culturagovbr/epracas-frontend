@@ -72,6 +72,10 @@
             <md-card-title-text>
               <span class="md-headline">{{ $ctrl.praca.nome }}</span>
               <span class="md-subhead">
+                <strong>Municipio: </strong><span class="textCap">{{$ctrl.praca.municipio}}</span></span>
+                <span class="md-subhead">
+                  <strong>Uf: </strong>{{$ctrl.local.display_name}} - <span class="textUpper">{{ $ctrl.local.value}}</span></span>
+              <span class="md-subhead">
                 <strong>Situação: </strong>{{ $ctrl.praca.situacao_descricao }}</span>
               <span class="md-subhead" ng-if="$ctrl.praca.situacao_descricao == 'Inaugurada'">
                 <strong>Inaugurada em: </strong>{{ $ctrl.praca.data_inauguracao | date: 'dd/MM/yyyy' }}</span>
