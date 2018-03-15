@@ -18,7 +18,7 @@ class DashboardEventsCtrl {
       municipio: (typeof $stateParams.municipio === "undefined") ? "0" : $stateParams.municipio,
     }
 
-    if ($stateParams.pk !== "" && $stateParams[0] === null) {
+    if ($stateParams.pk !== "") {
       Praca.get($stateParams.pk).then((objResult) => {
         this.objForm.uf = objResult.uf
         this.objForm.municipio = objResult.municipio.toLowerCase().replace(/(\b\w)/gi, m => m.toUpperCase())
