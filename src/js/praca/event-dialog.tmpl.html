@@ -120,16 +120,15 @@
             <label>Carga Horária Total</label>
             <input name="cargaHoraria" type="number" min="0" ng-model="$ctrl.eventData.carga_horaria" required>
           </md-input-container>
-          <md-input-container class="md-block" flex>
+          <!-- <md-input-container class="md-block" flex>
             <md-icon style="top: 0;">date_range</md-icon>
             <label>Periodicidade</label>
-            <!--<md-select name="type" ng-model="$ctrl.eventData.periodicidade" required>-->
               <md-select name="type" ng-model="$ctrl.eventData.ocorrencia.frequency_type" required>
                 <md-option ng-repeat="item in $ctrl._Periodicidade" value={{item.value}}>
                   {{item.display_name}}
                 </md-option>
               </md-select>
-            </md-input-container>
+            </md-input-container> -->
           </div>
           <div layout="row" ng-if="$ctrl.eventData.ocorrencia.frequency_type == 'daily'" layout-wrap flex style="max-width: 300px;">
             <div class="demo-select-all-checkboxes" flex="100" ng-repeat="dia in $ctrl._DiasSemana">
