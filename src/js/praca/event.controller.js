@@ -315,7 +315,6 @@ class EventCtrl {
       this.eventData.praca = this.praca.id_pub
       const date = moment(this.eventData.ocorrencia.repeat_until).format("YYYY-MM-DD")
       this.eventData.ocorrencia.repeat_until = date
-      
       //this.eventData.evento = this.eventData.evento.display_name
       this.Atividade.update(this.eventData.id_pub, this.eventData)
         .then(
