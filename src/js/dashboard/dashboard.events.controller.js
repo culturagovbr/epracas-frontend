@@ -18,7 +18,7 @@ class DashboardEventsCtrl {
       municipio: (typeof $stateParams.municipio === "undefined") ? "0" : $stateParams.municipio,
     }
 
-    if ($stateParams.pk !== "") {
+    if ($stateParams.pk !== "" && $stateParams[0] === null) {
       Praca.get($stateParams.pk).then((objResult) => {
         this.objForm.uf = objResult.uf
         this.objForm.municipio = objResult.municipio.toLowerCase().replace(/(\b\w)/gi, m => m.toUpperCase())
@@ -54,7 +54,7 @@ class DashboardEventsCtrl {
         calendarView: "month",
         viewDate: dateCalendar,
       }
-
+      
       // Resetando filtro evitando duplicidade de UF/estados
       if (this.objForm.uf === "0") {
         this.arrUf = []
@@ -92,10 +92,16 @@ class DashboardEventsCtrl {
             return booResult
           })
 
+          this.events.map(arrData => {
+            arrData.endsAt = moment(arrData.endsAt).add(1, 'days')
+            return arrData
+          })
+
           setTimeout(function () {
             $("div.cal-month-day:not(.cal-day-today)").removeClass("cal-day-event")
             $("small.cal-events-num:not(.ng-hide)").closest("div.cal-month-day:not(.cal-day-today)").addClass("cal-day-event")
-          }, 500)
+            $("mwl-calendar .badge-important").append(" Evento(s)");
+}, 500)
 
           Praca.options().then((data) => {
             angular.forEach(data.uf.choices, (uf) => {

@@ -76,7 +76,7 @@
             <md-icon>people_outline</md-icon>
             <label>Atividade Destinada à Publico ou Grupo Específico (caso se aplique)</label>
             <md-select ng-model="$ctrl.eventData.publico">
-              <md-option>Não se aplica</md-option>
+              <md-option value="">Não se aplica</md-option>
               <md-option ng-repeat="publico in $ctrl._publicoAtividade" value="{{publico.value}}">
                 {{publico.display_name}}
               </md-option>

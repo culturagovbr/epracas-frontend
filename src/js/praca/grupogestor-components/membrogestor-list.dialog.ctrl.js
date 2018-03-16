@@ -60,10 +60,11 @@ export default class MembroGestorListDialogController {
                 GrupoGestor.delete_membrogestor(praca, praca.grupo_gestor, membrogestor)
                     .then(() => {
                         Toast.showSuccessToast("Gestão encerrada com sucesso")
-                        $mdDialog.cancel();
+                        $mdDialog.cancel()
+                        $mdDialog.cancel()
                         $state.reload()
                     })
-            };
+            }
 
             this.cancel = () => {
                 $mdDialog.cancel()
@@ -104,6 +105,7 @@ export default class MembroGestorListDialogController {
         clickOutsideToClose: true,
         targetEvent: event,
         fullscreen: true,
+        escapeToClose: true,
     })
   }
 }
