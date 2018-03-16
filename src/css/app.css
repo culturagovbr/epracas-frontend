@@ -2698,10 +2698,12 @@ a.pull-left.event {
 	border-bottom: solid 1px #606060;
 	color: rgba(0, 0, 0, 0.769) !important;
 }
-.title a , .title md-icon, .title h1 {
+.title md-icon, .title h1 {
 	color: rgba(0, 0,0, 0.769) !important;
 }
-
+.title a {
+	color: rgb(0, 3, 189) !important;
+}
 .md-button.md-default-theme.md-primary, .md-button.md-primary {
 	color: rgb(255, 168, 7);
 }
@@ -2716,4 +2718,15 @@ md-card-actions button {
 
 ep-praca-card {
 	margin: 0 !important;
+}
+
+.textCap{
+	text-transform: capitalize;
+}
+.textUpper{
+	text-transform: uppercase;
+}
+
+.uiLink{
+	color: rgba(10, 54, 148, 0.918);
 }
