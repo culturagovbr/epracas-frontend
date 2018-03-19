@@ -14,7 +14,7 @@ class PracaDetailCtrl {
         $log,
         currentUser: User.current,
         praca,
-    })
+      })
 
     /**
      * Funcao responsavel por marcar o calendario do material-angular conforme as atividades da agenda desta praca.
@@ -33,6 +33,16 @@ class PracaDetailCtrl {
 
     // @todo verificar futuramente para retirar este codifo fixo do back e do front, verificar em reuniao onde estão esses dados e quais sao os corretos.
     this.ramo_atividade = Praca.getAllRamoAtividade()
+    this.praca.municipio = this.praca.municipio.toLowerCase()
+    
+    //get Uf detalhada da Praça
+    Praca.options().then((data) => {
+      angular.forEach(data.uf.choices, (uf) => {
+        if (this.praca.uf === uf.value) {
+          this.local = uf
+        }
+      })
+    })
     
     praca.parceiros.map((objData) => {
       objData.ramo_atividade_name = this.ramo_atividade.filter(objValue => (objData.ramo_atividade === objValue.value))[0].display_name

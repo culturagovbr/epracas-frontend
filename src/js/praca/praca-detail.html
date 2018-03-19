@@ -72,6 +72,10 @@
             <md-card-title-text>
               <span class="md-headline">{{ $ctrl.praca.nome }}</span>
               <span class="md-subhead">
+                <strong>Municipio: </strong><span class="textCap">{{$ctrl.praca.municipio}}</span></span>
+                <span class="md-subhead">
+                  <strong>Uf: </strong>{{$ctrl.local.display_name}} - <span class="textUpper">{{ $ctrl.local.value}}</span></span>
+              <span class="md-subhead">
                 <strong>Situação: </strong>{{ $ctrl.praca.situacao_descricao }}</span>
               <span class="md-subhead" ng-if="$ctrl.praca.situacao_descricao == 'Inaugurada'">
                 <strong>Inaugurada em: </strong>{{ $ctrl.praca.data_inauguracao | date: 'dd/MM/yyyy' }}</span>
@@ -113,7 +117,10 @@
     <div id="container-agenda" layout-padding class="agenda no-print" layout-align="start center">
       <div class="layout-row title">
         <md-icon>insert_invitation</md-icon>
-        <h1 flex><a ui-sref="app.eventos({pk: $ctrl.praca.id_pub})">Agenda</a></h1>
+        <h1 flex><a ui-sref="app.eventos({pk: $ctrl.praca.id_pub})">Agenda Completa</a></h1>
+      </div>
+      <div>
+      <h3 flex> Próximos Eventos </h3>
       </div>
       <div class="activities-log" layout-gt-xs="row">
         <!-- <div class="row">

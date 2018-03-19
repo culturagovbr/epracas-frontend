@@ -94,12 +94,13 @@ const GrupoGestor = {
   template: `
     <div id="container-grupogestor" layout-padding layout-gt-xs="row">
       <div flex layout-padding class="info">
-        <div class="layout-row title">
+        <div class="layout-row title uiLink">
           <md-icon>group</md-icon>
           <h1 flex><a href="#" ng-disable="!$ctrl.praca.grupo_gestor.membros" ng-click="$ctrl.showMembroGestorListDialog($event, $ctrl.praca)"> Grupo Gestor</a></h1>
         </div>
         <div ng-show="$ctrl.ggEmpty">
-          <p>Os dados sobre o Grupo Gestor ainda não foram inseridos nesta Praça.</p>
+          <p>Os dados sobre o Grupo Gestor atual não foram inseridos nesta Praça.</p>
+          <p>Para consultar Grupos Gestores eleitos anteriormente, acesse o link "Grupo Gestor" acima.</p>
         </div>
         <div layout-wrap layout-margin layout="row">
           <ep-praca-card ng-repeat="objValue in $ctrl.praca.grupo_gestor.membros" praca="$ctrl.praca"
