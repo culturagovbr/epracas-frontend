@@ -2190,24 +2190,7 @@ footer {
 	padding-top: 8px !important;
 }
 
-
-#container-grupogestor {
-	position: relative;
-}
-
-#container-unidade {
-	position: relative;
-}
-
-#container-rh {
-	position: relative;
-}
-
-#container-parceiros {
-	position: relative;
-}
-
-#container-atores {
+#container-grupogestor, #container-unidade, #container-rh, #container-parceiros, #container-agenda,#container-atores, #container-imagens {
 	position: relative;
 }
 

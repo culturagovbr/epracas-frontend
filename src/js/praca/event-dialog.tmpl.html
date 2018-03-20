@@ -98,7 +98,7 @@
           </md-input-container>
           <md-input-container class="md-block" flex>
             <md-icon>schedule</md-icon>
-            <label>Horário de início</label>
+            <label>Horário de início (HH:MM)</label>
             <input name="horaInicio" pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}" placeholder="00:00" ng-model="$ctrl.eventData.hora_inicio" ui-time-mask="short"/>
           </md-input-container>
         </div>
@@ -110,7 +110,7 @@
           </md-input-container>
           <md-input-container class="md-block" flex>
             <md-icon>schedule</md-icon>
-            <label>Horário de Encerramento</label>
+            <label>Horário de Encerramento (HH:MM)</label>
             <input name="horaEncerramento" pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}" placeholder="00:00" ng-model="$ctrl.eventData.hora_encerramento" ui-time-mask="short">
           </md-input-container>
         </div>

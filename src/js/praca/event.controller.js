@@ -1,10 +1,11 @@
 import moment from "moment"
 
 class EventCtrl {
-  constructor($scope, $http, $log, $mdDialog, Toast, Atividade, AppConstants, praca) {
+  constructor($state, $scope, $http, $log, $mdDialog, Toast, Atividade, AppConstants, praca) {
     "ngInject"
 
     angular.extend(this, {
+      $state,
       $scope,
       $http,
       $log,
