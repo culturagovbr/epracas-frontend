@@ -74,7 +74,7 @@
               <span class="md-subhead">
                 <strong>Municipio: </strong><span class="textCap">{{$ctrl.praca.municipio}}</span></span>
                 <span class="md-subhead">
-                  <strong>Uf: </strong>{{$ctrl.local.display_name}} - <span class="textUpper">{{ $ctrl.local.value}}</span></span>
+                  <strong>UF: </strong> {{$ctrl.praca.uf}}</span>
               <span class="md-subhead">
                 <strong>Situação: </strong>{{ $ctrl.praca.situacao_descricao }}</span>
               <span class="md-subhead" ng-if="$ctrl.praca.situacao_descricao == 'Inaugurada'">
@@ -142,14 +142,21 @@
     </div>
 
     <!-- Imagens -->
-    <div id="container-imagens" layout-gt-xs="row" class="no-print" flex>
-      <div flex layout-padding class="info gridListdemoDynamicTiles">
+    <div id="container-imagens" layout="column" layout-padding class="no-print" flex>
+      <div flex layout-padding class="info ">
         <div class="layout-row title">
-          <md-icon>photo_camera</md-icon>
-          <h1 flex>
-            <a ui-sref="app.galeria({pk: $ctrl.praca.id_pub})">Fotos</a>
-          </h1>
+            <md-icon>photo_camera</md-icon>
+          <h1 flex ui-sref="app.galeria({pk: $ctrl.praca.id_pub})" class="flex">Fotos</h1>
         </div>
+      </div>
+      <md-fab-speed-dial show-as-manager="true" pracaid="{{$ctrl.praca.id_pub}}" pracagestor="{{$ctrl.praca.gestor.user_id_pub}}" class="md-fab-top-right" ng-click="$ctrl.dialogForm($event, $ctrl.strController, $ctrl.urlDialog, $ctrl.praca)" style="padding:0;">
+        <md-fab-trigger>
+          <md-button class="md-fab">
+            <md-icon class="material-icons">add</md-icon>
+          </md-button>
+        </md-fab-trigger>
+      </md-fab-speed-dial>
+      <div flex layout-padding class="info gridListdemoDynamicTiles">
         <md-grid-list md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="4:3" md-gutter="8px"
           md-gutter-gt-sm="4px">
           <md-grid-tile md-whiteframe="2" ng-repeat="objPhoto in arrPhotos" md-rowspan="{{objPhoto.span.row}}" md-colspan="{{objPhoto.span.col}}"
@@ -186,7 +193,7 @@
           <h1 flex>Localização</h1>
         </div>
         <p>{{$ctrl.praca.logradouro}}</p>
-        <p>{{$ctrl.praca.municipio}} | {{$ctrl.praca.uf | uppercase}}
+        <p class="textCap">{{$ctrl.praca.municipio}} | {{$ctrl.praca.uf | uppercase}}
           <p>Horários de funcionamento:</p>
           <p ng-if="$ctrl.praca.funciona_dia_util">Segunda a Sexta das {{ $ctrl.praca.hora_abertura_dia_util | date: 'HH:mm' }} às {{ $ctrl.praca.hora_fechamento_dia_util
             }}
