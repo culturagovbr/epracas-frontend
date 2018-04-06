@@ -15,7 +15,17 @@ class DashboardVinculoCtrl {
 
     this.pedidos = ""
     Vinculacao.list()
-      .then(result => (this.pedidos = result.data))
+      .then(result => {(this.pedidos = result.data)
+        console.info('Para aprovação')
+        console.info(this.pedidos[0])
+      })
+      .catch(err => $log.log(`Error: DashboardVinculoCtrl ${angular.toJson(err)}`))
+    this.aprovados = ""      
+    Vinculacao.list_all()
+      .then(result => {(this.aprovados = result.data)
+        console.info('TODAS')
+        console.info(this.aprovados[0])
+      })
       .catch(err => $log.log(`Error: DashboardVinculoCtrl ${angular.toJson(err)}`))
   }
 

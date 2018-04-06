@@ -1,43 +1,101 @@
-<div class="row">
-  <div ng-repeat="pedido in $ctrl.pedidos" class="col s12 m6">
-    <md-card class="_md md-default-theme card-vinculacao hoverable">
-      <md-card-title>
-        <md-card-title-media ng-click="$ctrl.showUserInfo(pedido.user)">
-          <div class="md-media-sm card-media layout-row">
-            <img class="md-avatar" ng-src={{pedido.user.profile_picture_url}}>
-          </div>
-        </md-card-title-media>
-        <md-card-title-text ng-click="$ctrl.showUserInfo(pedido.user)">
-          <span class="md-headline ng-binding">{{pedido.user.full_name}}</span>
-          <span class="md-subhead description">Solicita vinculo com</span>
-        </md-card-title-text>
-      </md-card-title>
-      <md-card-title class="praca">
-        <md-card-title-text ng-click="$ctrl.showPracaInfo(pedido.praca)">
-          <span class="md-headline ng-binding">{{pedido.praca.nome}}</span>
-          <span class="md-subhead description">{{pedido.praca.municipio}} - {{pedido.praca.uf | uppercase}}</span>
-        </md-card-title-text>
-      </md-card-title>
-      <md-menu>
-        <md-button  ng-click="$mdMenu.open()" class="md-icon-button">
-          <md-icon>more_vert</md-icon>
-        </md-button>
-        <md-menu-content width="4">
-          <md-menu-item>
-            <md-button ng-click="$ctrl.startProcessoVinculacao(pedido)" aria-label="Processo de Vinculação">
-              <md-icon>assignment</md-icon>
-              Iniciar Processo de Vinculação
-            </md-button>
-          </md-menu-item>
-          <md-divider></md-divider>
-          <md-menu-item>
-            <md-button ng-click="$ctrl.deleteProcessoVinculacao(pedido)">
-              <md-icon>delete</md-icon>
-              Excluir Pedido de Vinculação
-            </md-button>
-          </md-menu-item>
-        </md-menu-content>
-      </md-menu>
-    </md-card>
+   <div class="fixo animated fadeInLeft">
+   <div class="dynamic tab-pracas no-print blue darken-2">
+      <md-content class=" " layout-gt-xs="row">    
+        <div flex="65">
+          <md-tabs md-selected="tabIntSelected" md-dynamic-height md-border-bottom md-center-tabs="true">
+            <md-tab label="Requisição" scroll="pedidos"></md-tab>
+            <md-tab label="Aprovados" scroll="#aprovados" offset="48"></md-tab>
+            <md-tab label="Pendentes" scroll="#pendentes" offset="48"></md-tab>
+            <md-tab label="Cancelados" scroll="#ccancelados" offset="48"></md-tab>
+            <!-- <md-tab label="Grupo Gestor" ng-if="$ctrl.praca.situacao == 'i'" scroll="#container-grupogestor" offset="48"></md-tab> -->          </md-tabs>
+        </div>
+      </md-content>
+    </div>
   </div>
-</div>
+          <div id="pedidos" class="row">
+              <div ng-repeat="pedido in $ctrl.pedidos" class="col s12 m6">
+                <md-card class="_md md-default-theme card-vinculacao hoverable">
+                  <md-card-title>
+                    <md-card-title-media ng-click="$ctrl.showUserInfo(pedido.user)">
+                      <div class="md-media-sm card-media layout-row">
+                        <img class="md-avatar" ng-src={{pedido.user.profile_picture_url}}>
+                      </div>
+                    </md-card-title-media>
+                    <md-card-title-text ng-click="$ctrl.showUserInfo(pedido.user)">
+                      <span class="md-headline ng-binding">{{pedido.user.full_name}}</span>
+                      <span class="md-subhead description">Solicita vinculo com</span>
+                    </md-card-title-text>
+                  </md-card-title>
+                  <md-card-title class="praca">
+                    <md-card-title-text ng-click="$ctrl.showPracaInfo(pedido.praca)">
+                      <span class="md-headline ng-binding">{{pedido.praca.nome}}</span>
+                      <span class="md-subhead description">{{pedido.praca.municipio}} - {{pedido.praca.uf | uppercase}}</span>
+                    </md-card-title-text>
+                  </md-card-title>
+                  <md-menu>
+                    <md-button  ng-click="$mdMenu.open()" class="md-icon-button">
+                      <md-icon>more_vert</md-icon>
+                    </md-button>
+                    <md-menu-content width="4">
+                      <md-menu-item>
+                        <md-button ng-click="$ctrl.startProcessoVinculacao(pedido)" aria-label="Processo de Vinculação">
+                          <md-icon>assignment</md-icon>
+                          Iniciar Processo de Vinculação
+                        </md-button>
+                      </md-menu-item>
+                      <md-divider></md-divider>
+                      <md-menu-item>
+                        <md-button ng-click="$ctrl.deleteProcessoVinculacao(pedido)">
+                          <md-icon>delete</md-icon>
+                          Excluir Pedido de Vinculação
+                        </md-button>
+                      </md-menu-item>
+                    </md-menu-content>
+                  </md-menu>
+                </md-card>
+              </div>
+            </div>
+
+            <div id="aprovados" class="row">
+              <div ng-repeat="pedido in $ctrl.aprovados" class="col s12 m6">
+                <md-card class="_md md-default-theme card-vinculacao hoverable">
+                  <md-card-title>
+                    <md-card-title-media ng-click="$ctrl.showUserInfo(pedido.user)">
+                      <div class="md-media-sm card-media layout-row">
+                        <img class="md-avatar" ng-src={{pedido.user.profile_picture_url}}>
+                      </div>
+                    </md-card-title-media>
+                    <md-card-title-text ng-click="$ctrl.showUserInfo(pedido.user)">
+                      <span class="md-headline ng-binding">{{pedido.user.full_name}}</span>
+                      <span class="md-subhead description">Solicita vinculo com</span>
+                    </md-card-title-text>
+                  </md-card-title>
+                  <md-card-title class="praca">
+                    <md-card-title-text ng-click="$ctrl.showPracaInfo(pedido.praca)">
+                      <span class="md-headline ng-binding">{{pedido.praca.nome}}</span>
+                      <span class="md-subhead description">{{pedido.praca.municipio}} - {{pedido.praca.uf | uppercase}}</span>
+                    </md-card-title-text>
+                  </md-card-title>
+                  <md-menu>
+                    <md-button  ng-click="$mdMenu.open()" class="md-icon-button">
+                      <md-icon>more_vert</md-icon>
+                    </md-button>
+                    <md-menu-content width="4">
+                      <md-menu-item>
+                        <md-button ng-click="$ctrl.startProcessoVinculacao(pedido)" aria-label="Processo de Vinculação">
+                          <md-icon>assignment</md-icon>
+                          Iniciar Processo de Vinculação
+                        </md-button>
+                      </md-menu-item>
+                      <md-divider></md-divider>
+                      <md-menu-item>
+                        <md-button ng-click="$ctrl.deleteProcessoVinculacao(pedido)">
+                          <md-icon>delete</md-icon>
+                          Excluir Pedido de Vinculação
+                        </md-button>
+                      </md-menu-item>
+                    </md-menu-content>
+                  </md-menu>
+                </md-card>
+              </div>
+            </div>

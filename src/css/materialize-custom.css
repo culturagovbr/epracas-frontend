@@ -39,7 +39,7 @@ nav {
     padding-top: 8px;
 }
 
-md-tab-item span, md-prev-button md-icon, md-next-button md-icon{
+.tab-pracas md-tab-item span, md-prev-button md-icon, md-next-button md-icon{
     color: #FFF;
 }
 

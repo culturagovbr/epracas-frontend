@@ -30,6 +30,8 @@ class EventCtrl {
         this._faixaEtariaAtividade = data.faixa_etaria.child.choices
       })
     if (this.objValue) {
+      console.info("OBJETO");
+      console.info(this.objValue);
       this.eventData = this.objValue
     } else {
       this.eventData = {}

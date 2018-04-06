@@ -13,6 +13,8 @@ class Atividade {
   // Cria um novo evento.
   new(data) {
     const caller = this.ErrorCatcher.callerName()
+    console.info("AQUI");
+    console.info(data)
 
     return this.$http({
       url: this.AtividadeEndPoint,
@@ -64,6 +66,10 @@ class Atividade {
 
   // Atualiza um evento
   update(id_pub, data) {
+    console.info("AQUI");
+    console.info(data)
+    console.info('ID');
+    console.info(id_pub);
     const caller = this.ErrorCatcher.callerName()
     return this.$http({
       url: `${this.AtividadeEndPoint}${id_pub}/`,
