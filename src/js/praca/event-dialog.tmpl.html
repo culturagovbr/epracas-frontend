@@ -35,16 +35,16 @@
             <md-icon>work</md-icon>
             <label>Área da Atividade</label>
             <md-select ng-model="$ctrl.eventData.area" ng-change="$ctrl.parseArea()">
-              <md-option ng-repeat="area in $ctrl._areaAtividade" value="{{area}}">
-                {{area.display_name}}
+              <md-option ng-repeat="area in $ctrl.eventData.area" value="{{area.id}}">
+                {{area.nome}}
               </md-option>
             </md-select>
           </md-input-container>
-          <md-input-container flex ng-mouseenter="$ctrl.debug()">
+          <md-input-container flex>
             <md-icon>work</md-icon>
             <md-select ng-model="$ctrl.eventData.subarea" placeholder="{{$ctrl.strSubareaLabel}}" ng-disabled="$ctrl.booSubareaDisable">
-              <md-option ng-repeat="subarea in $ctrl.eventData.subareas" value="{{subarea.value}}">
-                {{subarea.display_name}}
+              <md-option ng-repeat="subarea in $ctrl.eventData.subareas" value="{{subarea.id}}">
+                {{subarea.nome}}
               </md-option>
             </md-select>
           </md-input-container>

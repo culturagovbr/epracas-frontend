@@ -1,6 +1,12 @@
 import moment from "moment"
 
 class EventCtrl {
+
+  preProcessArea(area){
+    area.id = area.url.replace("/api/v1/areas/","").replace("/","")
+
+  }
+
   constructor($state, $scope, $http, $log, $mdDialog, Toast, Atividade, AppConstants, praca) {
     "ngInject"
 
@@ -40,239 +46,18 @@ class EventCtrl {
     this.eventData.ocorrencia.start = new Date()
     this.eventData.ocorrencia.repeat_until = new Date()
 
-    this._areaAtividade = [
-      {
-        value: 1,
-        display_name: "Artes Cênicas",
-        subarea: [
-          {
-            value: 101,
-            display_name: "Circo",
-          },
-          {
-            value: 102,
-            display_name: "Dança",
-          },
-          {
-            value: 103,
-            display_name: "Mímica",
-          },
-          {
-            value: 104,
-            display_name: "Ópera",
-          },
-          {
-            value: 105,
-            display_name: "Teatro",
-          },
-        ],
-      },
-      {
-        value: 2,
-        display_name: "Audiovisual",
-        subarea: [
-          {
-            value: 201,
-            display_name: "Preservação/Restauração da Memória Cinematográfica",
-          },
-          {
-            value: 202,
-            display_name: "Produção Cinematográfica",
-          },
-          {
-            value: 203,
-            display_name: "Produção Radiofônica",
-          },
-          {
-            value: 204,
-            display_name: "Produção Televisiva",
-          },
-          {
-            value: 205,
-            display_name: "Rádios/TVs Comunitárias",
-          },
-          {
-            value: 206,
-            display_name: "Exibição Cinematográfica",
-          },
-        ],
-      },
-      {
-        value: 3,
-        display_name: "Música",
-        subarea: [
-          {
-            value: 301,
-            display_name: "Música Erudita",
-          },
-          {
-            value: 302,
-            display_name: "Música Instrumental",
-          },
-          {
-            value: 303,
-            display_name: "Música Popular",
-          },
-          {
-            value: 304,
-            display_name: "Orquestra",
-          },
-          {
-            value: 305,
-            display_name: "Música em Geral",
-          },
-        ],
-      },
-      {
-        value: 4,
-        display_name: "Artes Visuais",
-        subarea: [
-          {
-            value: 401,
-            display_name: "Fotografia",
-          },
-          {
-            value: 402,
-            display_name: "Gráficas",
-          },
-          {
-            value: 403,
-            display_name: "Plásticas",
-          },
-        ],
-      },
-      {
-        value: 5,
-        display_name: "Patrimônio Cultural",
-        subarea: [
-          {
-            value: 501,
-            display_name: "Acervo",
-          },
-          {
-            value: 502,
-            display_name: "Afro Brasileira",
-          },
-          {
-            value: 503,
-            display_name: "Arqueológico",
-          },
-          {
-            value: 504,
-            display_name: "Arquitetônico",
-          },
-          {
-            value: 505,
-            display_name: "Artesanato",
-          },
-          {
-            value: 506,
-            display_name: "Ecológico",
-          },
-          {
-            value: 507,
-            display_name: "Folclore",
-          },
-          {
-            value: 508,
-            display_name: "Histórico",
-          },
-          {
-            value: 509,
-            display_name: "Indígena",
-          },
-          {
-            value: 5010,
-            display_name: "Museu",
-          },
-        ],
-      },
-      {
-        value: 6,
-        display_name: "Livro, Leitura e Literatura",
-        subarea: [
-          {
-            value: 601,
-            display_name: "Edição de Livros e outros",
-          },
-          {
-            value: 602,
-            display_name: "Evento literário",
-          },
-          {
-            value: 603,
-            display_name: "Leitura",
-          },
-          {
-            value: 604,
-            display_name: "Contação de história",
-          },
-          {
-            value: 605,
-            display_name: "Sarau",
-          },
-          {
-            value: 606,
-            display_name: "Outros",
-          },
-        ],
-      },
-      {
-        value: 7,
-        display_name: "Esportes",
-        subarea: [
-          {
-            value: 701,
-            display_name: "Futebol",
-          },
-          {
-            value: 702,
-            display_name: "Vôlei",
-          },
-          {
-            value: 703,
-            display_name: "Basquete",
-          },
-          {
-            value: 704,
-            display_name: "Skate",
-          },
-          {
-            value: 705,
-            display_name: "Handebol",
-          },
-          {
-            value: 706,
-            display_name: "Futevôlei",
-          },
-          {
-            value: 707,
-            display_name: "Capoeira",
-          },
-          {
-            value: 708,
-            display_name: "Outros",
-          },
-        ],
-      },
-      {
-        value: 8,
-        display_name: "Assistência Social",
-        subarea: [],
-      },
-      {
-        value: 9,
-        display_name: "Saúde",
-        subarea: [],
-      },
-      {
-        value: 10,
-        display_name: "Outros",
-        subarea: [],
-      },
-    ]
+    this.Atividade.listAreas()
+      .then((data) => {
+        this.areaAtividade = data
+        
+        this.areaAtividade.map(this.preProcessArea)
+        
+        this.eventData.area = this.areaAtividade.filter((area) => { return (area.parent == null) })
+        
+        console.log(this.eventData.area)
+      })
 
-    this._DiasSemana = [
+        this._DiasSemana = [
       {
         value: "MO",
         display_name: "Segunda",
@@ -356,15 +141,17 @@ class EventCtrl {
   }
 
   parseArea() {
-    let arrSubareas = angular.fromJson(this.eventData.area).subarea
-    if (typeof arrSubareas[0] != 'undefined') {
-      this.strSubareaLabel = "Subarea da Atividade"
-      this.booSubareaDisable = false
-    } else {
-      this.strSubareaLabel = "Área não possuí subarea."
-      this.booSubareaDisable = true
-    }
-    this.eventData.subareas = arrSubareas
+    // let arrSubareas = angular.fromJson(this.eventData.area).subarea
+    // if (typeof arrSubareas[0] != 'undefined') {
+    //   this.strSubareaLabel = "Subarea da Atividade"
+    //   this.booSubareaDisable = false
+    // } else {
+    //   this.strSubareaLabel = "Área não possuí subarea."
+    //   this.booSubareaDisable = true
+    // }
+    
+    this.eventData.subareas = this.areaAtividade.filter((x)=> {return x.parent === this.eventData.area})
+    
   }
 }
 
