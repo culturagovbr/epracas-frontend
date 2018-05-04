@@ -29,6 +29,5 @@ const servicesModule = angular.module("app.services", [])
 .service("UnidadeGestora", UnidadeGestoraService)
 .service("RecursoHumano", RecursoHumanoService)
 .service("Atores", AtoresService)
-.service("Area",AreaService)
 
 export default servicesModule
