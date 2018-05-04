@@ -141,15 +141,7 @@ class EventCtrl {
   }
 
   parseArea() {
-    // let arrSubareas = angular.fromJson(this.eventData.area).subarea
-    // if (typeof arrSubareas[0] != 'undefined') {
-    //   this.strSubareaLabel = "Subarea da Atividade"
-    //   this.booSubareaDisable = false
-    // } else {
-    //   this.strSubareaLabel = "Área não possuí subarea."
-    //   this.booSubareaDisable = true
-    // }
-    
+  
     this.eventData.subareas = this.areaAtividade.filter((x)=> {return x.parent === this.eventData.area})
     
   }
