@@ -17,5 +17,6 @@ AppConstants.gestorEndPoint = `${AppConstants.api}/gestor/`
 AppConstants.agendaApi = `${AppConstants.api}/atividades/`
 AppConstants.vinculoEndPoint = `${AppConstants.api}/processo/`
 AppConstants.parceirosEndPoint = `${AppConstants.api}/parceiros/`
+AppConstants.areaEndPoint = `${AppConstants.api}/areas/`
 
 export default AppConstants
