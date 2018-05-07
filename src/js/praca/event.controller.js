@@ -122,6 +122,9 @@ class EventCtrl {
       this.eventData.praca = this.praca.id_pub
       const date = moment(this.eventData.ocorrencia.repeat_until).format("YYYY-MM-DD")
       this.eventData.ocorrencia.repeat_until = date
+      if(this.eventData.subarea != null){
+        this.eventData.area = this.eventData.subarea
+      }
       this.Atividade.new(this.eventData)
         .then(
           (response) => {
