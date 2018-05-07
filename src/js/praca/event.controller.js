@@ -147,7 +147,7 @@ class EventCtrl {
 
   parseArea() {
   
-    this.eventData.subareas = this.areaAtividade.filter((x)=> {return x.parent === this.eventData.areas})
+    this.eventData.subareas = this.areaAtividade.filter((x)=> {return x.parent === this.eventData.area})
     
   }
 }
