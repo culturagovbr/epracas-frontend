@@ -34,8 +34,8 @@
           <md-input-container flex>
             <md-icon>work</md-icon>
             <label>Área da Atividade</label>
-            <md-select ng-model="$ctrl.eventData.area" ng-change="$ctrl.parseArea()">
-              <md-option ng-repeat="area in $ctrl.eventData.area" value="{{area.id}}">
+            <md-select ng-model="$ctrl.eventData.areas" ng-change="$ctrl.parseArea()">
+              <md-option ng-repeat="area in $ctrl.eventData.areas" value="{{area.id}}">
                 {{area.nome}}
               </md-option>
             </md-select>

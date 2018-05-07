@@ -34,6 +34,7 @@ class EventCtrl {
         this._territorioAtividade = data.territorio.choices
         this._publicoAtividade = data.publico.choices
         this._faixaEtariaAtividade = data.faixa_etaria.child.choices
+        
       })
     if (this.objValue) {
       this.eventData = this.objValue
@@ -52,9 +53,9 @@ class EventCtrl {
         
         this.areaAtividade.map(this.preProcessArea)
         
-        this.eventData.area = this.areaAtividade.filter((area) => { return (area.parent == null) })
+        this.eventData.areas = this.areaAtividade.filter((area) => { return (area.parent == null) })
         
-        console.log(this.eventData.area)
+        
       })
 
         this._DiasSemana = [
@@ -89,6 +90,7 @@ class EventCtrl {
     ]
 
     this._DiasSemana.forEach(dia => (this.selectedDays[dia.value] = false))
+
   }
 
   cancel() {
@@ -142,7 +144,7 @@ class EventCtrl {
 
   parseArea() {
   
-    this.eventData.subareas = this.areaAtividade.filter((x)=> {return x.parent === this.eventData.area})
+    this.eventData.subareas = this.areaAtividade.filter((x)=> {return x.parent === this.eventData.areas})
     
   }
 }
