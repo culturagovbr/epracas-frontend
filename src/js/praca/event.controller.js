@@ -1,3 +1,4 @@
+
 import moment from "moment"
 
 class EventCtrl {
@@ -33,14 +34,15 @@ class EventCtrl {
         this._Periodicidade = data.ocorrencia.children.frequency_type.choices
         this._territorioAtividade = data.territorio.choices
         this._publicoAtividade = data.publico.choices
-        this._faixaEtariaAtividade = data.faixa_etaria.child.choices
-        
+        this._faixaEtariaAtividade = data.faixa_etaria.child.choices    
+
       })
     if (this.objValue) {
       this.eventData = this.objValue
     } else {
       this.eventData = {}
     }
+
 
     this.selectedDays = {}
     this.eventData.ocorrencia = {}
@@ -55,6 +57,30 @@ class EventCtrl {
         
         this.eventData.areas = this.areaAtividade.filter((area) => { return (area.parent == null) })
         
+        if(this.objValue !== "undefined"){
+          
+          this.eventData.area = this.eventData.areas.filter((area) => {return (area.id == this.objValue.area)})      
+
+          //Checa se a area marcada esta na lista de áreas pai
+          
+          if(this.eventData.area.length > 0){
+            this.eventData.area = this.eventData.area[0];
+            //carrega as subareas no formulario, mas nao seleciona nenhuma
+            this.eventData.area = this.eventData.area.id;
+            this.parseArea();
+          } else {
+            // area selecionada era subarea
+            this.eventData.area = this.eventData.area.parent;
+            this.eventData.subarea = this.eventData.area;
+          }
+          
+          //console.info(this.eventData.area);
+          //console.info('-------');
+          //console.info(this.eventData.areas);
+          //this.eventData.areas.filter((area) => {return (area.id == this.eventData.area.id)})
+          
+          
+        }
         
       })
 
@@ -103,7 +129,9 @@ class EventCtrl {
       this.eventData.praca = this.praca.id_pub
       const date = moment(this.eventData.ocorrencia.repeat_until).format("YYYY-MM-DD")
       this.eventData.ocorrencia.repeat_until = date
-      //this.eventData.evento = this.eventData.evento.display_name
+      // if(this.eventData.subarea != null){
+      //   this.eventData.area = this.eventData.subarea
+      // }
       this.Atividade.update(this.eventData.id_pub, this.eventData)
         .then(
           response => {
