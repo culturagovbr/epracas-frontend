@@ -59,27 +59,25 @@ class EventCtrl {
         
         if(this.objValue !== "undefined"){
           
-          this.eventData.area = this.eventData.areas.filter((area) => {return (area.id == this.objValue.area)})      
-
           //Checa se a area marcada esta na lista de áreas pai
-          
-          if(this.eventData.area.length > 0){
-            this.eventData.area = this.eventData.area[0];
+          this.area = this.eventData.areas.filter((area) => {return (area.id == this.objValue.area)})          
+          if(this.area.length > 0){
+            this.eventData.area = this.area[0];
             //carrega as subareas no formulario, mas nao seleciona nenhuma
             this.eventData.area = this.eventData.area.id;
             this.parseArea();
+            
           } else {
             // area selecionada era subarea
-            this.eventData.area = this.eventData.area.parent;
-            this.eventData.subarea = this.eventData.area;
+            this.eventData.subarea = this.areaAtividade.filter((area) => {return (area.id == this.objValue.area)})
+            this.eventData.subarea = this.eventData.subarea[0];
+            this.eventData.area = this.eventData.subarea.parent;
+            this.eventData.subarea = this.eventData.subarea.id;
+            this.parseArea();
+            
           }
           
-          //console.info(this.eventData.area);
-          //console.info('-------');
-          //console.info(this.eventData.areas);
-          //this.eventData.areas.filter((area) => {return (area.id == this.eventData.area.id)})
-          
-          
+
         }
         
       })
