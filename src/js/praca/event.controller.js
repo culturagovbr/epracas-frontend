@@ -57,7 +57,8 @@ class EventCtrl {
         
         this.eventData.areas = this.areaAtividade.filter((area) => { return (area.parent == null) })
         
-        if(this.objValue !== "undefined"){
+        //caso o objeto exista, trata-se de uma edição
+        if(this.objValue){
           
           //Checa se a area marcada esta na lista de áreas pai
           this.area = this.eventData.areas.filter((area) => {return (area.id == this.objValue.area)})          
@@ -67,16 +68,15 @@ class EventCtrl {
             this.eventData.area = this.eventData.area.id;
             this.parseArea();
             
-          } else {
+          } else if (this.objValue.area != null){
             // area selecionada era subarea
             this.eventData.subarea = this.areaAtividade.filter((area) => {return (area.id == this.objValue.area)})
             this.eventData.subarea = this.eventData.subarea[0];
             this.eventData.area = this.eventData.subarea.parent;
             this.eventData.subarea = this.eventData.subarea.id;
             this.parseArea();
-            
           }
-          
+                   
 
         }
         
