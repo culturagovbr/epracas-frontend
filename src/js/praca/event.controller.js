@@ -39,10 +39,12 @@ class EventCtrl {
       })
     if (this.objValue) {
       this.eventData = this.objValue
+      //convertendo tipo retornado do banco para string
+      //por alguma razão, o frontend só aceita se for string
+      this.eventData.tipo = this.eventData.tipo.toString();
     } else {
       this.eventData = {}
     }
-
 
     this.selectedDays = {}
     this.eventData.ocorrencia = {}
