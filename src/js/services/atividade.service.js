@@ -7,6 +7,7 @@ class Atividade {
       $q,
       ErrorCatcher,
       AtividadeEndPoint: AppConstants.agendaApi,
+      AreaEndPoint: AppConstants.areaEndPoint,
     })
   }
 
@@ -27,6 +28,23 @@ class Atividade {
       }
     )
   }
+
+  listAreas() {
+    const caller = this.ErrorCatcher.callerName()
+
+    return this.$http({
+      url: this.AreaEndPoint,
+      method: "GET",
+    })
+    .then(res => res.data)
+    .catch(
+      (err) => {
+        this.ErrorCatcher.error(caller, err)
+        return this.$q.reject()
+      }
+    )
+  }
+  
 
   options(data) {
     const caller = this.ErrorCatcher.callerName()
