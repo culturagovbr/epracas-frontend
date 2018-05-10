@@ -24,20 +24,22 @@ export default class GrupoGestorDialogController {
   cancel() { this.$mdDialog.cancel() }
 
   save(praca, data) {
-    console.info('chamou o save')
     this.isSaving = true
 
     this.GrupoGestor.save_grupogestor(praca, data)
       .then(
         (response) => {
           this.$mdDialog.hide()
-          this.Toast.showSuccessToast("Grupo Gestor Adicionado")
+          if (data.data_finalizacao != null) {
+            this.Toast.showSuccessToast("Grupo Gestor Encerrado")
+          } else {
+            this.Toast.showSuccessToast("Grupo Gestor Adicionado")
+          }
           this.$state.reload()
         }
       )
       .catch(
         (err) => {
-          console.info('DEU RUIM')
           this.$log.error(`Erro ao salvar grupo gestor ${angular.toJson(err.status)}, ${angular.toJson(err.data)}`)
           this.Toast.showRejectedToast("Erro ao adicionar Grupo Gestor")
         }

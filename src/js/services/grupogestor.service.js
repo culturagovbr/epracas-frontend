@@ -45,11 +45,6 @@ class GrupoGestor {
 
   save_grupogestor(praca, grupogestor) {
 
-    console.info('PRACA')
-    console.info(praca)
-    console.info("GRUPO")
-    console.info(grupogestor)
-
     const caller = this.ErrorCatcher.callerName()
 
     grupogestor.data_instituicao = moment(grupogestor.data_instituicao).format("YYYY-MM-DD")

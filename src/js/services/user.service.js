@@ -104,8 +104,8 @@ export default class User {
                   }
                 },
                 (err) => {
-                  console.info(`${this._AppConstants.apiUserInfo}${this.current.sub}/`);
-                  console.info(`${this._AppConstants.apiUserInfo}${this.current.sub}/`);
+                  // console.info(`${this._AppConstants.apiUserInfo}${this.current.sub}/`);
+                  // console.info(`${this._AppConstants.apiUserInfo}${this.current.sub}/`);
                   this._$http({
                     url: `${this._AppConstants.apiUserInfo}${this.current.sub}/`,
                     method: "POST",

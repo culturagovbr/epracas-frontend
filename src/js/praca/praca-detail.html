@@ -72,6 +72,12 @@
             <md-card-title-text>
               <span class="md-headline">{{ $ctrl.praca.nome }}</span>
               <span class="md-subhead">
+                <strong>Municipio: </strong>
+                <span class="textCap">{{$ctrl.praca.municipio}}</span>
+              </span>
+              <span class="md-subhead">
+                <strong>UF: </strong> {{$ctrl.praca.uf}}</span>
+              <span class="md-subhead">
                 <strong>Situação: </strong>{{ $ctrl.praca.situacao_descricao }}</span>
               <span class="md-subhead" ng-if="$ctrl.praca.situacao_descricao == 'Inaugurada'">
                 <strong>Inaugurada em: </strong>{{ $ctrl.praca.data_inauguracao | date: 'dd/MM/yyyy' }}</span>
@@ -79,7 +85,8 @@
                 <strong>Contrato: </strong>{{ $ctrl.praca.contrato }}</span>
               <span class="md-subhead">
                 <strong>Modelo: </strong>{{ $ctrl.praca.modelo_descricao }}</span>
-              <span class="md-subhead" ng-if="$ctrl.praca.repasse" > <!-- ui-money-mask -->
+              <span class="md-subhead" ng-if="$ctrl.praca.repasse">
+                <!-- ui-money-mask -->
                 <strong>Repasse: </strong>{{ $ctrl.praca.repasse | currency: 'R$ ' }}</span>
               <span class="md-subhead" ng-if="$ctrl.praca.email1">Email: {{ $ctrl.praca.email1 }}</span>
               <span class="md-subhead" ng-if="$ctrl.praca.telefone1">Telefone: {{ $ctrl.praca.telefone1 }}</span>
@@ -110,22 +117,37 @@
     </div>
 
     <!-- Agenda -->
-    <div id="container-agenda" layout-padding class="agenda no-print" layout-align="start center">
-      <div class="layout-row title">
-        <md-icon>insert_invitation</md-icon>
-        <h1 flex><a ui-sref="app.eventos({pk: $ctrl.praca.id_pub})">Agenda</a></h1>
+    <div id="container-agenda" layout="column" layout-padding class="no-print" flex>
+      <div flex layout-padding class="info ">
+        <div class="layout-row title">
+          <md-icon>insert_invitation</md-icon>
+          <h1 flex>
+            <a ui-sref="app.eventos({pk: $ctrl.praca.id_pub})">Agenda Completa</a>
+          </h1>
+        </div>
       </div>
+      <div>
+        <h3 flex> Próximos Eventos </h3>
+      </div>
+      <md-fab-speed-dial show-as-manager="true" pracaid="{{$ctrl.praca.id_pub}}" pracagestor="{{$ctrl.praca.gestor.user_id_pub}}"
+        class="md-fab-top-right" ng-click="$ctrl.showDialog($event, $ctrl.userMenu.event.dialog)" style="padding:0;">
+        <md-fab-trigger>
+          <md-button class="md-fab">
+            <md-icon class="material-icons">add</md-icon>
+          </md-button>
+        </md-fab-trigger>
+      </md-fab-speed-dial>
       <div class="activities-log" layout-gt-xs="row">
         <!-- <div class="row">
           <md-card> -->
-            <div class="event-list">
-              <event-previewer ng-repeat="event in $ctrl.praca.agenda
+        <div class="event-list">
+          <event-previewer ng-repeat="event in $ctrl.praca.agenda
               | filter: { data_inicio: $ctrl.parseDate($ctrl.myDate) }
               | orderBy: 'event.data_inicio'
               | limitTo: 4" event="event">
-              </event-previewer>
-            </div>
-          <!-- </md-card>
+          </event-previewer>
+        </div>
+        <!-- </md-card>
         </div> -->
 
         <div flex class="calendar">
@@ -135,14 +157,22 @@
     </div>
 
     <!-- Imagens -->
-    <div id="container-imagens" layout-gt-xs="row" class="no-print" flex>
-      <div flex layout-padding class="info gridListdemoDynamicTiles">
+    <div id="container-imagens" layout="column" layout-padding class="no-print" flex>
+      <div flex layout-padding class="info ">
         <div class="layout-row title">
           <md-icon>photo_camera</md-icon>
-          <h1 flex>
-            <a ui-sref="app.galeria({pk: $ctrl.praca.id_pub})">Fotos</a>
-          </h1>
+          <h1 flex ui-sref="app.galeria({pk: $ctrl.praca.id_pub})" class="flex">Fotos</h1>
         </div>
+      </div>
+      <md-fab-speed-dial show-as-manager="true" pracaid="{{$ctrl.praca.id_pub}}" pracagestor="{{$ctrl.praca.gestor.user_id_pub}}"
+        class="md-fab-top-right" ng-click="$ctrl.showDialog($event, $ctrl.userMenu.uploadImg.dialog)" style="padding:0;">
+        <md-fab-trigger>
+          <md-button class="md-fab">
+            <md-icon class="material-icons">add</md-icon>
+          </md-button>
+        </md-fab-trigger>
+      </md-fab-speed-dial>
+      <div flex layout-padding class="info gridListdemoDynamicTiles">
         <md-grid-list md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="4:3" md-gutter="8px"
           md-gutter-gt-sm="4px">
           <md-grid-tile md-whiteframe="2" ng-repeat="objPhoto in arrPhotos" md-rowspan="{{objPhoto.span.row}}" md-colspan="{{objPhoto.span.col}}"
@@ -179,7 +209,7 @@
           <h1 flex>Localização</h1>
         </div>
         <p>{{$ctrl.praca.logradouro}}</p>
-        <p>{{$ctrl.praca.municipio}} | {{$ctrl.praca.uf | uppercase}}
+        <p class="textCap">{{$ctrl.praca.municipio}} | {{$ctrl.praca.uf | uppercase}}
           <p>Horários de funcionamento:</p>
           <p ng-if="$ctrl.praca.funciona_dia_util">Segunda a Sexta das {{ $ctrl.praca.hora_abertura_dia_util | date: 'HH:mm' }} às {{ $ctrl.praca.hora_fechamento_dia_util
             }}
