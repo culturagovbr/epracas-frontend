@@ -54,7 +54,7 @@ const UnidadeGestoraContainer = {
           <h1 flex class="flex"><a href="#" ng-disable="!$ctrl.unidade_gestora" ng-click="$ctrl.showListDialog($ctrl.praca)">Unidade Gestora Local</a></h1>
         </div>
 
-        <md-fab-speed-dial show-as-manager="true" class="md-fab-top-right" ng-click="$ctrl.showUGLDialog($ctrl.praca)" style="padding:0;">
+        <md-fab-speed-dial show-as-manager="true" pracaid="{{$ctrl.praca.id_pub}}" pracagestor="{{$ctrl.praca.gestor.user_id_pub}}" class="md-fab-top-right" ng-click="$ctrl.showUGLDialog($ctrl.praca)" style="padding:0;">
           <md-fab-trigger>
             <md-button class="md-fab">
               <md-icon class="material-icons">add</md-icon>
