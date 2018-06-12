@@ -29,9 +29,21 @@ class PracaInfoCtrl {
         this.listaRegiao = data.regiao.choices;
         this.listaModelo = data.modelo.choices;
         this.listaSituacao = data.situacao.choices;
+
+        angular.forEach(data.uf.choices, (uf) => {
+          
+          if(uf.value.toUpperCase() == praca.uf){
+            this.praca.uf = uf;
+          }
+        })
+
       });
+    
+    console.info("novo teste:")
+    console.info(this.listaUf)
 
     this.isSaving = false
+
   }
 
   cancel() {
