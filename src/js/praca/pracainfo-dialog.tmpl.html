@@ -99,7 +99,7 @@
         </div>
         <md-input-container>
           <label>Região</label>
-          <md-select ng-disabled="!$ctrl.isAdmin" name="pracaRegiao" required ng-model="$ctrl.praca.regiao">
+          <md-select ng-disabled="true" name="pracaRegiao" required ng-model="$ctrl.praca.regiao">
             <md-option ng-repeat="regiao in $ctrl.listaRegiao" value="{{regiao.value}}">
               {{regiao.display_name}}
             </md-option>
@@ -107,15 +107,15 @@
         </md-input-container>
         <md-input-container>
           <label>UF</label>
-          <md-select ng-disabled="!$ctrl.isAdmin" name="pracaUf" required ng-model="$ctrl.praca.uf">
-            <md-option ng-repeat="uf in $ctrl.listaUf" value="{{uf.value}}">
+          <md-select ng-disabled="true" name="pracaUf" required ng-model="$ctrl.praca.uf">
+            <md-option ng-repeat="uf in $ctrl.listaUf" ng-selected="{{uf.value == $ctrl.praca.uf.value}}" value="{{uf.value}}">
               {{uf.display_name}}
             </md-option>
           </md-select>
         </md-input-container>
         <md-input-container>
           <label>Municipio</label>
-          <input name="pracaMunicipio" required ng-model="$ctrl.praca.municipio">
+          <input name="pracaMunicipio" required ng-model="$ctrl.praca.municipio" ng-disabled="true">
         </md-input-container>
         <h4>
           Horários de funcionamento
