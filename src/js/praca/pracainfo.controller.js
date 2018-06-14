@@ -39,8 +39,8 @@ class PracaInfoCtrl {
 
       });
     
-    console.info("novo teste:")
-    console.info(this.listaUf)
+    //console.info("novo teste:")
+    //console.info(this.listaUf)
 
     this.isSaving = false
 
@@ -114,9 +114,10 @@ class PracaInfoCtrl {
 
       this.Praca.save(praca_data.id_pub, praca_data)
         .then(
-          () => {
+          (response) => {
             this.$mdDialog.hide()
             this.Toast.showSuccessToast("Informações alteradas com sucesso!")
+            this.praca.uf = response.uf.toUpperCase()
           }
         )
         .catch(
