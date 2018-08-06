@@ -39,7 +39,6 @@ class ParceirosCtrl {
 
     if (data.image) {
       data.imagem = this.Upload.dataUrltoBlob(data.image)
-      console.info(data);
     }
     if (data.id_pub) {
       this.Upload.upload({ url: `${this.AppConstants.api}/pracas/${praca_id_pub}/parceiros/${data.id_pub}/`, method: "PATCH", data: data })
