@@ -1,9 +1,10 @@
 class ParceiroImgController {
-  constructor($mdDialog) {
+  constructor($mdDialog, $scope) {
     "ngInject"
 
     angular.extend(this, {
       $mdDialog,
+      $scope
     })
   }
 
@@ -12,6 +13,7 @@ class ParceiroImgController {
   }
 
   hide(imagem) {
+    this.$scope.image = imagem;
     this.$mdDialog.hide(imagem)
   }
 }
