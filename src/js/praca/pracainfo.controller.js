@@ -21,7 +21,7 @@ class PracaInfoCtrl {
           this.applyEffect(this.praca);
       });
 
-    this.isAdmin = this.User.IsAdmin();
+    this.isAdmin = this.User.IsManagerOrAdmin(this.praca);
 
     this.Praca.options(praca)
       .then((data) => {
@@ -38,9 +38,6 @@ class PracaInfoCtrl {
         })
 
       });
-    
-    //console.info("novo teste:")
-    //console.info(this.listaUf)
 
     this.isSaving = false
 
