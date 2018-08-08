@@ -37,8 +37,8 @@ class ParceirosCtrl {
       data.recursos_financeiros = 0
     }
 
-    if (data.imgFile) {
-      data.imagem = this.Upload.dataUrltoBlob(data.imgFile)
+    if (data.image) {
+      data.imagem = this.Upload.dataUrltoBlob(data.image)
     }
     if (data.id_pub) {
       this.Upload.upload({ url: `${this.AppConstants.api}/pracas/${praca_id_pub}/parceiros/${data.id_pub}/`, method: "PATCH", data: data })
@@ -63,14 +63,14 @@ class ParceirosCtrl {
     }
   }
 
-  ImgDialog() {
+  ImgDialog(parceiro) {
     this.$mdDialog.show({
         controller: "ParceiroImgController",
         controllerAs: "$ctrl",
         templateUrl: "praca/parceiros-components/parceiros-img-upload.dialog.tmpl.html",
         multiple: true,
       })
-      .then(data => (this.parceiro.imgFile = data))
+      .then(data => (parceiro.image = data))
   }
 }
 
