@@ -161,7 +161,7 @@
       <div flex layout-padding class="info ">
         <div class="layout-row title">
           <md-icon>photo_camera</md-icon>
-          <h1 flex ui-sref="app.galeria({pk: $ctrl.praca.id_pub})" class="flex">Fotos</h1>
+          <h1 flex class="flex"><a ui-sref="app.galeria({pk: $ctrl.praca.id_pub})">Fotos</a></h1>
         </div>
       </div>
       <md-fab-speed-dial show-as-manager="true" pracaid="{{$ctrl.praca.id_pub}}" pracagestor="{{$ctrl.praca.gestor.user_id_pub}}"
