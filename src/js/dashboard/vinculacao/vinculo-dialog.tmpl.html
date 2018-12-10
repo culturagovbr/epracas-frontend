@@ -64,7 +64,7 @@
 
           </div>
         </md-step-body>
-        
+
         <md-step-actions layout-align="center end">
           <md-button class="md-primary md-raised" ng-click="$ctrl.proximoPasso($ctrl.vincFiles.comp)">Continuar</md-button>
           <md-button class="md-primary" ng-click="$ctrl.cancelProcesso()">Cancelar</md-button>
@@ -86,20 +86,7 @@
               </md-select>
             </md-input-container>
 
-            <md-input-container ng-show="$ctrl.pedido.situacao" ng-if="$ctrl.pedido.situacao!='a'">
-              <label>Despacho da atual situação</label>
-              <textarea name="despachoSituacaoProcesso" rows="3" ng-model="$ctrl.pedido.descricao"></textarea>
-            </md-input-container>
-
-            <md-input-container>
-              <md-switch ng-model="$ctrl.pedido.finalizado">Finaliza Processo de Vinculação</md-switch>
-            </md-input-container>
-
-            <md-input-container ng-if="$ctrl.pedido.finalizado==true">
-              <md-switch ng-model="$ctrl.pedido.aprovado">Aprova Pedido de Vinculação</md-switch>
-            </md-input-container>
-
-            <md-input-container class="md-block" ng-if="$ctrl.pedido.finalizado==true">
+            <md-input-container class="md-block" ng-if="$ctrl.pedido.situacao=='c'">
               <md-icon>subject</md-icon>
               <label>Despacho e considerações finais</label>
               <textarea required name="despachoFinalProcesso" rows="5" ng-select-on-focus ng-model="$ctrl.pedido.despacho"></textarea>
