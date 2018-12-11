@@ -46,15 +46,14 @@ class Atividade {
   }
   
 
-  options(data) {
+  options(id_pub) {
     const caller = this.ErrorCatcher.callerName()
 
     return this.$http({
-      url: this.AtividadeEndPoint,
+      url: `${this.AtividadeEndPoint}${id_pub}/`,
       method: "OPTIONS"
     })
     .then(response => response.data)
-    .then(data => data.actions.POST)
     .catch(
       (err) => {
         this.ErrorCatcher.error(caller, err)
