@@ -14,8 +14,13 @@ class DashboardVinculoCtrl {
       })
 
     this.pedidos = ""
-    Vinculacao.list()
+    Vinculacao.list(false)
       .then(result => (this.pedidos = result.data))
+      .catch(err => $log.log(`Error: DashboardVinculoCtrl ${angular.toJson(err)}`))
+
+    this.pedidos_finalizados = ""
+    Vinculacao.list(true)
+      .then(result => (this.pedidos_finalizados = result.data))
       .catch(err => $log.log(`Error: DashboardVinculoCtrl ${angular.toJson(err)}`))
   }
 
@@ -38,6 +43,19 @@ class DashboardVinculoCtrl {
           templateUrl: "praca/pracainfo-dialog.tmpl.html",
           parent: angular.element(this.$document.body),
           locals: { praca: result },
+        })
+      })
+  }
+
+  showProcessoVinculacaoInfo(pedido) {
+    this.Vinculacao.get(pedido.id_pub)
+      .then((result) => {
+        this.$mdDialog.show({
+          controller: "DashboardVinculoInfoDialogCtrl",
+          controllerAs: "$ctrl",
+          templateUrl: "dashboard/vinculacao/vinculoinfo-dialog.tmpl.html",
+          parent: angular.element(this.$document.body),
+          locals: { pedido: result },
         })
       })
   }

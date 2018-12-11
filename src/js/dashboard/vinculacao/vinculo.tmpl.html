@@ -1,4 +1,5 @@
 <div class="row">
+  <h2>Processos abertos</h2>
   <div ng-repeat="pedido in $ctrl.pedidos" class="col s12 m6">
     <md-card class="_md md-default-theme card-vinculacao hoverable">
       <md-card-title>
@@ -38,6 +39,31 @@
           </md-menu-item>
         </md-menu-content>
       </md-menu>
+    </md-card>
+  </div>
+</div>
+
+<div class="row">
+  <h2>Processos finalizados</h2>
+  <div ng-repeat="pedido in $ctrl.pedidos_finalizados" class="col s12 m6">
+<md-card class="_md md-default-theme card-vinculacao hoverable transparent" ng-click="$ctrl.showProcessoVinculacaoInfo(pedido)">
+      <md-card-title>
+        <md-card-title-media>
+          <div class="md-media-sm card-media layout-row">
+            <img class="md-avatar" ng-src={{pedido.user.profile_picture_url}}>
+          </div>
+        </md-card-title-media>
+        <md-card-title-text>
+          <span class="md-headline ng-binding">{{pedido.user.full_name}}</span>
+          <span class="md-subhead description">Solicitou vínculo com</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-title class="praca">
+        <md-card-title-text>
+          <span class="md-headline ng-binding">{{pedido.praca.nome}}</span>
+          <span class="md-subhead description">{{pedido.praca.municipio}} - {{pedido.praca.uf | uppercase}}</span>
+        </md-card-title-text>
+      </md-card-title>
     </md-card>
   </div>
 </div>
