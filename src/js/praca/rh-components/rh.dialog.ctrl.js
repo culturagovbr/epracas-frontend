@@ -20,6 +20,10 @@ export default class RhDialogController {
     this.isSaving = false
     this.formacoes = false
 
+    if (this.rh.data_entrada == undefined){
+      this.rh.data_entrada = ""
+    }
+
     this.listaSexo = [
       { value: "f", display_name: "Feminino" },
       { value: "m", display_name: "Masculino" },
