@@ -33,8 +33,6 @@ class PracaDetailCtrl {
 
     // @todo verificar futuramente para retirar este codifo fixo do back e do front, verificar em reuniao onde estão esses dados e quais sao os corretos.
     this.ramo_atividade = Praca.getAllRamoAtividade()
-    this.praca.municipio = this.praca.municipio.toLowerCase()
-    this.praca.uf = this.praca.uf.toUpperCase()
         
     praca.parceiros.map((objData) => {
       objData.ramo_atividade_name = this.ramo_atividade.filter(objValue => (objData.ramo_atividade === objValue.value))[0].display_name

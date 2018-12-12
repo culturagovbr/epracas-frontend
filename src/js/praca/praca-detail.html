@@ -73,10 +73,10 @@
               <span class="md-headline">{{ $ctrl.praca.nome }}</span>
               <span class="md-subhead">
                 <strong>Municipio: </strong>
-                <span class="textCap">{{$ctrl.praca.municipio}}</span>
+                <span class="textCap">{{$ctrl.praca.municipio | ucfirst}}</span>
               </span>
               <span class="md-subhead">
-                <strong>UF: </strong> {{$ctrl.praca.uf}}</span>
+                <strong>UF: </strong> {{$ctrl.praca.uf | uppercase}}</span>
               <span class="md-subhead">
                 <strong>Situação: </strong>{{ $ctrl.praca.situacao_descricao }}</span>
               <span class="md-subhead" ng-if="$ctrl.praca.situacao_descricao == 'Inaugurada'">
