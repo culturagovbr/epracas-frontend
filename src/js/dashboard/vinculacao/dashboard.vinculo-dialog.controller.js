@@ -47,7 +47,7 @@ class DashboardVinculoDialogCtrl {
 
     this.listaSituacao = [
       { value: "c", display_name: "Cancelado" },
-      { value: "p", display_name: "Pendente" },
+      // { value: "p", display_name: "Pendente" },
       { value: "a", display_name: "Aprovado" },
     ]
   }
@@ -78,23 +78,13 @@ class DashboardVinculoDialogCtrl {
   finalizaProcesso(pedido) {
     const caller = this.ErrorCatcher.callerName()
 
-    let dados = {}
-    if (!pedido.finalizado) {
-      dados = {
-        id_pub: pedido.id_pub,
-        situacao: pedido.situacao,
-        descricao: pedido.despacho,
-        despacho: pedido.despacho,
-      }
-    } else {
-      dados = {
-        id_pub: pedido.id_pub,
-        situacao: pedido.situacao,
-        descricao: pedido.despacho,
-        aprovado: pedido.aprovado,
-        finalizado: pedido.finalizado,
-        despacho: pedido.despacho,
-      }
+    var dados = {
+      id_pub: pedido.id_pub,
+      situacao: pedido.situacao,
+      descricao: pedido.despacho,
+      aprovado: pedido.aprovado,
+      finalizado: true,
+      despacho: pedido.despacho,
     }
 
     this.Vinculacao.save(dados)
