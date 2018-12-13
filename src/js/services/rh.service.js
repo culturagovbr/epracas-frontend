@@ -30,8 +30,8 @@ class RecursoHumano {
   save(praca, rh) {
     const caller = this.ErrorCatcher.callerName()
 
-    if (rh.data_entrada) { moment(rh.data_entrada).format("YYYY-MM-DD") }
-    if (rh.data_saida) { moment(rh.data_saida).format("YYYY-MM-DD") }
+    if (rh.data_entrada) { rh.data_entrada = moment(rh.data_entrada).format("YYYY-MM-DD") }
+    if (rh.data_saida) { rh.data_saida = moment(rh.data_saida).format("YYYY-MM-DD") }
 
     if (rh.id_pub) {
       return this.$http({
