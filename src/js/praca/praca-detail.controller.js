@@ -43,11 +43,29 @@ class PracaDetailCtrl {
       return objData
     })
 
+    this.mascaraTelefone = (telefone) => {
+      let aux = '';
+      telefone = telefone.replace(/ /g, '');
+      
+      if(telefone.toString().length == 11){
+        aux = telefone.match(/(\d{2})(\d{1})(\d{4})(\d{4})/);
+        telefone = '(' + aux[1] + ') ' + aux[2] + ' ' + aux[3] + '-' + aux[4];
+      }
+      if(telefone.toString().length == 10){
+        aux = telefone.match(/(\d{2})(\d{4})(\d{4})/);
+        telefone = '(' + aux[1] + ') ' + aux[2] + '-' + aux[3];
+      }else{
+        return telefone
+      }
+      return telefone
+    }
+
     if (praca.grupo_gestor !== null) {
       praca.grupo_gestor.membros.map((objData) => {
         objData.id = objData.id_pub
         objData.title = objData.nome
         objData.subtitle = objData.origem_descricao
+        objData.telefone = (objData.telefone != null) ? this.mascaraTelefone(objData.telefone.replace(/-/g, "")) : ''
         return objData
       })
     }
