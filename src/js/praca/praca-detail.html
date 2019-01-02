@@ -218,7 +218,7 @@
           <p ng-if="$ctrl.praca.funciona_domingo">Domingo das {{ $ctrl.praca.hora_abertura_domingo }} às {{ $ctrl.praca.hora_fechamento_domingo }}</p>
       </div>
       <div id="map" flex md-whiteframe="3" class="no-print">
-        <leaflet style="z-index: -1" id="mapPane" width="100%" height="100%" lf-center="geoLoc.center" defaults="geoLoc.defaults"
+        <leaflet style="z-index: 1" id="mapPane" width="100%" height="100%" lf-center="geoLoc.center" defaults="geoLoc.defaults"
           markers="geoLoc.markers"></leaflet>
       </div>
     </div>
