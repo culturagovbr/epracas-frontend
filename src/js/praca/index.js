@@ -26,8 +26,9 @@ import RhDialogController from "./rh-components/rh.dialog.ctrl"
 import Atores from "./atores-components/atores.component"
 import AtoresCtrl from "./atores-components/atores.controller"
 import PracaCardComponent from "./praca-card.component"
+import 'angular-filter'
 
-const pracaModule = angular.module("app.praca", [])
+const pracaModule = angular.module("app.praca", ['angular.filter'])
 
 pracaModule.config(PracaConfig)
 pracaModule.controller("PracaListCtrl", PracaListCtrl)

@@ -187,6 +187,8 @@ const CardComponent = {
       <div ng-show="$ctrl.booImg && !$ctrl.objValue.image" class="epr-avatar" style="background-image: url('https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y')"></div>
       <span class="epr-name">{{$ctrl.objValue.title}}</span>
       <span class="epr-subname">{{$ctrl.objValue.subtitle}}</span>
+      <span layout-align="center center" show-as-manager="true" class="epr-subname">{{$ctrl.objValue.email}}</span>
+      <span layout-align="center center" show-as-manager="true" class="epr-subname">{{$ctrl.objValue.telefone}}</span>
     </div>
     <md-card-actions layout="row" layout-align="center center" show-as-manager="true" pracaid="{{$ctrl.praca.id_pub}}" pracagestor="{{$ctrl.praca.gestor.user_id_pub}}">
       <button ng-if="$ctrl.mixDelete != 'rh' && $ctrl.mixDelete != 'membroGestor' " ng-click="$ctrl.dialogDelete($event, $ctrl.mixDelete, $ctrl.praca, $ctrl.objValue)" class="btn waves-effect waves-red transparent orange-text" type="submit" name="action">Excluir</button>

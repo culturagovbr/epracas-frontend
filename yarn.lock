@@ -151,6 +151,13 @@ angular-bootstrap-calendar@^0.28.4:
     angular-ui-bootstrap ">=0.14.0"
     interactjs "^1.2.0"
 
+angular-filter@0.5.17:
+  version "0.5.17"
+  resolved "https://registry.yarnpkg.com/angular-filter/-/angular-filter-0.5.17.tgz#60c0c7380fd45872cb8f10801cfe07e154062935"
+  integrity sha1-YMDHOA/UWHLLjxCAHP4H4VQGKTU=
+  dependencies:
+    angular "*"
+
 angular-input-masks@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/angular-input-masks/-/angular-input-masks-4.1.0.tgz#72149b0434b4c819d14f5b922165a57a4d213a49"
@@ -204,6 +211,11 @@ angular-ui-router@^1.0.0:
   resolved "https://registry.yarnpkg.com/angular-ui-router/-/angular-ui-router-1.0.3.tgz#bf2494caae95c37cf01af3761d89747cfed2db45"
   dependencies:
     "@uirouter/core" "5.0.3"
+
+angular@*:
+  version "1.7.5"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.5.tgz#d1c1c01c6f5dc835638f3f9aa51012857bdac49e"
+  integrity sha512-760183yxtGzni740IBTieNuWLtPNAoMqvmC0Z62UoU0I3nqk+VJuO3JbQAXOyvo3Oy/ZsdNQwrSTh/B0OQZjNw==
 
 angular@1.x, "angular@>= 1.0.8", angular@>=1.4.0, angular@^1.2, angular@^1.5.0, angular@^1.5.8:
   version "1.5.8"

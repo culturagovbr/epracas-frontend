@@ -90,8 +90,8 @@
             <img ng-src="{{praca.header_img ? praca.header_img : '/assets/header.jpg' }}" class="md-card-image">
             <md-card-title>
               <md-card-title-text>
-                <span class="md-headline">{{ praca.municipio}}</span>
-                <span class="md-subhead">{{praca.municipio}} - {{praca.uf | uppercase}}</span>
+                <span class="md-headline">{{ praca.municipio | ucfirst}}</span>
+                <span class="md-subhead">{{praca.municipio | ucfirst}} - {{praca.uf | uppercase}}</span>
               </md-card-title-text>
             </md-card-title>
             <md-card-content>
