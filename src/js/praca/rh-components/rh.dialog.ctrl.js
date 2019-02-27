@@ -1,5 +1,4 @@
 import angular from "angular"
-import moment from "moment"
 
 export default class RhDialogController {
   constructor($state, $mdDialog, $log, Toast, RecursoHumano, praca, objValue) {
@@ -19,6 +18,10 @@ export default class RhDialogController {
 
     this.isSaving = false
     this.formacoes = false
+
+    if (this.rh.data_entrada == undefined){
+      this.rh.data_entrada = ""
+    }
 
     this.listaSexo = [
       { value: "f", display_name: "Feminino" },
@@ -78,7 +81,6 @@ export default class RhDialogController {
 
   save(praca, rh) {
     this.isSaving = true
-    rh.data_entrada = moment(rh.data_entrada).format("YYYY-MM-DD");
 
     this.RecursoHumano.save(praca, rh)
       .then(
