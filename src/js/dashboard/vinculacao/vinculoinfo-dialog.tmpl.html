@@ -1,0 +1,40 @@
+<md-dialog layout="column" aria-label="Visualizar informações do Processo de Vinculação">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>
+                Informações sobre o Processo de Vinculação
+            </h2>
+            <md-button class="md-icon-button" ng-click="$ctrl.$mdDialog.cancel()">
+                <md-icon>close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content layout-padding layout-margin>
+        <div layout-gt-xs="row">
+            <h5>Identidade</h5>
+            <md-input-container class="md-block" flex>
+                <md-button ng-href="{{$ctrl.pedido.identificacao.arquivo}}" class="md-fab" aria-label="Documento de identidade">
+                    <md-icon>insert_drive_file</md-icon>
+                </md-button>
+            </md-input-container>
+            <h5>Adesão</h5>
+            <md-input-container class="md-block" flex>
+                <md-button ng-href="{{$ctrl.pedido.adesao.arquivo}}" class="md-fab" aria-label="Documento de adesão">
+                    <md-icon>insert_drive_file</md-icon>
+                </md-button>
+            </md-input-container>
+        </div>
+        <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex>
+                <label>Situação do Processo</label>
+                <input ng-model="$ctrl.pedido.situacao" disabled>
+            </md-input-container>
+        </div>
+        <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex>
+                <label>Despacho e considerações finais</label>
+                <textarea rows="2" ng-select-on-focus ng-model="$ctrl.pedido.despacho" disabled></textarea>
+            </md-input-container>
+        </div>
+    </md-dialog-content>
+</md-dialog>

@@ -10,6 +10,7 @@ class PracaAtividadeCtrl {
       $scope,
       $document,
       $mdDialog,
+      Atividade,
       $log,
       $state,
       Toast,
@@ -20,13 +21,18 @@ class PracaAtividadeCtrl {
 
     this.praca = {}
 
-    Atividade.options().then(
+    this.Atividade.options(objData.id_pub).then(
       (data) => {
-        objData.tipos = data.tipo.choices.filter((objValue) => { return (objData.tipo == objValue.value) });
-        objData.espacos = data.espaco.child.choices.filter((objValue) => { return (objData.espaco.indexOf(objValue.value) >= 0) });
-        objData.faixa_etarias = data.faixa_etaria.child.choices.filter((objValue) => { return (objData.faixa_etaria.indexOf(objValue.value) >= 0) });
-        objData.territorios = data.territorio.choices.filter((objValue) => { return (objData.territorio == objValue.value) });
-        objData.publicos = data.publico.choices.filter((objValue) => { return (objData.publico == objValue.value) });
+        objData.tipos = data.selections.tipo.choices.filter(
+          (objValue) => objData.tipo == objValue.value);
+        objData.espacos = data.selections.espaco.choices.filter(
+           (objValue) => objData.espaco.indexOf(objValue.value) >= 0);
+        objData.faixa_etarias = data.selections.faixa_etaria.choices.filter(
+          (objValue) => objData.faixa_etaria.indexOf(objValue.value) >= 0);
+        objData.territorios = data.selections.territorio.choices.filter(
+          (objValue) => objData.territorio == objValue.value);
+        objData.publicos = data.selections.publico.choices.filter(
+          (objValue) => objData.publico == objValue.value);
       }
     );
 

@@ -20,6 +20,10 @@ dashboardModule.controller("DashboardVinculoCtrl", DashboardVinculoCtrl);
 import DashboardVinculoDialogCtrl from "./vinculacao/dashboard.vinculo-dialog.controller";
 dashboardModule.controller("DashboardVinculoDialogCtrl", DashboardVinculoDialogCtrl);
 
+import DashboardVinculoInfoDialogCtrl from
+"./vinculacao/dashboard.vinculoinfo-dialog.controller";
+dashboardModule.controller("DashboardVinculoInfoDialogCtrl", DashboardVinculoInfoDialogCtrl)
+
 import DashboardPracasCtrl from "./pracas/dashboard.pracas.controller";
 dashboardModule.controller("DashboardPracasCtrl", DashboardPracasCtrl);
 

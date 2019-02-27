@@ -72,14 +72,15 @@ class Vinculacao {
     )
   }
 
-  list() {
+  list(finalizado) {
     const caller = this.ErrorCatcher.callerName()
 
     return this.$http({
       url: this.AppConstants.vinculoEndPoint,
       method: "GET",
       params: {
-        finalizado: false,
+        finalizado: finalizado,
+        ordering: 'finalizado, -data_abertura',
       }
     })
       .catch(

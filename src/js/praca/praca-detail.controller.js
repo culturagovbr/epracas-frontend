@@ -33,8 +33,6 @@ class PracaDetailCtrl {
 
     // @todo verificar futuramente para retirar este codifo fixo do back e do front, verificar em reuniao onde estão esses dados e quais sao os corretos.
     this.ramo_atividade = Praca.getAllRamoAtividade()
-    this.praca.municipio = this.praca.municipio.toLowerCase()
-    this.praca.uf = this.praca.uf.toUpperCase()
         
     praca.parceiros.map((objData) => {
       objData.ramo_atividade_name = this.ramo_atividade.filter(objValue => (objData.ramo_atividade === objValue.value))[0].display_name
@@ -45,11 +43,29 @@ class PracaDetailCtrl {
       return objData
     })
 
+    this.mascaraTelefone = (telefone) => {
+      let aux = '';
+      telefone = telefone.replace(/ /g, '');
+      
+      if(telefone.toString().length == 11){
+        aux = telefone.match(/(\d{2})(\d{1})(\d{4})(\d{4})/);
+        telefone = '(' + aux[1] + ') ' + aux[2] + ' ' + aux[3] + '-' + aux[4];
+      }
+      if(telefone.toString().length == 10){
+        aux = telefone.match(/(\d{2})(\d{4})(\d{4})/);
+        telefone = '(' + aux[1] + ') ' + aux[2] + '-' + aux[3];
+      }else{
+        return telefone
+      }
+      return telefone
+    }
+
     if (praca.grupo_gestor !== null) {
       praca.grupo_gestor.membros.map((objData) => {
         objData.id = objData.id_pub
         objData.title = objData.nome
         objData.subtitle = objData.origem_descricao
+        objData.telefone = (objData.telefone != null) ? this.mascaraTelefone(objData.telefone.replace(/-/g, "")) : ''
         return objData
       })
     }

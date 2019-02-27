@@ -53,7 +53,7 @@ const Parceiros = {
         </div>
         <div layout-wrap layout-margin layout="row">
           <ep-praca-card ng-repeat="objValue in $ctrl.parceiros" praca="$ctrl.praca"
-          boo-img="$ctrl.booImg" str-controller="$ctrl.strController" obj-value="objValue" 
+          boo-img="$ctrl.booImg" str-controller="$ctrl.strController" obj-value="objValue"
           url-dialog="$ctrl.urlDialog" mix-delete="$ctrl.urlDelete"></ep-praca-card>
         </div>
       </div>
