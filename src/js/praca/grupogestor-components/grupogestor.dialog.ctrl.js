@@ -13,6 +13,10 @@ export default class GrupoGestorDialogController {
     })
 
     this.isSaving = false
+    if (this.grupogestor == undefined){
+      this.grupogestor = { data_instituicao: "" }
+    }
+    this.grupogestor.data_finalizacao = ""
 
     this.GrupoGestor.options_grupogestor(praca)
       .then((data) => {

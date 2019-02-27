@@ -128,9 +128,14 @@ class Controller {
   rhEndDialog(event, praca, rh) {
     event.stopPropagation()
     this.$mdDialog.show({
-      controller: ["$state", "$mdDialog", "RecursoHumano", "Toast", function DialogController($state, $mdDialog, RecursoHumano, Toast) {
+      controller: ["$state", "$mdDialog", "RecursoHumano", "Toast", "rh", function DialogController($state, $mdDialog, RecursoHumano, Toast, rh) {
+        angular.extend(this, {
+          rh
+        })
+        if(this.rh.data_saida  == undefined) {
+          this.rh.data_saida = ""
+        }
         this.finalizaVinculo = () => {
-          angular.extend(rh, this.rh)
           RecursoHumano.delete(praca, rh)
             .then(() => {
               Toast.showSuccessToast("Vínculo finalizado com sucesso")
