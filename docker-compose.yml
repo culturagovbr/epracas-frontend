@@ -2,9 +2,12 @@ version: '2'
 services:
   epracas_frontend:
     volumes:
-     - ./:/source
+      - ./:/var/www/epracas-frontend
     container_name: epracas_frontend 
     build: .
+    working_dir: /var/www/epracas-frontend
+    command:
+      sh -c 'gulp'
     ports:
       - "4000:4000"
       - "4001:4001"

@@ -1,12 +1,10 @@
-FROM node:latest 
+FROM node:8.15.1-jessie-slim
 
-WORKDIR /source
+WORKDIR /var/www/epracas-frontend
 
-COPY start.sh /source/.
+COPY . .
 
-COPY package.json /source/.
+RUN npm install -g yarn \
+  && npm install -g natives \
+  && yarn global add gulp
 
-RUN npm install yarn \
-  && chmod +x start.sh
-
-CMD /source/start.sh
