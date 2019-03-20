@@ -52,11 +52,18 @@ Execute o comando a seguir a partir do diretório root do projeto.
     docker-compose up
 
 Comandos úteis:
-- docker-compose up -d (Sobe o container em background)
-- docker-compose down (Para o serviço e remove o container, networks, imagens e volumes)
-- docker-compose rm (Remove containers parados)
-- docker-compose restart (Reinicia o serviço)
-
+```
+docker-compose up -d # Sobe o container em background
+```
+```
+docker-compose down # Para o serviço e remove o container, networks, imagens e volumes
+```
+```
+docker-compose rm # Remove containers parados
+```
+```
+docker-compose restart # Reinicia o serviço
+```
 Mais comandos:
 [https://docs.docker.com/compose/reference/overview/](#https://docs.docker.com/compose/reference/overview/)).
 
