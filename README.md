@@ -40,65 +40,33 @@ gulp
 
 ### Ambiente de desenvolvimento local com container Docker.
 
-#### 1. Instalação do docker.
-Instale o docker escolhendo a instalação conforme o seu OS (Sistema Operacional).
+#### 1. Instalação do docker e docker compose.
+Instale ambos escolhendo a instalação conforme o seu OS (Sistema Operacional).
 
-[Docker Installation](https://docs.docker.com/engine/installation/) 
+[Docker Installation](https://docs.docker.com/engine/installation/)
+[Docker Compose Installation](https://docs.docker.com/compose/install/)
     
 #### 2. Rodar o container docker.
-Execute o container apartir de uma imagem pública do MinC.
+Execute o comando a seguir a partir do diretório root do projeto.
 
-    docker run -it -v /var/www:/var/www -p 4000:4000 --name epracas-front culturagovbr/epracas-front
+    docker-compose up
 
-Este comando faz as seguites tarefas:
-- Baixa uma imagem pública do minc para o front do e-praças;
-- Coloca pra rodar a imagem baixada;
-- Compartilha a pasta "/var/www" com o container para poder editar os arquivos de fora do container;
-- Compartilha a porta "4000" (porta padrao do gulp) para fora do container;
-- Coloca o nome do container de epracas-front;
-- Entra no container.
+Comandos úteis:
+- docker-compose up -d (Sobe o container em background)
+- docker-compose down (Para o serviço e remove o container, networks, imagens e volumes)
+- docker-compose rm (Remove containers parados)
+- docker-compose restart (Reinicia o serviço)
 
-Entendendo os comandos:
-- docker (chama um comando docker);
-- run (baixa uma imagem e coloca ela pra rodar, caso ja tenha a imagem localmente ele usa a local);
-- -it (ao terminar o comando entra no container);
-- -v (compartilha pasta);
-- -p (compartilha porta);
-- --name (coloca um nome no container).
-- culturagovbr/web-node-ubuntu (imagem publica do minc no Hub Docker, para saber mais acesse: [https://hub.docker.com/u/culturagovbr/](#https://hub.docker.com/u/culturagovbr/)).
+Mais comandos:
+[https://docs.docker.com/compose/reference/overview/](#https://docs.docker.com/compose/reference/overview/)).
 
 Para saber mais comandos do docker acesse: [https://docs.docker.com/engine/reference/run/](#https://docs.docker.com/engine/reference/run/)
-
-#### 3. Baixar o código e preparar para rodar o ambiente.
-
-Acessar a pasta "/var/www", baixar o código.
-
-    cd /var/www 
-    git clone https://github.com/culturagovbr/epracas-frontend.git
-
-
-#### 4. Instalando depedências com o yarn.
-
-Entra na pasta:
-    
-    cd ./epracas-frontend
-    
-Instala a depedências:
-
-    yarn install
 
 #### 5. Criando arquivo de configuração. 
 Copie o arquivo app.yml.dist para app.yml e edite com suas configurações:
 
     cp app.yml.dist app.yml
-        
-#### 6. Rodando o servidor.
 
-    gulp
-ou para rodar setando as variaveis de ambiente.
-
-    NODE_ENV=production gulp
-    
 ### Configurando as variáveis de ambiente.
 Alguns elementos da aplicação podem ser configurados através de variáveis de ambiente para alterar caracteristicas de acordo com o ambiente utilizado. Lembre-se de configurar corretamente o arquivo para garantir o bom funcionamento tanto do ambiente de desenvolvimento quanto o de produção.
 
