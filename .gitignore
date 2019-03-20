@@ -13,3 +13,4 @@ media/**
 package-lock.json
 
 .idea/*
+.vscode/*
