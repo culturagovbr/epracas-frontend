@@ -7,7 +7,7 @@ services:
     build: .
     working_dir: /var/www/epracas-frontend
     command:
-      sh -c 'gulp'
+      sh -c 'yarn && gulp'
     ports:
       - "4000:4000"
       - "4001:4001"
