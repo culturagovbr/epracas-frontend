@@ -8,12 +8,13 @@ class EventCtrl {
 
   }
 
-  constructor($state, $scope, $http, $log, $mdDialog, Toast, Atividade, AppConstants, praca) {
+  constructor($state, $scope, $q, $http, $log, $mdDialog, Toast, Atividade, AppConstants, praca) {
     "ngInject"
 
     angular.extend(this, {
       $state,
       $scope,
+      $q,
       $http,
       $log,
       $mdDialog,
@@ -22,101 +23,101 @@ class EventCtrl {
       Atividade,
       praca,
       strSubareaLabel: "Subarea da Atividade",
-      booSubareaDisable: false,
     })
 
-    const agendaApiUrl = AppConstants.agendaApi
+    this.setOptions().then(()=> {
+      if (this.objValue) {
+        this.eventData = this.objValue
+        this.eventData.tipo = this.eventData.tipo.toString();
+      } else {
+        this.eventData = {}
+      }
 
-    this.Atividade.options()
-      .then((data) => {
-        this._espacoAtividade = data.espaco.child.choices
-        this._listaAtividades = data.tipo.choices
-        this._Periodicidade = data.ocorrencia.children.frequency_type.choices
-        this._territorioAtividade = data.territorio.choices
-        this._publicoAtividade = data.publico.choices
-        this._faixaEtariaAtividade = data.faixa_etaria.child.choices    
+      this.selectedDays = {}
+      this.eventData.ocorrencia = {}
+      this.eventData.ocorrencia.start = new Date()
+      this.eventData.ocorrencia.repeat_until = new Date()
 
-      })
-    if (this.objValue) {
-      this.eventData = this.objValue
-      //convertendo tipo retornado do banco para string
-      //por alguma razão, o frontend só aceita se for string
-      this.eventData.tipo = this.eventData.tipo.toString();
-    } else {
-      this.eventData = {}
-    }
+      this.Atividade.listAreas()
+        .then((data) => {
+          this.areaAtividade = data
 
-    this.selectedDays = {}
-    this.eventData.ocorrencia = {}
-    this.eventData.ocorrencia.start = new Date()
-    this.eventData.ocorrencia.repeat_until = new Date()
+          this.areaAtividade.map(this.preProcessArea)
 
-    this.Atividade.listAreas()
-      .then((data) => {
-        this.areaAtividade = data
-        
-        this.areaAtividade.map(this.preProcessArea)
-        
-        this.eventData.areas = this.areaAtividade.filter((area) => { return (area.parent == null) })
-        
-        //caso o objeto exista, trata-se de uma edição
-        if(this.objValue){
-          
-          //Checa se a area marcada esta na lista de áreas pai
-          this.area = this.eventData.areas.filter((area) => {return (area.id == this.objValue.area)})          
-          if(this.area.length > 0){
-            this.eventData.area = this.area[0];
-            //carrega as subareas no formulario, mas nao seleciona nenhuma
-            this.eventData.area = this.eventData.area.id;
-            this.parseArea();
-            
-          } else if (this.objValue.area != null){
-            // area selecionada era subarea
-            this.eventData.subarea = this.areaAtividade.filter((area) => {return (area.id == this.objValue.area)})
-            this.eventData.subarea = this.eventData.subarea[0];
-            this.eventData.area = this.eventData.subarea.parent;
-            this.eventData.subarea = this.eventData.subarea.id;
-            this.parseArea();
+          this.eventData.areas = this.areaAtividade.filter((area) => { return (area.parent == null) })
+
+          //caso o objeto exista, trata-se de uma edição
+          if(this.objValue){
+
+            //Checa se a area marcada esta na lista de áreas pai
+            this.area = this.eventData.areas.filter((area) => {return (area.id == this.objValue.area)})
+            if(this.area.length > 0){
+              this.eventData.area = this.area[0];
+              //carrega as subareas no formulario, mas nao seleciona nenhuma
+              this.eventData.area = this.eventData.area.id;
+              this.parseArea();
+
+            } else if (this.objValue.area != null){
+              // area selecionada era subarea
+              this.eventData.subarea = this.areaAtividade.filter((area) => {return (area.id == this.objValue.area)})
+              this.eventData.subarea = this.eventData.subarea[0];
+              this.eventData.area = this.eventData.subarea.parent;
+              this.eventData.subarea = this.eventData.subarea.id;
+              this.parseArea();
+            }
+
+
           }
-                   
 
-        }
-        
-      })
+        })
 
-        this._DiasSemana = [
-      {
-        value: "MO",
-        display_name: "Segunda",
-      },
-      {
-        value: "TU",
-        display_name: "Terça",
-      },
-      {
-        value: "WE",
-        display_name: "Quarta",
-      },
-      {
-        value: "TH",
-        display_name: "Quinta",
-      },
-      {
-        value: "FR",
-        display_name: "Sexta",
-      },
-      {
-        value: "SA",
-        display_name: "Sabado",
-      },
-      {
-        value: "SU",
-        display_name: "Domingo",
-      },
-    ]
+          this._DiasSemana = [
+        {
+          value: "MO",
+          display_name: "Segunda",
+        },
+        {
+          value: "TU",
+          display_name: "Terça",
+        },
+        {
+          value: "WE",
+          display_name: "Quarta",
+        },
+        {
+          value: "TH",
+          display_name: "Quinta",
+        },
+        {
+          value: "FR",
+          display_name: "Sexta",
+        },
+        {
+          value: "SA",
+          display_name: "Sabado",
+        },
+        {
+          value: "SU",
+          display_name: "Domingo",
+        },
+      ]
 
-    this._DiasSemana.forEach(dia => (this.selectedDays[dia.value] = false))
+      this._DiasSemana.forEach(dia => (this.selectedDays[dia.value] = false))
+    });
+  }
 
+  setOptions() {
+    var defer = this.$q.defer();
+    this.Atividade.options(this.praca.id_pub)
+      .then((data) => {
+        this._espacoAtividade = data.selections.espaco.choices
+        this._listaAtividades = data.selections.tipo.choices
+        this._territorioAtividade = data.selections.territorio.choices
+        this._publicoAtividade = data.selections.publico.choices
+        this._faixaEtariaAtividade = data.selections.faixa_etaria.choices
+        defer.resolve()
+      });
+    return defer.promise;
   }
 
   cancel() {
@@ -174,9 +175,9 @@ class EventCtrl {
   }
 
   parseArea() {
-  
+
     this.eventData.subareas = this.areaAtividade.filter((x)=> {return x.parent === this.eventData.area})
-    
+
   }
 }
 
