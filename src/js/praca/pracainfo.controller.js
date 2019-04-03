@@ -33,7 +33,7 @@ class PracaInfoCtrl {
         angular.forEach(data.uf.choices, (uf) => {
           
           if(uf.value.toUpperCase() == praca.uf){
-            this.praca.uf = uf;
+            this.praca.uf = uf.value;
           }
         })
 
