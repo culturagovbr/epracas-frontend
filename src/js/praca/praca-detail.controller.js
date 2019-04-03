@@ -16,12 +16,7 @@ class PracaDetailCtrl {
         praca,
       })
 
-    /**
-     * Funcao responsavel por marcar o calendario do material-angular conforme as atividades da agenda desta praca.
-     * @name markDate
-     * @author Ruy Ferreira <ruyjfs@gmail.com>
-     * @param array arrAtividadeAllDate - Array onde o valor e a data.
-     */
+
     this.markDate = (arrAtividadeAllDate) => {
       arrAtividadeAllDate.forEach(value => {
         const arrDate = value.date.split(".").reverse()
@@ -31,7 +26,6 @@ class PracaDetailCtrl {
       })
     }
 
-    // @todo verificar futuramente para retirar este codifo fixo do back e do front, verificar em reuniao onde estão esses dados e quais sao os corretos.
     this.ramo_atividade = Praca.getAllRamoAtividade()
         
     praca.parceiros.map((objData) => {
@@ -112,7 +106,6 @@ class PracaDetailCtrl {
       });
 
       praca.agenda = atividades
-      // Tratando as datas para pegar o range entre elas.
       let arrAtividadeAllDateStart = []
       let arrAtividadeAllDate = []
       let intLoop = 0
@@ -132,9 +125,9 @@ class PracaDetailCtrl {
 
       arrAtividadeAllDate = arrAtividadeAllDate.concat(arrAtividadeAllDateStart)
 
-      setTimeout(() => this.markDate(arrAtividadeAllDate), 500) // Marcando as datas no calendario ao entrar na tela.
+      setTimeout(() => this.markDate(arrAtividadeAllDate), 500)
       $(".md-virtual-repeat-scroller, .md-virtual-repeat-scroller div:first").on("scroll", () => {
-        setTimeout(() => this.markDate(arrAtividadeAllDate), 500) // Marcando as datas ao perceber o evento scroll no calendario.
+        setTimeout(() => this.markDate(arrAtividadeAllDate), 500)
       })
     })
 
@@ -193,8 +186,6 @@ class PracaDetailCtrl {
     $scope.tabIntSelected = 0
     $scope.intWindowHeight = $(window).height()
 
-    // Pegando o evento scroll da tela para deixar as abas dinamicas conforme o scroll.
-    // angular.element(document).ready(function(){
     $document.ready(function () {
         $('.parallax').parallax();
       $(".materialboxed").materialbox()
@@ -228,7 +219,6 @@ class PracaDetailCtrl {
             }
           });
 
-        // elmLink.removeClass("animated");
         if (intPosition >= intPracasPosition) {
           elmTabPracas.addClass("fixed");
           if (!booFixed) {
@@ -253,25 +243,21 @@ class PracaDetailCtrl {
     praca.imagem = praca.imagem.reverse();
     $scope.arrPhotos = this.buildGridModel(praca.imagem);
 
-
-
-    // Ao clicar em alguma tecla do teclado, verifica se existe imagem aberta, e conforme as setas do teclado vai trocando de imagem.
     document.onkeydown = (e) => {
       e = e || window.event;
-      if (e.keyCode == '37') { // left arrow
+      if (e.keyCode == '37') {
         this.imgChange('prev');
-      } else if (e.keyCode == '39') { // right
+      } else if (e.keyCode == '39') {
         this.imgChange('next');
       }
     };
 
-    // Funcao de trocar as imagens que estao no zoom.
     this.imgChange = (strDirection) => {
       let elmActive = $('.materialboxed.active'),
           elmPrev = elmActive.closest('md-grid-tile').prev(),
           elmNext = elmActive.closest('md-grid-tile').next();
       if (elmActive.length > 0) {
-        if (strDirection == 'prev') { // left arrow
+        if (strDirection == 'prev') {
           elmActive.click();
           setTimeout(() => {
             elmPrev.find('img').click();
@@ -279,7 +265,7 @@ class PracaDetailCtrl {
           if (elmPrev.length == 0) {
             $('.container-arrow').fadeOut('slow');
           }
-        } else { // right
+        } else {
           elmActive.click();
           setTimeout(() => {
             elmNext.find('img').click();
@@ -294,7 +280,6 @@ class PracaDetailCtrl {
       }
     };
 
-    // Funcionalidades de alterar o zoom das imagens com as setas da tela.
     $('body').on('click touchend', '.material-placeholder img', () => {
       let elmActive = $('.materialboxed.active');
       if (elmActive.length > 0) {
@@ -303,18 +288,13 @@ class PracaDetailCtrl {
         $('.container-arrow').fadeOut('slow');
       }
     });
-    // Como nao foi possivel pegar o evento click ao retirar a imagem do zoom, foi feito dessa forma ate encontrar uma solucao melhor.
+
     let intervel = setInterval(() => {
-      if ($('#materialbox-overlay').length == 0) $('.container-arrow').fadeOut('slow'); // Verificando se existe imagem em zoom, caso exista esconde os botoes de seta.
-      if ( $state.current.name != 'app.praca') clearInterval(intervel); // Retirando o setIntervel se estiver em outra tela.
+      if ($('#materialbox-overlay').length == 0) $('.container-arrow').fadeOut('slow');
+      if ( $state.current.name != 'app.praca') clearInterval(intervel);
     }, 1000);
   }
 
-  /**
-   * Constroi o objecto da grid em mozaico com as imagens da praca ficando no formato que o componente do Material Angular espera.
-   * @param {Array} arrValue - Array com as imagens das pracas.
-   * @returns {Array} arrValueTreated - Array tratado para o componente do Material Angular.
-   */
   buildGridModel(arrValue) {
     let arrValueTreated = [], arrDefault = [];
     arrDefault[0] = {title: "Bloco 1", description: " ", url: "/assets/praca-grid/bloco1.jpg", background : "red", span : {row : 2, col : 2}};
@@ -406,20 +386,6 @@ class PracaDetailCtrl {
           fullscreen: true,
         },
       }
-
-      // userMenu.partner = {
-      //   id: "parceiro",
-      //   name: "Adicionar Parceiro",
-      //   icon: "people",
-      //   dialog: {
-      //     controller: "ParceirosCtrl",
-      //     controllerAs: "$ctrl",
-      //     templateUrl: "praca/parceiros-components/parceiros-dialog.tmpl.html",
-      //     parent: angular.element(this.$document.body),
-      //     locals: { praca: this.praca },
-      //     fullscreen: true,
-      //   },
-      // }
 
       userMenu.profile = {
         id: "perfil",

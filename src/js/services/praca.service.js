@@ -251,7 +251,7 @@ export default class Praca {
       })
         .then(response => response.data)
         .then(data => {
-          if(data.actions.PUT) {
+          if(data.hasOwnProperty("actions") && data.actions.PUT) {
             return data.actions.PUT
           } else {
             return data.selections

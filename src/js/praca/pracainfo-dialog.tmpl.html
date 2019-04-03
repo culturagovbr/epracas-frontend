@@ -26,7 +26,7 @@
           <md-input-container ng-disabled="!$ctrl.isAdmin" flex-gt-xs=50>
             <md-icon>attach_money</md-icon>
             <label>Valor do Repasse</label>
-            <input ng-disabled="!$ctrl.isAdmin" name="pracaRepasse" type="currency" ng-model="$ctrl.praca.repasse">
+            <input ng-disabled="!$ctrl.isAdmin" required name="pracaRepasse" type="currency" ng-model="$ctrl.praca.repasse">
           </md-input-container>
         </div>
         <div layout-gt-xs="row">
@@ -107,8 +107,8 @@
         </md-input-container>
         <md-input-container>
           <label>UF</label>
-          <md-select ng-disabled="true" name="pracaUf" required ng-model="$ctrl.praca.uf">
-            <md-option ng-repeat="uf in $ctrl.listaUf" ng-selected="{{uf.value == $ctrl.praca.uf.value}}" value="{{uf.value}}">
+          <md-select ng-disabled="true" name="pracaUf" ng-model="$ctrl.praca.uf">
+            <md-option ng-repeat="uf in $ctrl.listaUf" ng-selected="{{uf.value == $ctrl.praca.uf}}" value="{{uf.value}}">
               {{uf.display_name}}
             </md-option>
           </md-select>
