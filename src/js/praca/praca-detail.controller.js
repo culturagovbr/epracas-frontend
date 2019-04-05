@@ -3,7 +3,7 @@ import moment from "moment"
 import { log } from "util"
 
 class PracaDetailCtrl {
-  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, praca, $timeout, 
+  constructor($scope, $document, $window, $mdDialog, $log, User, Atividade, praca, $timeout,
     $filter, $state, Praca, Atores, RecursoHumano) {
     "ngInject"
 
@@ -16,7 +16,6 @@ class PracaDetailCtrl {
         praca,
       })
 
-
     this.markDate = (arrAtividadeAllDate) => {
       arrAtividadeAllDate.forEach(value => {
         const arrDate = value.date.split(".").reverse()
@@ -27,7 +26,7 @@ class PracaDetailCtrl {
     }
 
     this.ramo_atividade = Praca.getAllRamoAtividade()
-        
+
     praca.parceiros.map((objData) => {
       objData.ramo_atividade_name = this.ramo_atividade.filter(objValue => (objData.ramo_atividade === objValue.value))[0].display_name
       objData.id = objData.id_pub
@@ -40,7 +39,7 @@ class PracaDetailCtrl {
     this.mascaraTelefone = (telefone) => {
       let aux = '';
       telefone = telefone.replace(/ /g, '');
-      
+
       if(telefone.toString().length == 11){
         aux = telefone.match(/(\d{2})(\d{1})(\d{4})(\d{4})/);
         telefone = '(' + aux[1] + ') ' + aux[2] + ' ' + aux[3] + '-' + aux[4];
@@ -125,10 +124,16 @@ class PracaDetailCtrl {
 
       arrAtividadeAllDate = arrAtividadeAllDate.concat(arrAtividadeAllDateStart)
 
-      setTimeout(() => this.markDate(arrAtividadeAllDate), 500)
-      $(".md-virtual-repeat-scroller, .md-virtual-repeat-scroller div:first").on("scroll", () => {
-        setTimeout(() => this.markDate(arrAtividadeAllDate), 500)
-      })
+      setInterval(() => {
+        this.markDate(arrAtividadeAllDate)
+      }, 200)
+
+      this.reset = function(){
+        this.myDate = null
+        this.dateSet = false
+        $scope.$emit('md-calendar-change');
+      };
+
     })
 
     if (angular.isUndefined(praca.header_img) || praca.header_img === null) {
@@ -435,6 +440,7 @@ class PracaDetailCtrl {
     dialog.targetEvent = $event
     this.$mdDialog.show(dialog)
   }
+
 }
 
 export default PracaDetailCtrl
