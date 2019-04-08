@@ -1,5 +1,5 @@
 class DashboardVinculoDialogCtrl {
-  constructor($scope, $document, $log, $mdDialog, $mdToast, $mdStepper,
+  constructor($scope, $document, $log, $mdDialog, $mdToast, $mdStepper, $state,
     ErrorCatcher, Vinculacao, Toast, AppConstants, pedido) {
     "ngInject"
 
@@ -9,6 +9,7 @@ class DashboardVinculoDialogCtrl {
       $log,
       $mdDialog,
       $mdStepper,
+      $state,
       ErrorCatcher,
       Vinculacao,
       Toast,
@@ -77,12 +78,16 @@ class DashboardVinculoDialogCtrl {
 
   finalizaProcesso(pedido) {
     const caller = this.ErrorCatcher.callerName()
+    var aprovado = false;
+    if (pedido.situacao === 'a') {
+      aprovado = true;
+    }
 
     var dados = {
       id_pub: pedido.id_pub,
       situacao: pedido.situacao,
       descricao: pedido.despacho,
-      aprovado: pedido.aprovado,
+      aprovado: aprovado,
       finalizado: true,
       despacho: pedido.despacho,
     }
@@ -94,8 +99,9 @@ class DashboardVinculoDialogCtrl {
           if(dados.aprovado){
             this.Toast.showSuccessToast("Pedido aprovado. O gestor já se encontra com permissões sobre a Praça.");
           } else {
-            this.Toast.showSuccessToast("Pedido reprovado. O gestor não receberá permissões sobre a Praça.");
+            this.Toast.showRejectedToast("Pedido reprovado. O gestor não receberá permissões sobre a Praça.");
           }
+          this.$state.reload()
         }
     )
     .catch((err) => {

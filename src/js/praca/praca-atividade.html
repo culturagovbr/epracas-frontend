@@ -82,7 +82,7 @@
           </md-subheader>
           <md-list-item ng-repeat="obj in $ctrl.objData.territorios" class="md-2-line">
             <div class="md-list-item-text" layout="column" ng-class="md-offset">
-              <h4>{{ $ctrl.objData.praca.municipio }} - {{ $ctrl.objData.praca.uf }}</h4>
+              <h4>{{ $ctrl.objData.praca.municipio | ucfirst }} - {{ $ctrl.objData.praca.uf | uppercase }}</h4>
               <h4>{{$ctrl.objData.praca.logradouro}}</h4>
             </div>
           </md-list-item>

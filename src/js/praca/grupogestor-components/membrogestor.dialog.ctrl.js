@@ -26,12 +26,18 @@ export default class MembroGestorDialogController {
 
   save(praca, membro) {
     this.isSaving = true
-
-    this.GrupoGestor.save_membrogestor(praca.id_pub, praca.grupo_gestor.id_pub, membro)
-      .then(
+    this.GrupoGestor.save_membrogestor(
+      praca.id_pub,
+      praca.grupo_gestor.id_pub,
+      membro
+    ).then(
         (response) => {
           this.$mdDialog.hide()
-          this.Toast.showSuccessToast("Membro Gestor Adicionado")
+          let message = "Membro Gestor Adicionado";
+          if(response.config.method === 'PATCH') {
+            message = 'Membro Gestor Alterado';
+          }
+          this.Toast.showSuccessToast(message)
           this.$state.reload()
         }
       )

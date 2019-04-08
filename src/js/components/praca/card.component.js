@@ -57,7 +57,7 @@ const PracaCard = {
       ng-click="$ctrl.navigateTo('app.praca', {pk: $ctrl.praca.id_pub})">
 
       <div class="md-list-item-text praca-text">
-        {{ ::$ctrl.praca.municipio }} - {{ ::$ctrl.praca.uf | uppercase }}
+        {{ ::$ctrl.praca.municipio  | ucfirst }} - {{ ::$ctrl.praca.uf | uppercase }}
         <span class="big">{{ ::$ctrl.praca.nome }}</span>
       </div>
       <div class="md-secondary epr-fill" layout-align="end start">

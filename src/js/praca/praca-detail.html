@@ -138,8 +138,6 @@
         </md-fab-trigger>
       </md-fab-speed-dial>
       <div class="activities-log" layout-gt-xs="row">
-        <!-- <div class="row">
-          <md-card> -->
         <div class="event-list">
           <event-previewer ng-repeat="event in $ctrl.praca.agenda
               | filter: { data_inicio: $ctrl.parseDate($ctrl.myDate) }
@@ -147,11 +145,9 @@
               | limitTo: 4" event="event">
           </event-previewer>
         </div>
-        <!-- </md-card>
-        </div> -->
-
         <div flex class="calendar">
           <md-calendar ng-click="$ctrl.dateSet = true" ng-model="$ctrl.myDate"></md-calendar>
+          <md-button ng-show="$ctrl.dateSet" style="left: 75%; position: relative;" ng-click="$ctrl.reset();">Limpar</md-button>
         </div>
       </div>
     </div>
