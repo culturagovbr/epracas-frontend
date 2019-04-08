@@ -21,7 +21,7 @@ class PracaInfoCtrl {
           this.applyEffect(this.praca);
       });
 
-    this.isAdmin = this.User.IsManagerOrAdmin(this.praca);
+    this.isAdmin = this.User.IsAdmin(this.praca);
 
     this.Praca.options(praca)
       .then((data) => {
