@@ -1,8 +1,25 @@
 class GeolocCtrl {
-  constructor($scope, $state, GeoLocation, leafletData) {
+  constructor($scope, $state, $window, GeoLocation, leafletData, Toast) {
     "ngInject";
 
+    angular.extend(this, {
+      $scope,
+      $state,
+      $window,
+      GeoLocation,
+      leafletData,
+      Toast
+    })
+
     $scope.$state = $state;
+    self = this
+
+    
+    GeoLocation.getCurrentPosition().catch(()=>{
+      self.Toast.showRejectedToast('É necessário desponibilizar sua localização para este site nas configurações do seu navegador.')
+      $scope.$state.go('app.home')
+      $window.scrollTo(0, 0);
+    })
 
     this.geoLoc = {
       defaults: {
