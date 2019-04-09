@@ -16,7 +16,7 @@ class GeolocCtrl {
 
     
     GeoLocation.getCurrentPosition().catch(()=>{
-      self.Toast.showRejectedToast('É necessário desponibilizar sua localização para este site nas configurações do seu navegador.')
+      self.Toast.showRejectedToast('É necessário disponibilizar sua localização para este site nas configurações do seu navegador.')
       $scope.$state.go('app.home')
       $window.scrollTo(0, 0);
     })
