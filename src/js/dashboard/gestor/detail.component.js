@@ -54,7 +54,7 @@ const GestorDetailElement = {
       <md-card-title>
         <md-card-title-text>
           <span class="md-headline">{{$ctrl.gestor.praca.nome}}</span>
-          <span class="md-subhead">{{$ctrl.gestor.praca.municipio}} - {{$ctrl.gestor.praca.uf | uppercase}}</span>
+          <span class="md-subhead">{{$ctrl.gestor.praca.municipio | ucfirst}} - {{$ctrl.gestor.praca.uf | uppercase}}</span>
         </md-card-title-text>
       </md-card-title>
       <md-card-content>
