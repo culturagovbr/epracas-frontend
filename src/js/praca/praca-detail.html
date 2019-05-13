@@ -126,9 +126,7 @@
           </h1>
         </div>
       </div>
-      <div>
-        <h3 flex> Próximos Eventos </h3>
-      </div>
+
       <md-fab-speed-dial show-as-manager="true" pracaid="{{$ctrl.praca.id_pub}}" pracagestor="{{$ctrl.praca.gestor.user_id_pub}}"
         class="md-fab-top-right" ng-click="$ctrl.showDialog($event, $ctrl.userMenu.event.dialog)" style="padding:0;">
         <md-fab-trigger>
@@ -137,17 +135,18 @@
           </md-button>
         </md-fab-trigger>
       </md-fab-speed-dial>
-      <div class="activities-log" layout-gt-xs="row">
-        <div class="event-list">
-          <event-previewer ng-repeat="event in $ctrl.praca.agenda
-              | filter: { data_inicio: $ctrl.parseDate($ctrl.myDate) }
-              | orderBy: 'event.data_inicio':true
-              | limitTo: 4" event="event">
-          </event-previewer>
-        </div>
-        <div flex class="calendar">
-          <md-calendar ng-click="$ctrl.dateSet = true" ng-model="$ctrl.myDate"></md-calendar>
-          <md-button ng-show="$ctrl.dateSet" style="left: 75%; position: relative;" ng-click="$ctrl.reset();">Limpar</md-button>
+
+      <div flex class="calendar">
+        <div layout-gt-sm="row">
+          <div style="width: 100vw; margin: auto;" class="animated {{$ctrl.strAnimate}}">
+            <md-card style="padding: 20px;">
+              <mwl-calendar style="width: 100%;" view="$ctrl.config.calendarView" view-date="$ctrl.config.viewDate" events="$ctrl.events"
+                view-title="$ctrl.config.calendarTitle" on-view-change-click="false" on-event-click="$ctrl.navigateTo(calendarEvent.id_pub)"
+                on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+                cell-is-open="true">
+              </mwl-calendar>
+            </md-card>
+          </div>
         </div>
       </div>
     </div>

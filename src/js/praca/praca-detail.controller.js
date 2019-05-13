@@ -16,14 +16,14 @@ class PracaDetailCtrl {
         praca,
       })
 
-    this.markDate = (arrAtividadeAllDate) => {
-      arrAtividadeAllDate.forEach(value => {
-        const arrDate = value.date.split(".").reverse()
-        arrDate[1] = arrDate[1].replace("0", "") - 1 // Mes
-        arrDate[2] = arrDate[2][0].replace("0", "") + arrDate[2][1] // Dia
-        $('[id$="-month-' + arrDate.join("-") + '"]' + " .md-calendar-date-selection-indicator").css("background-color", value.color)
-      })
-    }
+    // this.markDate = (arrAtividadeAllDate) => {
+    //   arrAtividadeAllDate.forEach(value => {
+    //     const arrDate = value.date.split(".").reverse()
+    //     arrDate[1] = arrDate[1].replace("0", "") - 1 // Mes
+    //     arrDate[2] = arrDate[2][0].replace("0", "") + arrDate[2][1] // Dia
+    //     $('[id$="-month-' + arrDate.join("-") + '"]' + " .md-calendar-date-selection-indicator").css("background-color", value.color)
+    //   })
+    // }
 
     this.ramo_atividade = Praca.getAllRamoAtividade()
 
@@ -94,45 +94,46 @@ class PracaDetailCtrl {
         .format(formatString)
         return atividade
       }))
-    .then((atividades) => {
-      atividades = atividades.map((objData) => {
+      .then((atividades) => {
+        atividades = atividades.map((objData) => {
           Atividade.options().then(
-              (data) => {
-                  objData.espacos = data.espaco.child.choices.filter((objValue) => {return (objData.espaco.indexOf(objValue.value) >= 0)})
-              }
+            (data) => {
+              objData.espacos = data.espaco.child.choices.filter((objValue) => { return (objData.espaco.indexOf(objValue.value) >= 0) })
+            }
           );
           return objData
-      });
+        });
 
-      praca.agenda = atividades
-      let arrAtividadeAllDateStart = []
-      let arrAtividadeAllDate = []
-      let intLoop = 0
-      atividades.forEach((value) => {
-        const dateA = moment(value.data_inicio, "DD.MM.YYYY")
-        const dateB = moment(value.data_encerramento, "DD.MM.YYYY")
-        const intTotal = dateB.diff(dateA, "days")
-        arrAtividadeAllDateStart[intLoop] = { date: dateA.format("DD.MM.YYYY"), color: "#ffa634" }
-        for (let i = 0; i < intTotal; i++) {
-          const newDate = dateA.add(1, "days").format("DD.MM.YYYY")
-          intLoop++
-          arrAtividadeAllDate[intLoop] = { date: newDate, color: "#ffdc88" }
-        }
-        intLoop++
-        arrAtividadeAllDate[intLoop] = { date: dateB.format("DD.MM.YYYY"), color: "#ffdc88" }
-      })
+        praca.agenda = atividades
+        this.events = []
 
-      arrAtividadeAllDate = arrAtividadeAllDate.concat(arrAtividadeAllDateStart)
+        atividades.forEach((evento) => {
+          this.events.push({
+            id_pub: evento.id_pub,
+            title: evento.titulo,
+            startsAt: new Date(evento.ocorrencia.start),
+            endsAt: new Date(evento.ocorrencia.repeat_until),
+            uf: evento.praca_detail.uf,
+            municipio: evento.praca_detail.municipio
+          });
+        });
 
-      setInterval(() => {
-        this.markDate(arrAtividadeAllDate)
-      }, 200)
+      setTimeout(function () {
+        $("div.cal-month-day:not(.cal-day-today)").removeClass("cal-day-event")
+        $("small.cal-events-num:not(.ng-hide)").closest("div.cal-month-day:not(.cal-day-today)").addClass("cal-day-event")
+        $("mwl-calendar .badge-important").append(" Evento(s)");
+      }, 500)
 
-      this.reset = function(){
-        this.myDate = null
-        this.dateSet = false
-        $scope.$emit('md-calendar-change');
-      };
+      this.config = {
+        calendarView: "month",
+        viewDate: new Date(),
+      }
+
+      this.navigateTo = (pk) => {
+        this._$state.go("app.atividade", {
+          pk: pk
+        })
+      }
 
     })
 
