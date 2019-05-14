@@ -44,7 +44,8 @@
             <md-tab label="Fotos" scroll="#container-imagens" offset="48"></md-tab>
             <md-tab label="Parceiros" ng-if="$ctrl.praca.situacao == 'i'" scroll="#container-parceiros" offset="48"></md-tab>
             <md-tab label="Grupo Gestor" ng-if="$ctrl.praca.situacao == 'i'" scroll="#container-grupogestor" offset="48"></md-tab>
-            <md-tahtopb label="Unidade Gestora Local" ng-if="$ctrl.praca.situacao != 'i'" scroll="#container-unidade" offset="48"></md-tahtopb>
+            <md-tahtopb label="Unidade Gestora Local" ng-if="$ctrl.praca.situacao != 'i'" scroll="#container-unidade"
+              offset="48"></md-tahtopb>
             <md-tab label="Recursos Humanos" scroll="#container-rh" offset="48"></md-tab>
             <md-tab label="Atores" ng-if="$ctrl.praca.situacao == 'i'" scroll="#container-atores" offset="48"></md-tab>
             <md-tab label="Localização" scroll="#container-localizacao" offset="48"></md-tab>
@@ -137,11 +138,36 @@
       </md-fab-speed-dial>
 
       <div flex class="calendar">
+
+        <div class="row">
+          <div class="col s7 push-s7" style="left: 67.333333%;">
+            <button class="btn btn-primary" mwl-date-modifier date="$ctrl.config.viewDate" decrement="$ctrl.config.calendarView"
+              ng-click="$ctrl.config.cellIsOpen = false">
+              <i class="material-icons right">navigate_before</i>
+            </button>
+            <button class="btn btn-default" mwl-date-modifier date="$ctrl.config.viewDate" set-to-today ng-click="$ctrl.config.cellIsOpen = false">
+              Hoje
+            </button>
+            <button class="btn btn-primary" mwl-date-modifier date="$ctrl.config.viewDate" increment="$ctrl.config.calendarView"
+              ng-click="$ctrl.config.cellIsOpen = false">
+              <i class="material-icons right">navigate_next</i>
+            </button>
+          </div>
+          <div class="col s5 pull-s7">
+            <div class="btn-group">
+              <label class="btn btn-primary" ng-click="$ctrl.config.calendarView = 'month'">Mês</label>
+              <label class="btn btn-primary" ng-click="$ctrl.config.calendarView = 'week'">Semana</label>
+              <label class="btn btn-primary" ng-click="$ctrl.config.calendarView = 'day'">Dia</label>
+            </div>
+          </div>
+        </div>
+
         <div layout-gt-sm="row">
           <div style="width: 100vw; margin: auto;" class="animated {{$ctrl.strAnimate}}">
             <md-card style="padding: 20px;">
-              <mwl-calendar style="width: 100%;" view="$ctrl.config.calendarView" view-date="$ctrl.config.viewDate" events="$ctrl.events"
-                view-title="$ctrl.config.calendarTitle" on-view-change-click="false" on-event-click="$ctrl.navigateTo(calendarEvent.id_pub)"
+
+              <mwl-calendar view="$ctrl.config.calendarView" view-date="$ctrl.config.viewDate" events="$ctrl.events"
+                on-view-change-click="false" on-event-click="$ctrl.navigateTo(calendarEvent.id_pub);"
                 on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
                 cell-is-open="true">
               </mwl-calendar>
@@ -168,10 +194,10 @@
         </md-fab-trigger>
       </md-fab-speed-dial>
       <div flex layout-padding class="info gridListdemoDynamicTiles">
-        <md-grid-list md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="4:3" md-gutter="8px"
-          md-gutter-gt-sm="4px">
-          <md-grid-tile md-whiteframe="2" ng-repeat="objPhoto in arrPhotos" md-rowspan="{{objPhoto.span.row}}" md-colspan="{{objPhoto.span.col}}"
-            md-colspan-sm="1" md-colspan-xs="1" ng-class="objPhoto.background">
+        <md-grid-list md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6" md-row-height-gt-md="1:1"
+          md-row-height="4:3" md-gutter="8px" md-gutter-gt-sm="4px">
+          <md-grid-tile md-whiteframe="2" ng-repeat="objPhoto in arrPhotos" md-rowspan="{{objPhoto.span.row}}"
+            md-colspan="{{objPhoto.span.col}}" md-colspan-sm="1" md-colspan-xs="1" ng-class="objPhoto.background">
             <img width="135%" class="materialboxed" data-caption="{{objPhoto.description}}" ng-src="{{objPhoto.url}}">
             <md-grid-tile-footer>
               <h3>{{objPhoto.title}}</h3>
@@ -185,10 +211,12 @@
     <praca-parceiros praca="$ctrl.praca" parceiros="$ctrl.praca.parceiros"></praca-parceiros>
 
     <!-- GrupoGestor -->
-    <praca-grupogestor ng-if="$ctrl.praca.situacao == 'i'" praca="$ctrl.praca" situacao="$ctrl.praca.situacao" grupo_gestor="$ctrl.praca.grupo_gestor"></praca-grupogestor>
+    <praca-grupogestor ng-if="$ctrl.praca.situacao == 'i'" praca="$ctrl.praca" situacao="$ctrl.praca.situacao"
+      grupo_gestor="$ctrl.praca.grupo_gestor"></praca-grupogestor>
 
     <!-- UnidadeGestoraLocal -->
-    <praca-unidadegestora ng-if="$ctrl.praca.situacao != 'i'" praca="$ctrl.praca" situacao="$ctrl.praca.situacao" unidade_gestora="$ctrl.praca.unidade_gestora"></praca-unidadegestora>
+    <praca-unidadegestora ng-if="$ctrl.praca.situacao != 'i'" praca="$ctrl.praca" situacao="$ctrl.praca.situacao"
+      unidade_gestora="$ctrl.praca.unidade_gestora"></praca-unidadegestora>
 
     <!-- Recursos Humanos -->
     <praca-rh praca="$ctrl.praca" rhs="$ctrl.praca.rh"></praca-rh>
@@ -206,11 +234,14 @@
         <p>{{$ctrl.praca.logradouro}}</p>
         <p class="textCap">{{$ctrl.praca.municipio}} | {{$ctrl.praca.uf | uppercase}}
           <p>Horários de funcionamento:</p>
-          <p ng-if="$ctrl.praca.funciona_dia_util">Segunda a Sexta das {{ $ctrl.praca.hora_abertura_dia_util | date: 'HH:mm' }} às {{ $ctrl.praca.hora_fechamento_dia_util
+          <p ng-if="$ctrl.praca.funciona_dia_util">Segunda a Sexta das {{ $ctrl.praca.hora_abertura_dia_util | date:
+            'HH:mm' }} às {{ $ctrl.praca.hora_fechamento_dia_util
             }}
           </p>
-          <p ng-if="$ctrl.praca.funciona_sabado">Sábado das {{ $ctrl.praca.hora_abertura_sabado }} às {{ $ctrl.praca.hora_fechamento_sabado }}</p>
-          <p ng-if="$ctrl.praca.funciona_domingo">Domingo das {{ $ctrl.praca.hora_abertura_domingo }} às {{ $ctrl.praca.hora_fechamento_domingo }}</p>
+          <p ng-if="$ctrl.praca.funciona_sabado">Sábado das {{ $ctrl.praca.hora_abertura_sabado }} às {{
+            $ctrl.praca.hora_fechamento_sabado }}</p>
+          <p ng-if="$ctrl.praca.funciona_domingo">Domingo das {{ $ctrl.praca.hora_abertura_domingo }} às {{
+            $ctrl.praca.hora_fechamento_domingo }}</p>
       </div>
       <div id="map" flex md-whiteframe="3" class="no-print">
         <leaflet style="z-index: 1" id="mapPane" width="100%" height="100%" lf-center="geoLoc.center" defaults="geoLoc.defaults"
