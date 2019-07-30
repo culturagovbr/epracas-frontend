@@ -2334,8 +2334,7 @@ user-card md-card{
 
 gestor-detail md-card{
 	margin-left: 0;
-	margin-right: 0;
-	height: 375px;
+	margin-right: 0
 }
 
 gestor-detail md-card md-card-title{
