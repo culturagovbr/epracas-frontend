@@ -4,7 +4,16 @@
         <li><a style="font-family:sans,sans-serif; text-decoration:none; color:white;" href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a></li>
     </ul>
 </div>
-<md-toolbar id="compatibilidade"></md-toolbar>
+<md-toolbar id="compatibilidade">
+  <div class='md-toolbar-tools'>
+    <md-truncate class="valign-center" flex>
+      <i class="material-icons" style="color: #dce775">error</i>
+      <span>Navegador não suportado: Para nevegar pelo site recomendamos utilizar a ultima versão do <a href="https://www.google.com/intl/pt-BR/chrome/"><u>Chrome</u></a> ou <a href="https://www.mozilla.org/pt-BR/"><u>Firefox-51+</u></a></span>
+    </md-truncate>
+    <md-button class="md-icon-button md-fab-mini" aria-label="Favorite">
+    </md-button>
+  </div>
+</md-toolbar>
 <md-toolbar layout="row" layout-align="space-between center" class="md-toolbar-tools ">
     <div style="margin-left: 40px;"></div>
 	<div layout="row" layout-align="space-between center" flex class="limite">
@@ -55,32 +64,39 @@
 	</div>
 </md-toolbar>
 
-<script>
-  var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
-  // Firefox 1.0+
-  var isFirefox = typeof InstallTrigger !== 'undefined';
-  // Safari 3.0+ "[object HTMLElementConstructor]"
-  var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
-  // Internet Explorer 6-11
-  var isIE = /*@cc_on!@*/false || !!document.documentMode;
-  // Edge 20+
-  var isEdge = !isIE && !!window.StyleMedia;
-  // Chrome 1 - 71
-  var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
-  // Blink engine detection
-  var isBlink = (isChrome || isOpera) && !!window.CSS;
-  if(!isFirefox && !isChrome ) {
-    $( "#compatibilidade" ).prepend(`
-      <div class='md-toolbar-tools'>
-            <md-truncate class="valign-center" flex>
-              <i class="material-icons" style="color: #dce775">error</i>
-                <span>Navegador não suportado: Para nevegar pelo site nos recomendamos utilizar a ultima versão do <a href="https://www.google.com/intl/pt-BR/chrome/"><u>Chrome</u></a> ou <a href="https://www.mozilla.org/pt-BR/"><u>Firefox-51+</u></a></span>
-            </md-truncate>
-             <md-button class="md-icon-button md-fab-mini" aria-label="Favorite">
-              </md-button>
-       </div>` );
-  }
-  if(isFirefox || isChrome ) {
-    $( "#compatibilidade" ).remove();
-  }
+<script type="text/javascript">
+
+    var ua = navigator.userAgent;
+
+    //Javascript Browser Detection - FireFox
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+    var browser=get_browser_info();
+
+    if (isFirefox && !(browser.version < 52))//test for Firefox/x.x or Firefox x.x
+    {
+      $('#compatibilidade').remove();
+    }
+    //Javascript Browser Detection - Chrome
+    if (ua.lastIndexOf('Chrome/') > 0) {
+      $("#compatibilidade").remove();
+    }
+
+    function get_browser_info(){
+      var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+      if(/trident/i.test(M[1])){
+        tem=/\brv[ :]+(\d+)/g.exec(ua) || [];
+        return {name:'IE ',version:(tem[1]||'')};
+      }
+      if(M[1]==='Chrome'){
+        tem=ua.match(/\bOPR\/(\d+)/)
+        if(tem!=null)   {return {name:'Opera', version:tem[1]};}
+      }
+      M=M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+      if((tem=ua.match(/version\/(\d+)/i))!=null) {M.splice(1,1,tem[1]);}
+      return {
+        name: M[0],
+        version: M[1]
+      };
+    }
+
 </script>
