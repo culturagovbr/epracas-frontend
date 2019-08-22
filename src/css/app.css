@@ -2722,16 +2722,21 @@ ep-praca-card {
 }
 
 #compatibilidade {
+  vertical-align: top !important;
+  font-size: smaller !important;
+  min-height: 30px !important;
+  height: 30px !important;
+  text-align:center !important;
   background: -moz-linear-gradient(-45deg, rgba(255,89,63,0.65) 10%, rgba(255,129,107,0.65) 18%, rgba(255,89,73,0.65) 30%, rgba(255,87,67,0.65) 35%, rgba(255,80,45,0.75) 53%, rgba(239,64,45,0.89) 80%, rgba(242,113,99,1) 100%); /* FF3.6-15 */
   background: -webkit-linear-gradient(-45deg, rgba(255,89,63,0.65) 10%,rgba(255,129,107,0.65) 18%,rgba(255,89,73,0.65) 30%,rgba(255,87,67,0.65) 35%,rgba(255,80,45,0.75) 53%,rgba(239,64,45,0.89) 80%,rgba(242,113,99,1) 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(135deg, rgba(255,89,63,0.65) 10%,rgba(255,129,107,0.65) 18%,rgba(255,89,73,0.65) 30%,rgba(255,87,67,0.65) 35%,rgba(255,80,45,0.75) 53%,rgba(239,64,45,0.89) 80%,rgba(242,113,99,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6ff593f', endColorstr='#f27163',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
-  font-size: smaller !important;
-  min-height: 30px !important;
-  height: 30px !important;
 }
 
-#compatibilidade md-toolbar md-truncate{
-  font-size: 10px !important;
+.valign-center {
+  text-align:center !important;
+  font-size: 15px;
+  display: inline-flex;
+  vertical-align: middle;
+  align-items: center;
 }
