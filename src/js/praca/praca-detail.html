@@ -67,7 +67,6 @@
     <!-- Info&Bio -->
     <div id="container-info" layout-gt-xs="row" style="margin-top: 8px;">
       <div flex-gt-xs="35" class="nome">
-        <!--<md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 white-text" style="margin-left:0px;border-radius:0;background: linear-gradient(to top right, #05152d 20%, #021d47 90%);">-->
         <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 white-text" style="margin-left:0px;border-radius:0;background: #00235c99;">
           <md-card-title>
             <md-card-title-text>
@@ -113,6 +112,44 @@
               <p>{{ $ctrl.praca.bio }}</p>
             </md-card-title-text>
           </md-card-title>
+          <md-card-content>
+            <md-card md-theme="default" class="_md md-default-theme margin-0"
+              style="border-style: solid; border-color: #546A8A">
+              <md-card-title>
+                <md-card-title-text>
+                  <div class="md-headline">Documentos da Praça (Lei, Decreto ou Portaria) </div>
+                </md-card-title-text>
+              </md-card-title>
+              <md-card-content class="center">
+                <div layout="row" layout-xs="column">
+                  <div flex>
+                    <md-button
+                      ng-disabled="!$ctrl.praca.grupo_gestor.nomeacao.length"
+                      ng-href="{{$ctrl.praca.grupo_gestor.nomeacao}}"
+                      target="_blank"
+                      style="text-transform: capitalize"
+                      class="md-raised">Instituição do </br>Grupo Gestor</md-button>
+                  </div>
+                  <div flex>
+                    <md-button
+                      ng-disabled="!$ctrl.praca.grupo_gestor.estatuto"
+                      ng-href="{{$ctrl.praca.grupo_gestor.estatuto}}"
+                      target="_blank"
+                      style="text-transform: capitalize"
+                      class="md-raised">Estatuto do </br>Grupo Gestor</md-button>
+                  </div>
+                  <div flex>
+                    <md-button
+                      ng-disabled="!$ctrl.praca.grupo_gestor.regimento_interno"
+                      ng-href="{{$ctrl.praca.grupo_gestor.regimento_interno}}"
+                      target="_blank"
+                      style="text-transform: capitalize"
+                      class="md-raised">Regimento Interno </br>do Equipamento</md-button>
+                  </div>
+                </div>
+              </md-card-content>
+            </md-card>
+          </md-card-content>
         </md-card>
       </div>
     </div>
