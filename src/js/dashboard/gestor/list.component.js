@@ -25,7 +25,7 @@ const GestorListElement = {
   template: `
     <md-list>
       <div class="row">
-        <gestor-detail gestor="gestor" on-delete="$ctrl.refreshData(gestor)"  ng-repeat="gestor in $ctrl.gestores" class="col s12 m6 l4"><gestor-detail>
+        <gestor-detail gestor="gestor" on-delete="$ctrl.refreshData(gestor)"  ng-repeat="gestor in $ctrl.gestores" class="col s12 m6 l4" style="height: 480px"><gestor-detail>
       </div>
     </md-list>
     `,

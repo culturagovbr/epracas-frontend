@@ -14,3 +14,5 @@ package-lock.json
 
 .idea/*
 .vscode/*
+epracas-frontend.iml
+yarn-error.log

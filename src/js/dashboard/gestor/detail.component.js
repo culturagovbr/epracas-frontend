@@ -48,7 +48,6 @@ const GestorDetailElement = {
         </md-card-avatar>
         <md-card-header-text>
           <span class="md-title">{{$ctrl.gestor.nome}}</span>
-          <!--<span class="md-subhead">Início da gestão: {{$ctrl.gestor.data_inicio_gestao | date:'dd/MM/yyyy' }}</span>-->
         </md-card-header-text>
       </md-card-header>
       <md-card-title>
