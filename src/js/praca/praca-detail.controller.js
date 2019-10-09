@@ -7,23 +7,23 @@ class PracaDetailCtrl {
     $filter, $state, Praca, Atores, RecursoHumano) {
     "ngInject"
 
-      angular.extend(this, {
-        $scope,
-        $document,
-        $mdDialog,
-        $log,
-        currentUser: User.current,
-        praca,
-      })
+    angular.extend(this, {
+      $scope,
+      $document,
+      $mdDialog,
+      $log,
+      currentUser: User.current,
+      praca,
+    })
 
-    this.markDate = (arrAtividadeAllDate) => {
-      arrAtividadeAllDate.forEach(value => {
-        const arrDate = value.date.split(".").reverse()
-        arrDate[1] = arrDate[1].replace("0", "") - 1 // Mes
-        arrDate[2] = arrDate[2][0].replace("0", "") + arrDate[2][1] // Dia
-        $('[id$="-month-' + arrDate.join("-") + '"]' + " .md-calendar-date-selection-indicator").css("background-color", value.color)
-      })
-    }
+    // this.markDate = (arrAtividadeAllDate) => {
+    //   arrAtividadeAllDate.forEach(value => {
+    //     const arrDate = value.date.split(".").reverse()
+    //     arrDate[1] = arrDate[1].replace("0", "") - 1 // Mes
+    //     arrDate[2] = arrDate[2][0].replace("0", "") + arrDate[2][1] // Dia
+    //     $('[id$="-month-' + arrDate.join("-") + '"]' + " .md-calendar-date-selection-indicator").css("background-color", value.color)
+    //   })
+    // }
 
     this.ramo_atividade = Praca.getAllRamoAtividade()
 
@@ -40,14 +40,14 @@ class PracaDetailCtrl {
       let aux = '';
       telefone = telefone.replace(/ /g, '');
 
-      if(telefone.toString().length == 11){
+      if (telefone.toString().length == 11) {
         aux = telefone.match(/(\d{2})(\d{1})(\d{4})(\d{4})/);
         telefone = '(' + aux[1] + ') ' + aux[2] + ' ' + aux[3] + '-' + aux[4];
       }
-      if(telefone.toString().length == 10){
+      if (telefone.toString().length == 10) {
         aux = telefone.match(/(\d{2})(\d{4})(\d{4})/);
         telefone = '(' + aux[1] + ') ' + aux[2] + '-' + aux[3];
-      }else{
+      } else {
         return telefone
       }
       return telefone
@@ -89,52 +89,52 @@ class PracaDetailCtrl {
         if (!atividade.ocorrencia) return atividade
         const formatString = "DD.MM.YYYY"
         atividade.data_inicio = moment(atividade.ocorrencia.start.slice(0, 10))
-        .format(formatString)
+          .format(formatString)
         atividade.data_encerramento = moment(atividade.ocorrencia.repeat_until)
-        .format(formatString)
+          .format(formatString)
         return atividade
       }))
-    .then((atividades) => {
-      atividades = atividades.map((objData) => {
+      .then((atividades) => {
+        atividades = atividades.map((objData) => {
           Atividade.options().then(
-              (data) => {
-                  objData.espacos = data.espaco.child.choices.filter((objValue) => {return (objData.espaco.indexOf(objValue.value) >= 0)})
-              }
+            (data) => {
+              objData.espacos = data.espaco.child.choices.filter((objValue) => { return (objData.espaco.indexOf(objValue.value) >= 0) })
+            }
           );
           return objData
-      });
+        });
 
-      praca.agenda = atividades
-      let arrAtividadeAllDateStart = []
-      let arrAtividadeAllDate = []
-      let intLoop = 0
-      atividades.forEach((value) => {
-        const dateA = moment(value.data_inicio, "DD.MM.YYYY")
-        const dateB = moment(value.data_encerramento, "DD.MM.YYYY")
-        const intTotal = dateB.diff(dateA, "days")
-        arrAtividadeAllDateStart[intLoop] = { date: dateA.format("DD.MM.YYYY"), color: "#ffa634" }
-        for (let i = 0; i < intTotal; i++) {
-          const newDate = dateA.add(1, "days").format("DD.MM.YYYY")
-          intLoop++
-          arrAtividadeAllDate[intLoop] = { date: newDate, color: "#ffdc88" }
+        praca.agenda = atividades
+        this.events = []
+
+        atividades.forEach((evento) => {
+          console.log(evento.ocorrencia.repeat_until)
+          this.events.push({
+            id_pub: evento.id_pub,
+            title: evento.titulo,
+            startsAt: new Date(evento.ocorrencia.start),
+            endsAt: new Date(evento.ocorrencia.repeat_until),
+            uf: evento.praca_detail.uf,
+            municipio: evento.praca_detail.municipio
+          });
+        });
+
+        setTimeout(function () {
+          $("mwl-calendar .badge-important").append(" Evento(s)");
+        }, 500)
+
+        this.config = {
+          calendarView: "month",
+          viewDate: new Date(),
         }
-        intLoop++
-        arrAtividadeAllDate[intLoop] = { date: dateB.format("DD.MM.YYYY"), color: "#ffdc88" }
+
+        this.navigateTo = (pk) => {
+          $state.go("app.atividade", {
+            pk: pk
+          })
+        }
+
       })
-
-      arrAtividadeAllDate = arrAtividadeAllDate.concat(arrAtividadeAllDateStart)
-
-      setInterval(() => {
-        this.markDate(arrAtividadeAllDate)
-      }, 200)
-
-      this.reset = function(){
-        this.myDate = null
-        this.dateSet = false
-        $scope.$emit('md-calendar-change');
-      };
-
-    })
 
     if (angular.isUndefined(praca.header_img) || praca.header_img === null) {
       praca.header_img = "/assets/header.jpg"
@@ -179,50 +179,50 @@ class PracaDetailCtrl {
     $scope.geoLoc = geoLoc
 
     $scope.$watch(
-        () => User.current,
-        (newUser) => {
-          if (newUser) {
-            this.currentUser = newUser
-            this.userMenu = this.buildMenu(this.currentUser)
-          }
+      () => User.current,
+      (newUser) => {
+        if (newUser) {
+          this.currentUser = newUser
+          this.userMenu = this.buildMenu(this.currentUser)
         }
+      }
     )
 
     $scope.tabIntSelected = 0
     $scope.intWindowHeight = $(window).height()
 
     $document.ready(function () {
-        $('.parallax').parallax();
+      $('.parallax').parallax();
       $(".materialboxed").materialbox()
       let elmTabPracas = $(".tab-pracas"),
-      intPracasPosition = elmTabPracas.offset().top,
-          elmLink = elmTabPracas.find('a').closest('div');
+        intPracasPosition = elmTabPracas.offset().top,
+        elmLink = elmTabPracas.find('a').closest('div');
 
 
-    setTimeout(()=>{
-      $(document).scrollTop(0)
+      setTimeout(() => {
+        $(document).scrollTop(0)
         intPracasPosition = elmTabPracas.offset().top
-    }, 20)
+      }, 20)
       let booFixed = false;
       $document.on("scroll", () => {
         let arrElmScrollContainers = $("md-tab"),
-        arrObjScrollContainers = arrElmScrollContainers.map((intKey, elm) => {
-          let intPositionStart = $($(elm).attr("scroll")).offset().top, // Pega a posicao do container.
-          intPositionEnd = (arrElmScrollContainers[intKey + 1]) ? $($(arrElmScrollContainers[intKey + 1]).attr("scroll")).offset().top : "" // Pega a posicao do proximo container e diminui um, no caso e o limite deste container.
-              return {
-                strSelector: $(elm).attr("scroll"),
-                intPositionStart: intPositionStart - 96,
-                intPositionEnd: intPositionEnd - 1
-              }
-        });
-
-        let intPosition = $window.scrollY;
-          arrObjScrollContainers.each((intKey, objValue) => {
-            if (intPosition >= objValue.intPositionStart && intPosition <= objValue.intPositionEnd && intKey != $scope.tabIntSelected) {
-              $scope.tabIntSelected = intKey;
-              $scope.$apply()
+          arrObjScrollContainers = arrElmScrollContainers.map((intKey, elm) => {
+            let intPositionStart = $($(elm).attr("scroll")).offset().top, // Pega a posicao do container.
+              intPositionEnd = (arrElmScrollContainers[intKey + 1]) ? $($(arrElmScrollContainers[intKey + 1]).attr("scroll")).offset().top : "" // Pega a posicao do proximo container e diminui um, no caso e o limite deste container.
+            return {
+              strSelector: $(elm).attr("scroll"),
+              intPositionStart: intPositionStart - 96,
+              intPositionEnd: intPositionEnd - 1
             }
           });
+
+        let intPosition = $window.scrollY;
+        arrObjScrollContainers.each((intKey, objValue) => {
+          if (intPosition >= objValue.intPositionStart && intPosition <= objValue.intPositionEnd && intKey != $scope.tabIntSelected) {
+            $scope.tabIntSelected = intKey;
+            $scope.$apply()
+          }
+        });
 
         if (intPosition >= intPracasPosition) {
           elmTabPracas.addClass("fixed");
@@ -259,8 +259,8 @@ class PracaDetailCtrl {
 
     this.imgChange = (strDirection) => {
       let elmActive = $('.materialboxed.active'),
-          elmPrev = elmActive.closest('md-grid-tile').prev(),
-          elmNext = elmActive.closest('md-grid-tile').next();
+        elmPrev = elmActive.closest('md-grid-tile').prev(),
+        elmNext = elmActive.closest('md-grid-tile').next();
       if (elmActive.length > 0) {
         if (strDirection == 'prev') {
           elmActive.click();
@@ -296,42 +296,42 @@ class PracaDetailCtrl {
 
     let intervel = setInterval(() => {
       if ($('#materialbox-overlay').length == 0) $('.container-arrow').fadeOut('slow');
-      if ( $state.current.name != 'app.praca') clearInterval(intervel);
+      if ($state.current.name != 'app.praca') clearInterval(intervel);
     }, 1000);
   }
 
   buildGridModel(arrValue) {
     let arrValueTreated = [], arrDefault = [];
-    arrDefault[0] = {title: "Bloco 1", description: " ", url: "/assets/praca-grid/bloco1.jpg", background : "red", span : {row : 2, col : 2}};
-    arrDefault[1] = {title: "Bloco 2", description: " ", url: "/assets/praca-grid/bloco2.jpg", background : "green", span : {row : 1, col : 1}};
-    arrDefault[2] = {title: "Bloco 3", description: " ", url: "/assets/praca-grid/bloco3.jpg", background : "darkBlue", span : {row : 1, col : 1}};
-    arrDefault[3] = {title: "Bloco 4", description: " ", url: "/assets/praca-grid/bloco4.jpg", background : "blue", span : {row : 1, col : 2}};
-    arrDefault[4] = {title: "Bloco 5", description: " ", url: "/assets/praca-grid/bloco5.jpg", background : "yellow", span : {row : 2, col : 2}};
-    arrDefault[5] = {title: "Bloco 6", description: " ", url: "/assets/praca-grid/bloco6.jpg", background : "pink", span : {row : 1, col : 1}};
-    arrDefault[6] = {title: "Bloco 7", description: " ", url: "/assets/praca-grid/bloco7.jpg", background : "darkBlue", span : {row : 1, col : 1}};
-    arrDefault[7] = {title: "Bloco 8", description: " ", url: "/assets/praca-grid/bloco8.jpg", background : "purple", span : {row : 1, col : 1}};
-    arrDefault[8] = {title: "Bloco 9", description: " ", url: "/assets/praca-grid/bloco9.jpg", background : "deepBlue", span : {row : 1, col : 1}};
-    arrDefault[9] = {title: "Bloco 10", description: " ", url: "/assets/praca-grid/bloco10.jpg", background : "lightPurple", span : {row : 1, col : 1}};
-    arrDefault[10] = {title: "Bloco 11", description: " ", url: "/assets/praca-grid/bloco11.jpg", background : "yellow", span : {row : 1, col : 1}};
-    arrDefault[11] = {title: "Bloco 12", description: " ", url: "/assets/praca-grid/bloco12.jpg", background : "yellow", span : {row : 1, col : 1}};
-    arrDefault[12] = {title: "Bloco 13", description: " ", url: "/assets/praca-grid/bloco12.jpg", background : "pink", span : {row : 1, col : 1}};
-    arrDefault[13] = {title: "Bloco 14", description: " ", url: "/assets/praca-grid/bloco14.jpg", background : "darkBlue", span : {row : 1, col : 1}};
-    arrDefault[14] = {title: "Bloco 15", description: " ", url: "/assets/praca-grid/bloco15.jpg", background : "purple", span : {row : 1, col : 2}};
-    arrDefault[15] = {title: "Bloco 16", description: " ", url: "/assets/praca-grid/bloco16.jpg", background : "deepBlue", span : {row : 1, col : 1}};
-    arrDefault[16] = {title: "Bloco 17", description: " ", url: "/assets/praca-grid/bloco17.jpg", background : "lightPurple", span : {row : 1, col : 1}};
-    arrDefault[17] = {title: "Bloco 18", description: " ", url: "/assets/praca-grid/bloco18.jpg", background : "yellow", span : {row : 1, col : 1}};
+    arrDefault[0] = { title: "Bloco 1", description: " ", url: "/assets/praca-grid/bloco1.jpg", background: "red", span: { row: 2, col: 2 } };
+    arrDefault[1] = { title: "Bloco 2", description: " ", url: "/assets/praca-grid/bloco2.jpg", background: "green", span: { row: 1, col: 1 } };
+    arrDefault[2] = { title: "Bloco 3", description: " ", url: "/assets/praca-grid/bloco3.jpg", background: "darkBlue", span: { row: 1, col: 1 } };
+    arrDefault[3] = { title: "Bloco 4", description: " ", url: "/assets/praca-grid/bloco4.jpg", background: "blue", span: { row: 1, col: 2 } };
+    arrDefault[4] = { title: "Bloco 5", description: " ", url: "/assets/praca-grid/bloco5.jpg", background: "yellow", span: { row: 2, col: 2 } };
+    arrDefault[5] = { title: "Bloco 6", description: " ", url: "/assets/praca-grid/bloco6.jpg", background: "pink", span: { row: 1, col: 1 } };
+    arrDefault[6] = { title: "Bloco 7", description: " ", url: "/assets/praca-grid/bloco7.jpg", background: "darkBlue", span: { row: 1, col: 1 } };
+    arrDefault[7] = { title: "Bloco 8", description: " ", url: "/assets/praca-grid/bloco8.jpg", background: "purple", span: { row: 1, col: 1 } };
+    arrDefault[8] = { title: "Bloco 9", description: " ", url: "/assets/praca-grid/bloco9.jpg", background: "deepBlue", span: { row: 1, col: 1 } };
+    arrDefault[9] = { title: "Bloco 10", description: " ", url: "/assets/praca-grid/bloco10.jpg", background: "lightPurple", span: { row: 1, col: 1 } };
+    arrDefault[10] = { title: "Bloco 11", description: " ", url: "/assets/praca-grid/bloco11.jpg", background: "yellow", span: { row: 1, col: 1 } };
+    arrDefault[11] = { title: "Bloco 12", description: " ", url: "/assets/praca-grid/bloco12.jpg", background: "yellow", span: { row: 1, col: 1 } };
+    arrDefault[12] = { title: "Bloco 13", description: " ", url: "/assets/praca-grid/bloco12.jpg", background: "pink", span: { row: 1, col: 1 } };
+    arrDefault[13] = { title: "Bloco 14", description: " ", url: "/assets/praca-grid/bloco14.jpg", background: "darkBlue", span: { row: 1, col: 1 } };
+    arrDefault[14] = { title: "Bloco 15", description: " ", url: "/assets/praca-grid/bloco15.jpg", background: "purple", span: { row: 1, col: 2 } };
+    arrDefault[15] = { title: "Bloco 16", description: " ", url: "/assets/praca-grid/bloco16.jpg", background: "deepBlue", span: { row: 1, col: 1 } };
+    arrDefault[16] = { title: "Bloco 17", description: " ", url: "/assets/praca-grid/bloco17.jpg", background: "lightPurple", span: { row: 1, col: 1 } };
+    arrDefault[17] = { title: "Bloco 18", description: " ", url: "/assets/praca-grid/bloco18.jpg", background: "yellow", span: { row: 1, col: 1 } };
     for (let i = 0; i < 16; i++) {
       let objValueTreated = {
-        title : arrDefault[i].title,
-        url : arrDefault[i].url,
-        span : arrDefault[i].span,
-        background : arrDefault[i].background,
-        description : ' '
+        title: arrDefault[i].title,
+        url: arrDefault[i].url,
+        span: arrDefault[i].span,
+        background: arrDefault[i].background,
+        description: ' '
       };
       if (typeof arrValue[i] == 'object') {
         objValueTreated.title = arrValue[i].titulo;
         objValueTreated.url = arrValue[i].arquivo;
-        objValueTreated.description = (typeof arrValue[i].descricao == 'string' && arrValue[i].descricao.length > 1)? arrValue[i].descricao : ' '; // Tratando bug do materialize caso nao exista o objeto.
+        objValueTreated.description = (typeof arrValue[i].descricao == 'string' && arrValue[i].descricao.length > 1) ? arrValue[i].descricao : ' '; // Tratando bug do materialize caso nao exista o objeto.
       }
       arrValueTreated.push(objValueTreated);
     }
@@ -346,7 +346,7 @@ class PracaDetailCtrl {
     return moment(dataObj).format("DD.MM.YYYY")
   }
 
-  permissionIsManagerOrAdmin(user, praca){
+  permissionIsManagerOrAdmin(user, praca) {
     if (user.is_staff === true) {
       return true
     } else if ((angular.isDefined(praca.gestor) && praca.gestor !== null)) {
