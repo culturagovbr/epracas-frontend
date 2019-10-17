@@ -2,21 +2,21 @@
   <form name="PracaForm" ng-disabled="$ctrl.isSaving" ng-submit="$ctrl.save($ctrl.praca)">
     <md-dialog-content>
       <md-toolbar>
-          <div class="md-toolbar-tools">
-            <h2>
-              <b>Informações sobre a Praça</b>
-            </h2>
-            <span flex></span>
-            <md-button class="md-icon-button" ng-click="$ctrl.$mdDialog.cancel()">
-              <md-icon>close</md-icon>
-            </md-button>
-          </div>
+        <div class="md-toolbar-tools">
+          <h2>
+            <b>Informações sobre a Praça</b>
+          </h2>
+          <span flex></span>
+          <md-button class="md-icon-button" ng-click="$ctrl.$mdDialog.cancel()">
+            <md-icon>close</md-icon>
+          </md-button>
+        </div>
       </md-toolbar>
       <md-content layout-padding>
         <md-input-container class="md-block" flex>
-            <label>Nome da Praça</label>
-            <input name="pracaNome" required ng-model="$ctrl.praca.nome">
-          </md-input-container>
+          <label>Nome da Praça</label>
+          <input name="pracaNome" required ng-model="$ctrl.praca.nome">
+        </md-input-container>
         <div layout-gt-xs="row">
           <md-input-container flex-gt-xs=50>
             <md-icon>assignment</md-icon>
@@ -67,6 +67,11 @@
             <md-icon>phone</md-icon>
             <label>Telefone</label>
             <input required name="pracaTelefone1" ng-model="$ctrl.praca.telefone1" mask="(99) 9?9999-9999" clean="true">
+          </md-input-container>
+          <md-input-container flex-gt-xs=50>
+            <md-icon>phone</md-icon>
+            <label>Celular</label>
+            <input required name="pracaTelefone2" ng-model="$ctrl.praca.telefone2" mask="(99) 9?9999-9999" clean="true">
           </md-input-container>
           <md-input-container flex-gt-xs=50>
             <md-icon>email</md-icon>
@@ -142,7 +147,7 @@
               <md-icon class="material-icons" role="img" aria-label="schedule">schedule</md-icon>
               <label>Fecha</label>
               <input name="social" ng-model="$ctrl.praca.hora_fechamento_dia_util" pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}"
-                mask="29:69" />
+                     mask="29:69" />
               <div class="hint" ng-if="!$ctrl.praca.hora_fechamento_dia_util">00:00</div>
             </md-input-container>
           </div>
@@ -194,7 +199,7 @@
               <md-icon class="material-icons" role="img" aria-label="schedule">schedule</md-icon>
               <label>Fecha</label>
               <input name="social" ng-model="$ctrl.praca.hora_fechamento_domingo" pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}"
-                mask="29:69" />
+                     mask="29:69" />
               <div class="hint" ng-if="!$ctrl.praca.hora_fechamento_domingo">00:00</div>
             </md-input-container>
           </div>

@@ -89,7 +89,8 @@
                 <!-- ui-money-mask -->
                 <strong>Repasse: </strong>{{ $ctrl.praca.repasse | currency: 'R$ ' }}</span>
               <span class="md-subhead" ng-if="$ctrl.praca.email1">Email: {{ $ctrl.praca.email1 }}</span>
-              <span class="md-subhead" ng-if="$ctrl.praca.telefone1">Telefone: {{ $ctrl.praca.telefone1 }}</span>
+              <span class="md-subhead" ng-if="$ctrl.praca.telefone1" ui-mask="(99) 9?9999-9999">Telefone: {{ $ctrl.praca.telefone1 }}</span>
+              <span class="md-subhead" ng-if="$ctrl.praca.telefone2" mask="(99) 9?9999-9999">Celular: {{ $ctrl.praca.telefone1 }}</span>
               <span class="md-subhead" ng-if="$ctrl.praca.pagina">Página: {{ $ctrl.praca.pagina }}</span>
             </md-card-title-text>
           </md-card-title>
