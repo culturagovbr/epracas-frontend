@@ -30,7 +30,7 @@
         </md-input-container>
 
         <p ng-show="$ctrl.grupogestor.documento_constituicao">Nome do Arquivo: {{$ctrl.grupogestor.documento_constituicao.name}}</p>
-        <p ng-show="GrupoGestorForm.constituicao_file.$error.maxSize">Arquivo muito grande 
+        <p ng-show="GrupoGestorForm.constituicao_file.$error.maxSize">Arquivo muito grande
             {{errorFile.size / 1000000|number:1}}MB - Máximo: {{errorFile.$errorParam}}</p>
         <md-input-container class="md-block" layout-padding>
           <md-button
@@ -49,7 +49,7 @@
         </md-input-container>
 
         <p ng-show="$ctrl.grupogestor.estatuto">Nome do Arquivo: {{$ctrl.grupogestor.estatuto.name}}</p>
-        <p ng-show="GrupoGestorForm.estatuto_file.$error.maxSize">Arquivo muito grande 
+        <p ng-show="GrupoGestorForm.estatuto_file.$error.maxSize">Arquivo muito grande
             {{errorFile.size / 1000000|number:1}}MB - Máximo: {{errorFile.$errorParam}}</p>
         <md-input-container class="md-block" layout-padding>
           <md-button
@@ -66,6 +66,33 @@
             Anexe o Estatuto...
           </md-button>
         </md-input-container>
+
+        <p ng-show="$ctrl.grupogestor.nomeacao">Nome do Arquivo: {{$ctrl.grupogestor.nomeacao.name}}</p>
+        <p ng-show="GrupoGestorForm.nomeacao_file.$error.maxSize">Arquivo muito grande
+          {{errorFile.size / 1000000|number:1}}MB - Máximo: {{errorFile.$errorParam}}</p>
+        <md-input-container class="md-block" layout-padding>
+          <md-button name="nomeacao_file" type="file" ngf-accept="'image/*, application/pdf'" ngf-max-size="20MB" ngf-select
+            ng-model="$ctrl.grupogestor.nomeacao" class="md-raised" label="Nomeação do Grupo Gestor"
+            ngf-model-invalid="errorFile">
+            <md-icon>insert_drive_file</md-icon>
+            Anexe a Nomeação...
+          </md-button>
+        </md-input-container>
+
+        <p ng-show="$ctrl.grupogestor.regimento_interno">Nome do Arquivo: {{$ctrl.grupogestor.regimento_interno.name}}</p>
+        <p ng-show="GrupoGestorForm.regimento_interno_file.$error.maxSize">Arquivo muito grande
+          {{errorFile.size / 1000000|number:1}}MB - Máximo: {{errorFile.$errorParam}}</p>
+        <md-input-container class="md-block" layout-padding>
+          <md-button name="regimento_interno_file" type="file" ngf-accept="'image/*, application/pdf'" ngf-max-size="20MB"
+            ngf-select ng-model="$ctrl.grupogestor.regimento_interno" class="md-raised" label="Regimento Interno da Praça"
+            ngf-model-invalid="errorFile">
+            <md-icon>insert_drive_file</md-icon>
+            Anexe a Nomeação...
+          </md-button>
+        </md-input-container>
+
+        </md-dialog-content>
+        </md-dialog-content>
       </md-dialog-content>
 
       <md-dialog-actions>
