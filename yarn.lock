@@ -3943,8 +3943,9 @@ lru-cache@2:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-2.2.4.tgz#6c658619becf14031d0d0b594b16042ce4dc063d"
 
 macaddress@^0.2.8:
-  version "0.2.8"
-  resolved "https://registry.yarnpkg.com/macaddress/-/macaddress-0.2.8.tgz#5904dc537c39ec6dbefeae902327135fa8511f12"
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/macaddress/-/macaddress-0.2.9.tgz#3579b8b9acd5b96b4553abf0f394185a86813cb3"
+  integrity sha512-k4F1JUof6cQXxNFzx3thLby4oJzXTXQueAOOts944Vqizn+Rjc2QNFenT9FJSLU1CH3PmrHRSyZs2E+Cqw+P2w==
 
 make-error-cause@^1.1.1:
   version "1.2.2"
