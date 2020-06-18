@@ -212,14 +212,10 @@ angular-ui-router@^1.0.0:
   dependencies:
     "@uirouter/core" "5.0.3"
 
-angular@*:
-  version "1.7.5"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.5.tgz#d1c1c01c6f5dc835638f3f9aa51012857bdac49e"
-  integrity sha512-760183yxtGzni740IBTieNuWLtPNAoMqvmC0Z62UoU0I3nqk+VJuO3JbQAXOyvo3Oy/ZsdNQwrSTh/B0OQZjNw==
-
-angular@1.x, "angular@>= 1.0.8", angular@>=1.4.0, angular@^1.2, angular@^1.5.0, angular@^1.5.8:
-  version "1.5.8"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.5.8.tgz#925a5392b8c212d09572dc446db7e01264e094cb"
+angular@*, angular@1.x, "angular@>= 1.0.8", angular@>=1.4.0, angular@^1.2, angular@^1.5.0, angular@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.8.0.tgz#b1ec179887869215cab6dfd0df2e42caa65b1b51"
+  integrity sha512-VdaMx+Qk0Skla7B5gw77a8hzlcOakwF8mjlW13DpIWIDlfqwAbSSLfd8N/qZnzEmQF4jC4iofInd3gE7vL8ZZg==
 
 ansi-escapes@^1.1.0:
   version "1.4.0"
