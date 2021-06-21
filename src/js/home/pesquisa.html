@@ -1,0 +1,1099 @@
+<div class="animated fadeIn">
+    <div class="parallax-container" style="max-height: 10px; box-shadow: inset 0 2px 18px #0009;">
+        <!-- <div class="parallax">
+        <img ng-src="{{ $ctrl.praca.header_img }}" />
+      </div> -->
+
+    </div>
+    <div id="pesquisa" layout-gt-xs="row" style="margin: 18px;">
+        <div id="apresentacao" ng-if="hideShowApresentacao" flex-gt-sm class="nome" layout="row" layout-xs="row">
+            <div flex="">
+                <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 black-text"
+                    style="padding-left:50px; padding-right: 100px; border-radius:0;">
+                    <div>
+                        <p>
+                        <h1>Pesquisa com equipamentos inaugurados 2021</h1>
+                        </p>
+
+                        <p>Prezados gestores,{{ teste }}</p>
+                        <p>Com a publicação da nova estrutura deste Ministério a coordenação do Programa Pracinhas da Cultura,
+                            que
+                            era realizada pela DINC (Diretoria de Programas Especiais de Infraestrutura Cultural), cará
+                            sob
+                            tutela da recém criada Secretaria de Infraestrutura Cultural – SEINFRA.</p>
+                        <p>A fim de subsidiar a avaliação dos programas executados anteriormente pela DINC e planejar as
+                            futuras ações desta Secretaria solicitamos que o presente questionário seja respondido por
+                            representante do Grupo Gestor dessa Pracinha de Cultura.</p>
+                        <p>O referido questionário tem, sobretudo, o objetivo de fornecer subsídios para elaboração de
+                            um
+                            plano para apoio à gestão e ocupação das Pracinhas de Cultura.</p>
+                        <p>Solicitamos o envio da resposta até o dia 07/10/2021 contribuindo, assim, para a celeridade
+                            do
+                            planejamento e posterior execução das ações.</p>
+                        <p>Desde já agradecemos a colaboração e camos à disposição para eventuais esclarecimentos!</p>
+
+                        <div>
+                            <md-button class="md-raised md-primary md-small" ng-click="$ctrl.startPesquisa($scope);">
+                                Iniciar Pesquisa</md-button>
+                        </div>
+                    </div>
+                </md-card>
+            </div>
+        </div>
+        <form name="form" class="css-form" >
+        <div flex-gt-sm class="nome" ng-if="hideShow_pg1" id="pg1" layout="row" layout-xs="row">
+            <form name="form" class="css-form" novalidate>
+            <!--<md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 white-text" style="margin-left:0px;border-radius:0;background: linear-gradient(to top right, #05152d 20%, #021d47 90%);">-->
+            <div flex="">
+                <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 black-text"
+                    style="margin-left:0px;border-radius:0;" ng-hide="$ctrl.loadingPracas">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <p> <span class="md-subhead">
+                                    <h2>{{ pagTitle }}</h2>
+                                </span>
+                                <span style="font-size: 9px;"> (* Campos obrigatórios) </span></p>
+                            <span class="md-subhead"><strong>Municipio: *</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <md-select ng-model="pesquisa.municipio" placeholder="Selecione o Município" name="municipio" required>
+                                    <md-option ng-repeat="muni in listaMunicipios "
+                                        value="{{ muni.value }}">
+                                        <span class="textCap"> {{ muni.key }} </span>
+
+                                    </md-option>
+                                </md-select>
+                           </md-input-container>
+
+                            <span class="md-subhead"><strong>Nome do município (outro): </strong> </span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.municipio_outro" placeholder="Informe o município" autofocus>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>UF: * </strong> </span>
+                            <md-input-container class="md-block" flex >
+                                <md-select ng-model="pesquisa.uf" placeholder="Informe o Estado(UF)" required>
+                                    <md-option ng-repeat="uf in listaUFs" value="{{ uf.value }}">
+                                        {{ uf.display_name }}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>Nome Completo: * </strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.nome" placeholder="Informe seu nome completo" autofocus  required>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>E-mail: *</strong> </span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.email" placeholder="Informe seu email" autofocus  required>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>Telefone: * </strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.telefone" placeholder="Informe seu telefone" autofocus  required>
+                            </md-input-container>
+                            <span class="md-subhead">
+                                <strong>Facebook: * </strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.facebook" placeholder="Informe o Facebook" autofocus  required>
+                            </md-input-container>
+                        </md-card-title-text>
+                    </md-card-title>
+
+                </md-card>
+            </div>
+            
+            <div flex="">
+                <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 black-text"
+                    style="margin-left:0px;border-radius:0;" ng-hide="$ctrl.loadingPracas">
+                    <md-card-title>
+                        <md-card-title-text>
+
+
+                            <span class="md-subhead">
+                                <strong>Whatsapp: * </strong> </span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.whatsapp" placeholder="Informe seu Whatsapp" autofocus required>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>Função ou Relação com Pracinha de Cultura: *</strong> </span>
+
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.orgaoRelacao" required>
+                                    <md-radio-button ng-repeat="orgao in orgaoRelacao" ng-value="orgao"
+                                        aria-label="orgao">
+                                        {{ orgao }}
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>Nome do órgão municipal ao aqual está vinculado (Secretaria ou departamento,
+                                    caso seja representante do poder público *</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.representante" placeholder="Sua resposta." autofocus required>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>A Pracinha de Cultura recebeu o kit da programadora Brasil ? *</strong><br /></span>
+                            <span style="font-size: 9px;"> (Conjunto de filmes brasileiros licenciados para sessões
+                                sem fins lucrativos em pontos de exibição audiovisual a ela associados) </span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.kit" required>
+                                    <md-radio-button value="Sim" name="sim">
+                                        Sim
+                                    </md-radio-button>
+                                    <md-radio-button value="Não" name='nao'>
+                                        Não
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>A Pracinha de Cultura possui página no Fcebook? </strong></span>
+                            <span style="font-size: 9px;"> (Caso sim, insira o endereço eletrônico abaixo)</span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.possuifacebook" placeholder="Sua resposta." autofocus>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                <md-button class="md-raised md-primary md-small" ng-click="$ctrl.clickProximo();">
+                                    Próximo </md-button>
+                            </md-input-container>
+                        </md-card-title-text>
+                    </md-card-title>
+
+                </md-card>
+            </div>
+        </div>
+        <div flex-gt-sm class="nome" ng-if="hideShow_pg2" id="pg2" layout="row" layout-xs="row">
+            <div flex="">
+                <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 black-text"
+                    style="margin-left:0px;border-radius:0;" ng-hide="$ctrl.loadingPracas">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-subhead">
+                                <strong>1) Estão sendo desenvolvidas atividades programadas, ou seja, há agenda
+                                    planejada de atividades no equipamento? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q1" required>
+                                    <md-radio-button value="Sim" name="sim">
+                                        Sim
+                                    </md-radio-button>
+                                    <md-radio-button value="Não" name='nao'>
+                                        Não
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong> 2) Em quais dias essas atividades programadas são
+                                    desenvolvidas? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q2" required>
+                                    <md-radio-button value="Apenas em dias de semana" name="dias">
+                                        Apenas em dias de semana
+                                    </md-radio-button>
+                                    <md-radio-button value="Apenas aos finais de semana" name='fds'>
+                                        Apenas aos nais de semana
+                                    </md-radio-button>
+                                    <md-radio-button value="Durante toda a semana" name='semana'>
+                                        Durante toda a semana
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong> 3) Em quantos dias da semana são desenvolvidas atividades
+                                    programadas? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q3" required>
+                                    <md-radio-button ng-repeat="freq in freqAtivProg" ng-value="freq" aria-label="freq">
+                                        {{ freq }}
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong> 4) Dentre as opções abaixo, marque quais tipos de atividades
+                                    programadas estão sendo desenvolvidas no equipamento: *
+                                </strong><br /></span>
+                            <span style="font-size: 9px;"> (múltipla escolha)</span>
+                            <md-input-container class="md-block" flex>
+                                <md-select ng-model="pesquisa.q4" placeholder="Selecione uma ou mais atividade(s)"
+                                    multiple required>
+                                    <md-option ng-repeat="atividade in tipoAtividade" ng-value="atividade">
+
+                                        <span class="textCap"> {{ atividade }} </span>
+
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong> 5) Quais são as formas de desenvolvimento destas atividades? *
+                                </strong><br /></span>
+                            <span style="font-size: 9px;"> (múltipla escolha)</span>
+                            <md-input-container class="md-block" flex>
+                                <md-select ng-model="pesquisa.q5" placeholder="Selecione uma ou mais atividade(s)"
+                                    multiple required>
+                                    <md-option ng-repeat="desenvolvimento in desenvolvimentoAtividade"
+                                        ng-value="desenvolvimento">
+
+                                        <span class="textCap"> {{ desenvolvimento }} </span>
+
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
+            <div flex="">
+                <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 black-text"
+                    style="margin-left:0px;border-radius:0;" ng-hide="$ctrl.loadingPracas">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-subhead">
+                                <strong> 6) Em geral, qual é o ciclo de duração destas atividades? *
+                                </strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q6" required>
+                                    <md-radio-button ng-repeat="ciclo in cicloAtividade" ng-value="ciclo"
+                                        aria-label="ciclo">
+                                        {{ ciclo }}
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong> 7) Além das atividades programadas, são realizadas atividades
+                                    esporádicas no equipamento? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q7" required>
+                                    <md-radio-button value="Sim" name="sim">
+                                        Sim
+                                    </md-radio-button>
+                                    <md-radio-button value="Não" name='nao'>
+                                        Não
+                                    </md-radio-button>
+                                </md-radio-group>
+
+                                <span class="md-subhead">
+                                    <strong>8) Caso sim, faça uma lista destas atividades: </strong></span>
+                                <md-input-container class="md-block" flex>
+                                    <input ng-model="pesquisa.q8" placeholder="Sua resposta." autofocus>
+                                </md-input-container>
+
+                                <span class="md-subhead">
+                                    <strong>9) Considerando as atividades temporárias e permanentes já
+                                        realizadas ou em realização, quais você destacaria como tendo
+                                        sido mais bem sucedidas? Por quê? </strong></span>
+                                <md-input-container class="md-block" flex>
+                                    <input ng-model="pesquisa.q9" placeholder="Sua resposta." autofocus>
+                                </md-input-container>
+
+                                <span class="md-subhead">
+                                    <strong>10) E quais não atingiram o público e os objetivos planejados?
+                                        Por quê? </strong></span>
+                                <md-input-container class="md-block" flex>
+                                    <input ng-model="pesquisa.q10" placeholder="Sua resposta." autofocus>
+                                </md-input-container>
+
+                                <div layout="row">
+                                    <md-button class="md-raised md-primary md-small" ng-click="$ctrl.clickAnterior();">
+                                        Anterior </md-button>
+
+                                    <md-button class="md-raised md-primary md-small" ng-click="$ctrl.clickProximo();">
+                                        Próximo </md-button>
+                                </div>
+
+
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
+        </div>
+        <div flex-gt-sm class="nome" ng-if="hideShow_pg3" id="pg3" layout="row" layout-xs="row">
+            <div flex="">
+                <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 black-text"
+                    style="margin-left:0px;border-radius:0;" ng-hide="$ctrl.loadingPracas">
+                    <md-card-title>
+                        <md-card-title-text>
+
+                            <span class="md-subhead">
+                                <strong> 11) As atividades são realizadas em que períodos? *
+                                </strong><br /></span>
+                            <span style="font-size: 9px;"> (múltipla escolha)</span>
+                            <md-input-container class="md-block" flex>
+                                <md-select ng-model="pesquisa.q11" placeholder="Selecione uma ou mais período(s)" multiple required>
+                                    <md-option value="Manhã">Manhã</md-option>
+                                    <md-option value="Tarde">Tarde</md-option>
+                                    <md-option value="Noite">Noite</md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>12) Qual o horário de funcionamento do equipamento em dias de
+                                    semana? *</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q12" placeholder="Sua resposta." autofocus required>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>13) E nos finais de semana? *</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q13" placeholder="Sua resposta." autofocus required>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong> 14) Atualmente, quais espaços estão sendo utilizados para o
+                                    desenvolvimento de atividades? *
+                                </strong><br /></span>
+                            <span style="font-size: 9px;"> (múltipla escolha)</span>
+                            <md-input-container class="md-block" flex>
+                                <md-select ng-model="pesquisa.q14" placeholder="Selecione um ou mais espaço(s)" multiple required>
+                                    <md-option ng-repeat="espaco in espacos" ng-value="espaco">
+
+                                        <span class="textCap"> {{ espaco }} </span>
+
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong> 15) Atualmente qual é o espaço MAIS utilizado para o
+                                    desenvolvimento de atividades? *
+                                </strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-select ng-model="pesquisa.q15" placeholder="Selecione um espaço" required>
+                                    <md-option ng-repeat="espaco in espacos" ng-value="espaco">
+
+                                        <span class="textCap"> {{ espaco }} </span>
+
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>16) Atualmente qual é o espaço menos utilizado para o
+                                    desenvolvimento de atividades? *
+                                </strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-select ng-model="pesquisa.q16" placeholder="Selecione um espaço" required>
+                                    <md-option ng-repeat="espaco in espacos" ng-value="espaco">
+
+                                        <span class="textCap"> {{ espaco }} </span>
+
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
+
+            <div flex="">
+                <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 black-text"
+                    style="margin-left:0px;border-radius:0;" ng-hide="$ctrl.loadingPracas">
+                    <md-card-title>
+                        <md-card-title-text>
+
+                            <span class="md-subhead">
+                                <strong>17) Qual o estado de preservação dos espaços? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q17" required>
+                                    <md-radio-button value="Ótimo" name="Otimo">
+                                        Ótimo
+                                    </md-radio-button>
+                                    <md-radio-button value="Bom" name='Bom'>
+                                        Bom
+                                    </md-radio-button>
+                                    <md-radio-button value="Ruim" name='Ruim'>
+                                        Ruim
+                                    </md-radio-button>
+                                    <md-radio-button value="Péssimo" name='Pessimo'>
+                                        Péssimo
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>18) Qual o estado de preservação dos equipamentos (vídeo,
+                                    som, informática, equipamentos esportivos), acervo e
+                                    mobiliário? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q18" required>
+                                    <md-radio-button value="Ótimo" name="Otimo">
+                                        Ótimo
+                                    </md-radio-button>
+                                    <md-radio-button value="Bom" name='Bom'>
+                                        Bom
+                                    </md-radio-button>
+                                    <md-radio-button value="Ruim" name='Ruim'>
+                                        Ruim
+                                    </md-radio-button>
+                                    <md-radio-button value="Péssimo" name='Pessimo'>
+                                        Péssimo
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>19) Há participação das secretarias municipais na gestão do
+                                    equipamento? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q19" required>
+                                    <md-radio-button value="Sim" name="Sim">
+                                        Sim
+                                    </md-radio-button>
+                                    <md-radio-button value="Não"  name='nao'>
+                                        Não
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>20) Caso sim, como se dá essa participação? 
+                                </strong><br /></span>
+                            <span style="font-size: 9px;"> (múltipla escolha)</span>
+                            <md-input-container class="md-block" flex>
+                                <md-select ng-model="pesquisa.q20" placeholder="Selecione um ou mais forma de participação"
+                                    multiple>
+                                    <md-option ng-repeat="forma in participacao" ng-value="forma">
+
+                                        <span class="textCap"> {{ forma }} </span>
+
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <div layout="row">
+                                <md-button class="md-raised md-primary md-small" ng-click="$ctrl.clickAnterior();">
+                                    Anterior </md-button>
+
+                                <md-button class="md-raised md-primary md-small" ng-click="$ctrl.clickProximo();">
+                                    Próximo </md-button>
+                            </div>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
+
+        </div>
+        <div flex-gt-sm class="nome" ng-if="hideShow_pg4" id="pg4" layout="row" layout-xs="row">
+            <div flex="">
+                <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 black-text"
+                    style="margin-left:0px;border-radius:0;" ng-hide="$ctrl.loadingPracas">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-subhead">
+                                <strong>21) Quais Secretarias participam? *</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q21" placeholder="Sua resposta." autofocus>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>22) Quais são as principais dificuldades na gestão do equipamento? *
+                                </strong><br /></span>
+                            <span style="font-size: 9px;"> (múltipla escolha)</span>
+                            <md-input-container class="md-block" flex>
+                                <md-select ng-model="pesquisa.q22" placeholder="Selecione um ou mais forma de participação"
+                                    multiple required>
+                                    <md-option ng-repeat="dificuldade in dificuldades" ng-value="dificuldade">
+
+                                        <span class="textCap"> {{ dificuldade }} </span>
+
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>23) Quais são os impactos da implantação do equipamento na
+                                    comunidade? <br />Você percebeu diferenças na comunidade e no
+                                    território após a implantação do equipamento? *</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q23" placeholder="Sua resposta." autofocus required>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>24) A comunidade local participa das atividades desenvolvidas?
+                                    *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q24" required>
+                                    <md-radio-button value="Sim muito" name="Sim_Muito">
+                                        Sim,muito
+                                    </md-radio-button>
+                                    <md-radio-button value="Sim pouco" name="Sim_Pouco">
+                                        Sim,pouco
+                                    </md-radio-button>
+                                    <md-radio-button value="Não"  name='nao'>
+                                        Não
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>25) A comunidade sente que o equipamento é seu? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q25" required>
+                                    <md-radio-button value="Sim" name="Sim">
+                                        Sim
+                                    </md-radio-button>
+                                    <md-radio-button value="Não"  name='nao'>
+                                        Não
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>26) A comunidade ajuda a cuidar do equipamento? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q26" required>
+                                    <md-radio-button value="Sim" name="Sim">
+                                        Sim
+                                    </md-radio-button>
+                                    <md-radio-button value="Não"  name='nao'>
+                                        Não
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+
+
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
+            <div flex="">
+                <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 black-text"
+                    style="margin-left:0px;border-radius:0;" ng-hide="$ctrl.loadingPracas">
+                    <md-card-title>
+                        <md-card-title-text>
+
+                            <span class="md-subhead">
+                                <strong>27) Há preferência pelos fornecedores locais de produtos e
+                                    serviços para abastecer o equipamento? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q27" required>
+                                    <md-radio-button value="Sim" name="Sim">
+                                        Sim
+                                    </md-radio-button>
+                                    <md-radio-button value="Não"  name='nao'>
+                                        Não
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>28) Existem grupos que utilizam o equipamento para ensaios,
+                                    oficinas ou apresentações, independente das atividades programadas? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q28" required>
+                                    <md-radio-button value="Sim" name="Sim">
+                                        Sim
+                                    </md-radio-button>
+                                    <md-radio-button value="Não"  name='nao'>
+                                        Não
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>29) Caso sim, que grupos são estes?</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q29" placeholder="Sua resposta." autofocus>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>30) Existem associações, ONGs, OSCIPs ou outros grupos
+                                    organizados ocupando o equipamento? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q30" required>
+                                    <md-radio-button value="Sim" name="Sim">
+                                        Sim
+                                    </md-radio-button>
+                                    <md-radio-button value="Não"  name='nao'>
+                                        Não
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+
+                            <span class="md-subhead">
+                                <strong>31) Caso sim, com que frequência?</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q30">
+                                    <md-radio-button value="Quase nunca" name="Quase_nunca">
+                                        Quase nunca
+                                    </md-radio-button>
+                                    <md-radio-button value="Raramente" name='Raramente'>
+                                        Raramente
+                                    </md-radio-button>
+                                    <md-radio-button value="Algumas vezes" name='Algumas_vezes'>
+                                        Algumas vezes
+                                    </md-radio-button>
+                                    <md-radio-button value="Muitas vezes" name='Muitas_vezes'>
+                                        Muitas vezes
+                                    </md-radio-button>
+                                    <md-radio-button value="Quase sempre" name='Quase_sempre'>
+                                        Quase sempre
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <div layout="row">
+                                <md-button class="md-raised md-primary md-small" ng-click="$ctrl.clickAnterior();">
+                                    Anterior </md-button>
+
+                                <md-button class="md-raised md-primary md-small" ng-click="$ctrl.clickProximo();">
+                                    Próximo </md-button>
+                            </div>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
+        </div>
+        <div flex-gt-sm class="nome" ng-if="hideShow_pg5" id="pg5" layout="row" layout-xs="row">
+            <div flex="">
+                <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 black-text"
+                    style="margin-left:0px;border-radius:0;" ng-hide="$ctrl.loadingPracas">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-subhead">
+                                <strong>32) Qual público participa das atividades do equipamento? *
+                                </strong><br /></span>
+                            <span style="font-size: 9px;"> (múltipla escolha)</span>
+                            <md-input-container class="md-block" flex>
+                                <md-select ng-model="pesquisa.q32" placeholder="Selecione um ou mais público participante"
+                                    multiple required>
+                                    <md-option ng-repeat="publico in publicoparticipante" ng-value="publico">
+
+                                        <span class="textCap"> {{ publico }} </span>
+
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>33) Qual público MAIS participa das atividades do equipamento?
+                                </strong><br /></span>
+                            <span style="font-size: 9px;"> (múltipla escolha)</span>
+                            <md-input-container class="md-block" flex>
+                                <md-select ng-model="pesquisa.q33" placeholder="Selecione um público"
+                                    multiple required>
+                                    <md-option ng-repeat="publico in publicoparticipante" ng-value="publico">
+
+                                        <span class="textCap"> {{ publico }} </span>
+
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>34) Qual é a quantidade de pessoas que participam
+                                    semanalmente das atividades programadas do equipamento? *</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q34" placeholder="Sua resposta." autofocus required>
+                            </md-input-container>
+	
+                            <span class="md-subhead">
+                                <strong>35) Quantas pessoas trabalham na Pracinha de Cultura? *</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q35" placeholder="Sua resposta." autofocus required>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong> 36) Os funcionários são servidores ou contratados pela
+                                    prefeitura? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q36" required>
+                                    <md-radio-button value="Servidores" name="Servidores">
+                                        Servidores
+                                    </md-radio-button>
+                                    <md-radio-button value="Contratados" name="Contratados">
+                                        Contratados
+                                    </md-radio-button>
+                                    <md-radio-button value="Ambos" name='Ambos'>
+                                        Ambos
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>	
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
+            <div flex="">
+                <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 black-text"
+                    style="margin-left:0px;border-radius:0;" ng-hide="$ctrl.loadingPracas">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-subhead">
+                                <strong>37) Há voluntários trabalhando no equipamento? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q37" required>
+                                    <md-radio-button value="Sim" name="Sim">
+                                        Sim
+                                    </md-radio-button>
+                                    <md-radio-button value="Não"  name='nao'>
+                                        Não
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>38) Se sim, quantos?</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q38" placeholder="Sua resposta." autofocus>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>39) Há pessoas da comunidade trabalhando no equipamento? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q39" required>
+                                    <md-radio-button value="Sim" name="Sim">
+                                        Sim
+                                    </md-radio-button>
+                                    <md-radio-button value="Não"  name='nao'>
+                                        Não
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>40) Se sim, quantos?</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q40" placeholder="Sua resposta." autofocus>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>41) Há professores, monitores ou outros colaboradores
+                                    trabalhando no equipamento, que sejam oriundos de instituições
+                                    parceiras? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q41" required>
+                                    <md-radio-button value="Sim" name="Sim">
+                                        Sim
+                                    </md-radio-button>
+                                    <md-radio-button value="Não"  name='nao'>
+                                        Não
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <div layout="row">
+                                <md-button class="md-raised md-primary md-small" ng-click="$ctrl.clickAnterior();">
+                                    Anterior </md-button>
+
+                                <md-button class="md-raised md-primary md-small" ng-click="$ctrl.clickProximo();">
+                                    Próximo </md-button>
+                            </div>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
+        </div>
+
+
+        <div flex-gt-sm class="nome" ng-if="hideShow_pg6" id="pg6" layout="row" layout-xs="row">
+            <div flex="">
+                <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 black-text"
+                    style="margin-left:0px;border-radius:0;" ng-hide="$ctrl.loadingPracas">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-subhead">
+                                <strong>42) Há funcionários alocados para trabalhar exclusivamente em
+                                    quais dos espaços abaixo? *
+                                </strong><br /></span>
+                            <span style="font-size: 9px;"> (múltipla escolha)</span>
+                            <md-input-container class="md-block" flex>
+                                <md-select ng-model="pesquisa.q42" placeholder="Selecione um ou mais forma de participação"
+                                    multiple required>
+                                    <md-option ng-repeat="funcionario in funcionariosExclusivos" ng-value="funcionario">
+
+                                        <span class="textCap"> {{ funcionario }} </span>
+
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong> 43) Em quais turnos há funcionários trabalhando? *
+                                </strong><br /></span>
+                            <span style="font-size: 9px;"> (múltipla escolha)</span>
+                            <md-input-container class="md-block" flex>
+                                <md-select ng-model="pesquisa.q43" placeholder="Selecione uma ou mais período(s)" multiple required>
+                                    <md-option value="Manhã">Manhã</md-option>
+                                    <md-option value="Tarde">Tarde</md-option>
+                                    <md-option value="Noite">Noite</md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong> 44) O grupo gestor consegue trabalhar efetivamente na gestão
+                                    do equipamento, deliberando sobre as atividades/programação
+                                    e contribuindo para a solução de problemas e conflitos? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q44" required>
+                                    <md-radio-button value="Sim" name="Sim">
+                                        Sim
+                                    </md-radio-button>
+                                    <md-radio-button value="Parcialmente" name="Parcialmente">
+                                        Parcialmente
+                                    </md-radio-button>
+                                    <md-radio-button value="Não" name='Nao'>
+                                        Não
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>45) Qual segmento do grupo gestor participa mais das reuniões
+                                    e decisões? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q45" required>
+                                    <md-radio-button value="Comunidade" name="comunidade">
+                                        Comunidade
+                                    </md-radio-button>
+                                    <md-radio-button value="Poder publico" name="poderpublico">
+                                        Poder público
+                                    </md-radio-button>
+                                    <md-radio-button value="Sociedade civil organizada" name='sociedadecivilorganizada'>
+                                        Sociedade civil organizada
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>46) Dentre os três segmentos, quais entidades, secretarias
+                                    municipais e pessoas se destacam pela participação? *</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q46" placeholder="Sua resposta." autofocus required>
+                            </md-input-container>
+
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
+            <div flex="">
+                <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 black-text"
+                    style="margin-left:0px;border-radius:0;" ng-hide="$ctrl.loadingPracas">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-subhead">
+                                <strong>47) Há dificuldades de participação na gestão por parte de
+                                    algum segmento do grupo gestor? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q47" required>
+                                    <md-radio-button value="Sim" name="Sim">
+                                        Sim
+                                    </md-radio-button>
+                                    <md-radio-button value="Não"  name='nao'>
+                                        Não
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>48) Caso sim, qual é o segmento?
+                                </strong><br /></span>
+                            <span style="font-size: 9px;"> (múltipla escolha)</span>
+                            <md-input-container class="md-block" flex>
+                                <md-select ng-model="pesquisa.q48" placeholder="Selecione uma ou mais período(s)" multiple>
+                                    <md-option value="Comunidade">Comunidade</md-option>
+                                    <md-option value="Poder publico">Poder público</md-option>
+                                    <md-option value="Sociedade civil organizada">Sociedade civil organizada</md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>49) Quais dificuldades são encontradas para realização da
+                                    gestão compartilhada? *</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q49" placeholder="Sua resposta." autofocus required>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>50) Na prática, os membros da sociedade civil organizada e da
+                                    comunidade têm o mesmo poder de decisão que o poder público
+                                    na gestão do equipamento? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q50" required>
+                                    <md-radio-button value="Sim" name="Sim">
+                                        Sim
+                                    </md-radio-button>
+                                    <md-radio-button value="Não"  name='nao'>
+                                        Não
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>51) Como funcionam as deliberações do grupo gestor? *</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q51" placeholder="Sua resposta." autofocus required> 
+                            </md-input-container>
+	
+                        
+                            <div layout="row">
+                                <md-button class="md-raised md-primary md-small" ng-click="$ctrl.clickAnterior();">
+                                    Anterior </md-button>
+
+                                <md-button class="md-raised md-primary md-small" ng-click="$ctrl.clickProximo();">
+                                    Próximo </md-button>
+                            </div>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
+        </div>
+
+        <div flex-gt-sm class="nome" ng-if="hideShow_pg7" id="pg7" layout="row" layout-xs="row">
+            <div flex="">
+                <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 black-text"
+                    style="margin-left:0px;border-radius:0;" ng-hide="$ctrl.loadingPracas">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-subhead">
+                                <strong>52) Qual a periodicidade das reuniões do grupo gestor? *
+                                </strong><br /></span>
+                            <span style="font-size: 9px;"> (múltipla escolha)</span>
+                            <md-input-container class="md-block" flex>
+                                <md-select ng-model="pesquisa.q52" placeholder="Selecione um ou mais forma de participação"
+                                    multiple required>
+                                    <md-option ng-repeat="periodo in periodos" ng-value="periodo">
+
+                                        <span class="textCap"> {{ periodo }} </span>
+
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>53) Você destacaria alguma situação na qual a participação do
+                                    grupo gestor foi importante? Descreva tal situação <br/>(Na
+                                    resolução de um conflito ou na definição de alguma atividade a
+                                    acontecer na Pracinha de Cultura, por exemplo).</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q53" placeholder="Sua resposta." autofocus>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>54) Existem outras experiências de gestão compartilhada e
+                                    participação social na cidade? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q54" required>
+                                    <md-radio-button value="Sim" name="Sim">
+                                        Sim
+                                    </md-radio-button>
+                                    <md-radio-button value="Não"  name='nao'>
+                                        Não
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>55) Caso sim, quais? Elas já existiam antes da instituição da
+                                    gestão compartilhada da Pracinha de Cultura?</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q55" placeholder="Sua resposta." autofocus>
+                            </md-input-container>
+                            
+                            <span class="md-subhead">
+                                <strong>56) Quais os custos mensais da Pracinha de Cultura? * <br/>(Considerando custeio de
+                                    atividades, programação, manutenção, recursos humanos e
+                                    gastos correntes com água, luz, segurança e limpeza) </strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q56" placeholder="Sua resposta." autofocus required>
+                            </md-input-container>
+                           
+                            <span class="md-subhead">
+                                <strong>57) Qual o orçamento mensal do espaço? *</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q57" placeholder="Sua resposta." autofocus required>
+                            </md-input-container>
+
+
+                 
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
+            <div flex="">
+                <md-card md-theme="default" md-theme-watch="" class="_md md-default-theme margin-0 black-text"
+                    style="margin-left:0px;border-radius:0;" ng-hide="$ctrl.loadingPracas">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-subhead">
+                                <strong>58) Os recursos que financiam o espaço são: *
+                                </strong><br /></span>
+                            <span style="font-size: 9px;"> (múltipla escolha)</span>
+                            <md-input-container class="md-block" flex>
+                                <md-select ng-model="pesquisa.q58" placeholder="Selecione um ou mais fontes de recursos"
+                                    multiple required>
+                                    <md-option ng-repeat="recurso in recursos" ng-value="recurso">
+
+                                        <span class="textCap"> {{ recurso }} </span>
+
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>59) Os recursos governamentais são oriundos de quais secretarias?</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q59" placeholder="Sua resposta." autofocus required>
+                            </md-input-container>
+                                
+                            <span class="md-subhead">
+                                <strong>60) Existem parcerias firrmadas para gestão e financiamento do
+                                    equipamento? *</strong><br /></span>
+                            <md-input-container class="md-block" flex>
+                                <md-radio-group ng-model="pesquisa.q60" required>
+                                    <md-radio-button value="Sim" name="Sim">
+                                        Sim
+                                    </md-radio-button>
+                                    <md-radio-button value="Não"  name='nao'>
+                                        Não
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>61) Caso sim, quem são estes parceiros?</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q61" placeholder="Sua resposta." autofocus>
+                            </md-input-container>
+
+                            <span class="md-subhead">
+                                <strong>62) Você conhece alguma experiência interessante/bem sucedida de gestão de outra Pracinha de Cultura? Qual? *</strong></span>
+                            <md-input-container class="md-block" flex>
+                                <input ng-model="pesquisa.q62" placeholder="Sua resposta." autofocus required>
+                            </md-input-container>
+                           
+                                
+                            <div layout="row">
+                                <md-button class="md-raised md-primary md-small" ng-click="$ctrl.clickAnterior();">
+                                    Anterior </md-button>
+                            </div>
+
+                            <div layout="row">
+                                <md-button class="md-raised md-primary md-small" ng-click="$ctrl.enviarRespostas();">
+                                    Enviar </md-button>
+
+                            </div>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
+        </div>
+        </form>
+
+    </div>
+</div>

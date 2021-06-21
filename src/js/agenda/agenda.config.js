@@ -7,7 +7,7 @@ function AgendaConfig($stateProvider) {
 			controller: 'AgendaCtrl',
 			controllerAs: '$ctrl',
 			templateUrl: 'agenda/agenda.tmpl.html',
-			title: 'Agenda de Atividades das Praças CEUs',
+			title: 'Agenda de Atividades das Pracinha da Cultura',
 			resolve: {
 				agenda: function(Agenda, $state) {
 					return Agenda.list().then(

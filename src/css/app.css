@@ -2284,6 +2284,17 @@ md-autocomplete .md-show-clear-button button md-icon{
 	left: 0 !important;
 }
 
+.md-button.md-small {
+	
+	height: 25px;
+	line-height: 25px;
+	min-height: 25px;
+	vertical-align: middle;
+	font-size: 11px;
+	padding: 2px, 2px ;
+	margin: 05px;
+  }
+
 user-card md-card{
 	margin-left: 0;
 	margin-right: 0;

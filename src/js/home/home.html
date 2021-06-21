@@ -1,18 +1,21 @@
 <style>
-  md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
+  md-toolbar.md-default-theme:not(.md-menu-toolbar),
+  md-toolbar:not(.md-menu-toolbar) {
     /*background-color: rgba(0, 0, 0, 0.6) !important;*/
     /* background: linear-gradient(141deg, #000000b3 0%, #0009 51%, #000000b3 75%); */
     background: rgba(0, 0, 0, 0.6);
   }
 </style>
+
 <div id="quadro-container">
   <div style="height: 48px">
     <div class="tab-home md-whiteframe-1dp">
       <md-content class=" layout-column color-transition">
         <md-tabs md-selected="tabIntSelected" md-dynamic-height md-border-bottom class="center-align container">
-          <md-tab label="Procurar Praças" scroll="header" class=""></md-tab>
-          <md-tab label="Praças CEUs Próximas" scroll="#2" offset="48"></md-tab>
-          <md-tab label="Mapa das Praças CEUs" scroll="#3" offset="48"></md-tab>
+          <md-tab label="Procurar Pracinhas da Cultura" scroll="header" class=""></md-tab>
+          <md-tab label="Pracinhas da Cultura Próximas" scroll="#2" offset="48"></md-tab>
+          <md-tab label="Mapa das Pracinhas da Cultura" scroll="#3" offset="48"></md-tab>
+          <!-- <md-tab label="Pesquisa de Equipamentos CEUs" scroll="header" offset="48"></md-tab>  -->
         </md-tabs>
       </md-content>
     </div>
@@ -21,127 +24,128 @@
     <video id="bgvid" playsinline autoplay muted loop>
       <source src="/assets/CEUS.mp4" type="video/mp4">
     </video>
+    <div style="visibility: show; width: 300px; min-height: 100px; position:relative; z-index: 1;" id="myDialog">
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <p>Comunicado: </p>
+          <p>Com a publicação da Portaria nº 15, de 10 de maio de 2021, o programa agora passa a se chamar “Pracinhas da
+            Cultura”.</p>
+          <p>Para ver a portaria <a href="#" id="lnk_portaria">clique aqui</a>.</p>
+
+        </div>
+        <div class="modal-footer">
+          <a href="#!" id="btn_fechar" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+        </div>
+      </div>
+    </div>
     <div layout="row" flex>
-      <div flex="90" id="home-search" class="animated fadeIn" layout-align="center center" layout-margin layout-gt-xs="row">
+      <div flex="90" id="home-search" class="animated fadeIn" layout-align="center center" layout-margin
+        layout-gt-xs="row">
         <md-icon class="search">search</md-icon>
-        <md-autocomplete
-                placeholder="Procure por uma cidade ou praça"
-                md-selected-item="$ctrl.selectedItem"
-                md-selected-item-change="$ctrl.selectedItemChange(item)"
-                md-search-text="$ctrl.searchText"
-                md-items="item in $ctrl.getMatches($ctrl.searchText)"
-                md-item-text="item.municipio"
-                flex
-                flex-gt-xs="60"
-                class="md-whiteframe-6dp"
-                md-menu-class="autocomplete-epracas-template"
-                ng-model-options="{debounce: 550}"
-        >
+        <md-autocomplete placeholder="Procure por uma cidade ou praça" md-selected-item="$ctrl.selectedItem"
+          md-selected-item-change="$ctrl.selectedItemChange(item)" md-search-text="$ctrl.searchText"
+          md-items="item in $ctrl.getMatches($ctrl.searchText)" md-item-text="item.municipio" flex flex-gt-xs="60"
+          class="md-whiteframe-6dp" md-menu-class="autocomplete-epracas-template" ng-model-options="{debounce: 550}">
           <md-item-template>
-          <span class="item-title">
-            <span>{{item.nome}}</span>
-          </span>
-            <span class="item-metadata">
-            <span>
-              <strong>{{item.municipio | ucfirst}}</strong> - {{item.uf | uppercase}}
+            <span class="item-title">
+              <span>{{item.nome}}</span>
             </span>
-            <span>Modelo: {{item.modelo_descricao}}</span>
-            <span>Situação: {{item.situacao_descricao}}</span>
-          </span>
+            <span class="item-metadata">
+              <span>
+                <strong>{{item.municipio | ucfirst}}</strong> - {{item.uf | uppercase}}
+              </span>
+              <span>Modelo: {{item.modelo_descricao}}</span>
+              <span>Situação: {{item.situacao_descricao}}</span>
+            </span>
           </md-item-template>
           <md-not-found>
             Nenhuma praça encontrada
           </md-not-found>
         </md-autocomplete>
-          <md-menu>
-            <md-button aria-label="Open phone interactions menu" class="md-fab animated flip" ng-click="$ctrl.openMenu($mdMenu, $event)">
-              <md-icon>more_horiz</md-icon>
-            </md-button>
-            <md-menu-content width="4">
-              <md-menu-item>
-                <md-button ng-click="$ctrl._$state.go('app.pracas')">
-                  <md-icon>zoom_in</md-icon>
-                  Pesquisa avançada
-                </md-button>
-              </md-menu-item>
-              <md-menu-item>
-                <md-button ng-click="$ctrl._$state.go('app.eventos', {pk: ''})">
-                  <md-icon>date_range</md-icon>
-                  Pesquisar evento
-                </md-button>
-              </md-menu-item>
-            </md-menu-content>
-          </md-menu>
+        <md-menu>
+          <md-button aria-label="Open phone interactions menu" class="md-fab animated flip"
+            ng-click="$ctrl.openMenu($mdMenu, $event)">
+            <md-icon>more_horiz</md-icon>
+          </md-button>
+          <md-menu-content width="4">
+            <md-menu-item>
+              <md-button ng-click="$ctrl._$state.go('app.pracas')">
+                <md-icon>zoom_in</md-icon>
+                Pesquisa avançada
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="$ctrl._$state.go('app.eventos', {pk: ''})">
+                <md-icon>date_range</md-icon>
+                Pesquisar evento
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
       </div>
-      <!--<div flex="10" class="animated fadeIn" layout-align="center center" layout-margin layout-gt-xs="row"-->
-           <!--flex>-->
-        <!--<md-menu>-->
-          <!--<md-button aria-label="Open phone interactions menu" class="md-fab" ng-click="ctrl.openMenu($mdMenu, $event)">-->
-            <!--<md-icon>arrow_drop_down</md-icon>-->
-          <!--</md-button>-->
-          <!--<md-menu-content width="4">-->
-            <!--<md-menu-item>-->
-              <!--<md-button ng-click="ctrl.redial($event)">-->
-                <!--&lt;!&ndash;<md-icon md-svg-icon="call:dialpad" md-menu-align-target></md-icon>&ndash;&gt;-->
-                <!--Redial-->
-              <!--</md-button>-->
-            <!--</md-menu-item>-->
-            <!--<md-menu-item>-->
-              <!--<md-button disabled="disabled" ng-click="ctrl.checkVoicemail()">-->
-                <!--&lt;!&ndash;<md-icon md-svg-icon="call:voicemail"></md-icon>&ndash;&gt;-->
-                <!--Check voicemail-->
-              <!--</md-button>-->
-            <!--</md-menu-item>-->
-            <!--<md-menu-divider></md-menu-divider>-->
-            <!--<md-menu-item>-->
-              <!--<md-button ng-click="ctrl.toggleNotifications()">-->
-                <!--&lt;!&ndash;<md-icon md-svg-icon="social:notifications-{{ctrl.notificationsEnabled ? 'off' : 'on'}}"></md-icon>&ndash;&gt;-->
-                <!--&lt;!&ndash;{{ctrl.notificationsEnabled ? 'Disable' : 'Enable' }} notifications&ndash;&gt;-->
-              <!--</md-button>-->
-            <!--</md-menu-item>-->
-          <!--</md-menu-content>-->
-        <!--</md-menu>-->
-        <!--&lt;!&ndash;<md-button class="md-raised">Pesquisa avançada</md-button>&ndash;&gt;-->
-        <!--&lt;!&ndash;<md-button class="md-raised">Button</md-button>&ndash;&gt;-->
-      <!--</div>-->
+      
     </div>
     <div class="block white-text content animated fadeInUp" flex>
-      <h1>O que é o E-Praças?</h1>
-      <h2>O ePraças é um sistema de transparência e divulgação das Praças CEUs a todos os cidadãos. Aqui é possível acessar as atividades e os contatos de cada Praça CEU inaugurada e conferir o estágio de implementação das que estão em obras. Os dados do sistema permitirão a avaliação e melhoria contínua da gestão das Praças CEUs, fornecendo indicadores (relatórios e estatísticas) sobre o funcionamento de cada equipamento. O sistema é também uma ferramenta de apoio ao planejamento pelos Grupos Gestores e comunicação entre as Praças CEUs, fortalecendo a Rede de Gestores e Comunidades em todo o País.</h2>
+      <h4>O que é o Pracinhas da Cultura?</h4>
+      <h3>O Pracinhas da Cultura é um sistema de transparência e divulgação das Pracinhas da Cultura a todos os
+        cidadãos. Aqui é possível acessar as atividades e os contatos de cada Pracinhas da Cultura inaugurada e conferir o estágio
+        de implementação das que estão em obras. Os dados do sistema permitirão a avaliação e melhoria contínua da
+        gestão das Pracinhas da Cultura, fornecendo indicadores (relatórios e estatísticas) sobre o funcionamento
+        de cada equipamento. O sistema é também uma ferramenta de apoio ao planejamento pelos Grupos Gestores e
+        comunicação entre as Pracinhas da Cultura, fortalecendo a Rede de Gestores e Comunidades em todo o País.
+      </h3>
+
     </div>
-    <div class="quadro-btns block white-text animated fadeIn" layout="row" layout-xs="column" layout-align="center center" flex layout-margin ng-hide="$mdMedia('sm')">
-      <a href="http://ceus.cultura.gov.br" target="_blank" class="blue waves-effect waves-light btn-large  yellow-text tooltipped" flex-gt-xs="33" flex="100" data-position="top" data-tooltip="Ir para as Praças CEUs">
-        <i class="material-icons middle">explore</i>Praças CEUs</a>
-      <a class="yellow waves-effect waves-light btn-large green-text text-darken-4 tooltipped" flex-gt-xs="33" flex="100" scroll="#2" data-position="top" data-tooltip="Ir para praças próximas à você">
-        <i class="material-icons middle">near_me</i>Praças CEUs Próximas</a>
-      <a class="green waves-effect waves-light btn-large blue-text text-darken-4 tooltipped" flex-gt-xs="33" flex="100" scroll="#3" data-position="top" data-tooltip="Ir para todas as praças do brasil">
-        <i class="material-icons middle">map</i>Mapa das Praças CEUs</a>
-    </div>
-  </div>
-<a ui-sref="app.geoloc">
-  <div id="2" scroll-color="yellow darken-1" class="block transparent yellow lighten-1" layout="column"
-    layout-align="center center">
-    <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
-      <h1>Praças próximas a mim</h1>
-      <md-icon> near_me</md-icon>
-      <h3>Podemos localizar as praças que estão mais próximas a você agora</h3>
-    </div>
-  </div>
-</a>
-<a target="_blank"
-  href="http://mapas.cultura.gov.br/busca/##(global:(enabled:(space:!t),filterEntity:space),space:(filters:(type:!('132'))))">
-  <div id="3" scroll-color="green" class="block transparent green lighten-1 hoverable" layout="column"
-    layout-align="center center">
-    <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
-      <h1>Todas as praças no Mapa</h1>
-      <md-icon> map</md-icon>
-      <h3>Visualize todas as praças do Brasil de uma só vez no mapa</h3>
+    <div class="quadro-btns block white-text animated fadeIn" layout="row" layout-xs="column"
+      layout-align="center center" flex layout-margin ng-hide="$mdMedia('sm')">
+      <a href="http://ceus.cultura.gov.br" target="_blank"
+        class="blue waves-effect waves-light btn-large  yellow-text tooltipped" flex-gt-xs="33" flex="100"
+        data-position="top" data-tooltip="Ir para as Pracinhas da Cultura">
+        <i class="material-icons middle">explore</i>Pracinhas da Cultura</a>
+      <a class="yellow waves-effect waves-light btn-large green-text text-darken-4 tooltipped" flex-gt-xs="33"
+        flex="100" scroll="#2" data-position="top" data-tooltip="Ir para Pracinhas da Cultura próximas à você">
+        <i class="material-icons middle">near_me</i>Pracinhas da Cultura Próximas</a>
+      <a class="green waves-effect waves-light btn-large blue-text text-darken-4 tooltipped" flex-gt-xs="33" flex="100"
+        scroll="#3" data-position="top" data-tooltip="Ir para todas as Pracinhas da Cultura do brasil">
+        <i class="material-icons middle">map</i>Mapa das Pracinhas da Cultura</a>
+       <a ui-sref="app.pesquisa" class="waves-effect waves-light btn-large black-text text-darken-4 tooltipped" flex-gt-xs="33" flex="100"
+         data-position="top" data-tooltip="Responder Questionário de Pesquisa de Equipamentos de Pracinhas da Cultura - 2021.">
+        Pesquisa de Equipamentos Pracinhas da Cultura - 2021</a> 
     </div>
   </div>
-</a>
+  <a ui-sref="app.geoloc">
+    <div id="2" scroll-color="yellow darken-1" class="block transparent yellow lighten-1" layout="column"
+      layout-align="center center">
+      <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
+        <h1>Pracinhas da Cultura próximas a mim</h1>
+        <md-icon> near_me</md-icon>
+        <h3>Podemos localizar as Pracinhas da Cultura que estão mais próximas a você agora</h3>
+      </div>
+    </div>
+  </a>
+  <a target="_blank"
+    href="http://mapas.cultura.gov.br/busca/##(global:(enabled:(space:!t),filterEntity:space),space:(filters:(type:!('132'))))">
+    <div id="3" scroll-color="green" class="block transparent green lighten-1 hoverable" layout="column"
+      layout-align="center center">
+      <div class="content-hide animated fadeInDown white-text" layout="column" layout-align="center center">
+        <h1>Todas as Pracinhas da Cultura no Mapa</h1>
+        <md-icon> map</md-icon>
+        <h3>Visualize todas as Pracinhas da Cultura do Brasil de uma só vez no mapa</h3>
+      </div>
+    </div>
+  </a>
 </div>
 </div>
+
 <script>
+  $( "#btn_fechar" ).click(function() {
+      $('#myModal').hide();
+  });
+
+//$('#lnk_portaria').click(function() {
+//      $window.open("http://localhost:4000/assets/PORTARIA_MTUR_15.pdf")
+//  });
+
   $('.pushpin-demo-nav').each(function () {
     var $this = $(this);
     var $target = $('#' + $(this).attr('data-target'));
@@ -150,11 +154,15 @@
       bottom: $target.offset().top + $target.outerHeight() - $this.height()
     });
   });
-$(document).ready(function () {
-  $('.target').pushpin({
-    top: 0,
-    bottom: 1000,
-    offset: 0
+
+  $(document).ready(function () {
+    $('.target').pushpin({
+      top: 0,
+      bottom: 1000,
+      offset: 0
+    });
+
+
   });
-});
+  $('#myModal').show();
 </script>

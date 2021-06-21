@@ -19,6 +19,7 @@ const config = require("konfig")({ path: "." });
 const cssnano = require("gulp-cssnano");
 const htmlmin = require("gulp-htmlmin");
 const bro = require("gulp-bro");
+const gzip = require("gulp-gzip");
 
 // Where our files are located
 const paths = {
@@ -61,9 +62,9 @@ gulp.task("browserify", ["views"], () => {
         ["preprocessify", {
           includeExtensions: [".js"],
           context: {
-            IDCULTURA_URL: config.app.idcultura_url,
-            IDCULTURA_CLIENTID: config.app.idcultura_clientId,
-            EPRACAS_API_URL: config.app.epracas_api_url,
+            IDCULTURA_URL:  "https://id.cultura.gov.br",
+            IDCULTURA_CLIENTID: "OClientIDdaAplicação",
+            EPRACAS_API_URL: "http://localhost:8000/api/v1",
           },
         }],
       ],
@@ -97,7 +98,7 @@ gulp.task("html", () => {
   return gulp.src("src/index.html")
     .on("error", interceptErrors)
     .pipe(preprocess({
-      context: { PROD: config.app.prod },
+      context: { PROD: false },
     }))
     .pipe(gulp.dest(paths.buildDest));
 });
@@ -172,6 +173,7 @@ gulp.task("build", ["html", "browserify", "angular-bootstrap-calendarCss", "mate
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(uglify())
     .pipe(sourcemaps.write("./"))
+    .pipe(gzip())
     .pipe(gulp.dest(paths.distDest));
 
   const css = gulp.src(`${paths.buildDest}css/**`)

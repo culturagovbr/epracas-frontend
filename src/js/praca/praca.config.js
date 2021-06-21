@@ -7,7 +7,7 @@ function PracaConfig($stateProvider) {
       controller: "PracaListCtrl",
       controllerAs: "$ctrl",
       templateUrl: "praca/praca-list.html",
-      title: "Listagem de Praças dos CEUs",
+      title: "Listagem de Praças das Pracinhas de Cultura",
       resolve: {
         pracas(Praca, $state) {
           return Praca.list().then(

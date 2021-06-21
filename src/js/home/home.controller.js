@@ -12,25 +12,33 @@ class HomeCtrl {
         this._$state = $state;
         this._$q = $q;
 
-        // Pegando o evento scroll da tela para deixar as abas dinamicas conforme o scroll.
+         // Pegando o evento scroll da tela para deixar as abas dinamicas conforme o scroll.
         // angular.element(document).ready(function(){
 
         let elmTab = $('.tab-home'),
             intPracasPosition = elmTab.offset().top,
             strColorCurrent = '',
             intCurrentTab = 0;
-        $document.ready(function () {
-            $('.materialboxed').materialbox();
-            let elmTab = $('.tab-home'),
-                intPracasPosition = elmTab.offset().top;
+            $document.ready(function () {
+                $('.materialboxed').materialbox();
+                let elmTab = $('.tab-home'),
+                    intPracasPosition = elmTab.offset().top;
 
-            $scope.scroll(elmTab, intPracasPosition);
-            $document.on('scroll', () => {
                 $scope.scroll(elmTab, intPracasPosition);
-            });
+                $document.on('scroll', () => {
+                    $scope.scroll(elmTab, intPracasPosition);
+                });
 
-            $('.tooltipped').tooltip({delay: 50});
-        });
+                $('.tooltipped').tooltip({delay: 50});
+
+                $('#lnk_portaria').click(function() {
+                    $window.open("http://localhost:4000/assets/PORTARIA_MTUR_15.pdf")
+                });
+
+                $( "#btn_fechar" ).click(function() {
+                    $('#myModal').hide();
+                });
+            });
 
         this.openMenu = function($mdMenu, ev) {
             originatorEv = ev;
@@ -81,6 +89,21 @@ class HomeCtrl {
                 elmTab.removeClass('md-whiteframe-8dp');
             }
         }
+
+    }
+
+    DialogController($scope, $mdDialog) {
+        $scope.hide = function () {
+          $mdDialog.hide();
+        };
+    
+        $scope.cancel = function () {
+          $mdDialog.cancel();
+        };
+    
+        $scope.answer = function (answer) {
+          $mdDialog.hide(answer);
+        };
     }
 
     getMatches(query) {
@@ -95,7 +118,6 @@ class HomeCtrl {
     selectedItemChange(item) {
         this._$state.go('app.praca', {pk: item.id_pub});
     }
-
 }
 
 export default HomeCtrl;
