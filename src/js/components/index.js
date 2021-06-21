@@ -12,7 +12,8 @@ import ShowAuthedManagers from "./show-authed-managers.directive"
 import "angular-locale-pt-br"
 import "angular-input-masks"
 
-const componentsModule = angular.module("app.components", ["ui.utils.masks"])
+
+const componentsModule = angular.module("app.components", [])
 
 componentsModule.component("listErrors", ListErrors)
 componentsModule.directive("showAuthed", ShowAuthed)

@@ -15,6 +15,13 @@ function HomeConfig($stateProvider) {
     controllerAs: "$ctrl",
     templateUrl: "home/geoloc.html",
     title: "Geolocalização de Praças",
+  })
+  .state("app.pesquisa", {
+    url: "/pesquisa",
+    controller: "PesquisaCtrl",
+    controllerAs: "$ctrl",
+    templateUrl: "home/pesquisa.html",
+    title: "Pesquisa Equipamentos Pracinhas da Cultura",
   });
 }
 

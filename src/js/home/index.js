@@ -15,4 +15,8 @@ homeModule.controller('HomeCtrl', HomeCtrl);
 import GeolocCtrl from './geoloc.controller';
 homeModule.controller('GeolocCtrl', GeolocCtrl);
 
+import PesquisaCtrl from './pesquisa.controller';
+homeModule.controller('PesquisaCtrl', PesquisaCtrl);
+
+
 export default homeModule;

@@ -8,6 +8,7 @@ export default class Praca {
       ErrorCatcher,
       AppConstants,
       PracaEndPoint: `${AppConstants.api}/pracas/`,
+      PesquisaEndPoint: `${AppConstants.api}/pesquisa/`,
     })
   }
 
@@ -283,4 +284,22 @@ export default class Praca {
         }
       )
   }
+
+  // Envia Pesquisa para o backend para envio de email
+  enviaPesquisa(data){
+    console.log(data);
+    return this.$http({
+      url: this.PesquisaEndPoint,
+      method: "POST",
+      data: data,
+    })
+      .then(res => res.data)
+      .catch(
+        (err) => {
+          this.ErrorCatcher.error(caller, err)
+          return this.$q.reject()
+        }
+      )
+  }
+
 }

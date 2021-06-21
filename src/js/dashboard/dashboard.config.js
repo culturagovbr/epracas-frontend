@@ -9,7 +9,7 @@ function DashBoardConfig($stateProvider) {
       controller: "DashBoardCtrl",
       controllerAs: "$ctrl",
       templateUrl: "dashboard/dashboard.tmpl.html",
-      title: "Dashboard - e-praças - Ministério da Cultura",
+      title: "Dashboard - Pracinhas da Cultura - Ministério da Cultura",
     })
     // .state("app.dashboard.indicadores", {
     //   url: "/indicadores",

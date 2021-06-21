@@ -54,7 +54,7 @@ class DashboardEventsCtrl {
         calendarView: "month",
         viewDate: dateCalendar,
       }
-
+      
       // Resetando filtro evitando duplicidade de UF/estados
       if (this.objForm.uf === "0") {
         this.arrUf = []
@@ -101,7 +101,7 @@ class DashboardEventsCtrl {
             $("div.cal-month-day:not(.cal-day-today)").removeClass("cal-day-event")
             $("small.cal-events-num:not(.ng-hide)").closest("div.cal-month-day:not(.cal-day-today)").addClass("cal-day-event")
             $("mwl-calendar .badge-important").append(" Evento(s)");
-          }, 500)
+}, 500)
 
           Praca.options().then((data) => {
             angular.forEach(data.uf.choices, (uf) => {
