@@ -1,6 +1,6 @@
 const AppConstants = {}
 
-AppConstants.appName = "Pracinhas da Cultura"
+AppConstants.appName = "e-Praças"
 
 AppConstants.jwtKey = "id_token"
 AppConstants.idcultura_url = "/* @echo IDCULTURA_URL */"
