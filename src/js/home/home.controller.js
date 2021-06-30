@@ -1,5 +1,5 @@
 class HomeCtrl {
-    constructor($q, $state, AppConstants, Praca, $document, $window, $scope, $mdMedia) {
+    constructor($q, $state, AppConstants, Praca, $document, $window, $scope, $mdMedia, $location) {
         "ngInject";
 
         $scope.$mdMedia = $mdMedia;
@@ -32,7 +32,8 @@ class HomeCtrl {
                 $('.tooltipped').tooltip({delay: 50});
 
                 $('#lnk_portaria').click(function() {
-                    $window.open("http://localhost:4000/assets/PORTARIA_MTUR_15.pdf")
+                    var absUrl = $location.absUrl();
+                    $window.open(absUrl+"/assets/PORTARIA_MTUR_15.pdf");
                 });
 
                 $( "#btn_fechar" ).click(function() {
