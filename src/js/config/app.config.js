@@ -125,7 +125,7 @@ function AppConfig(
 
   $sceDelegateProvider.resourceUrlWhitelist([
       'self',
-      'http://hmg.epracas.cultura.gov.br/**',
+      'https://hmg.epracas.cultura.gov.br/**',
   ]);
 
 
