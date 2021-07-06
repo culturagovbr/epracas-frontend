@@ -8,6 +8,8 @@ dist/*
 
 app.yml
 
+gulpfile.js
+
 media/**
 
 package-lock.json
