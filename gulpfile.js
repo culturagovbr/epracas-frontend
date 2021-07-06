@@ -64,7 +64,7 @@ gulp.task("browserify", ["views"], () => {
           context: {
             IDCULTURA_URL:  "https://dev.id.cultura.gov.br",
             IDCULTURA_CLIENTID: "OClientIDdaAplicação",
-            EPRACAS_API_URL: "http://dev.epracas.cultura.gov.br/api/v1",
+            EPRACAS_API_URL: "https://dev.epracas.cultura.gov.br/api/v1",
           },
         }],
       ],
