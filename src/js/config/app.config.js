@@ -125,7 +125,7 @@ function AppConfig(
 
   $sceDelegateProvider.resourceUrlWhitelist([
       'self',
-      'http://dev.epracas.gov.br/**',
+      'https://dev.epracas.cultura.gov.br/**',
   ]);
 
 
