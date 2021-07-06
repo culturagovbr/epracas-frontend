@@ -63,7 +63,7 @@ gulp.task("browserify", ["views"], () => {
           includeExtensions: [".js"],
           context: {
             IDCULTURA_URL:  "https://dev.id.cultura.gov.br",
-            IDCULTURA_CLIENTID: config.app.idcultura_clientId,
+            IDCULTURA_CLIENTID: "OClientIDdaAplicação",
             EPRACAS_API_URL: "https://dev.epracas.cultura.gov.br/api/v1",
           },
         }],
