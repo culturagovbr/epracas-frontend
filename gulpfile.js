@@ -62,9 +62,9 @@ gulp.task("browserify", ["views"], () => {
         ["preprocessify", {
           includeExtensions: [".js"],
           context: {
-            IDCULTURA_URL:  "https://dev.id.cultura.gov.br",
-            IDCULTURA_CLIENTID: "18_t41s2lf05w0cwkw480owccsk4wwscgw00wo0s0so8c8c8c8ck",
-            EPRACAS_API_URL: "https://dev.epracas.cultura.gov.br/api/v1",
+            IDCULTURA_URL:  "https://hmg.id.cultura.gov.br",
+            IDCULTURA_CLIENTID: "12_5d1bf045zqo8o408g8cs8ogwco0kko4wwwk08sk8gwkosk08o0",
+            EPRACAS_API_URL: "https://hmg.epracas.cultura.gov.br/api/v1",
           },
         }],
       ],
