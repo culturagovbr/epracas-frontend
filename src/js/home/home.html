@@ -24,7 +24,7 @@
     <video id="bgvid" playsinline autoplay muted loop>
       <source src="/assets/CEUS.mp4" type="video/mp4">
     </video>
-    <div style="visibility: show; width: 300px; min-height: 100px; position:relative; z-index: 1;" id="myDialog">
+    <div ng-show="comunicado" style="width: 300px; min-height: 100px; position:relative; z-index: 1;" id="myDialog">
       <div id="myModal" class="modal">
         <div class="modal-content">
           <p ><h3 style="text-align: center;">Comunicado</h3></p>
@@ -108,7 +108,7 @@
       <a class="green waves-effect waves-light btn-large blue-text text-darken-4 tooltipped" flex-gt-xs="33" flex="100"
         scroll="#3" data-position="top" data-tooltip="Ir para todas as Pracinhas da Cultura do brasil">
         <i class="material-icons middle">map</i>Mapa das Pracinhas da Cultura</a>
-       <a ui-sref="app.pesquisa" class="waves-effect waves-light btn-large black-text text-darken-4 tooltipped" flex-gt-xs="33" flex="100"
+       <a ui-sref="app.pesquisa" class="waves-effect waves-light btn-large black-text text-darken-4 " flex-gt-xs="33" flex="100"
          data-position="top" data-tooltip="Responder Questionário de Pesquisa de Equipamentos de Pracinhas da Cultura - 2021.">
         Pesquisa de Equipamentos Pracinhas da Cultura - 2021</a> 
     </div>

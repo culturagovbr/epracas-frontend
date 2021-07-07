@@ -1,9 +1,10 @@
 import angular from "angular";
+import { silenceUncaughtInPromise } from "angular-ui-router";
 import PracaListCtrl from "../praca/praca-list.controller";
 import Praca from "../services/praca.service";
 
 class PesquisaCtrl {
-    constructor($scope, $q, Praca, $state, $window, Toast) {
+    constructor($scope, $q, Praca, $state, $window, $location, $timeout, Toast) {
         "ngInject";
 
         angular.extend(this, {
@@ -16,6 +17,14 @@ class PesquisaCtrl {
 
         $scope.$state = $state;
         self = this
+
+        this._absUrl = $location.absUrl();
+        this._$window = $window;
+        this._$timeout = $timeout;
+
+        this._home = function() {
+            $location.path($location.absUrl()+'#!');
+        }
 
         this._ListaMunicipios = [];
 
@@ -200,6 +209,13 @@ class PesquisaCtrl {
             return items;
         }
 
+        $scope.scrollToTop = function($var) {
+            // 'html, body' denotes the html element, to go to any other custom element, use '#elementID'
+            $('html, body').animate({
+                scrollTop: 0
+            }, 'fast'); // 'fast' is for fast animation
+        };
+
     }
 
     clickProximo() {
@@ -243,6 +259,8 @@ class PesquisaCtrl {
             }
         } else {
             this.Toast.showRejectedToast("Preencha os campos obrigatŕorio antes de proseguir.")
+            
+            this.$scope.scrollToTop();           
         }
         
     }
@@ -351,14 +369,22 @@ class PesquisaCtrl {
         .then(
           (response) => {
             //this.$mdDialog.hide()
-            this.Toast.showSuccessToast("Pesquisa enviada com sucesso!")
+            
+            setTimeout(function () {
+                this.$scope.$apply(function(){
+                    this.Toast.showSuccessToast("Pesquisa enviada com sucesso!")
+                    this.$scope.scrollToTop();
+                    this._$timeout(this._home, 2000); 
+                });
+            }, 5000);
+            $location.absUrl();
           }
         )
         .catch(
           (err) => {
             //this.isSaving = false
             this.Toast.showRejectedToast("Problema ao enviar Pesquisa")
-            //this.$mdDialog.hide()
+            this.$scope.scrollToTop();
           }
 
         )

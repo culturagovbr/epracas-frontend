@@ -11,8 +11,8 @@ class Toast {
       position: "top right",
       template:
         `<md-toast>
-          <md-icon>done</md-icon>
           ${msg}
+          <md-icon>done</md-icon>
         </md-toast>`,
     });
   }
@@ -23,8 +23,20 @@ class Toast {
       position: "top right",
       template:
         `<md-toast>
-          <md-icon>clear</md-icon>
           ${msg}
+          <md-icon>clear</md-icon>
+        </md-toast>`,
+    });
+  }
+
+  showRejectedToastProx(msg) {
+    this._$mdToast.show({
+      hideDelay: 4000,
+      position: "right",
+      template:
+        `<md-toast>
+          ${msg}
+          <md-icon>clear</md-icon>
         </md-toast>`,
     });
   }

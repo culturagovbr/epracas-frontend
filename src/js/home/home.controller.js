@@ -1,5 +1,5 @@
 class HomeCtrl {
-    constructor($q, $state, AppConstants, Praca, $document, $window, $scope, $mdMedia, $location) {
+    constructor($q, $state, AppConstants, Praca, $document, $window, $scope, $rootScope,  $mdMedia, $location) {
         "ngInject";
 
         $scope.$mdMedia = $mdMedia;
@@ -11,6 +11,14 @@ class HomeCtrl {
         this._Praca = Praca;
         this._$state = $state;
         this._$q = $q;
+
+        var $comunicado = $rootScope.comunicado;
+
+        if ($rootScope.comunicado == undefined){
+            $rootScope.comunicado = true ;
+        } else {
+            $rootScope.comunicado = false ;
+        }
 
          // Pegando o evento scroll da tela para deixar as abas dinamicas conforme o scroll.
         // angular.element(document).ready(function(){
@@ -29,7 +37,7 @@ class HomeCtrl {
                     $scope.scroll(elmTab, intPracasPosition);
                 });
 
-                $('.tooltipped').tooltip({delay: 50});
+                $('.tooltipped').tooltip({delay: 20});
 
                 $('#lnk_portaria').click(function() {
                     var absUrl = $location.absUrl();
@@ -37,6 +45,7 @@ class HomeCtrl {
                 });
 
                 $( "#btn_fechar" ).click(function() {
+                    $rootScope.comunicado = false;
                     $('#myModal').hide();
                 });
             });
